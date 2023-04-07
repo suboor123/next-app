@@ -1,12 +1,13 @@
-import { Profile, Tag } from "@/types/types";
+import { Profile } from "@/types/types";
 import React from "react";
 import Image from "next/image";
 import styles from "./Profile.module.css";
 import { VscDebugAll } from "react-icons/vsc";
+import Badge from "../tag";
 
 type Props = {
   profile: Profile;
-  skills: Tag[];
+  skills: string[];
 };
 
 const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
@@ -19,7 +20,7 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
       </div>
       <div className={"post-media text-center"}>
         <Image
-          src={profile.imageUrl}
+          src={profile.coverImageUrl}
           alt={`${profile.name} - ${profile.aboutMe}`}
           height={500}
           width={500}
@@ -35,20 +36,14 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
       <h4 className={styles.skillHeading}><VscDebugAll /> Capabilities</h4>
       <hr />
       <div className={styles.skills}>
-        {skills.map((s) => (
-          <span key={s.id}>
-            <Image
-              src={s.imageUrl}
-              alt={s.imageUrl + " - " + s.description}
-              height={30}
-              width={30}
-              priority
-              quality={90}
-            />
+        {skills.map((s, idx) => (
+          <span key={s + '-' + idx}>
+            <Badge>{s}</Badge>
           </span>
         ))}
       </div>
-      <div className="read-more">
+      <hr />
+      <div className="read-more" style={{border: 'none'}}>
         <a href="single.html">Continue Reading ...</a>
       </div>
     </article>

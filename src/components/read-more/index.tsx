@@ -25,7 +25,7 @@ const ReadMore: React.FC<Props> = ({
   const expandContent = () => setShowFullContent(true);
 
   return (
-    <article className="post">
+    <article className={`${styles.wrapper}`}>
       <div className="post-header">
         <h2 className="title">
           <a href="single.html">{heading}</a>
@@ -84,17 +84,14 @@ const ReadMore: React.FC<Props> = ({
         </div>
         {/* End Post Details */}
       </div>
-      <div className="post-media">
-        <a href="single.html">
           <Image
             src={imageUrl}
             alt={`${heading}`}
-            height={1000}
-            width={1000}
+            height={500}
+            width={500}
             priority
           />
-        </a>
-      </div>
+
       <div className="post-content">
         {/* The Content */}
         <form className={!showFullContent ? styles.readMoreContent : ""}>

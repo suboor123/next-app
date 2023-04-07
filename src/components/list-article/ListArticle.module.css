@@ -1,7 +1,12 @@
 .listArtWrp {
     display: flex;
     gap: 30px;
-    margin-bottom: 410px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.listArtWrp:hover {
+    background-color: whitesmoke;
 }
 
 .listArtImg {

@@ -9,15 +9,15 @@ const sync = (entity: string) => get(child(dbRef, `${entity}/`));
 export class FirebaseHelper {
     static async syncAllProjects(): Promise<Project[]> {
         const snapshot = await sync('projects');
-        const projects = ResponseParser.parse<Project>(snapshot.val());
-        this.attachTags(projects);
+        let projects = ResponseParser.parse<Project>(snapshot.val());
+        await this.attachTags(projects) as unknown as Project[];
         return projects.sort((a, b) => (a.pos || 0) - (b.pos || 0))
     }
 
     static async syncAllBlogs(): Promise<Blog[]> {
         const snapshot = await sync('blogs');
         const blogs = ResponseParser.parse<Blog>(snapshot.val());
-        this.attachTags(blogs);
+        await this.attachTags(blogs);
         return blogs.sort((a, b) => (a.pos || 0) - (b.pos || 0))
     }
 
@@ -46,5 +46,6 @@ export class FirebaseHelper {
                 return tags.find(t => t.id === x)
             }) as any
         })
+        return entity
     }
 }

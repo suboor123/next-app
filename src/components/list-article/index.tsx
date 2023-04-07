@@ -2,8 +2,10 @@ import React from "react";
 import Image from "next/image";
 import styles from "./ListArticle.module.css";
 import { BsFillCalendarFill, BsFillEyeFill } from "react-icons/bs";
+import Badge from "../tag";
 
-type ListContent = {
+export type ListContent = {
+  id?: string;
   heading: string;
   createdAt: string;
   tags: string[];
@@ -15,13 +17,14 @@ type ListContent = {
 type Props = {
   content: ListContent[];
   hasPriority?: boolean;
+  handleArticleClick?: (id: string) => void
 };
 
-const ListArticle: React.FC<Props> = ({ content, hasPriority = false }) => {
+const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArticleClick = () => {} }) => {
   const renderArticles = () => {
     return content.map((c, idx) => {
       return (
-        <article className={styles.listArtWrp} key={idx}>
+        <article className={styles.listArtWrp} key={idx} onClick={() => handleArticleClick(c.id!)}>
           <div className={styles.listArtImg}>
             <Image
               src={c.imageUrl}
@@ -43,7 +46,7 @@ const ListArticle: React.FC<Props> = ({ content, hasPriority = false }) => {
               <div className="post-details">
                 {c.tags.map((t, idx) => (
                   <div className="post-cat" key={idx}>
-                    <a href="#">#{t}</a>
+                    <Badge>{t}</Badge>
                   </div>
                 ))}
                 <br />

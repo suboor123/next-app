@@ -1,5 +1,12 @@
+.wrapper {
+    margin-bottom: 40px !important;
+    border: .1px solid rgba(128, 128, 128, 0.237) !important;
+    padding: 20px;
+    overflow: hidden;
+}
+
 .readMoreContent {
-    max-height: 500px;
+    max-height: 300px;
     overflow: hidden;
 }
 
