@@ -1,24 +1,68 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
 import ListArticle from "@/components/list-article";
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { FirebaseHelper } from "@/lib/firebase-helpers";
-
-
-const inter = Inter({ subsets: ["latin"] });
+import { Blog, Project } from "@/types/types";
+import Heading from "@/components/heading";
+import Button from "@/components/button";
+import styles from "./Home.module.css";
+import { BsChevronRight } from "react-icons/bs";
 
 export async function getStaticProps() {
-
+  const projects = await FirebaseHelper.syncAllProjects();
+  const blogs = await FirebaseHelper.syncAllBlogs();
   return {
     props: {
-    }, // will be passed to the page component as props
+      projects,
+      blogs,
+    },
   };
 }
 
-export default function Home(props: any) {
-  useEffect(() => {
-    FirebaseHelper.syncMyProfile()
-  }, [])
+type Props = {
+  projects: Project[];
+  blogs: Blog[];
+};
+
+export default function Home(props: Props) {
+  const { projects, blogs } = props;
+
+  const renderProjectsList = useMemo(() => {
+    const content = projects
+      .filter((p) => p.description)
+      .map((project) => {
+        return {
+          id: project.id,
+          heading: project.name,
+          createdAt: project.createdAt,
+          tags: [],
+          views: project.views,
+          content: project.description,
+          imageUrl: project.imageUrl,
+        };
+      })
+      .slice(0, 6);
+    return <ListArticle content={content} />;
+  }, [projects.length]);
+
+  const renderBlogList = useMemo(() => {
+    const content = blogs
+      .filter((p) => p.description)
+      .map((project) => {
+        return {
+          id: project.id,
+          heading: project.name,
+          createdAt: project.createdAt,
+          tags: [],
+          views: project.views,
+          content: project.description,
+          imageUrl: project.imageUrl,
+        };
+      })
+      .slice(0, 6);
+    return <ListArticle content={content} />;
+  }, [projects.length]);
+
   return (
     <>
       <Head>
@@ -27,16 +71,34 @@ export default function Home(props: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="posts-inner list-layout">
-        <ListArticle />
-        <ListArticle />
-        <ListArticle />
-        <ListArticle />
-
-        <ListArticle />
-        <ListArticle />
-        <ListArticle />
-      </div>
+      <hr />
+      <Heading>Projects</Heading>
+      <hr />
+      {renderProjectsList}
+      <hr />
+      <Button className={styles.viewAllBtn}>
+        View All <BsChevronRight />
+      </Button>
+      <hr />
+      <Heading>Blogs</Heading>
+      <hr />
+      {renderBlogList}
+      <hr />
+      <Button className={styles.viewAllBtn}>
+        View All <BsChevronRight />
+      </Button>
+      <hr />
     </>
   );
+}
+
+{
+  /* <ReadMore
+        heading={mainProject.name}
+        createdAt={mainProject.createdAt}
+        tags={[]}
+        views={mainProject.views}
+        content={mainProject.content}
+        imageUrl={mainProject.imageUrl}
+      /> */
 }

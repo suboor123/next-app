@@ -1,0 +1,28 @@
+.listArtWrp {
+    display: flex;
+    gap: 30px;
+}
+
+.listArtImg {
+    position: relative;
+    min-width: 250px;
+    height: 300px;
+}
+
+@media only screen and (max-width: 600px) {
+    .listArtWrp {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+    .listArtImg {
+        position: relative;
+        min-width: 250px;
+        height: 200px;
+    }
+    .heading {
+        display: block;
+        text-align: center;
+        background-color: white;
+    }
+  }

@@ -1,0 +1,23 @@
+.readMoreContent {
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.readMoreWrp {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    backdrop-filter: blur(5px);
+
+}
+
+.readMoreBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    font-size: 13px;
+}
