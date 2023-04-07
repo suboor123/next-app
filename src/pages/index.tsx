@@ -2,19 +2,24 @@ import Head from "next/head";
 import ListArticle from "@/components/list-article";
 import { useMemo } from "react";
 import { FirebaseHelper } from "@/lib/firebase-helpers";
-import { Blog, Project } from "@/types/types";
+import { Blog, Profile, Project, Tag } from "@/types/types";
 import Heading from "@/components/heading";
 import Button from "@/components/button";
 import styles from "./Home.module.css";
 import { BsChevronRight } from "react-icons/bs";
+import ProfileHero from "@/components/profile-hero";
 
 export async function getStaticProps() {
   const projects = await FirebaseHelper.syncAllProjects();
   const blogs = await FirebaseHelper.syncAllBlogs();
+  const profile = await FirebaseHelper.syncMyProfile();
+  const skills = await FirebaseHelper.syncAllTags();
   return {
     props: {
       projects,
       blogs,
+      profile,
+      skills
     },
   };
 }
@@ -22,10 +27,12 @@ export async function getStaticProps() {
 type Props = {
   projects: Project[];
   blogs: Blog[];
+  profile: Profile;
+  skills: Tag[]
 };
 
 export default function Home(props: Props) {
-  const { projects, blogs } = props;
+  const { projects, blogs, profile, skills } = props;
 
   const renderProjectsList = useMemo(() => {
     const content = projects
@@ -35,33 +42,54 @@ export default function Home(props: Props) {
           id: project.id,
           heading: project.name,
           createdAt: project.createdAt,
-          tags: [],
+          tags: project.tags.map((p: any) => p.name),
           views: project.views,
           content: project.description,
           imageUrl: project.imageUrl,
         };
       })
-      .slice(0, 6);
+      .slice(0, 4);
     return <ListArticle content={content} />;
   }, [projects.length]);
 
   const renderBlogList = useMemo(() => {
     const content = blogs
       .filter((p) => p.description)
-      .map((project) => {
+      .map((blog) => {
         return {
-          id: project.id,
-          heading: project.name,
-          createdAt: project.createdAt,
-          tags: [],
-          views: project.views,
-          content: project.description,
-          imageUrl: project.imageUrl,
+          id: blog.id,
+          heading: blog.name,
+          createdAt: blog.createdAt,
+          tags: blog.tags.map((p: any) => p.name),
+          views: blog.views,
+          content: blog.description,
+          imageUrl: blog.imageUrl,
         };
       })
-      .slice(0, 6);
-    return <ListArticle content={content} />;
+      .slice(0, 4);
+    return <ListArticle content={content.reverse()} />;
   }, [projects.length]);
+
+  const renderHeading = (title: string) => {
+    return (
+      <>
+        <hr />
+        <Heading>{title}</Heading>
+        <hr />
+      </>
+    );
+  };
+
+  const renderViewAllButton = (callback: () => void) => {
+    return (
+      <>
+        <hr />
+        <Button className={styles.viewAllBtn}>
+          View All <BsChevronRight />
+        </Button>
+      </>
+    );
+  };
 
   return (
     <>
@@ -71,22 +99,13 @@ export default function Home(props: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <hr />
-      <Heading>Projects</Heading>
-      <hr />
+      <ProfileHero profile={profile} skills={skills} />
+      {renderHeading("projects")}
       {renderProjectsList}
-      <hr />
-      <Button className={styles.viewAllBtn}>
-        View All <BsChevronRight />
-      </Button>
-      <hr />
-      <Heading>Blogs</Heading>
-      <hr />
+      {renderViewAllButton(() => {})}
+      {renderHeading("blogs")}
       {renderBlogList}
-      <hr />
-      <Button className={styles.viewAllBtn}>
-        View All <BsChevronRight />
-      </Button>
+      {renderViewAllButton(() => {})}
       <hr />
     </>
   );

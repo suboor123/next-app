@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import Navbar from "@/components/navbar";
 import MobileNavbar from "@/components/navbar/mobile-navbar";
 import { FirebaseHelper } from "@/lib/firebase-helpers";
@@ -6,6 +5,8 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
+import styles from "./Home.module.css";
+import NextNProgress from 'nextjs-progressbar';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -20,13 +21,13 @@ export default function App({ Component, pageProps }: AppProps) {
           font-family: ${inter.style.fontFamily};
         }
       `}</style>
-      <Header />
+         <NextNProgress color="rgb(26, 137, 23)" height={5} />
       <div id="main-content">
         <MobileNavbar />
         <div className="hide-menu" />
         <div className="container">
           <div className="row">
-            <div className="col-md-9">
+            <div className={`col-md-9 ${styles.mainSec}`}>
               <div className="posts">
                 <Component {...pageProps} />
               </div>

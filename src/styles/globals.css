@@ -614,8 +614,6 @@ body {
 
 .header {
     width: 300px;
-    background-color: white;
-    overflow: hidden;
     bottom: 0;
     top: 0;
     text-align: left;
@@ -714,7 +712,7 @@ body {
 .posts .grid-layout article,
 .posts .grid-layout article:last-child {
     padding-bottom: 20px;
-    margin-bottom: 40px
+    margin-bottom: 20px
 }
 
 .main-menu .sub-menu a {
@@ -889,7 +887,14 @@ body {
 .posts .list-layout article,
 .posts article:last-child {
     padding-bottom: 0;
-    margin-bottom: 15px
+    margin-bottom: 0px
+}
+
+.ellipsis-4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }
 
 .cat a:last-child:after,
@@ -902,7 +907,7 @@ body {
 
 .posts article {
     position: relative;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
     padding-bottom: 30px
 }
 
@@ -1090,7 +1095,22 @@ body {
 }
 
 .post-details .post-date:before {
-    content: '\f017'
+}
+
+.mt-1 {
+    margin-top: 10px;
+}
+.mt-2 {
+    margin-top: 20px;
+}
+.mt-3 {
+    margin-top: 30px;
+}
+.mt-4 {
+    margin-top: 40px;
+}
+.mt-5 {
+    margin-top: 50px;
 }
 
 .post-details .post-views:before {

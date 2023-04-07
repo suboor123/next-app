@@ -10,12 +10,14 @@ export class FirebaseHelper {
     static async syncAllProjects(): Promise<Project[]> {
         const snapshot = await sync('projects');
         const projects = ResponseParser.parse<Project>(snapshot.val());
+        this.attachTags(projects);
         return projects.sort((a, b) => (a.pos || 0) - (b.pos || 0))
     }
 
     static async syncAllBlogs(): Promise<Blog[]> {
         const snapshot = await sync('blogs');
         const blogs = ResponseParser.parse<Blog>(snapshot.val());
+        this.attachTags(blogs);
         return blogs.sort((a, b) => (a.pos || 0) - (b.pos || 0))
     }
 
@@ -35,5 +37,14 @@ export class FirebaseHelper {
         const snapshot = await sync('sessions');
         const sessions = snapshot.val();
         return sessions;
+    }
+
+    static async attachTags(entity: Project[] | Blog[]) {
+        const tags = await this.syncAllTags();
+        entity.forEach((e) => {
+            e.tags = (e.tags || []).map((x) => {
+                return tags.find(t => t.id === x)
+            }) as any
+        })
     }
 }

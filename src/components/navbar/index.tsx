@@ -4,6 +4,7 @@ import styles from "./Navbar.module.css";
 import Image from "next/image";
 import Button from "../button";
 import { BsFillCaretRightFill, BsLinkedin } from "react-icons/bs";
+import Link from "next/link";
 
 type Props = {
   profile: Profile;
@@ -14,83 +15,57 @@ const Navbar = ({ profile }: Props) => {
   return (
     <div className="col-md-3">
       <div className="header affix">
-      <div className={styles.profileSec}>
-                <Image
-                  src={profile.imageUrl}
-                  alt={`${profile.name} - ${profile.aboutMe}`}
-                  height={100}
-                  width={100}
-                  style={{
-                    objectFit: "cover",
-                    borderRadius: "50%",
-                    border: "0.1px solid #80808040",
-                  }}
-                  priority
-                />
-                <h2>{profile.name}</h2>
-                <p>{profile.designation} at {profile.companies[profile.companies.length - 1].name}</p>
-                <small>{profile.aboutMe}</small>
-                  <div className={styles.btnGrp}>
-                      <Button type="secondary" className={styles.flexBtn}>Connect</Button>
-                      <Button type="secondary" className={styles.flexBtn}> <BsFillCaretRightFill/> LIVE Sessions</Button>
-                  </div>
-              </div>
+        <div className={styles.profileSec}>
+          <Image
+            src={profile.imageUrl}
+            alt={`${profile.name} - ${profile.aboutMe}`}
+            height={100}
+            width={100}
+            style={{
+              objectFit: "cover",
+              borderRadius: "50%",
+              border: "0.1px solid #80808040",
+            }}
+            priority
+          />
+          <h2>{profile.name}</h2>
+          <p>
+            {profile.designation} at{" "}
+            {profile.companies[profile.companies.length - 1].name}
+          </p>
+          <small>{profile.aboutMe}</small>
+          <div className={styles.btnGrp}>
+            <Button type="secondary" className={styles.flexBtn}>
+              Connect
+            </Button>
+            <Button type="secondary" className={styles.flexBtn}>
+              {" "}
+              <BsFillCaretRightFill /> LIVE Sessions
+            </Button>
+          </div>
+        </div>
         <div className="table">
           <div className="table-cell">
             <div className="main-menu">
               <nav>
                 <ul className="menu-list">
-                  <li className="menu-item-has-children">
-                    <a href="index.html">Home</a>
-                    <ul className="sub-menu">
-                      <li>
-                        <a href="index.html">Standard Layout</a>
-                      </li>
-                      <li>
-                        <a href="index-grid.html">Grid Layout</a>
-                      </li>
-                      <li>
-                        <a href="index-grid-1st-large.html">Grid 1st Large</a>
-                      </li>
-                      <li>
-                        <a href="index-list.html">List Layout</a>
-                      </li>
-                      <li>
-                        <a href="index-list-1st-large.html">List 1st Large</a>
-                      </li>
-                    </ul>
+                  <li>
+                    <Link href="/">Home</Link>
                   </li>
                   <li>
-                    <a href="about.html">About</a>
+                    <Link href="/about">About</Link>
                   </li>
                   <li>
-                    <a href="#">Lifestyle</a>
+                    <Link href="/projects">Projects</Link>
                   </li>
                   <li>
-                    <a href="#">Travel</a>
-                  </li>
-                  <li className="menu-item-has-children">
-                    <a href="single.html">Single</a>
-                    <ul className="sub-menu">
-                      <li>
-                        <a href="single.html">Image</a>
-                      </li>
-                      <li>
-                        <a href="single.html">Gallery</a>
-                      </li>
-                      <li>
-                        <a href="single.html">Slideshow</a>
-                      </li>
-                      <li>
-                        <a href="single.html">Youtube Video</a>
-                      </li>
-                      <li>
-                        <a href="single.html">Vimeo Video</a>
-                      </li>
-                    </ul>
+                    <Link href="/blogs">Blogs</Link>
                   </li>
                   <li>
-                    <a href="contact.html">Contact</a>
+                    <Link href="/live-sessions">LIVE Sessions</Link>
+                  </li>
+                  <li>
+                    <Link href="/contact">Contact</Link>
                   </li>
                 </ul>
               </nav>

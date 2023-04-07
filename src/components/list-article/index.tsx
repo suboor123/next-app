@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import styles from './ListArticle.module.css';
+import styles from "./ListArticle.module.css";
+import { BsFillCalendarFill, BsFillEyeFill } from "react-icons/bs";
 
 type ListContent = {
   heading: string;
@@ -13,9 +14,10 @@ type ListContent = {
 
 type Props = {
   content: ListContent[];
+  hasPriority?: boolean;
 };
 
-const ListArticle: React.FC<Props> = ({ content }) => {
+const ListArticle: React.FC<Props> = ({ content, hasPriority = false }) => {
   const renderArticles = () => {
     return content.map((c, idx) => {
       return (
@@ -25,9 +27,12 @@ const ListArticle: React.FC<Props> = ({ content }) => {
               src={c.imageUrl}
               alt={`${c.heading} - ${c.content}`}
               fill
-              style={{objectFit: 'contain'}}
+              style={{ objectFit: "contain" }}
+              priority={hasPriority}
+              sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             />
-
           </div>
           <div className="post-content">
             <div className="post-header">
@@ -36,59 +41,21 @@ const ListArticle: React.FC<Props> = ({ content }) => {
               </h2>
               {/* Post Details */}
               <div className="post-details">
-                <div className="post-cat">
-                  <a href="#">Travel</a>
-                </div>
-                <a href="#" className="post-date">
-                  <span>Aug 06, 2018</span>
-                </a>
-                <div className="post-details-child">
-                  <a href="#" className="post-views">
-                    15
-                  </a>
-                  <a href="#" className="post-comments">
-                    03
-                  </a>
-                  <div className="post-share-icon">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-facebook" />
-                          <span>Facebook</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-google" />
-                          <span>Google Plus</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-twitter" />
-                          <span>Twitter</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-behance" />
-                          <span>Behance</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa fa-dribbble" />
-                          <span>Dribbble</span>
-                        </a>
-                      </li>
-                    </ul>
+                {c.tags.map((t, idx) => (
+                  <div className="post-cat" key={idx}>
+                    <a href="#">#{t}</a>
                   </div>
+                ))}
+                <br />
+                <div className={`post-date mt-1 ${styles.articleDtl}`}>
+                  <span><BsFillCalendarFill /> {c.createdAt}</span>
+                  <span><BsFillEyeFill /> {c.views}</span>
                 </div>
               </div>
               {/* End Post Details */}
             </div>
             {/* The Content */}
-            <div className="the-excerpt">{c.content}</div>
+            <div className="the-excerpt ellipsis-4">{c.content}</div>
             {/* End The Content */}
             <div className="read-more">
               <a href="single.html">Continue Reading ...</a>
