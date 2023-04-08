@@ -21,7 +21,11 @@ const Navbar = ({ profile }: Props) => {
 
   return (
     <div className="col-md-3">
-      <div className="header affix" id="header-affix" onClick={(e: any) => e?.stopPropogation()}>
+      <div className="header affix" id="header-affix" onClick={(e: any) => {
+        if(e && e.stopPropagation) {
+          e.stopPropagation()
+        }
+      }}>
         <div className={styles.profileSec}>
           <Image
             src={profile.imageUrl}
