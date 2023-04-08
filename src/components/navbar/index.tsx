@@ -21,7 +21,7 @@ const Navbar = ({ profile }: Props) => {
 
   return (
     <div className="col-md-3">
-      <div className="header affix active">
+      <div className="header affix">
         <div className={styles.profileSec}>
           <Image
             src={profile.imageUrl}

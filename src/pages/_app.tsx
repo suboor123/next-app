@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
          <Header/>
       <div id="main-content">
         <MobileNavbar />
-        <div className="hide-menu active" />
+        <div className="hide-menu" />
         <div className="container">
           <div className="row">
             <div className={`col-md-9 ${styles.mainSec}`}>
