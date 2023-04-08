@@ -1,3 +1,4 @@
+import { toggleSidebar } from '@/lib/navbar-helper'
 import React from 'react'
 
 const MobileNavbar = () => {
@@ -5,7 +6,7 @@ const MobileNavbar = () => {
     <div className="mobile">
     <div className="container">
       {/* Mobile */}
-      <div className="menu-mobile">
+      <div className="menu-mobile" onClick={toggleSidebar}>
         <span className="item item-1" />
         <span className="item item-2" />
         <span className="item item-3" />

@@ -21,7 +21,7 @@ const Navbar = ({ profile }: Props) => {
 
   return (
     <div className="col-md-3">
-      <div className="header affix">
+      <div className="header affix" id="header-affix" onClick={(e: any) => e?.stopPropogation()}>
         <div className={styles.profileSec}>
           <Image
             src={profile.imageUrl}
@@ -47,7 +47,7 @@ const Navbar = ({ profile }: Props) => {
               className={styles.flexBtn}
               onPress={navigateMessage}
             >
-              <BiEnvelope /> Connect
+              <span className="d-mobile-none"><BiEnvelope /></span> Connect
             </Button>
             <Button
               type="secondary"
@@ -55,7 +55,7 @@ const Navbar = ({ profile }: Props) => {
               onPress={navigateSessions}
             >
               {" "}
-              <BsFillCaretRightFill /> LIVE Sessions
+              <span className="d-mobile-none"><BsFillCaretRightFill /></span> LIVE Sessions
             </Button>
           </div>
         </div>

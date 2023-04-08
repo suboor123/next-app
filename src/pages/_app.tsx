@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 import styles from "./Home.module.css";
 import NextNProgress from 'nextjs-progressbar';
 import Header from "@/components/header";
+import { toggleSidebar } from "@/lib/navbar-helper";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -26,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
          <Header/>
       <div id="main-content">
         <MobileNavbar />
-        <div className="hide-menu" />
+        <div className="hide-menu" id="hide-menu" onClick={toggleSidebar} />
         <div className="container">
           <div className="row">
             <div className={`col-md-9 ${styles.mainSec}`}>

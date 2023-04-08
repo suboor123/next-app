@@ -1636,7 +1636,7 @@ body {
 
 @media screen and (max-width:767px) {
     body {
-        padding-top: 30px
+        padding-top: 0px
     }
 
     .posts .grid-layout article {
@@ -8932,4 +8932,15 @@ button.close {
     }
 }
 
+@media only screen and (max-width: 600px) { 
+    .d-mobile-none {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) { 
+    .copyright {
+        margin-top: -10px;
+    }
+ }
 /*# sourceMappingURL=bootstrap.min.css.map */

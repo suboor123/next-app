@@ -37,3 +37,21 @@
     gap: 4px;
     align-items: center;
 }
+@media only screen and (max-width: 600px) {
+    .btnGrp {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profileSec  {
+        margin-top:10px;
+    }
+ }
+
+ @media only screen and (max-width: 600px) { 
+    .copyright {
+        margin-top: -10px;
+    }
+ }

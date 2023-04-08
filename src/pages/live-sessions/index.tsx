@@ -1,8 +1,9 @@
+import Heading from '@/components/heading'
 import React from 'react'
 
 const LiveSessions = () => {
   return (
-    <div>LiveSessions</div>
+    <Heading>Coming Soon!</Heading>
   )
 }
 
