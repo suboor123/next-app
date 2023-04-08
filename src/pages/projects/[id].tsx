@@ -62,7 +62,7 @@ export async function getStaticProps(context: any) {
     return {
         props: {
             project,
-            related: projects.slice(indexOfSelectedPost! + 1, projects.length - 1),
+            related: projects.slice(indexOfSelectedPost! + 1, projects.length - 1).slice(0, 3),
         },
     };
 }

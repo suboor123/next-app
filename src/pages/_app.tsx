@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 import styles from "./Home.module.css";
 import NextNProgress from 'nextjs-progressbar';
+import Header from "@/components/header";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -22,9 +23,10 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
          <NextNProgress color="rgb(26, 137, 23)" height={5} />
+         <Header/>
       <div id="main-content">
         <MobileNavbar />
-        <div className="hide-menu" />
+        <div className="hide-menu active" />
         <div className="container">
           <div className="row">
             <div className={`col-md-9 ${styles.mainSec}`}>

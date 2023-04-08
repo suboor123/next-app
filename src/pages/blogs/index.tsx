@@ -25,7 +25,6 @@ const Blogs = (props: Props) => {
 
     const renderBlogList = useMemo(() => {
       const content = blogs
-        .filter((p) => p.description)
         .map((project) => {
           return {
             id: project.id!,

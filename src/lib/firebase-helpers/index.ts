@@ -1,5 +1,5 @@
 import {app, database} from './firebase-config';
-import { getDatabase, get, child, ref } from "firebase/database";
+import { getDatabase, get, child, ref, push } from "firebase/database";
 import { Blog, Profile, Project, Session, Tag } from '@/types/types';
 import { ResponseParser } from '../response-parser';
 
@@ -29,7 +29,8 @@ export class FirebaseHelper {
 
     static async syncMyProfile(): Promise<Profile> {
         const snapshot = await sync('profile');
-        const myProfile = snapshot.val();
+        const myProfile = snapshot.val() as Profile;
+        myProfile.companies = myProfile.companies.reverse();
         return myProfile;
     }
 
@@ -48,4 +49,12 @@ export class FirebaseHelper {
         })
         return entity
     }
+
+    static sendMessage = (message: {name: string; email: string; message: string}) => {
+        push(ref(database, 'contact/'), {
+            ...message,
+            seen: false,
+            createdAt: new Date().toISOString()
+        })
+      };
 }

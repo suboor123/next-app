@@ -25,7 +25,6 @@ const Project = (props: Props) => {
 
   const renderProjectsList = useMemo(() => {
     const content = projects
-      .filter((p) => p.description)
       .map((project) => {
         return {
           id: project.id!,
@@ -38,7 +37,6 @@ const Project = (props: Props) => {
         };
       });
     return <ListArticle content={content} handleArticleClick={(id) => {
-      console.log(id)
       router.push(`/projects/${id}`)
     }} />;
   }, [projects.length]);

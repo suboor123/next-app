@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { BsFillCalendarFill, BsFillEyeFill, BsFillShareFill } from "react-icons/bs";
 import Heading from "../heading";
 import ReadMore from "../read-more";
 import Badge from "../tag";
@@ -25,35 +26,37 @@ const Detail = (props: Props) => {
     relatedPost = [],
   } = props;
   return (
-    <div className="posts">
+    <>
       <div className="posts-inner">
         <article className="post">
           <div className="post-header">
             <div className="title">
-             <hr />
-             <Heading>{heading}</Heading>
+              <hr />
+              <Heading>{heading}</Heading>
+              <hr />
             </div>
             {/* Post Details */}
             <div className="post-details">
               <div className="post-cat">
                 {tags.map((t, idx) => (
-                  <span key={idx}>
+                  <span key={idx} style={{ marginRight: "10px" }}>
                     <Badge>{t}</Badge>
                   </span>
                 ))}
               </div>
               <a href="#" className="post-date">
-                <span>{createdAt}</span>
+                <span>
+                  <BsFillCalendarFill /> {createdAt}
+                </span>
               </a>
               <div className="post-details-child">
-                <a href="#" className="post-views">
-                  {views} views
-                </a>
-                <a href="#" className="post-comments">
-                  03 Comments
-                </a>
+              <a href="#" className="post-date">
+              <span>
+                  <BsFillEyeFill /> {views} views
+                </span>
+              </a>
                 <div className="post-share-icon">
-                  <span>SHARE</span>
+                  <span><BsFillShareFill /> SHARE</span>
                   <ul>
                     <li>
                       <a href="#">
@@ -61,12 +64,7 @@ const Detail = (props: Props) => {
                         <span>Facebook</span>
                       </a>
                     </li>
-                    <li>
-                      <a href="#">
-                        <i className="fa fa-google" />
-                        <span>Google Plus</span>
-                      </a>
-                    </li>
+
                     <li>
                       <a href="#">
                         <i className="fa fa-twitter" />
@@ -91,7 +89,7 @@ const Detail = (props: Props) => {
             </div>
             {/* End Post Details */}
           </div>
-          <div className="post-media">
+          <div className="post-media text-center">
             <Image
               src={imageUrl}
               height={500}
@@ -100,7 +98,7 @@ const Detail = (props: Props) => {
               alt={props.content.description}
             />
           </div>
-          <div className="post-content">
+          <div className="post-content mt-3">
             <form>
               <div dangerouslySetInnerHTML={{ __html: postContent } as any} />
             </form>
@@ -110,7 +108,7 @@ const Detail = (props: Props) => {
 
       {relatedPost.length !== 0 ? (
         <div id="related-posts">
-          <div className="title">
+          <div className="title text-center">
             <hr />
             <Heading>Related Posts</Heading>
             <hr />
@@ -137,7 +135,7 @@ const Detail = (props: Props) => {
       ) : (
         <></>
       )}
-    </div>
+    </>
   );
 };
 

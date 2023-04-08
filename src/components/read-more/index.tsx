@@ -27,7 +27,7 @@ const ReadMore: React.FC<Props> = ({
   return (
     <article className={`${styles.wrapper}`}>
       <div className="post-header">
-        <h2 className="title">
+        <h2 className="title text-center">
           <a href="single.html">{heading}</a>
         </h2>
         {/* Post Details */}
@@ -84,13 +84,15 @@ const ReadMore: React.FC<Props> = ({
         </div>
         {/* End Post Details */}
       </div>
-          <Image
+         <div className="text-center">
+         <Image
             src={imageUrl}
             alt={`${heading}`}
             height={500}
             width={500}
             priority
           />
+         </div>
 
       <div className="post-content">
         {/* The Content */}

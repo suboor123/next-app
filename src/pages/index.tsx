@@ -88,7 +88,7 @@ export default function Home(props: Props) {
     return (
       <>
         <hr />
-        <Button className={styles.viewAllBtn}>
+        <Button className={styles.viewAllBtn} onPress={callback}>
           View All <BsChevronRight />
         </Button>
       </>
@@ -106,10 +106,10 @@ export default function Home(props: Props) {
       <ProfileHero profile={profile} skills={skills} />
       {renderHeading("projects")}
       {renderProjectsList()}
-      {renderViewAllButton(() => {})}
+      {renderViewAllButton(() => {router.push('/projects')})}
       {renderHeading("blogs")}
       {renderBlogList()}
-      {renderViewAllButton(() => {})}
+      {renderViewAllButton(() => {router.push('/blogs')})}
       <hr />
     </>
   );

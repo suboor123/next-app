@@ -5,6 +5,9 @@ import Image from "next/image";
 import Button from "../button";
 import { BsFillCaretRightFill, BsLinkedin } from "react-icons/bs";
 import Link from "next/link";
+import { BiEnvelope } from "react-icons/bi";
+import { useRouter } from "next/router";
+import SocialConnect from "../social-connect";
 
 type Props = {
   profile: Profile;
@@ -12,9 +15,13 @@ type Props = {
 };
 
 const Navbar = ({ profile }: Props) => {
+  const router = useRouter();
+  const navigateMessage = () => router.push("/contact");
+  const navigateSessions = () => router.push("/live-sessions");
+
   return (
     <div className="col-md-3">
-      <div className="header affix">
+      <div className="header affix active">
         <div className={styles.profileSec}>
           <Image
             src={profile.imageUrl}
@@ -31,14 +38,22 @@ const Navbar = ({ profile }: Props) => {
           <h2>{profile.name}</h2>
           <p>
             {profile.designation} at{" "}
-            {profile.companies[profile.companies.length - 1].name}
+            {profile.companies[0].name}
           </p>
           <small>{profile.aboutMe}</small>
           <div className={styles.btnGrp}>
-            <Button type="secondary" className={styles.flexBtn}>
-              Connect
+            <Button
+              type="secondary"
+              className={styles.flexBtn}
+              onPress={navigateMessage}
+            >
+              <BiEnvelope /> Connect
             </Button>
-            <Button type="secondary" className={styles.flexBtn}>
+            <Button
+              type="secondary"
+              className={styles.flexBtn}
+              onPress={navigateSessions}
+            >
               {" "}
               <BsFillCaretRightFill /> LIVE Sessions
             </Button>
@@ -99,9 +114,8 @@ const Navbar = ({ profile }: Props) => {
               </form>
             </div>
             <div className="copyright">
-              <p>
-                Tancho @ 2018. Design by <a href="#">Kendy</a>
-              </p>
+              <hr />
+              <SocialConnect size={18} profile={profile} />
             </div>
           </div>
         </div>

@@ -58,7 +58,7 @@ const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArti
               {/* End Post Details */}
             </div>
             {/* The Content */}
-            <div className="the-excerpt ellipsis-4">{c.content}</div>
+            <div className="the-excerpt ellipsis-3">{c.content}</div>
             {/* End The Content */}
             <div className="read-more">
               <a href="single.html">Continue Reading ...</a>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./Profile.module.css";
 import { VscDebugAll } from "react-icons/vsc";
 import Badge from "../tag";
+import SocialConnect from "../social-connect";
 
 type Props = {
   profile: Profile;
@@ -15,7 +16,11 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
     <article className="post">
       <div className="post-header">
         <h2 className={`title ${styles.heroTitle}`}>
-          Suboor Khan <hr /> Creative Web & Mobile app Developer
+          Suboor Khan 
+          <hr /> Creative Web & Mobile app Developer
+          <hr />
+          <SocialConnect profile={profile} size={24} />
+          <hr />
         </h2>
       </div>
       <div className={"post-media text-center"}>
@@ -33,6 +38,7 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
         </div>
       </div>
       <hr />
+
       <h4 className={styles.skillHeading}><VscDebugAll /> Capabilities</h4>
       <hr />
       <div className={styles.skills}>

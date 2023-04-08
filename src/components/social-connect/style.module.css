@@ -1,0 +1,15 @@
+.wrpr {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.ico {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.ico:hover {
+    color: rgb(26, 137, 23);
+}

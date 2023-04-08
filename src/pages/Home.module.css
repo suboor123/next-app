@@ -4,7 +4,8 @@
 }
 
 .mainSec {
-    margin-top: 100px;
+    margin-top: 80px;
+    overflow: hidden;
 }
 
 @media only screen and (max-width: 600px) {
