@@ -8,9 +8,18 @@ const inter = Inter({ subsets: ["latin"] });
 import styles from "./Home.module.css";
 import NextNProgress from 'nextjs-progressbar';
 import Header from "@/components/header";
-import { toggleSidebar } from "@/lib/navbar-helper";
+import { closeSidebar, toggleSidebar } from "@/lib/navbar-helper";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', closeSidebar)
+  }, [])
+
   return (
     <>
       <style jsx global>{`
