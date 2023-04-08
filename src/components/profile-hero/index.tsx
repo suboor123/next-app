@@ -5,6 +5,7 @@ import styles from "./Profile.module.css";
 import { VscDebugAll } from "react-icons/vsc";
 import Badge from "../tag";
 import SocialConnect from "../social-connect";
+import Link from "next/link";
 
 type Props = {
   profile: Profile;
@@ -50,7 +51,7 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
       </div>
       <hr />
       <div className="read-more" style={{border: 'none'}}>
-        <a href="single.html">Continue Reading ...</a>
+        <Link href="/about">Continue Reading ...</Link>
       </div>
     </article>
   );
