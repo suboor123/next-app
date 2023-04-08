@@ -37,7 +37,7 @@ const About = ({ profile, skills }: Props) => {
         </div>
         <div className={"post-media text-center"}>
           <Image
-            src={profile.coverImageUrl}
+            src={profile.imageUrl}
             alt={`${profile.name} - ${profile.aboutMe}`}
             height={500}
             width={500}
