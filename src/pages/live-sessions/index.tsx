@@ -37,7 +37,9 @@ const LiveSessions = ({sessions = []}: Props) => {
           imageUrl: session.imageUrl,
         };
       });
-    return <ListArticle content={content}  />;
+    return <ListArticle content={content} handleArticleClick={() => {
+      router.push('/contact')
+    }}  />;
   }, [sessions.length]);
   
   return (
