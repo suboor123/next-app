@@ -85,7 +85,7 @@ const ReadMore: React.FC<Props> = ({
             </div>
         {/* End Post Details */}
       </div>
-         <div className="text-center">
+         <div className="text-center mt-3">
          <Image
             src={imageUrl}
             alt={`${heading}`}
