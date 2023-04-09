@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./ReadMore.module.css";
 import Button from "../button";
-import { BsChevronDoubleDown } from "react-icons/bs";
+import { BsChevronDoubleDown, BsFillCalendarFill, BsFillEyeFill, BsFillShareFill } from "react-icons/bs";
+import Badge from "../tag";
 
 type Props = {
   heading: string;
@@ -32,56 +33,56 @@ const ReadMore: React.FC<Props> = ({
         </h2>
         {/* Post Details */}
         <div className="post-details">
-          <div className="post-cat">
-            <a href="#">Travel</a>
-          </div>
-          <a href="#" className="post-date">
-            <span>Aug 06, 2018</span>
-          </a>
-          <div className="post-details-child">
-            <a href="#" className="post-views">
-              15 views
-            </a>
-            <a href="#" className="post-comments">
-              03 Comments
-            </a>
-            <div className="post-share-icon">
-              <span>SHARE</span>
-              <ul>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                    <span>Facebook</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-google" />
-                    <span>Google Plus</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                    <span>Twitter</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-behance" />
-                    <span>Behance</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-dribbble" />
-                    <span>Dribbble</span>
-                  </a>
-                </li>
-              </ul>
+              <div className="post-cat">
+                {tags.map((t, idx) => (
+                  <span key={idx} style={{ marginRight: "10px" }}>
+                    <Badge>{t}</Badge>
+                  </span>
+                ))}
+              </div>
+              <a href="#" className="post-date">
+                <span>
+                  <BsFillCalendarFill /> {createdAt}
+                </span>
+              </a>
+              <div className="post-details-child">
+              <a href="#" className="post-date">
+              <span>
+                  <BsFillEyeFill /> {views} views
+                </span>
+              </a>
+                <div className="post-share-icon">
+                  <span><BsFillShareFill /> SHARE</span>
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-facebook" />
+                        <span>Facebook</span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-twitter" />
+                        <span>Twitter</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-behance" />
+                        <span>Behance</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-dribbble" />
+                        <span>Dribbble</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
         {/* End Post Details */}
       </div>
          <div className="text-center">
