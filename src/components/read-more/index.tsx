@@ -24,14 +24,6 @@ const ReadMore: React.FC<Props> = ({
 }) => {
   const [showFullContent, setShowFullContent] = useState(false);
   const expandContent = () => setShowFullContent(true);
-
-  useLayoutEffect(() => {
-    const d = document.querySelectorAll('pre');
-    d.forEach(pre => {
-      pre.classList.add('prettyprint')
-    })
-  },[])
-
   return (
     <article className={`${styles.wrapper}`}>
       <div className="post-header">
