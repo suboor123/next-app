@@ -18,9 +18,9 @@ const Work = ({ profile }: Props) => {
         <hr />
       </div>
       <div className={styles.workWrappr}>
-        {profile.companies.map((c) => {
+        {profile.companies.map((c, idx) => {
           return (
-            <div className={styles.workCard} key={c.id}>
+            <div className={styles.workCard} key={idx}>
               <h2>{c.name} <span className={styles.currentlyWorking}>{c.currentlyWorking && (<Badge>Present</Badge>)}</span>
               {!c.currentlyWorking && <div className={styles.timeSpan}>from {c.from} to {c.to}</div>}
               </h2> 

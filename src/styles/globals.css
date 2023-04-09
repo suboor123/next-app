@@ -885,7 +885,6 @@ body {
 
 .posts .list-layout article,
 .posts article:last-child {
-    padding-bottom: 0;
     margin-bottom: 20px
 }
 

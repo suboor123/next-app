@@ -30,7 +30,7 @@ const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArti
               src={c.imageUrl}
               alt={`${c.heading} - ${c.content}`}
               fill
-              style={{ objectFit: "contain" }}
+              className={styles.listArtImg as string}
               priority={hasPriority}
               sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,

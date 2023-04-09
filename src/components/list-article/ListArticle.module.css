@@ -3,6 +3,8 @@
     gap: 30px;
     padding: 20px;
     cursor: pointer;
+    border: .1px dashed rgba(128, 128, 128, 0.423);
+   
 }
 
 .listArtWrp:hover {
@@ -22,11 +24,16 @@
     color: rgba(0, 0, 0, 0.605);
 }
 
+.listArtImg {
+    object-fit: cover;
+}
+
 @media only screen and (max-width: 600px) {
     .listArtWrp {
         display: flex;
         flex-direction: column;
         gap: 2px;
+        border: .1px dashed rgba(128, 128, 128, 0.423);
     }
     .listArtImg {
         position: relative;
@@ -37,5 +44,9 @@
         display: block;
         text-align: center;
         background-color: white;
+    }
+
+    .listArtImg {
+        object-fit: cover;
     }
   }
