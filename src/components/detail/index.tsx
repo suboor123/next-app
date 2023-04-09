@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { BsFillCalendarFill, BsFillEyeFill, BsFillShareFill } from "react-icons/bs";
 import Heading from "../heading";
 import ReadMore from "../read-more";
@@ -25,6 +25,12 @@ const Detail = (props: Props) => {
     content: { heading, postContent, views, createdAt, imageUrl, tags },
     relatedPost = [],
   } = props;
+  useLayoutEffect(() => {
+    const d = document.querySelectorAll('pre');
+    d.forEach(pre => {
+      pre.classList.add('prettyprint')
+    })
+  },[])
   return (
     <>
       <div className="posts-inner">
