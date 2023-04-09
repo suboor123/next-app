@@ -16,6 +16,7 @@ export async function getStaticProps() {
       profile,
       skills,
     },
+    revalidate: 86400,
   };
 }
 

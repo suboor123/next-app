@@ -22,6 +22,7 @@ export async function getStaticProps() {
       profile,
       skills: skills.map(s => s.name)
     },
+    revalidate: 86400,
   };
 }
 
