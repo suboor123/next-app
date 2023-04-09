@@ -17,8 +17,8 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
     <article className="post">
       <div className="post-header">
         <h2 className={`title ${styles.heroTitle}`}>
-          Suboor Khan 
-          <hr /> Creative Web & Mobile app Developer
+          {" "}
+          Creative Web & Mobile app Developer
           <hr />
           <SocialConnect profile={profile} size={24} />
           <hr />
@@ -40,17 +40,19 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
       </div>
       <hr />
 
-      <h4 className={styles.skillHeading}><VscDebugAll /> Capabilities</h4>
+      <h4 className={styles.skillHeading}>
+        <VscDebugAll /> Capabilities
+      </h4>
       <hr />
       <div className={styles.skills}>
         {skills.map((s, idx) => (
-          <span key={s + '-' + idx}>
+          <span key={s + "-" + idx}>
             <Badge>{s}</Badge>
           </span>
         ))}
       </div>
       <hr />
-      <div className="read-more" style={{border: 'none'}}>
+      <div className="read-more" style={{ border: "none" }}>
         <Link href="/about">Continue Reading ...</Link>
       </div>
     </article>

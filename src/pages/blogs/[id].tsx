@@ -18,6 +18,7 @@ const ProjectDetail = (props: Props) => {
         <meta name="description" content={blog.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
       </Head>
 
       <Detail

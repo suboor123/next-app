@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./ReadMore.module.css";
 import Button from "../button";
@@ -24,6 +24,13 @@ const ReadMore: React.FC<Props> = ({
 }) => {
   const [showFullContent, setShowFullContent] = useState(false);
   const expandContent = () => setShowFullContent(true);
+
+  useLayoutEffect(() => {
+    const d = document.querySelectorAll('pre');
+    d.forEach(pre => {
+      pre.classList.add('prettyprint')
+    })
+  },[])
 
   return (
     <article className={`${styles.wrapper}`}>

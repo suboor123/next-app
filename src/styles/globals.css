@@ -792,9 +792,14 @@ body {
     margin-bottom: 40px
 }
 
-.posts {
-    padding-left: 80px;
-    padding-right: 50px
+.prettyprint {
+    background: whitesmoke;
+    padding: 20px !important;
+    border-radius: 0px;
+    border: 0.1px solid #8080802b !important;
+} 
+.prettyprint .lit {
+    margin-right: 20px !important;
 }
 
 .posts .grid-layout {

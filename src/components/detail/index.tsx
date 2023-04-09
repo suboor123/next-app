@@ -28,7 +28,7 @@ const Detail = (props: Props) => {
   return (
     <>
       <div className="posts-inner">
-        <article className="post">
+        <article className="post" style={{padding: '0px !important'}}>
           <div className="post-header">
             <div className="title">
               <hr />
