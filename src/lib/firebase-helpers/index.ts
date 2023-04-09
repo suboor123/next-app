@@ -36,11 +36,12 @@ export class FirebaseHelper {
 
     static async syncAllSessions(): Promise<Session[]> {
         const snapshot = await sync('sessions');
-        const sessions = snapshot.val();
+        const sessions = ResponseParser.parse<Session>(snapshot.val());
+        await this.attachTags(sessions);
         return sessions;
     }
 
-    static async attachTags(entity: Project[] | Blog[]) {
+    static async attachTags(entity: Project[] | Blog[] | Session[]) {
         const tags = await this.syncAllTags();
         entity.forEach((e) => {
             e.tags = (e.tags || []).map((x) => {
