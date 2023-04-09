@@ -56,7 +56,7 @@ const About = ({ profile, skills }: Props) => {
             and effective.{" "}
           </p>
           <p>
-            I am current work at{" "}
+            I am currently working at{" "}
             <b>{profile.companies[0].name}</b> as{" "}
             <b>{profile.designation}</b>. If you want to work together,{" "}
             <a href="mailto:suboork100@gmail.com">send me an email</a>,{" "}

@@ -95,7 +95,7 @@ const ReadMore: React.FC<Props> = ({
           />
          </div>
 
-      <div className="post-content">
+      <div className="post-content mt-3">
         {/* The Content */}
         <form className={!showFullContent ? styles.readMoreContent : ""}>
           <div dangerouslySetInnerHTML={{ __html: content } as any} />
