@@ -8941,10 +8941,25 @@ button.close {
         display: none;
     }
 }
-
+.stickyVideo {
+    z-index: 999;
+    position: fixed;
+    bottom: 5px;
+    right: 10px;
+    height: 200px;
+ }
 @media only screen and (max-width: 600px) { 
     .copyright {
         margin-top: -10px;
     }
+    .stickyVideo {
+        z-index: 999;
+        position: fixed;
+        top: 5px;
+        right: 10px;
+        height: 200px;
+     }
  }
+
+
 /*# sourceMappingURL=bootstrap.min.css.map */
