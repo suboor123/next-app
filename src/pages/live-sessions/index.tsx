@@ -131,7 +131,7 @@ const LiveSessions = ({ sessions = [] }: Props) => {
         </Button>
       </p>
       <hr />
-<div id="observer">
+<div id="observer" style={{minHeight:'350px'}}>
 <div id="sticky-video">
         <iframe
           id="session-iframe"
