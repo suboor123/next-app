@@ -10,13 +10,12 @@ import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 declare const YT: any;
 var player;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const sessions = await FirebaseHelper.syncAllSessions();
   return {
     props: {
       sessions,
-    },
-    revalidate: 3600,
+    }
   };
 }
 
