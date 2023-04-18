@@ -38,14 +38,15 @@ const LiveSessions = ({ sessions = [] }: Props) => {
         views: session.views,
         content: session.description,
         imageUrl: session.imageUrl,
+        attachedFiles: session.attachedFiles
       };
     });
     return (
       <ListArticle
+        style={{cursor: 'default'}}
         content={content}
-        handleArticleClick={() => {
-          router.push("/contact");
-        }}
+        handleArticleClick={() => { }}
+
       />
     );
   }, [sessions.length]);

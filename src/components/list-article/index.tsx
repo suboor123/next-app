@@ -3,6 +3,8 @@ import Image from "next/image";
 import styles from "./ListArticle.module.css";
 import { BsFillCalendarFill, BsFillEyeFill } from "react-icons/bs";
 import Badge from "../tag";
+import { SessionResources } from "@/types/types";
+import AttachedFiles from './AttachedFiles'
 
 export type ListContent = {
   id?: string;
@@ -12,19 +14,21 @@ export type ListContent = {
   views: number;
   content: string;
   imageUrl: string;
+  attachedFiles?: SessionResources[]
 };
 
 type Props = {
   content: ListContent[];
   hasPriority?: boolean;
-  handleArticleClick?: (id: string) => void
+  handleArticleClick?: (id: string) => void;
+  style?: any
 };
 
-const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArticleClick = () => {} }) => {
+const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArticleClick = () => {}, ...props }) => {
   const renderArticles = () => {
     return content.map((c, idx) => {
       return (
-        <article className={styles.listArtWrp} key={idx} onClick={() => handleArticleClick(c.id!)}>
+        <article className={styles.listArtWrp} {...props} key={idx} onClick={() => handleArticleClick(c.id!)}>
           <div className={styles.listArtImg}>
             <Image
               src={c.imageUrl}
@@ -53,6 +57,7 @@ const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArti
                 <div className={`post-date mt-1 ${styles.articleDtl}`}>
                   <span><BsFillCalendarFill /> {c.createdAt}</span>
                   <span><BsFillEyeFill /> {c.views}</span>
+                  {c.attachedFiles && <AttachedFiles attachedFiles={c.attachedFiles} />}
                 </div>
               </div>
               {/* End Post Details */}

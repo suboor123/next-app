@@ -13,7 +13,7 @@ const Header = () => {
            <Image 
            height={250}
            width={250}
-           src={'https://suboorkhan.com/admin/assets/logo.png'} alt={"suboor khan"} style={{padding: '30px'}}></Image>
+           src={'https://res.cloudinary.com/subooralaa/image/upload/v1681826830/logo_1_tegr1m.png'} alt={"suboor khan"} style={{padding: '30px'}}></Image>
           </Link>
         </div>
       </div>
