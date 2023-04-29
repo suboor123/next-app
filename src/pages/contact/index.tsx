@@ -117,7 +117,7 @@ const Contact = () => {
         </div>
       </form>
       <div style={{marginTop: '20px'}}>
-      <Modal />
+      {/* <Modal /> */}
       </div>
       {showSuccessMsg && (
         <div className={styles.success}>
