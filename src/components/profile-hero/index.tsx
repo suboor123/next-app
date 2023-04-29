@@ -31,6 +31,7 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
           height={500}
           width={500}
           priority
+          // quality={50}
         />
       </div>
       <div className="post-content">

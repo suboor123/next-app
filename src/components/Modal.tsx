@@ -14,7 +14,7 @@ export const Modal = () => {
 
       {show && (
         <div className="tmodal" onClick={closeModal}>
-          <div className="modal-content">
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h1>Get Updates</h1>
             <form>
               <div className="form-group row">

@@ -8978,7 +8978,7 @@ button.close {
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 50%;
+    width: 100%;
     background-color: white;
     display: block;
     padding: 10px 25px 10px 25px;
