@@ -8963,3 +8963,30 @@ button.close {
 
 
 /*# sourceMappingURL=bootstrap.min.css.map */
+.tmodal {
+    position: fixed;
+    background-color: rgba(128, 128, 128, 0.269);
+    left: 0%;
+    top: 0%;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
+}
+
+.tmodal .modal-content {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50%;
+    background-color: white;
+    display: block;
+    padding: 10px 25px 10px 25px;
+    border-radius: 0px;
+}
+
+.tmodal .modal-content h1 {
+    padding-bottom: 10px;
+    border-bottom: .1px dashed rgba(128, 128, 128, 0.269);
+    text-transform: uppercase;
+}

@@ -1,4 +1,5 @@
 import Heading from "@/components/heading";
+import { Modal } from "@/components/Modal";
 import SocialConnect from "@/components/social-connect";
 import { FirebaseHelper } from "@/lib/firebase-helpers";
 import Head from "next/head";
@@ -115,6 +116,9 @@ const Contact = () => {
           />
         </div>
       </form>
+      <div style={{marginTop: '20px'}}>
+      <Modal />
+      </div>
       {showSuccessMsg && (
         <div className={styles.success}>
           Your message has been sent successfully.
