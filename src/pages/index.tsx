@@ -113,7 +113,7 @@ export default function Home(props: Props) {
       {renderViewAllButton(() => {router.push('/blogs')})}
       <hr />
     </>
-  );
+  ); 
 }
 
 {
