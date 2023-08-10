@@ -60,6 +60,5 @@ App.getInitialProps = async () => {
   let pageProps: any = {};
   pageProps["skills"] = skills;
   pageProps["profile"] = profile;
-
   return { pageProps };
 };
