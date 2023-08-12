@@ -26,7 +26,7 @@ const ProfileHero: React.FC<Props> = ({ profile, skills }) => {
       </div>
       <div className={"post-media text-center"}>
         <Image
-          src={'https://firebasestorage.googleapis.com/v0/b/personal-36b0f.appspot.com/o/profile%2FScreenshot%202023-07-13%20at%2012.10.52%20AM.png?alt=media&token=9934ce42-181f-4e92-9740-759f6d07adfa'}
+          src={profile.coverImageUrl}
           alt={`${profile.name} - ${profile.aboutMe}`}
           height={500}
           width={500}
