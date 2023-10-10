@@ -6,20 +6,19 @@ import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 import styles from "./Home.module.css";
-import NextNProgress from 'nextjs-progressbar';
+import NextNProgress from "nextjs-progressbar";
 import Header from "@/components/header";
 import { closeSidebar, toggleSidebar } from "@/lib/navbar-helper";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Analytics } from '@vercel/analytics/react';
- 
-export default function App({ Component, pageProps }: AppProps) {
+import { Analytics } from "@vercel/analytics/react";
 
+export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    router.events.on('routeChangeComplete', closeSidebar)
-  }, [])
+    router.events.on("routeChangeComplete", closeSidebar);
+  }, []);
 
   return (
     <>
@@ -33,8 +32,8 @@ export default function App({ Component, pageProps }: AppProps) {
           font-family: ${inter.style.fontFamily};
         }
       `}</style>
-         <NextNProgress color="rgb(26, 137, 23)" height={5} />
-         <Header/>
+      <NextNProgress color="rgb(26, 137, 23)" height={5} />
+      <Header />
       <div id="main-content">
         <MobileNavbar />
         <div className="hide-menu" id="hide-menu" onClick={toggleSidebar} />
