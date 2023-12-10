@@ -10,6 +10,10 @@ import { BsChevronRight } from "react-icons/bs";
 import ProfileHero from "@/components/profile-hero";
 import { useRouter } from "next/router";
 
+// import TechCube from "@/components/animated/tech-cude";
+import dynamic from "next/dynamic";
+const TechCube = dynamic(() => import('../components/animated/tech-cude'))
+
 export async function getStaticProps() {
   const projects = await FirebaseHelper.syncAllProjects();
   const blogs = await FirebaseHelper.syncAllBlogs();
@@ -105,6 +109,7 @@ export default function Home(props: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ProfileHero profile={profile} skills={skills} />
+      <TechCube />
       {renderHeading("projects")}
       {renderProjectsList()}
       {renderViewAllButton(() => {router.push('/projects')})}
