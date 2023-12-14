@@ -12,7 +12,7 @@ import { closeSidebar, toggleSidebar } from "@/lib/navbar-helper";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
@@ -49,6 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </div>
       </div>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
