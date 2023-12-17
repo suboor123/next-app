@@ -15,7 +15,7 @@ export async function getServerSideProps() {
   return {
     props: {
       sessions,
-    }
+    },
   };
 }
 
@@ -23,13 +23,35 @@ type Props = {
   sessions: Session[];
 };
 
+function sortingSessionsList(arr: any[] = []) {
+  const curDate = new Date();
+
+  const pastSessions = arr
+    .filter((s) => curDate > new Date(`${s.date} ${s.sessionTiming.start}`))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const upComingSessions = arr.filter(
+    (s) => curDate <= new Date(`${s.date} ${s.sessionTiming.start}`)
+  );
+
+  return {
+    pastSessions,
+    upComingSessions,
+  };
+}
+
 const LiveSessions = ({ sessions = [] }: Props) => {
+  console.log("Live Sessions Components");
+  // console.log(sessions, "Sessions");
+
+  const { pastSessions, upComingSessions } = sortingSessionsList(sessions);
+
   const router = useRouter();
   const [isFrameVisible, setIsFrameVisible] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  const renderSessionList = useMemo(() => {
-    const content = (sessions || []).map((session) => {
+  const renderUpComingSessionList = () => {
+    const content = (upComingSessions || []).map((session) => {
       return {
         id: session.id!,
         heading: session.name,
@@ -38,18 +60,48 @@ const LiveSessions = ({ sessions = [] }: Props) => {
         views: session.views,
         content: session.description,
         imageUrl: session.imageUrl,
-        attachedFiles: session.attachedFiles
+        attachedFiles: session.attachedFiles,
+        sessionTiming: session.sessionTiming,
+        date: session.date,
+      };
+    });
+
+    if (!upComingSessions.length) return <h3>No Upcoming Sessions</h3>;
+
+    return (
+      <ListArticle
+        content={content}
+        handleArticleClick={(id) => {
+          router.push(`/live-sessions/${id}`);
+        }}
+      />
+    );
+  };
+
+  const renderPastSessionList = useMemo(() => {
+    const content = (pastSessions || []).map((session) => {
+      return {
+        id: session.id!,
+        heading: session.name,
+        createdAt: session.createdAt,
+        tags: session.tags.map((p: any) => p.name),
+        views: session.views,
+        content: session.description,
+        imageUrl: session.imageUrl,
+        attachedFiles: session.attachedFiles,
+        sessionTiming: session.sessionTiming,
+        date: session.date,
       };
     });
     return (
       <ListArticle
-        style={{cursor: 'default'}}
         content={content}
-        handleArticleClick={() => { }}
-
+        handleArticleClick={(id) => {
+          router.push(`/live-sessions/${id}`);
+        }}
       />
     );
-  }, [sessions.length]);
+  }, [pastSessions.length]);
 
   function loadIframe() {
     if (!(window as any).YT) {
@@ -66,8 +118,8 @@ const LiveSessions = ({ sessions = [] }: Props) => {
               const playerStatus = event.data;
               if (playerStatus === 1) {
                 setIsVideoPlaying(true);
-              } else if(playerStatus === 2 || playerStatus === 5) {
-                setIsVideoPlaying(false)
+              } else if (playerStatus === 2 || playerStatus === 5) {
+                setIsVideoPlaying(false);
               }
             },
           },
@@ -103,7 +155,6 @@ const LiveSessions = ({ sessions = [] }: Props) => {
       const frame: any = document?.querySelector("#session-iframe") as any;
       frame.height = 500;
     }
-      
   }, [isFrameVisible, isVideoPlaying]);
 
   return (
@@ -131,18 +182,22 @@ const LiveSessions = ({ sessions = [] }: Props) => {
         </Button>
       </p>
       <hr />
-<div id="observer" style={{minHeight:'350px'}}>
-<div id="sticky-video">
-        <iframe
-          id="session-iframe"
-          src="https://www.youtube.com/embed/lXFgS8vbej4?enablejsapi=1"
-          width="100%"
-          height="350px"
-        />
+      <div id="observer" style={{ minHeight: "350px" }}>
+        <div id="sticky-video">
+          <iframe
+            id="session-iframe"
+            src="https://www.youtube.com/embed/lXFgS8vbej4?enablejsapi=1"
+            width="100%"
+            height="350px"
+          />
+        </div>
       </div>
-</div>
       <hr />
-      {renderSessionList}
+      <Heading>{"Upcoming Sessions"}</Heading>
+      {renderUpComingSessionList()}
+      <hr />
+      <Heading>{"Past Sessions"}</Heading>
+      {renderPastSessionList}
     </>
   );
 };

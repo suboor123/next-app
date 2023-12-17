@@ -1,6 +1,10 @@
 import Image from "next/image";
 import React, { useLayoutEffect } from "react";
-import { BsFillCalendarFill, BsFillEyeFill, BsFillShareFill } from "react-icons/bs";
+import {
+  BsFillCalendarFill,
+  BsFillEyeFill,
+  BsFillShareFill,
+} from "react-icons/bs";
 import Heading from "../heading";
 import ReadMore from "../read-more";
 import Badge from "../tag";
@@ -26,15 +30,15 @@ const Detail = (props: Props) => {
     relatedPost = [],
   } = props;
   useLayoutEffect(() => {
-    const d = document.querySelectorAll('pre');
-    d.forEach(pre => {
-      pre.classList.add('prettyprint')
-    })
-  },[])
+    const d = document.querySelectorAll("pre");
+    d.forEach((pre) => {
+      pre.classList.add("prettyprint");
+    });
+  }, []);
   return (
     <>
       <div className="posts-inner">
-        <article className="post" style={{padding: '0px !important'}}>
+        <article className="post" style={{ padding: "0px !important" }}>
           <div className="post-header">
             <div className="title">
               <hr />
@@ -56,13 +60,15 @@ const Detail = (props: Props) => {
                 </span>
               </a>
               <div className="post-details-child">
-              <a href="#" className="post-date">
-              <span>
-                  <BsFillEyeFill /> {views} views
-                </span>
-              </a>
+                <a href="#" className="post-date">
+                  <span>
+                    <BsFillEyeFill /> {views} views
+                  </span>
+                </a>
                 <div className="post-share-icon">
-                  <span><BsFillShareFill /> SHARE</span>
+                  <span>
+                    <BsFillShareFill /> SHARE
+                  </span>
                   <ul>
                     <li>
                       <a href="#">
@@ -104,7 +110,7 @@ const Detail = (props: Props) => {
               alt={props.content.description}
             />
           </div>
-          <div className="post-content mt-3">
+          <div className="post-content mt-4 " style={{ fontSize: "18px" }}>
             <form>
               <div dangerouslySetInnerHTML={{ __html: postContent } as any} />
             </form>
