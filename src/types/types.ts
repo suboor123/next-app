@@ -87,8 +87,7 @@ export interface Project extends HasId, HasName, HasImageUrl, HasCreatedAt {
   pos?: number;
 }
 
-
-export type SessionType = 'all' | 'upcoming' | 'past';
+export type SessionType = "all" | "upcoming" | "past";
 export interface SessionResources {
   name: string;
   url: string;
@@ -104,5 +103,5 @@ export interface Session extends HasId, HasName, HasImageUrl, HasCreatedAt {
     end: string;
   };
   date: string;
-  attachedFiles?: SessionResources[]
+  attachedFiles?: SessionResources[];
 }

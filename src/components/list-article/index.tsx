@@ -4,7 +4,10 @@ import styles from "./ListArticle.module.css";
 import { BsFillCalendarFill, BsFillEyeFill } from "react-icons/bs";
 import Badge from "../tag";
 import { SessionResources } from "@/types/types";
-import AttachedFiles from './AttachedFiles'
+import AttachedFiles from "./AttachedFiles";
+import { useRouter } from "next/router";
+import { useTimer } from "react-timer-hook";
+import SessionCountdown from "../Sessions/SessionCountDown";
 
 export type ListContent = {
   id?: string;
@@ -14,21 +17,33 @@ export type ListContent = {
   views: number;
   content: string;
   imageUrl: string;
-  attachedFiles?: SessionResources[]
+  attachedFiles?: SessionResources[];
+  sessionTiming?: any;
+  date?: string;
 };
 
 type Props = {
   content: ListContent[];
   hasPriority?: boolean;
   handleArticleClick?: (id: string) => void;
-  style?: any
+  style?: any;
 };
 
-const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArticleClick = () => {}, ...props }) => {
+const ListArticle: React.FC<Props> = ({
+  content,
+  hasPriority = false,
+  handleArticleClick = () => {},
+  ...props
+}) => {
   const renderArticles = () => {
     return content.map((c, idx) => {
       return (
-        <article className={styles.listArtWrp} {...props} key={idx} onClick={() => handleArticleClick(c.id!)}>
+        <article
+          className={styles.listArtWrp}
+          {...props}
+          key={idx}
+          onClick={() => handleArticleClick(c.id!)}
+        >
           <div className={styles.listArtImg}>
             <Image
               src={c.imageUrl}
@@ -41,11 +56,16 @@ const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArti
               33vw"
             />
           </div>
-          <div className="post-content">
+          <div className="post-content ">
             <div className="post-header">
-              <h2 className="title">
-                <span className={styles.heading}>{c.heading}</span>
-              </h2>
+              <div className="row">
+                <h2 className="title col-sm">
+                  <span className={styles.heading}>{c.heading}</span>
+                </h2>
+
+                {/* Timer */}
+                {c.sessionTiming && <SessionCountdown session={c} />}
+              </div>
               {/* Post Details */}
               <div className="post-details">
                 {c.tags.map((t, idx) => (
@@ -55,9 +75,15 @@ const ListArticle: React.FC<Props> = ({ content, hasPriority = false, handleArti
                 ))}
                 <br />
                 <div className={`post-date mt-1 ${styles.articleDtl}`}>
-                  <span><BsFillCalendarFill /> {c.createdAt}</span>
-                  <span><BsFillEyeFill /> {c.views}</span>
-                  {c.attachedFiles && <AttachedFiles attachedFiles={c.attachedFiles} />}
+                  <span>
+                    <BsFillCalendarFill /> {c.createdAt}
+                  </span>
+                  <span>
+                    <BsFillEyeFill /> {c.views}
+                  </span>
+                  {c.attachedFiles && (
+                    <AttachedFiles attachedFiles={c.attachedFiles} />
+                  )}
                 </div>
               </div>
               {/* End Post Details */}
