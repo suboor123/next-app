@@ -50,7 +50,7 @@ const LiveSessions = ({ sessions = [] }: Props) => {
   const [isFrameVisible, setIsFrameVisible] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  const renderUpComingSessionList = () => {
+  const renderUpComingSessionList = useMemo(() => {
     const content = (upComingSessions || []).map((session) => {
       return {
         id: session.id!,
@@ -66,6 +66,7 @@ const LiveSessions = ({ sessions = [] }: Props) => {
       };
     });
 
+    console.log(content, "LiveSessions");
     if (!upComingSessions.length) return <h3>No Upcoming Sessions</h3>;
 
     return (
@@ -76,7 +77,7 @@ const LiveSessions = ({ sessions = [] }: Props) => {
         }}
       />
     );
-  };
+  }, [upComingSessions.length]);
 
   const renderPastSessionList = useMemo(() => {
     const content = (pastSessions || []).map((session) => {
@@ -194,7 +195,7 @@ const LiveSessions = ({ sessions = [] }: Props) => {
       </div>
       <hr />
       <Heading>{"Upcoming Sessions"}</Heading>
-      {renderUpComingSessionList()}
+      {renderUpComingSessionList}
       <hr />
       <Heading>{"Past Sessions"}</Heading>
       {renderPastSessionList}

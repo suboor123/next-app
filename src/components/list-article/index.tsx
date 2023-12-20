@@ -18,8 +18,8 @@ export type ListContent = {
   content: string;
   imageUrl: string;
   attachedFiles?: SessionResources[];
-  sessionTiming?: number;
-  date: any;
+  sessionTiming?: any;
+  date?: string;
 };
 
 type Props = {
@@ -56,14 +56,16 @@ const ListArticle: React.FC<Props> = ({
               33vw"
             />
           </div>
-          <div className="post-content">
-            <div className="post-header ">
-              <h2 className="title">
-                <span className={styles.heading}>{c.heading}</span>
-              </h2>
+          <div className="post-content ">
+            <div className="post-header">
+              <div className="row">
+                <h2 className="title col-sm">
+                  <span className={styles.heading}>{c.heading}</span>
+                </h2>
 
-              {/* Timer */}
-              <SessionCountdown session={c} />
+                {/* Timer */}
+                {c.sessionTiming && <SessionCountdown session={c} />}
+              </div>
               {/* Post Details */}
               <div className="post-details">
                 {c.tags.map((t, idx) => (

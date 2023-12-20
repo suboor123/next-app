@@ -1,9 +1,11 @@
 import { Session } from "@/types/types";
 import { useTimer } from "react-timer-hook";
+import { ListContent } from "../list-article";
 type Props = {
-  session: Session;
+  session: ListContent;
 };
 
+const [x, y] = [100, 500];
 const SessionCountdown: React.FC<Props> = ({ session }) => {
   const curDate = new Date().getTime();
   const sessionStartDate = session.date + " " + session.sessionTiming.start;
@@ -16,7 +18,7 @@ const SessionCountdown: React.FC<Props> = ({ session }) => {
 
   if (new Date(sessionEndDate).getTime() < curDate)
     return (
-      <div className="bg-danger">
+      <div className="col-sm">
         <p>Session ended</p>
       </div>
     );
