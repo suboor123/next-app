@@ -40,7 +40,7 @@ const SessionCard: React.FC<Props> = ({
 }) => {
     const shareWhatsapp = (c: any) => {
         var pageTitle = `🚀 Let's embark on this exciting journey of ${c.heading} exploration together! 🚀 See you there! 🎉👨‍💻👩‍💻🌐`; // Page Title
-        var pageUrl = location.href; // Page URL
+        var pageUrl = location.href + '#' + c.id; // Page URL
     
         var whatsappUrl = "https://wa.me/?text=" + encodeURIComponent(pageTitle + " " + pageUrl);
         window.open(whatsappUrl, '_blank');
@@ -48,7 +48,7 @@ const SessionCard: React.FC<Props> = ({
   const renderArticles = () => {
     return content.map((c, idx) => {
       return (
-        <article className={styles.sessionCard}>
+        <article className={styles.sessionCard} id={c.id}>
           <div className={styles.sessionCardInr}>
             <div className={styles.listArtImg}>
               <Image
