@@ -38,9 +38,11 @@ const SessionCard: React.FC<Props> = ({
   pastSession,
   ...props
 }) => {
+    const router = useRouter();
     const shareWhatsapp = (c: any) => {
+        console.log(router.asPath, router)
         var pageTitle = `🚀 Let's embark on this exciting journey of ${c.heading} exploration together! 🚀 See you there! 🎉👨‍💻👩‍💻🌐`; // Page Title
-        var pageUrl = location.href + '#' + c.id; // Page URL
+        var pageUrl = `https://www.suboorkhan.com/live-sessions` + '#' + c.id; // Page URL
     
         var whatsappUrl = "https://wa.me/?text=" + encodeURIComponent(pageTitle + " " + pageUrl);
         window.open(whatsappUrl, '_blank');
