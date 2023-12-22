@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 // import TechCube from "@/components/animated/tech-cude";
 import dynamic from "next/dynamic";
-// const TechCube = dynamic(() => import('../components/animated/tech-cude'))
+const TechCube = dynamic(() => import('../components/animated/tech-cude'))
 
 export async function getStaticProps() {
   const projects = await FirebaseHelper.syncAllProjects();
@@ -24,7 +24,8 @@ export async function getStaticProps() {
       projects: projects.slice(0, 4),
       blogs: blogs.slice(0, 4),
       profile,
-      skills: skills.map(s => s.name)
+      skills: skills.map(s => s.name),
+      skillsObj: skills
     },
     revalidate: 86400,
   };
@@ -34,7 +35,8 @@ type Props = {
   projects: Project[];
   blogs: Blog[];
   profile: Profile;
-  skills: string[]
+  skills: string[];
+  skillsObj: any
 };
 
 export default function Home(props: Props) {
@@ -109,7 +111,7 @@ export default function Home(props: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ProfileHero profile={profile} skills={skills} />
-      {/* <TechCube /> */}
+      <TechCube skillsObj={props.skillsObj} />
       {renderHeading("projects")}
       {renderProjectsList()}
       {renderViewAllButton(() => {router.push('/projects')})}
