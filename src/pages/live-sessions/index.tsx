@@ -197,7 +197,7 @@ const LiveSessions = ({ sessions = [] }: Props) => {
         </div>
       </div>
       <hr />
-      {upComingSessions.length !== 0 && <Heading>{"Upcoming Sessions"}</Heading>}
+      {upComingSessions.length !== 0 && <Heading>{"Sessions"}</Heading>}
       {upComingSessions.length !== 0 && renderUpComingSessionList}
       <hr />
       <Heading>{"Past Sessions"}</Heading>
