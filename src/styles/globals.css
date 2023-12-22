@@ -9044,3 +9044,21 @@ button.close {
     0% { transform: rotateX(0deg) rotateY(0deg); }
     100% { transform: rotateX(360deg) rotateY(360deg); }
 }
+
+.bg-timer {
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #2952e83e;
+    color: #2953e8;
+    font-weight: 800;
+}
+
+.bg-danger-timer {
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgba(255, 99, 71, 0.186);
+    color: tomato;
+    font-weight: 800;
+}

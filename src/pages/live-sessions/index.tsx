@@ -1,6 +1,7 @@
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import ListArticle from "@/components/list-article";
+import SessionCard from "@/components/list-article/SessionCard";
 import { FirebaseHelper } from "@/lib/firebase-helpers";
 import { Session } from "@/types/types";
 import Head from "next/head";
@@ -27,11 +28,11 @@ function sortingSessionsList(arr: any[] = []) {
   const curDate = new Date();
 
   const pastSessions = arr
-    .filter((s) => curDate > new Date(`${s.date} ${s.sessionTiming.start}`))
+    .filter((s) => curDate > new Date(`${s.date} ${s.sessionTiming.end}`))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const upComingSessions = arr.filter(
-    (s) => curDate <= new Date(`${s.date} ${s.sessionTiming.start}`)
+    (s) => curDate <= new Date(`${s.date} ${s.sessionTiming.end}`)
   );
 
   return {
@@ -63,14 +64,15 @@ const LiveSessions = ({ sessions = [] }: Props) => {
         attachedFiles: session.attachedFiles,
         sessionTiming: session.sessionTiming,
         date: session.date,
+        url: session.url
       };
     });
 
-    console.log(content, "LiveSessions");
+
     if (!upComingSessions.length) return <h3>No Upcoming Sessions</h3>;
 
     return (
-      <ListArticle
+      <SessionCard
         content={content}
         handleArticleClick={(id) => {
           router.push(`/live-sessions/${id}`);
@@ -95,11 +97,12 @@ const LiveSessions = ({ sessions = [] }: Props) => {
       };
     });
     return (
-      <ListArticle
+      <SessionCard
         content={content}
         handleArticleClick={(id) => {
           router.push(`/live-sessions/${id}`);
         }}
+        pastSession={true}
       />
     );
   }, [pastSessions.length]);
@@ -194,8 +197,8 @@ const LiveSessions = ({ sessions = [] }: Props) => {
         </div>
       </div>
       <hr />
-      <Heading>{"Upcoming Sessions"}</Heading>
-      {renderUpComingSessionList}
+      {upComingSessions.length !== 0 && <Heading>{"Upcoming Sessions"}</Heading>}
+      {upComingSessions.length !== 0 && renderUpComingSessionList}
       <hr />
       <Heading>{"Past Sessions"}</Heading>
       {renderPastSessionList}

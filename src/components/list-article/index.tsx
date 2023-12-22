@@ -20,6 +20,7 @@ export type ListContent = {
   attachedFiles?: SessionResources[];
   sessionTiming?: any;
   date?: string;
+  url?: string;
 };
 
 type Props = {
@@ -64,7 +65,7 @@ const ListArticle: React.FC<Props> = ({
                 </h2>
 
                 {/* Timer */}
-                {c.sessionTiming && <SessionCountdown session={c} />}
+                {/* {c.sessionTiming && <SessionCountdown session={c} />} */}
               </div>
               {/* Post Details */}
               <div className="post-details">
