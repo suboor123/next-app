@@ -96,37 +96,7 @@ export default function Header() {
                                     </a>
                                 ))}
                             </div>
-                            <div className="flex md:hidden items-center gap-3">
-                                <a href="/hire-web-developer" className="tappable p-hint-links__item py-3">
-                                    <div
-                                        className="row m-h-10 align-c cursor font-poppins py-2 px-5 rounded-md text-white ib-header__experience-scaler-cta ib-header__experience-scaler-cta--animated"
-                                        role="presentation"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 256 256" className="ib-header__experience-scaler-cta-icon">
-                                            <rect width={256} height={256} fill="none" />
-                                            <path d="M215.8,118.2a8,8,0,0,0-5-5.7L153.2,90.9l14.6-73.3a8.1,8.1,0,0,0-4.1-8.7,7.9,7.9,0,0,0-9.5,1.6l-112,120a7.9,7.9,0,0,0-2,7.3,8.2,8.2,0,0,0,5,5.7l57.6,21.6L88.2,238.4a8.1,8.1,0,0,0,4.1,8.7,8.4,8.4,0,0,0,3.7.9,7.9,7.9,0,0,0,5.8-2.5l112-120A7.9,7.9,0,0,0,215.8,118.2Z" />
-                                        </svg>
-                                        <span className="ib-header__experience-scaler-cta-text">Get a Website</span>
-                                    </div>
-                                </a>
-                                <div className="py-3">
-                                    <HyperLink rounded="md" title={'hire us'} href={'/hire-us'}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"
-                                            />
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"
-                                            />
-                                        </svg>
-                                        Hire Us
-                                    </HyperLink>
-                                </div>
-                            </div>
+                          
                         </div>
                     </div>
                 </Dialog.Panel>
