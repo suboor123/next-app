@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Button";
+import LazyImg from "../LazyImg";
 
 const HomeAbout = () => {
   return (
@@ -21,9 +22,27 @@ const HomeAbout = () => {
         as an SDE-II. I’m dedicated to creating intuitive and impactful digital
         experiences, and I'm always eager to collaborate on exciting new
         ventures. If you're interested in working together or just want to chat
-        about technology, feel free to reach out via email, drop me a message,
-        or connect through my social links above.
+        about technology, feel free to{" "}
+        <a className="text-blue-500" href="mailto:suboorkk100@gmail.com">
+          reach out via email
+        </a>
+        ,{" "}
+        <a className="text-blue-500" href="/contact">
+          drop me a message
+        </a>
+        , or connect through my social links above.
       </p>
+      <div className="flex gap-5">
+        <a href="">
+          <img src="/assets/insta.png" />
+        </a>
+        <a href="">
+          <img src="/assets/linkedin.png" />
+        </a>
+        <a href="">
+          <img src="/assets/git.png" />
+        </a>
+      </div>
       <Button url="/about">Read More</Button>
     </div>
   );
