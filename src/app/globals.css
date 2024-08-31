@@ -113,22 +113,18 @@ pre {
   }
 }
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 2px;
 
   /* width of the entire scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; /* track background */
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    45deg,
-    #00c16a,
-    #00eaff
-  ); /* gradient for the thumb */
-  border-radius: 3px; /* roundness of the scrollbar thumb */
+  background: black; /* gradient for the thumb */
+  border-radius: 0px; /* roundness of the scrollbar thumb */
 }
 
 .text-stroke {
