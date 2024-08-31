@@ -16,10 +16,10 @@ export default function Header() {
 
     const navigation = [
         { name: 'Home', href: '/', icon: <HomeIcon className="h-6 w-6 object-contain" />, isActive: path === '/' },
-        { name: 'Projects', href: '/projects', icon: <WrenchScrewdriverIcon className="h-6 w-6 object-contain" />, isActive: path === '/services' },
-        { name: 'Blogs', href: '/blogs', icon: <CpuChipIcon className="h-6 w-6 object-contain" />, isActive: path === '/technologies' },
-        { name: 'LIVE Sessions', href: '/live-sessions', icon: <SwatchIcon className="h-6 w-6 object-contain" />, isActive: path === '/case-studies' },
-        { name: 'Contact', href: '/contact', icon: <RectangleGroupIcon className="h-6 w-6 object-contain" />, isActive: path === '/blog' },
+        { name: 'Projects', href: '/projects', icon: <WrenchScrewdriverIcon className="h-6 w-6 object-contain" />, isActive: path === '/projects' },
+        { name: 'Blogs', href: '/blogs', icon: <CpuChipIcon className="h-6 w-6 object-contain" />, isActive: path === '/blogs' },
+        { name: 'LIVE Sessions', href: '/live-sessions', icon: <SwatchIcon className="h-6 w-6 object-contain" />, isActive: path === '/live-sessions' },
+        { name: 'Contact', href: '/contact', icon: <RectangleGroupIcon className="h-6 w-6 object-contain" />, isActive: path === '/contact' },
     ];
 
     const openContactPopup = () => {
@@ -56,7 +56,7 @@ export default function Header() {
                                 title={item.name}
                                 href={item.href}
                                 className={`text-md font-normal leading-6 
-        ${item.isActive ? 'text-primary' : 'text-gray-900'} 
+        ${item.isActive ? ' border-b pb-2 border-gray-800' : 'text-gray-900'} 
         hover:text-primary 
         ${item.name === 'Technologies' ? 'hidden xl:flex' : 'xl:flex'}
       `}
