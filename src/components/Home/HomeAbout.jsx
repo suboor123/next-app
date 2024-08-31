@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import LazyImg from "../LazyImg";
+import SocialShare from "./SocialShare";
 
 const HomeAbout = () => {
   return (
@@ -32,17 +33,7 @@ const HomeAbout = () => {
         </a>
         , or connect through my social links above.
       </p>
-      <div className="flex gap-5">
-        <a href="">
-          <img src="/assets/insta.png" />
-        </a>
-        <a href="">
-          <img src="/assets/linkedin.png" />
-        </a>
-        <a href="">
-          <img src="/assets/git.png" />
-        </a>
-      </div>
+      <SocialShare />
       <Button url="/about">Read More</Button>
     </div>
   );

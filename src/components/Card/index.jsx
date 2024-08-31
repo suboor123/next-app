@@ -11,16 +11,16 @@ const Card = ({ blog = {} }) => {
       title={`${title} - ${description}`}
       href={url}
       className="font-poppins ml-auto mr-auto w-full  rounded-xl shadow group
-             bg-white overflow-hidden border hover:shadow-xl  p-1 relative scale"
+             bg-white overflow-hidden border hover:shadow-xl  p-2 relative scale"
     >
-      <div className="flex flex-col items-center gap-2 justify-center py-10">
+      <div className="flex flex-col items-center gap-1 justify-center pb-5">
         <LazyImg
-          className="w-[100%] h-[200px] object-cover"
+          className="w-[100%] h-[200px] min-w-[100%] min-h-[200px] rounded-md bg-gray-600 object-cover"
           src={imageUrl}
           alt={`${title} services`}
           title={`${title} - ${description}`}
         />
-        <h2 className="font-extrabold text-center text-gray-900 text-xl mb-2">
+        <h2 className="font-extrabold text-center mt-3 text-gray-900 text-lg mb-2">
           {title}
         </h2>
         <p className="text-center text-sm font-light text-gray-600 multiline-ellipsis">

@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import SectionHeading from '../SectionHeading';
+import SocialShare from '../Home/SocialShare';
 
 const ContactForm = () => {
     const [name, setName] = useState('');
@@ -19,6 +20,7 @@ const ContactForm = () => {
                 title="Get in Touch"
                 description="We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out. Use the form below to send us a message, and we'll get back to you as soon as possible. Your input is valuable to us."
             />
+            <SocialShare />
      
             <form onSubmit={handleSubmit} className="space-y-4 mt-5 px-5 md:px-0">
                 <div>

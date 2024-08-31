@@ -316,6 +316,7 @@ pre {
 
 .scale {
     transition: transform 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .scale:hover {
@@ -324,10 +325,28 @@ pre {
     transition: all ease-out 0.2s;
 }
 
+.scale2 {
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.scale2:hover {
+    transform: rotateZ(-1deg) scale(1);
+    transition: all ease-out .3s;
+}
+
 
 .multiline-ellipsis {
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .multiline-ellipsis-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Number of lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
