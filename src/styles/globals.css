@@ -924,6 +924,10 @@ body {
     content: normal
 }
 
+.sdsds {
+    color: rgba(128, 128, 128, 0.305);
+}
+
 .posts article {
     position: relative;
     margin-bottom: 20px;
