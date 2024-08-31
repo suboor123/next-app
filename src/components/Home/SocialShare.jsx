@@ -6,7 +6,10 @@ const SocialShare = () => {
       <a href="https://www.instagram.com/suboork_100/" target="_blank">
         <img className="h-6 object-cover" src="/assets/insta.png" />
       </a>
-      <a href="https://www.linkedin.com/in/suboor-khan-314136158/" target="_blank">
+      <a
+        href="https://www.linkedin.com/in/suboor-khan-314136158/"
+        target="_blank"
+      >
         <img className="h-6 object-cover" src="/assets/linkedin.png" />
       </a>
       <a href="https://github.com/suboor123" target="_blank">

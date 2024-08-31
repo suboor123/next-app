@@ -26,9 +26,7 @@ const Card = ({ blog = {} }) => {
         <p className="text-center text-sm font-light text-gray-600 multiline-ellipsis">
           {description}
         </p>
-        <div>
-          {/* <Button url="/contact">Read More</Button> */}
-        </div>
+        <div>{/* <Button url="/contact">Read More</Button> */}</div>
       </div>
     </a>
   );
