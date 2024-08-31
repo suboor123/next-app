@@ -2,7 +2,7 @@ import React from "react";
 
 const SocialShare = () => {
   return (
-    <div className="flex gap-5 my-6 items-center">
+    <div className="flex gap-6 my-6 items-center">
       <a href="https://www.instagram.com/suboork_100/" target="_blank">
         <img className="h-6 object-cover" src="/assets/insta.png" />
       </a>
