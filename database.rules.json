@@ -1,9 +1,0 @@
-{
-  "rules": {
-            "sessions" : {
-          ".indexOn": ["date", "tags"]
-        },
-    ".read": "true",  // 2022-9-24
-    ".write": "true",  // 2022-9-24
-  }
-}
