@@ -24,6 +24,7 @@ const HomeAbout = () => {
         about technology, feel free to reach out via email, drop me a message,
         or connect through my social links above.
       </p>
+      <Button url="/about">Read More</Button>
     </div>
   );
 };
