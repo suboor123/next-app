@@ -6,7 +6,7 @@ import { BackgroundHero } from '../Background';
 
 const ContactPage = () => {
     return (
-        <section className="flex items-center relative overflow-hidden">
+        <section className="flex flex-col md:flex-row items-center relative overflow-hidden">
             <BackgroundHero />
             <ContactForm />
             <HomeImage src="/assets/me2.jpg" />

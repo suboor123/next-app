@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomeAbout = () => {
     return (
-        <div className="w-[50%] mx-[100px] relative overflow-hidden">
+        <div className="w-full md:w-[50%] mx-[100px] relative overflow-hidden px-5 md:px-auto">
             <h1 className="text-3xl my-3 font-bold">Experienced Web & Mobile Solutions Architect</h1>
             <h2 className="text-md text-gray-600 my-3 font-light">
                 Hi there! 👋 I'm <b className="font-bold">Suboor Khan</b>, a passionate Web and Mobile Developer with over 4 years of experience crafting innovative web solutions. I thrive on turning

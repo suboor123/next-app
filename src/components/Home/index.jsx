@@ -5,7 +5,7 @@ import { BackgroundHero } from '../Background';
 
 const HomePage = () => {
     return (
-        <section className="flex items-center relative overflow-hidden">
+        <section className="flex gap-10 flex-col-reverse md:gap-0 items-center  md:flex-row  relative overflow-hidden py-5 md:py-0">
             {/* <BackgroundHero /> */}
             <HomeAbout />
             <HomeImage />

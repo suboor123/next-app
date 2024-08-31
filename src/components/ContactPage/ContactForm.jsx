@@ -14,13 +14,13 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="w-[50%] mx-[100px] relative overflow-hidden z-20  p-6 bg rounded-lg">
+        <div className="w-full  py-20 md:py-10 md:w-[50%] mx-[100px] relative overflow-hidden z-20  p-6 bg rounded-lg">
             <SectionHeading
                 title="Get in Touch"
                 description="We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out. Use the form below to send us a message, and we'll get back to you as soon as possible. Your input is valuable to us."
             />
-            <hr className="my-5 bg-gray-900 h-[1px]" />
-            <form onSubmit={handleSubmit} className="space-y-4">
+     
+            <form onSubmit={handleSubmit} className="space-y-4 mt-5 px-5 md:px-0">
                 <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                         Name

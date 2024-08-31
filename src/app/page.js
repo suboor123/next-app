@@ -4,7 +4,7 @@ import { HOST } from '@/constants';
 import { createMetaData } from '@/seo-utils/CommonMeta';
 
 const url = `${HOST}`;
-const title = 'Suboor Khan - Experienced Web & Mobile Solutions Architect';
+const title = 'Creative Web & Mobile Developer | Portfolio of Suboor Khan';
 const description =
     'Explore the portfolio of Suboor Khan, a skilled Web & Mobile Developer with over 4 years of experience in delivering impactful web solutions. Specializing in fullstack development, I design, develop, and test web applications across various industries. Discover my projects and skills in modern web technologies.';
 const keywords =
