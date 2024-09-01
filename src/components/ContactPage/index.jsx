@@ -9,7 +9,7 @@ const ContactPage = () => {
     <section className="flex flex-col md:flex-row items-center relative overflow-hidden">
       <BackgroundHero />
       <ContactForm />
-      <HomeImage src="/assets/me2.jpg" />
+      <HomeImage className="hidden md:block" src="/assets/me2.jpg" />
     </section>
   );
 };

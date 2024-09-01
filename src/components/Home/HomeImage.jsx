@@ -15,9 +15,9 @@ const ImageContent = () => {
   );
 };
 
-const HomeImage = ({ src = "/assets/me.jpg" }) => {
+const HomeImage = ({ src = "/assets/me.jpg", className = '' }) => {
   return (
-    <div className="w-full md:w-[50%] z-50 relative overflow-hidden">
+    <div className={`w-full md:w-[50%] z-50 relative overflow-hidden ${className}`}>
       <img
         title={APP_TITLE}
         alt={APP_TITLE}

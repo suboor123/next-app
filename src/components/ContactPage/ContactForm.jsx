@@ -2,16 +2,34 @@
 import React, { useState } from "react";
 import SectionHeading from "../SectionHeading";
 import SocialShare from "../Home/SocialShare";
+import FirebaseHelper from "@/lib/firebase";
+import Notification from "@/lib/notification";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [showSuccessMessage, setShowSuccessMessage] = useState()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({ name, email, message });
+
+    if(!name) {
+      Notification.error("Please enter your name.");
+      return;
+    }
+
+    const body = {
+      name,
+      email,
+      purpose: message + ` - received from suboorkhan.com`,
+      phone: ''
+    };
+    await FirebaseHelper.sendMessage(body);
+    setName("");
+    setEmail("");
+    setMessage("");
+    setShowSuccessMessage(true);
   };
 
   return (
@@ -20,8 +38,10 @@ const ContactForm = () => {
         title="Get in Touch"
         description="We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out. Use the form below to send us a message, and we'll get back to you as soon as possible. Your input is valuable to us."
       />
-      <SocialShare />
-
+      <div className=" px-5 md:px-0">
+        <SocialShare />
+      </div>
+      {showSuccessMessage && <p className="italic text-green-700 mt-2 text-center font-light bg-green-200 py-3 rounded-md px-5 md:px-0">Message received! We'll be in touch soon.</p>}
       <form onSubmit={handleSubmit} className="space-y-4 mt-5 px-5 md:px-0">
         <div>
           <label
@@ -81,6 +101,7 @@ const ContactForm = () => {
           Submit
         </button>
       </form>
+      
     </div>
   );
 };

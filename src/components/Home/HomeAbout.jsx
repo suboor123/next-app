@@ -6,7 +6,7 @@ import SocialShare from "./SocialShare";
 const HomeAbout = () => {
   return (
     <div className="w-full md:w-[50%] mx-[100px] relative overflow-hidden px-5 md:px-auto">
-      <h1 className="text-3xl my-3 font-bold">
+      <h1 className="text-2xl md:text-3xl my-3 font-bold">
         Experienced Web & Mobile Solutions Architect
       </h1>
       <h2 className="text-md text-gray-600 my-3 font-light">
