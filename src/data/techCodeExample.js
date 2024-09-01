@@ -1,5 +1,5 @@
 export const TechCodeExample = {
-  next: `import { useState } from 'react';
+    next: `import { useState } from 'react';
 
 export default function Home({ initialData }) {
   const [data, setData] = useState(initialData);
@@ -28,7 +28,7 @@ export async function getServerSideProps() {
   return { props: { initialData: initialData.data } };
 }
 `,
-  docker: `version: '3.8'
+    docker: `version: '3.8'
 services:
   web:
     build: ./web
@@ -55,7 +55,7 @@ services:
     depends_on:
       - web
 `,
-  python: `import asyncio
+    python: `import asyncio
 import aiohttp
 import requests
 from bs4 import BeautifulSoup
@@ -109,7 +109,7 @@ for data in scraped_data:
     df = process_data(data)
     plot_data(df)
 `,
-  react: `import React, { useState, useEffect } from 'react';
+    react: `import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const App = () => {
@@ -151,7 +151,7 @@ const App = () => {
 
 export default ComplexDummyComponent;
 `,
-  php: `<?php
+    php: `<?php
 // DB configuration
 $host = 'localhost';
 $db   = 'your_database';
@@ -204,7 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>`,
-  angular: `import { Component, NgModule, OnInit } from '@angular/core';
+    angular: `import { Component, NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -252,7 +252,7 @@ class AppModule {}
 
 platformBrowserDynamic().bootstrapModule(AppModule);
 `,
-  firebase: `// Your Firebase configuration
+    firebase: `// Your Firebase configuration
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_AUTH_DOMAIN",
@@ -317,7 +317,7 @@ function readData() {
     });
 }
 `,
-  flutter: `import 'package:flutter/material.dart';
+    flutter: `import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
@@ -390,7 +390,7 @@ class _CounterScreenState extends State<CounterScreen> {
   }
 }
 `,
-  kubernettes: `apiVersion: apps/v1
+    kubernettes: `apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp-deployment
@@ -425,7 +425,7 @@ spec:
       port: 80
       targetPort: 80
 `,
-  sql: `-- Create a new database
+    sql: `-- Create a new database
 CREATE DATABASE IF NOT EXISTS demo_db;
 USE demo_db;
 
@@ -465,7 +465,7 @@ SELECT * FROM employees;
 -- Drop the database if you want to clean up
 -- DROP DATABASE demo_db;
 `,
-  swift: `import Foundation
+    swift: `import Foundation
 
 // Define a 'Person' struct
 struct Person {
@@ -504,7 +504,7 @@ if person2.isAdult() {
     print("\(person2.name) is not an adult.")
 }
 `,
-  vue: `new Vue({
+    vue: `new Vue({
   el: '#app',
   data: {
       message: 'Hello Vue.js!',
@@ -516,7 +516,7 @@ if person2.isAdult() {
       }
   }
 });`,
-  java: `public class BankAccountDemo {
+    java: `public class BankAccountDemo {
   public static void main(String[] args) {
       BankAccount account = new BankAccount("John Doe", 1000.00);
       System.out.println("Initial Account Balance: " + account.getBalance());
@@ -565,7 +565,7 @@ class InsufficientFundsException extends Exception {
   }
 }
 `,
-  cSharp: `using System;
+    cSharp: `using System;
 using System.Collections.Generic;
 
 namespace LibraryDemo {
@@ -606,7 +606,7 @@ namespace LibraryDemo {
     }
 }
 `,
-  svelte: `<script>
+    svelte: `<script>
 import { onMount } from 'svelte';
 
 let posts = [];
@@ -650,7 +650,7 @@ onMount(() => {
 {/if}
 </main>
 `,
-  rust: `use std::env;
+    rust: `use std::env;
 use std::fs;
 use std::collections::HashMap;
 use std::error::Error;
@@ -687,7 +687,7 @@ fn read_and_process_file(filename: &str) -> Result<HashMap<String, u32>, Box<dyn
     Ok(word_count)
 }
 `,
-  golang: `package main
+    golang: `package main
 
 import (
     "fmt"
@@ -706,7 +706,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
 }
 `,
-  webpack: `const path = require('path');
+    webpack: `const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -773,7 +773,7 @@ module.exports = {
     port: 3000,
   },
 };`,
-  sb: `package com.example.service;
+    sb: `package com.example.service;
 
 import com.example.model.User;
 import com.example.repository.UserRepository;
@@ -814,7 +814,7 @@ class UserServiceTest {
     }
 }
 `,
-  rxjs: `import { interval, Subject, multicast } from 'rxjs';
+    rxjs: `import { interval, Subject, multicast } from 'rxjs';
 
 const source = interval(500);
 const subject = new Subject();
@@ -822,7 +822,7 @@ const multicasted = source.pipe(multicast(subject));
 let subscription1, subscription2, subscriptionConnect;
 
 subscription1 = multicasted.subscribe({
-  next: (v) => console.log(observerA: ${"v"}),
+  next: (v) => console.log(observerA: ${'v'}),
 });
 // We should call connect() here, because the first
 // subscriber to multicasted is interested in consuming values
@@ -830,7 +830,7 @@ subscriptionConnect = multicasted.connect();
 
 setTimeout(() => {
   subscription2 = multicasted.subscribe({
-    next: (v) => console.log(observerB: ${"v"}),
+    next: (v) => console.log(observerB: ${'v'}),
   });
 }, 600);
 

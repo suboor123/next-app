@@ -1,0 +1,14 @@
+# Ignore artifacts:
+build
+coverage
+assets
+public
+next
+.next
+
+*.svg
+*.jpg
+*.png
+*.jpeg
+*.json
+*.yml

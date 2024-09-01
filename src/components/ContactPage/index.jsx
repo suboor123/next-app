@@ -1,17 +1,17 @@
-"use client";
-import React, { useState } from "react";
-import HomeImage from "../Home/HomeImage";
-import ContactForm from "./ContactForm";
-import { BackgroundHero } from "../Background";
+'use client';
+import React, { useState } from 'react';
+import HomeImage from '../Home/HomeImage';
+import ContactForm from './ContactForm';
+import { BackgroundHero } from '../Background';
 
 const ContactPage = () => {
-  return (
-    <section className="flex flex-col md:flex-row items-center relative overflow-hidden">
-      <BackgroundHero />
-      <ContactForm />
-      <HomeImage className="hidden md:block" src="/assets/me2.jpg" />
-    </section>
-  );
+    return (
+        <section className="flex flex-col md:flex-row items-center relative overflow-hidden">
+            <BackgroundHero />
+            <ContactForm />
+            <HomeImage className="hidden md:block" src="/assets/me2.jpg" />
+        </section>
+    );
 };
 
 export default ContactPage;
