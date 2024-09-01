@@ -30,6 +30,12 @@ export default function Header() {
       icon: <HomeIcon className="h-6 w-6 object-contain" />,
       isActive: path === "/",
     },
+    // {
+    //   name: "What I do",
+    //   href: "/about",
+    //   icon: <HomeIcon className="h-6 w-6 object-contain" />,
+    //   isActive: path === "/about",
+    // },
     {
       name: "Projects",
       href: "/projects",
@@ -77,7 +83,7 @@ export default function Header() {
   return (
     <header
       className={` ${
-        isScrolled ? " backdrop-blur-sm bg-white/70" : "bg-transparent"
+        isScrolled ? " backdrop-blur-sm bg-white/70 " : "bg-transparent"
       } bg-white md:bg-transparent fixed w-full top-0 z-[99999] font-poppins `}
     >
       {/* <Banner /> */}

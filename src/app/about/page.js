@@ -1,3 +1,4 @@
+import ComingSoon from "@/components/ComingSoon";
 import SeoSchema from "@/components/SeoSchema";
 import { HOST } from "@/constants";
 import { createMetaData } from "@/seo-utils/CommonMeta";
@@ -22,6 +23,7 @@ export default function About() {
         url={url}
         keywords={keywords}
       />
+      <ComingSoon />
     </>
   );
 }
