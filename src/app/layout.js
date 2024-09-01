@@ -1,6 +1,8 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
+import { Analytics } from "@vercel/analytics/react";
+import { Toaster } from "react-hot-toast";
 
 const title = "Creative Web & Mobile Developer | Portfolio of Suboor Khan";
 const description =
@@ -8,17 +10,27 @@ const description =
 
 export const metadata = {
   title,
-  description
+  description,
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className="font-base bg-white">
-        <Header />
-        <main className="pb-20 md:pb-0">{children}</main>
-        <BottomNav />
-      </body>
-    </html>
+    <>
+      <html lang="en">
+        <head>
+          <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          ></meta>
+        </head>
+        <body className="font-base bg-white">
+          <Header />
+          <main className="pb-20 md:pb-0">{children}</main>
+          <BottomNav />
+          <Toaster  position="bottom-right" />
+        </body>
+      </html>
+      <Analytics mode={"production"} />
+    </>
   );
 }
