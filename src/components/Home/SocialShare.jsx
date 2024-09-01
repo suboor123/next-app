@@ -28,7 +28,7 @@ const SocialShare = () => {
         rel="noopener noreferrer"
       >
         <LazyImg
-          className="h-7 object-cover"
+          className="h-6 object-cover"
           src="/assets/whatsapp.png"
           alt="WhatsApp"
         />
