@@ -2,7 +2,7 @@ import React from 'react';
 
 const Button = ({ children, url, className = '' }) => {
     return (
-        <a className={"1 cursor-pointer w-fit text-primary px-4 py-2 overflow-hidden group inline-flex items-center text-sm relative " + className} href={url}>
+        <a className={'1 cursor-pointer w-fit text-primary px-4 py-2 overflow-hidden group inline-flex items-center text-sm relative ' + className} href={url}>
             <span className="flex items-center z-50">
                 {children}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 ml-2">

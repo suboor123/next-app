@@ -14,7 +14,9 @@ const AboutAside = () => {
                 <hr />
                 <div className="flex my-5 items-center justify-between">
                     <h2 className="text-3xl font-bold">Recent Work</h2>
-                    <Button url="/projects" className="m-0">View More</Button>
+                    <Button url="/projects" className="m-0">
+                        View More
+                    </Button>
                 </div>
                 <hr />
                 {projects.slice(0, 3).map((blog, idx) => (
@@ -26,7 +28,9 @@ const AboutAside = () => {
                 <hr />
                 <div className="flex my-5 items-center justify-between">
                     <h2 className="text-3xl font-bold">Recent Articles</h2>
-                    <Button url="/blogs" className="m-0">View More</Button>
+                    <Button url="/blogs" className="m-0">
+                        View More
+                    </Button>
                 </div>
                 <hr />
                 {blogs.slice(0, 3).map((blog, idx) => (

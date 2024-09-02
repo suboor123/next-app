@@ -9,10 +9,12 @@ const Technologies = ({ tech }) => {
             </div>
         ));
     };
-    return <div className='bg-slate-100 p-4 my-5 md:my-5'>
-    <h2 className='text-xl mb-3 font-bold'>My Skills</h2>
-        <div className="flex gap-2 flex-wrap">{renderTech()}</div>
-    </div>;
+    return (
+        <div className="bg-slate-100 p-4 my-5 md:my-5">
+            <h2 className="text-xl mb-3 font-bold">My Skills</h2>
+            <div className="flex gap-2 flex-wrap">{renderTech()}</div>
+        </div>
+    );
 };
 
 export default Technologies;

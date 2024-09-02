@@ -25,7 +25,9 @@ const HomeAbout = () => {
                 , or connect through my social links below.
             </p>
             <SocialShare />
-            <Button className='mt-4' url="/about">Read More</Button>
+            <Button className="mt-4" url="/about">
+                Read More
+            </Button>
         </div>
     );
 };
