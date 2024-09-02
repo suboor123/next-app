@@ -10,7 +10,7 @@ const AboutAside = () => {
 
     return (
         <>
-            <div className="w-full h-full relative md:fixed right-0 top-0 md:w-[40%] border-l z-1 py-20 px-5 overflow-y-scroll">
+            <div className="w-full h-full relative md:fixed right-0 top-0 md:w-[40%] border-l z-1 py-5 md:py-20 px-5 overflow-y-scroll">
                 <hr />
                 <div className="flex my-5 items-center justify-between">
                     <h2 className="text-3xl font-bold">Recent Work</h2>
