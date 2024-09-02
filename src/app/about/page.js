@@ -1,3 +1,4 @@
+import AboutPage from '@/components/AboutPage';
 import ComingSoon from '@/components/ComingSoon';
 import SeoSchema from '@/components/SeoSchema';
 import { HOST } from '@/constants';
@@ -18,7 +19,7 @@ export default function About() {
     return (
         <>
             <SeoSchema title={title} description={description} url={url} keywords={keywords} />
-            <ComingSoon />
+            <AboutPage />
         </>
     );
 }

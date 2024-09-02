@@ -22,10 +22,10 @@ const HomeAbout = () => {
                 <a className="text-blue-500" href="/contact">
                     drop me a message
                 </a>
-                , or connect through my social links above.
+                , or connect through my social links below.
             </p>
             <SocialShare />
-            <Button url="/about">Read More</Button>
+            <Button className='mt-4' url="/about">Read More</Button>
         </div>
     );
 };
