@@ -33,7 +33,7 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="w-full  py-20 md:py-10 md:w-[50%] mx-[100px] relative overflow-hidden z-20  p-6 bg rounded-lg">
+        <div className="w-full py-0 md:py-10 md:w-[50%] mx-[100px] relative overflow-hidden z-20  p-6 bg rounded-lg">
             <SectionHeading
                 title="Get in Touch"
                 description="We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out. Use the form below to send us a message, and we'll get back to you as soon as possible. Your input is valuable to us."

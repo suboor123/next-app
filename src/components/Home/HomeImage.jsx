@@ -13,11 +13,11 @@ const ImageContent = () => {
     );
 };
 
-const HomeImage = ({ src = '/assets/me.jpg', className = '' }) => {
+const HomeImage = ({ src = '/assets/me.jpg', className = '', imageContent = <ImageContent /> }) => {
     return (
         <div className={`w-full md:w-[50%] z-50 relative overflow-hidden ${className}`}>
             <img title={APP_TITLE} alt={APP_TITLE} className="w-[100%] object-cover h-[70vh] md:h-[100vh] filter grayscale transition-filter duration-500 hover:filter-none pt-10 md:py-0" src={src} />
-            <ImageContent />
+            {imageContent}
         </div>
     );
 };
