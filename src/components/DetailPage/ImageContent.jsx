@@ -5,7 +5,7 @@ const ImageContent = ({ entity = {} }) => {
     const { imageUrl, tags = [] } = entity;
     return (
         <>
-            <LazyImg src={imageUrl} className="h-[500px] mt-5 rounded-md object-cover w-full" />
+            <LazyImg src={imageUrl} className="h-[300px] md:h-[500px] mt-5 rounded-md object-contain md:object-cover w-full" />
             <hr className="mt-3" />
             <div className="flex flex-col md:flex-row gap-3 md:gap-0 justify-center items-center md:justify-between py-2">
                 <div className="flex gap-2 items-center">
