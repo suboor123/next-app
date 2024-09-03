@@ -20,7 +20,7 @@ const getId = (params = '') => {
 export async function generateMetadata({ params, searchParams }, parent) {
     const id = getId(params);
     const blogs = getSiteData('blogs') || [];
-    const blog = blogs.find((b) => b.key === id || b.id === id || b.id.indexOf(id) !== -1);
+    const blog = blogs.find((b) => b.key === id || b.id === id || b?.id?.indexOf(id) !== -1 || b?.key?.indexOf(id) !== -1);
 
     url = `${HOST}/blogs/${params.slug}`
     title = `${blog.name} | Dive into the blog of Suboor Khan`;
@@ -33,7 +33,7 @@ export default async function (props) {
     const { params } = props;
     const id = getId(params);
     const blogs = getSiteData('blogs') || [];
-    const blog = blogs.find((b) => b.key === id || b.id === id || b.id.indexOf(id) !== -1);
+    const blog = blogs.find((b) => b.key === id || b.id === id || b?.id?.indexOf(id) !== -1 || b?.key?.indexOf(id) !== -1);
 
     if (!blog) {
         return notFound();

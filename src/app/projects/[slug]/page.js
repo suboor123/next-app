@@ -20,7 +20,7 @@ let getId = (params = '') => {
 export async function generateMetadata({ params, searchParams }, parent) {
     const id = getId(params);
     const projects = getSiteData('projects') || [];
-    const project = projects.find((b) => b.key === id || b.id === id || b.id.indexOf(id) !== -1);
+    const project = projects.find((b) => b.key === id || b.id === id || b?.id?.indexOf(id) !== -1 || b?.key?.indexOf(id) !== -1);
 
     url = `${HOST}/projects/${params.slug}`
     title = `${project.name} | Dive into the project of Suboor Khan`;
@@ -33,7 +33,7 @@ export default async function (props) {
     const { params } = props;
     const id = getId(params);
     const projects = getSiteData('projects') || [];
-    const project = projects.find((b) => b.key === id || b.id === id || b.id.indexOf(id) !== -1);
+    const project = projects.find((b) => b.key === id || b.id === id || b?.id?.indexOf(id) !== -1 || b?.key?.indexOf(id) !== -1);
 
     if (!project) {
         return notFound();
