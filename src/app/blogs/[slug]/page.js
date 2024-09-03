@@ -13,18 +13,21 @@ let keywords =
     'blog, web development blog, mobile development blog, tech insights, development trends, Suboor Khan blog, programming articles, tech news, software development, industry updates, technology blog';
 
 const getId = (params = '') => {
-    const urlSplt = params.slug.split('-') || [];
-    return `-${urlSplt.pop()}`;
+    const urlSplt = params.slug.split('--') || [];
+    const id = urlSplt.pop();
+    if (id && id[0] === '-') return id;
+    return `-${id}`;
 };
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const id = getId(params);
     const blogs = getSiteData('blogs') || [];
-    const blog = blogs.find((b) => b.key === id || b.id === id || b?.id?.indexOf(id) !== -1 || b?.key?.indexOf(id) !== -1);
-
-    url = `${HOST}/blogs/${params.slug}`
-    title = `${blog.name} | Dive into the blog of Suboor Khan`;
-    description = `${blog.description}`;
+    const blog = blogs.find((b) => b.id === id);
+    if (blog) {
+        url = `${HOST}/blogs/${params.slug}`;
+        title = `${blog.name} | Dive into the blog of Suboor Khan`;
+        description = `${blog.description}`;
+    }
 
     return { ...createMetaData({ title, description, keywords, url }) };
 }
@@ -33,8 +36,7 @@ export default async function (props) {
     const { params } = props;
     const id = getId(params);
     const blogs = getSiteData('blogs') || [];
-    const blog = blogs.find((b) => b.key === id || b.id === id || b?.id?.indexOf(id) !== -1 || b?.key?.indexOf(id) !== -1);
-
+    const blog = blogs.find((b) => b.id === id);
     if (!blog) {
         return notFound();
     }

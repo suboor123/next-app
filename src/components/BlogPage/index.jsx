@@ -18,10 +18,10 @@ const BlogPage = () => {
                     {Blogs.map((blog, idx) => {
                         const detailUrl = `/blogs/${blog.name.split(' ').join('-').toLowerCase()}-${blog.key}`;
                         return (
-                        <Fragment key={`blog-${idx}`}>
-                            <Card blog={blog} detailUrl={detailUrl} />
-                        </Fragment>
-                    )
+                            <Fragment key={`blog-${idx}`}>
+                                <Card blog={blog} detailUrl={detailUrl} />
+                            </Fragment>
+                        );
                     })}
                 </div>
             </SevenXL>

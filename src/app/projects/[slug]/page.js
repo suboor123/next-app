@@ -12,19 +12,23 @@ let description =
 let keywords =
     'projects, web development projects, mobile app projects, portfolio, case studies, Suboor Khan projects, software development, technology solutions, innovative web apps, mobile application development, project showcase';
 
-let getId = (params = '') => {
-    const urlSplt = params.slug.split('-') || [];
-    return `-${urlSplt.pop()}`;
+const getId = (params = '') => {
+    const urlSplt = params.slug.split('--') || [];
+    const id = urlSplt.pop();
+    if (id && id[0] === '-') return id;
+    return `-${id}`;
 };
 
 export async function generateMetadata({ params, searchParams }, parent) {
     const id = getId(params);
     const projects = getSiteData('projects') || [];
-    const project = projects.find((b) => b.key === id || b.id === id || b?.id?.indexOf(id) !== -1 || b?.key?.indexOf(id) !== -1);
+    const project = projects.find((b) => b.id === id);
 
-    url = `${HOST}/projects/${params.slug}`
-    title = `${project.name} | Dive into the project of Suboor Khan`;
-    description = `${project.description}`;
+    if (project) {
+        url = `${HOST}/projects/${params.slug}`;
+        title = `${project.name} | Dive into the project of Suboor Khan`;
+        description = `${project.description}`;
+    }
 
     return { ...createMetaData({ title, description, keywords, url }) };
 }
@@ -33,7 +37,7 @@ export default async function (props) {
     const { params } = props;
     const id = getId(params);
     const projects = getSiteData('projects') || [];
-    const project = projects.find((b) => b.key === id || b.id === id || b?.id?.indexOf(id) !== -1 || b?.key?.indexOf(id) !== -1);
+    const project = projects.find((b) => b.id === id);
 
     if (!project) {
         return notFound();
