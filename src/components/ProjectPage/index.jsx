@@ -8,6 +8,7 @@ import SectionHeading from '../SectionHeading';
 
 const ProjectPage = () => {
     const projects = (getSiteData('projects') || []).reverse();
+
     return (
         <section className="relative">
             <SevenXL>
@@ -17,11 +18,14 @@ const ProjectPage = () => {
                 />
 
                 <div className="grid grid-cols-1 max-w-7xl mx-auto sm:grid-cols-1 px-5 gap-8 xl:grid-cols-4 mt-16">
-                    {projects.map((blog, idx) => (
-                        <Fragment key={`blog-${idx}`}>
-                            <Card blog={blog} />
-                        </Fragment>
-                    ))}
+                    {projects.map((blog, idx) => {
+                        const detailUrl = `/projects/${blog.name.split(' ').join('-').toLowerCase()}-${blog.key}`;
+                        return (
+                            <Fragment key={`blog-${idx}`}>
+                                <Card blog={blog} detailUrl={detailUrl} />
+                            </Fragment>
+                        );
+                    })}
                 </div>
             </SevenXL>
         </section>

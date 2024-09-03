@@ -151,28 +151,9 @@ pre {
 }
 
 .highlight {
-    display: inline-flex;
-    font-weight: inherit;
-    position: relative;
-    z-index: 2;
-}
-.highlight:before {
-    background-color: #00c16a;
-    bottom: 11px;
-    content: '';
-    display: block;
-    height: 5px;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
+   width: 100%;
 }
 
-.highlightLine {
-    display: inline-block;
-    position: relative;
-    padding-bottom: 10px; /* Adjust based on SVG height */
-}
 
 .curved-line {
     position: absolute;

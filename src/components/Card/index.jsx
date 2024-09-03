@@ -2,14 +2,14 @@ import React from 'react';
 import LazyImg from '../LazyImg';
 import Button from '../Button';
 
-const Card = ({ blog = {} }) => {
+const Card = ({ blog = {}, detailUrl }) => {
     const { imageUrl, name, description, url } = blog;
     const title = name;
 
     return (
         <a
             title={`${title} - ${description}`}
-            href={url}
+            href={detailUrl}
             className="font-poppins ml-auto mr-auto w-full  rounded-xl shadow group
              bg-white overflow-hidden border hover:shadow-xl  p-2 relative scale"
         >

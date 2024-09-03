@@ -15,11 +15,14 @@ const BlogPage = () => {
                     description="Dive into my blog for the latest insights and articles on web and mobile development. From technical tutorials to industry trends, explore a wealth of content designed to inform and inspire. Stay updated with valuable knowledge and practical tips from the world of technology."
                 />
                 <div className="grid grid-cols-1 max-w-7xl mx-auto sm:grid-cols-1 px-5 gap-8 xl:grid-cols-4 mt-16">
-                    {Blogs.map((blog, idx) => (
+                    {Blogs.map((blog, idx) => {
+                        const detailUrl = `/blogs/${blog.name.split(' ').join('-').toLowerCase()}-${blog.key}`;
+                        return (
                         <Fragment key={`blog-${idx}`}>
-                            <Card blog={blog} />
+                            <Card blog={blog} detailUrl={detailUrl} />
                         </Fragment>
-                    ))}
+                    )
+                    })}
                 </div>
             </SevenXL>
         </section>

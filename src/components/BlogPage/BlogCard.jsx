@@ -2,13 +2,13 @@ import React from 'react';
 import LazyImg from '../LazyImg';
 
 const BlogCard = ({ blog = {} }) => {
-    const { imageUrl, name, description, url } = blog;
+    const { imageUrl, name, description, url, id } = blog;
     const title = name;
 
     return (
         <a
             title={`${title} - ${description}`}
-            href={url}
+            href={detailUrl}
             className="font-poppins ml-auto mr-auto w-full  rounded-xl shadow group
              bg-white overflow-hidden border hover:shadow-xl hover:ring-2 hover:ring-primary p-1 relative scale"
         >

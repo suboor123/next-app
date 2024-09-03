@@ -4,7 +4,6 @@ import React from 'react';
 
 const BottomNav = () => {
     const path = usePathname();
-    console.log(path, ' @@@@ path');
 
     const getActiveClassName = (currPath) => {
         if (path === currPath) return 'border-b-2 border-primary pb-1';
