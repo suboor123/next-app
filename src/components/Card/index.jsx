@@ -11,7 +11,7 @@ const Card = ({ blog = {}, detailUrl }) => {
             title={`${title} - ${description}`}
             href={detailUrl}
             className="font-poppins ml-auto mr-auto w-full  rounded-xl shadow group
-             bg-white overflow-hidden border hover:shadow-xl  p-2 relative scale"
+             bg-white/70 overflow-hidden border hover:shadow-xl  p-2 relative scale"
         >
             <div className="flex flex-col items-center gap-1 justify-center pb-5">
                 <LazyImg className="w-[100%] h-[200px] min-w-[100%] min-h-[200px] rounded-md bg-gray-600 object-cover" src={imageUrl} alt={`${title} services`} title={`${title} - ${description}`} />
