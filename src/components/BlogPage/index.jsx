@@ -4,11 +4,13 @@ import SevenXL from '../7xl';
 import BlogCard from './BlogCard';
 import Card from '../Card';
 import SectionHeading from '../SectionHeading';
+import { BackgroundHero } from '../Background';
 
 const BlogPage = () => {
     const Blogs = (getSiteData('blogs') || []).reverse();
     return (
         <section className="relative">
+         <BackgroundHero />
             <SevenXL>
                 <SectionHeading
                     title="Insights & Articles: Explore My Latest Blog Posts"
