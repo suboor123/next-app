@@ -18,7 +18,7 @@ const StopIcon = () => (
 
 const SONGS = [
     { name: 'Tera He Rahoon', url: '/assets/tera_he_rahoon.mp3' },
-    { name: 'Upbeat Vibes', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+    { name: 'O`Meri Laila', url: '/assets/laila.mp3' },
     { name: 'Calm Piano', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
 ];
 
@@ -99,7 +99,7 @@ const SongList = () => {
 
 const BottomStickyPlayer = ({ song, isPlaying, progress, audioRef, onPausePlay }) => {
     return (
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 flex flex-col justify-between items-center border-t border-gray-200">
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 flex flex-col justify-between items-center border-t border-gray-200 z-[999999]">
             <div className="flex justify-between items-center w-full">
                 <div className="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-pink-600">
@@ -110,7 +110,7 @@ const BottomStickyPlayer = ({ song, isPlaying, progress, audioRef, onPausePlay }
                         />
                     </svg>
                     <div className="ml-4">
-                        <div className="text-lg font-semibold text-gray-800">{song.name}</div>
+                        <div className="text-md font-semibold text-gray-800">{song.name}</div>
                         <audio ref={audioRef} className="hidden">
                             <source src={song.url} type="audio/mpeg" />
                             Your browser does not support the audio element.
