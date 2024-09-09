@@ -5,7 +5,7 @@ const UmamaMain = () => {
     return (
         <section id="main" className="px-3 md:px-20 py-10 block md:flex md:justify-center md:items-center">
             <div>
-                <h2 className=" font-bold text-xl">I Love You Sooo Much Umama ❤️</h2>
+                <h2 className=" font-bold text-xl font-cursive">I Love You Sooo Much Umama ❤️</h2>
                 <p className="text-md  text-gray-600 font-light my-3">
                     I had no idea that I would ever receive so much love, and honestly, I never imagined I’d be with someone as incredible as you. I am beyond happy and feel that I need nothing else
                     in my life but you. 🌟

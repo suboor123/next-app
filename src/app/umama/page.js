@@ -1,8 +1,8 @@
-import ProjectPage from '@/components/ProjectPage';
-import SeoSchema from '@/components/SeoSchema';
+
 import UmamaSuboor from '@/components/UmamaSuboor';
 import { HOST } from '@/constants';
 import { createMetaData } from '@/seo-utils/CommonMeta';
+import Head from 'next/head';
 
 const url = `${HOST}`;
 const title = 'Umama';
@@ -16,6 +16,7 @@ export const metadata = {
 export default function Projects() {
     return (
         <>
+             <link href="https://fonts.googleapis.com/css?family=Playwrite CU" rel="stylesheet" />
             <UmamaSuboor />
         </>
     );
