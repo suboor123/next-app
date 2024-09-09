@@ -10,7 +10,7 @@ const BlogPage = () => {
     const Blogs = (getSiteData('blogs') || []).reverse();
     return (
         <section className="relative">
-         <BackgroundHero />
+            <BackgroundHero />
             <SevenXL>
                 <SectionHeading
                     title="Insights & Articles: Explore My Latest Blog Posts"

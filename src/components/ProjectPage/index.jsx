@@ -11,7 +11,7 @@ const ProjectPage = () => {
 
     return (
         <section className="relative">
-        <BackgroundHero />
+            <BackgroundHero />
             <SevenXL>
                 <SectionHeading
                     title="Explore My Projects: Innovation and Excellence in Action"

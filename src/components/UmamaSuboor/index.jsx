@@ -11,25 +11,27 @@ const hideLayouts = () => {
 
     const bottomNav = document.querySelector('#bottom-nav');
     if (bottomNav) bottomNav.style.display = 'none';
-}
+};
 
 const UmamaSuboor = () => {
     const [showPage, setShowPage] = useState();
 
     useLayoutEffect(() => {
         hideLayouts();
-        setShowPage(localStorage?.getItem('ps'))
+        setShowPage(localStorage?.getItem('ps'));
     }, []);
 
-    if(!showPage) {
-        return <AuthPage />
+    if (!showPage) {
+        return <AuthPage />;
     }
 
-    return <>
-        <UmamaHero />
-        <UmamaMain />
-        <SongsPlaylist />
-    </>
+    return (
+        <>
+            <UmamaHero />
+            <UmamaMain />
+            <SongsPlaylist />
+        </>
+    );
 };
 
 export default UmamaSuboor;

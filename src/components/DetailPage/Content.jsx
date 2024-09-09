@@ -31,7 +31,8 @@ const Content = ({ entity = {} }) => {
                 .content-blk img {
                     width: 100%;
                 }
-                .content-blk button, .content-blk a {
+                .content-blk button,
+                .content-blk a {
                     background: black;
                     color: white;
                     padding: 10px 20px;
