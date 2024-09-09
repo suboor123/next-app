@@ -14,10 +14,11 @@ const hideLayouts = () => {
 }
 
 const UmamaSuboor = () => {
-    const [showPage, setShowPage] = useState(localStorage.getItem('ps'));
+    const [showPage, setShowPage] = useState();
 
     useLayoutEffect(() => {
         hideLayouts();
+        setShowPage(localStorage?.getItem('ps'))
     }, []);
 
     if(!showPage) {
