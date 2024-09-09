@@ -72,7 +72,7 @@ export default function Header() {
     }, []);
 
     return (
-        <header className={` ${isScrolled ? ' backdrop-blur-lg bg-white/70 ' : 'bg-transparent'} bg-white md:bg-transparent fixed w-full top-0 z-[99999] font-poppins `}>
+        <header id="header" className={` ${isScrolled ? ' backdrop-blur-lg bg-white/70 ' : 'bg-transparent'} bg-white md:bg-transparent fixed w-full top-0 z-[99999] font-poppins `}>
             {/* <Banner /> */}
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:py-1 xl:px-0 h-auto md:h-[70px] " aria-label="Global">
                 <div className="flex items-center gap-x-12">

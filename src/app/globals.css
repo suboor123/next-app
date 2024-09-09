@@ -326,3 +326,8 @@ pre {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* Define the clip-path shape */
+.clip-bottom {
+    clip-path: ellipse(75% 15% at 50% 100%);
+  }

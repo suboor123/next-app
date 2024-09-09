@@ -10,7 +10,7 @@ const BottomNav = () => {
         return 'text-gray-700 pb-1';
     };
     return (
-        <div className="fixed md:hidden bottom-0 z-[9999] shadow-xl border-t-2 border-gray-100 left-0 w-full bg-gray-50  py-2">
+        <div id="bottom-nav" className="fixed md:hidden bottom-0 z-[9999] shadow-xl border-t-2 border-gray-100 left-0 w-full bg-gray-50  py-2">
             <div className="container mx-auto flex justify-between">
                 <a href="/" className={`mx-4 flex flex-col gap-1 justify-center text-xs hover:text-gray-400 ${getActiveClassName('/')}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-auto h-5 ">
