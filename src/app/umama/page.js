@@ -1,4 +1,3 @@
-
 import UmamaSuboor from '@/components/UmamaSuboor';
 import { HOST } from '@/constants';
 import { createMetaData } from '@/seo-utils/CommonMeta';
@@ -9,6 +8,7 @@ const title = 'Umama';
 const description = 'Umama';
 const keywords = 'Umama';
 
+// Create metadata object for SEO
 export const metadata = {
     ...createMetaData({ title, description, keywords, url }),
 };
@@ -16,7 +16,14 @@ export const metadata = {
 export default function Projects() {
     return (
         <>
-             <link href="https://fonts.googleapis.com/css?family=Playwrite CU" rel="stylesheet" />
+            <Head>
+                <link href="https://fonts.googleapis.com/css?family=Playwrite+CU" rel="stylesheet" />
+                <meta name="robots" content="noindex, nofollow" />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:url" content={url} />
+                <meta property="og:image" content={`/assets/umama.jpeg`} />
+            </Head>
             <UmamaSuboor />
         </>
     );

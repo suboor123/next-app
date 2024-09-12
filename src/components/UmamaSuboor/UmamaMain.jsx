@@ -3,7 +3,8 @@ import LazyImg from '../LazyImg';
 
 const UmamaMain = () => {
     return (
-        <section id="main" className="px-3 md:px-20 py-10 block md:flex md:justify-center md:items-center">
+        <section id="main" className="px-3 md:px-20 py-10 block md:flex md:justify-center md:items-center rose-bg relative">
+            <LazyImg src="/assets/roses.png" className="absolute z-0 opacity-25 top-[20px] left-0" />
             <div>
                 <h2 className=" font-bold text-xl font-cursive">I Love You Sooo Much Umama ❤️</h2>
                 <p className="text-md  text-gray-600 font-light my-3">

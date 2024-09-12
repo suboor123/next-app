@@ -8,7 +8,9 @@ const AuthPage = () => {
         e.preventDefault(); // Prevent page refresh on form submit
         if (password.toLowerCase().trim() === 'umamasuboor') {
             localStorage.setItem('ps', 'true');
-            window.location.reload();
+            window.location.href = "/umama?ps=3249249"
+        } else {
+            alert('Wrong password! areyy... btaya to hai kya password hai')
         }
         // You can add further logic here, such as sending the password to an API
     };

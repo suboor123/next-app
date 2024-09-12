@@ -3,7 +3,7 @@ import React from 'react';
 const UmamaHero = () => {
     return (
         <>
-            <div className="relative w-full h-screen">
+            <div className="relative w-full h-[70vh]">
                 {/* Background Image with Animation */}
                 <div className="absolute inset-0 bg-cover bg-center bg-zoom" style={{ backgroundImage: "url('/assets/umama.jpeg')" }}></div>
 
@@ -19,9 +19,6 @@ const UmamaHero = () => {
                             feels like a dream come true, and I consider myself incredibly lucky to be marrying someone as wonderful as you. 💍 Your love, kindness, and support mean everything to me,
                             and I can’t wait to build our future together. You truly are my world, and I’m so excited to spend the rest of my life with you. 💖✨
                         </p>
-                        <a href="#main" className="px-5 py-3 mt-[20px] text-white text-sm md:text-2xl shadow-md  bg-pink-400 hover:bg-pink-900 rounded-lg">
-                            See More
-                        </a>
                     </div>
                 </div>
             </div>

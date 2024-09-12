@@ -19,7 +19,7 @@ const StopIcon = () => (
 const SONGS = [
     { name: 'Tera He Rahoon', url: '/assets/tera_he_rahoon.mp3' },
     { name: 'O`Meri Laila', url: '/assets/laila.mp3' },
-    { name: 'Calm Piano', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+    { name: 'Hona Tha Pyaar', url: '/assets/pyr.mp3' },
 ];
 
 const SongList = () => {

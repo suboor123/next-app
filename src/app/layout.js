@@ -13,7 +13,7 @@ export const metadata = {
     description,
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, ...props }) {
     return (
         <>
             <html lang="en">
