@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import AuthPage from './AuthPage';
 import UmamaHero from './UmamaHero';
 import UmamaMain from './UmamaMain';
@@ -8,6 +8,7 @@ import MyPromises from './MyPromises';
 import FinalSection from './FinalSection';
 import LazyImg from '../LazyImg';
 import {  useParams, useSearchParams, useRouter, usePathname } from 'next/navigation';
+
 
 const hideLayouts = () => {
     const header = document.querySelector('#header');
@@ -45,4 +46,12 @@ const UmamaSuboor = ({ router }) => {
     );
 };
 
-export default (UmamaSuboor);
+const UmamaSuboorWrapper = () => {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <UmamaSuboor />
+      </Suspense>
+    );
+  };
+
+export default (UmamaSuboorWrapper);
