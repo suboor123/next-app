@@ -32,7 +32,7 @@ const UmamaSuboor = ({ router }) => {
 
     return (
         <>
-            <style jsx global>{`.font-cursive {font-family: 'Playwrite CU' !important;}`}</style>
+
             <UmamaHero />
             <UmamaMain />
             <SongsPlaylist />
