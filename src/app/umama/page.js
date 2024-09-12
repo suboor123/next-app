@@ -18,13 +18,14 @@ export default function Projects() {
     return (
         <>
             <Head>
-                <link href="https://fonts.googleapis.com/css?family=Playwrite+CU" rel="stylesheet" />
+               
                 <meta name="robots" content="noindex, nofollow" />
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
                 <meta property="og:url" content={url} />
                 <meta property="og:image" content={`/assets/umama.jpeg`} />
              </Head>
+             <link href="https://fonts.googleapis.com/css?family=Playwrite+CU" rel="stylesheet" />
             <UmamaSuboor />
         </>
     );
