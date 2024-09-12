@@ -1,4 +1,4 @@
-'use client';
+
 import UmamaSuboor from '@/components/UmamaSuboor';
 import { HOST } from '@/constants';
 import { createMetaData } from '@/seo-utils/CommonMeta';
@@ -24,8 +24,7 @@ export default function Projects() {
                 <meta property="og:description" content={description} />
                 <meta property="og:url" content={url} />
                 <meta property="og:image" content={`/assets/umama.jpeg`} />
-                <style jsx global>{`.font-cursive {font-family: 'Playwrite CU' !important;}`}</style>
-            </Head>
+             </Head>
             <UmamaSuboor />
         </>
     );
