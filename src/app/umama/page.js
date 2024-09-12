@@ -1,3 +1,4 @@
+'use client';
 import UmamaSuboor from '@/components/UmamaSuboor';
 import { HOST } from '@/constants';
 import { createMetaData } from '@/seo-utils/CommonMeta';
