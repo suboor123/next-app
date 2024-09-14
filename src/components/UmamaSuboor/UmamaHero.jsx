@@ -24,16 +24,16 @@ const UmamaHero = () => {
                 <div className="p-10 rounded-xl max-w-2xl md:max-w-5xl">
                     <motion.h1
                         className="text-3xl md:text-7xl font-bold text-white mb-4"
-                        initial={{ x: -300, opacity: 0 }}
-                        animate={{ x: 0, opacity: [1, 0.8, 1] }} 
+                        initial={{ y: -20, opacity: 0 }}
+                        animate={{ y: 0, opacity: [1, 0.8, 1] }} 
                         transition={{ duration: 2, ease: 'easeInOut' }}
                     >
                         Umama ❤️ Suboor
                     </motion.h1>
                     <motion.p
                         className="text-md md:text-xl text-white mb-6"
-                        initial={{ x: -300, opacity: 0 }}
-                        animate={{ x: 0, opacity: [1, 0.8, 1] }} 
+                        initial={{ y: -20, opacity: 0 }}
+                        animate={{ y: 0, opacity: [1, 0.8, 1] }} 
                         transition={{ duration: 2, ease: 'easeInOut' }}
                     >
                         You have no idea how incredibly beautiful you are, inside and out. 🌟 I’m over the moon with happiness and gratitude that I get to have you by my side. Every day with you
