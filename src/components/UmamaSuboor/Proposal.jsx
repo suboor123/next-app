@@ -3,15 +3,42 @@ import { motion } from 'framer-motion';
 import Notification from '@/lib/notification';
 
 const Proposal = () => {
+    const sendEmail = async (subject, html = "From suboorkhan.com") => {
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+        });
+        const body = {
+            subject,
+            html
+        };
+
+        const requestBody = JSON.stringify(body);
+        const requestOptions = {
+            method: 'POST',
+            headers: headers,
+            body: requestBody,
+            redirect: 'follow',
+        };
+
+        try {
+            const response = await fetch('/api/send-email', requestOptions);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+        } catch (error) {}
+    };
 
     // Function to handle Yes button click
     const handleYesClick = () => {
-        Notification.success('I love youu soooooooooooooooooooooooooooooooooooo muuuuch Umama')
-     };
+        sendEmail("Yes Clicked")
+        Notification.success('I love youu soooooooooooooooooooooooooooooooooooo muuuuch Umama');
+    };
 
-     const handleNoClick = () => {
-        Notification.error('No! You can not say no!! you are mine and that is final')
-     }
+    const handleNoClick = () => {
+        sendEmail("No Clicked")
+        Notification.error('No! You can not say no!! you are mine and that is final');
+    };
 
     return (
         <div className="px-4 mt-10 py-20 relative overflow-hidden">
@@ -32,10 +59,7 @@ const Proposal = () => {
                     >
                         Yes
                     </button>
-                    <button
-                     onClick={handleNoClick}
-                        className="px-3 py-1 rounded-md w-full text-white bg-black"
-                    >
+                    <button onClick={handleNoClick} className="px-3 py-1 rounded-md w-full text-white bg-black">
                         No
                     </button>
                 </div>
