@@ -1,15 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Notification from '@/lib/notification';
 
 const Proposal = () => {
 
     // Function to handle Yes button click
     const handleYesClick = () => {
-        alert('I love youu soooooooooooooooooooooooooooooooooooo muuuuch Umama')
+        Notification.success('I love youu soooooooooooooooooooooooooooooooooooo muuuuch Umama')
      };
 
      const handleNoClick = () => {
-        alert('No! You can not say no!! you are mine and that is final')
+        Notification.error('No! You can not say no!! you are mine and that is final')
      }
 
     return (

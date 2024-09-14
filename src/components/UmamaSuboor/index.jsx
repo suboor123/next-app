@@ -9,6 +9,7 @@ import FinalSection from './FinalSection';
 import LazyImg from '../LazyImg';
 import {  useSearchParams } from 'next/navigation';
 import Proposal from './Proposal';
+import UmamaWords from './UmamaName';
 
 
 const hideLayouts = () => {
@@ -37,11 +38,12 @@ const UmamaSuboor = ({ router }) => {
             <UmamaHero />
             <UmamaMain />
             <SongsPlaylist />
-            <LazyImg className="my-4 w-full" src="/assets/moon.webp"/>
+            <LazyImg className="my-4 w-full min-h-[200px]" src="/assets/moon.webp"/>
             <MyPromises />
-            <LazyImg className="my-4 w-full" src="/assets/couple.webp"/>
-            <LazyImg src="/assets/matter.gif" className="mx-auto w-[70%]" />
+            <LazyImg className="my-4 w-full min-h-[200px]" src="/assets/couple.webp"/>
+            <LazyImg src="/assets/matter.gif" className="mx-auto w-[70%] min-h-[200px]" />
             <FinalSection />
+            <UmamaWords />
             <h3 className='mt-4 font-extrabold text-3xl text-center px-4'>
                 YOU ARE MY WHOLE WORLD!❤️
             </h3>
