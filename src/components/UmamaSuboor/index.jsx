@@ -1,5 +1,5 @@
 'use client';
-import React, { Suspense, useEffect, useLayoutEffect, useState } from 'react';
+import React, { Suspense, useLayoutEffect, useState } from 'react';
 import AuthPage from './AuthPage';
 import UmamaHero from './UmamaHero';
 import UmamaMain from './UmamaMain';
@@ -7,8 +7,7 @@ import SongsPlaylist from './SongsPlaylist';
 import MyPromises from './MyPromises';
 import FinalSection from './FinalSection';
 import LazyImg from '../LazyImg';
-import {  useParams, useSearchParams, useRouter, usePathname } from 'next/navigation';
-import YouTubeEmbed from './YoutubeEmbed';
+import {  useSearchParams } from 'next/navigation';
 
 
 const hideLayouts = () => {
