@@ -44,7 +44,7 @@ const UmamaSuboor = ({ router }) => {
             <LazyImg src="/assets/matter.gif" className="mx-auto w-[70%] min-h-[200px]" />
             <FinalSection />
             <UmamaWords />
-            <h3 className='mt-4 font-extrabold text-3xl text-center px-4'>
+            <h3 className='font-extrabold text-3xl text-center py-20 px-4 bg-black text-white'>
                 YOU ARE MY WHOLE WORLD!❤️
             </h3>
             <Proposal />

@@ -11,7 +11,7 @@ const words = [
 
 const UmamaWords = () => {
     return (
-        <div className="flex flex-col px-5 bg-slate-100 my-10">
+        <div className="flex flex-col px-5 bg-slate-100 mt-10">
             <div className="">
                 {words.map((w, index) => (
                     <motion.div

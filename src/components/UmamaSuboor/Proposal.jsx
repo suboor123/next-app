@@ -41,7 +41,7 @@ const Proposal = () => {
     };
 
     return (
-        <div className="px-4 mt-10 py-20 relative overflow-hidden">
+        <div className="px-4 py-20 relative overflow-hidden">
             <motion.div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: "url('/assets/c2.webp')" }}
