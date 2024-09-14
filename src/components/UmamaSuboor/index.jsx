@@ -8,6 +8,7 @@ import MyPromises from './MyPromises';
 import FinalSection from './FinalSection';
 import LazyImg from '../LazyImg';
 import {  useSearchParams } from 'next/navigation';
+import Proposal from './Proposal';
 
 
 const hideLayouts = () => {
@@ -44,6 +45,7 @@ const UmamaSuboor = ({ router }) => {
             <h3 className='mt-4 font-extrabold text-3xl text-center px-4'>
                 YOU ARE MY WHOLE WORLD!❤️
             </h3>
+            <Proposal />
         </>
     );
 };
