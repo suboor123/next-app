@@ -8,6 +8,7 @@ import MyPromises from './MyPromises';
 import FinalSection from './FinalSection';
 import LazyImg from '../LazyImg';
 import {  useParams, useSearchParams, useRouter, usePathname } from 'next/navigation';
+import YouTubeEmbed from './YoutubeEmbed';
 
 
 const hideLayouts = () => {
@@ -36,7 +37,9 @@ const UmamaSuboor = ({ router }) => {
             <UmamaHero />
             <UmamaMain />
             <SongsPlaylist />
+            <LazyImg className="my-4 w-full" src="/assets/moon.webp"/>
             <MyPromises />
+            <LazyImg className="my-4 w-full" src="/assets/couple.webp"/>
             <LazyImg src="/assets/matter.gif" className="mx-auto w-[70%]" />
             <FinalSection />
             <h3 className='mt-4 font-extrabold text-3xl text-center px-4'>
