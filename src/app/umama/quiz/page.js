@@ -5,9 +5,9 @@ import { createMetaData } from '@/seo-utils/CommonMeta';
 import Head from 'next/head';
 
 const url = `${HOST}`;
-const title = 'Umama';
-const description = 'Umama';
-const keywords = 'Umama';
+const title = 'Quiz';
+const description = 'Quiz to know you better';
+const keywords = '';
 const image = `${HOST}/assets/umama.jpeg`;
 
 // Create metadata object for SEO

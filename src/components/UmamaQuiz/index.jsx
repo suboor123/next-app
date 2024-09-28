@@ -11,6 +11,14 @@ const UmamaQuiz = () => {
   const [currScreen, setCurrScreen] = useState(QUIZ_SCREENS.LANDING);
   const [allAnswers, setAllAnswers] = useState();
 
+  const init = () => {
+   const allAns = localStorage.getItem('allAns');
+   if(allAns) {
+    setAllAnswers(JSON.parse(allAns));
+    setCurrScreen(QUIZ_SCREENS.RESULT);
+   }
+  }
+
   const getAllAnswers = async(ans = []) => {
     const allAns = QUESTIONS.map((q, i) => {
       return {
@@ -19,6 +27,7 @@ const UmamaQuiz = () => {
       }
     })
     setAllAnswers(allAns);
+    localStorage.setItem('allAns', JSON.stringify(allAns))
     const answerStr = generateAnswerText(allAns);
     setCurrScreen(QUIZ_SCREENS.RESULT);
     await sendEmail('Her Answers',answerStr);
@@ -36,6 +45,7 @@ const UmamaQuiz = () => {
 
   useEffect(() => {
     hideLayouts();
+    init();
 }, []);
 
     return (

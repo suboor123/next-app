@@ -2,8 +2,8 @@ import React from 'react';
 
 const TopPanel = () => {
     return (
-        <div className="bg-white rounded-lg shadow px-3 py-5 my-3">
-            <h2 className="font-bold text-lg border-b pb-3">Well Done! My Girl</h2>
+        <div className="bg-white rounded-lg  shadow px-3 py-5 my-3">
+            <h2 className="font-bold text-lg border-b pb-3 font-cursive">Well Done! My Girl</h2>
             <p className="text-md pt-3">There’s no right or wrong answer; I created this quiz to understand you better. ❤️</p>
         </div>
     );
@@ -36,6 +36,7 @@ const QuizResult = ({ allAnswers = [] }) => {
     };
     return (
         <>
+        <style jsx global>{`.font-cursive {font-family: 'Playwrite CU' !important;}`}</style>
             <div className="bg-pink-500 min-h-screen p-2">
                 <TopPanel />
                 <AnswePanel allAnswers={allAnswers} />
@@ -48,7 +49,7 @@ const QuizResult = ({ allAnswers = [] }) => {
 const Panel = ({ idx, ans }) => {
     return (
         <div className="bg-white rounded-lg shadow px-3 my-3" key={`panel-${idx}`}>
-            <div className="border-b py-2 flex gap-2">
+            <div className="border-b py-2 flex gap-2 ">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-yellow-400">
                     <path
                         strokeLinecap="round"
@@ -58,7 +59,7 @@ const Panel = ({ idx, ans }) => {
                 </svg>
                 {ans.question}
             </div>
-            <div className="py-2 flex gap-2 bg-green-100">
+            <div className="py-2 flex gap-2 bg-green-100 ">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-pink-400">
                     <path
                         strokeLinecap="round"
