@@ -9,33 +9,43 @@ const TopPanel = () => {
     );
 };
 
+const RestartBtn = ({ resetQuiz }) => {
+    return (
+        <div className="bg-white rounded-lg  shadow px-3 py-10 my-3 text-center">
+            <button onClick={resetQuiz} className="w-[70%] mx-auto py-2 bg-pink-600 text-white rounded-lg hover:bg-blue-500 transition duration-200">
+                Restart Quiz
+            </button>
+        </div>
+    );
+};
+
 const AnswePanel = ({ allAnswers = [] }) => {
     const getAnswerText = (idx) => {
         if (allAnswers[idx] && allAnswers[idx].herAnswer) {
-            return <span className='font-bold'>{allAnswers[idx].herAnswer}</span>;
+            return <span className="font-bold">{allAnswers[idx].herAnswer}</span>;
         }
     };
 
     const getLoylTxt = (txt) => {
-        if(txt === 'Loyalty') return 'Loyal';
-        if(txt === 'Beauty') return 'Beautiful but I care about Loyalty more';
-        if(txt === 'Intelligence') return 'Intelligent but I care about Loyalty more'
-        if(txt === 'Romance') return 'Romantic but I care about Loyalty more';
-    }
+        if (txt === 'Loyalty') return 'Loyal';
+        if (txt === 'Beauty') return 'Beautiful but I care about Loyalty more';
+        if (txt === 'Intelligence') return 'Intelligent but I care about Loyalty more';
+        if (txt === 'Romance') return 'Romantic but I care about Loyalty more';
+    };
 
     return (
         <div className="bg-white rounded-lg shadow px-3 py-5 my-3">
             <p className="text-md font-base">
-                Yes, my favorite color is {getAnswerText(0)}. I love your {getAnswerText(1)} and I’m glad you see me as {getAnswerText(2)}. I knew you would know that I like to eat {getAnswerText(3)}. 
-                You also know my hobby, which is {getAnswerText(4)}. Indeed, we will go {getAnswerText(5)} together. Yes, I feel that {getAnswerText(6)} is a romantic season, and I can't wait to experience it with you. 
-                I believe we both like {getAnswerText(7)}. I know you are {getLoylTxt(getAnswerText(8))} and I feel good knowing that you trust me {getAnswerText(9)}. 
-                Yes, I will gift you {getAnswerText(12)}. I will be there for you {getAnswerText(13)} when you're not in a good mood, and whenever we fight, I will {getAnswerText(15)}. I will always {getAnswerText(16)}.
-                I will take you to {getAnswerText(26)} and we will watch {getAnswerText(27)} together.
+                Yes, my favorite color is {getAnswerText(0)}. I love your {getAnswerText(1)} and I’m glad you see me as {getAnswerText(2)}. I knew you would know that I like to eat {getAnswerText(3)}.
+                You also know my hobby, which is {getAnswerText(4)}. Indeed, we will go {getAnswerText(5)} together. Yes, I feel that {getAnswerText(6)} is a romantic season, and I can't wait to
+                experience it with you. I believe we both like {getAnswerText(7)}. I know you are {getLoylTxt(getAnswerText(8))} and I feel good knowing that you trust me {getAnswerText(9)}. Yes, I
+                will gift you {getAnswerText(12)}. I will be there for you {getAnswerText(13)} when you're not in a good mood, and whenever we fight, I will {getAnswerText(15)}. I will always{' '}
+                {getAnswerText(16)}. I will take you to {getAnswerText(26)} and we will watch {getAnswerText(27)} together.
             </p>
         </div>
     );
 };
-const QuizResult = ({ allAnswers = [] }) => {
+const QuizResult = ({ allAnswers = [], resetQuiz }) => {
     const renderPanels = () => {
         return allAnswers.map((ans, idx) => {
             return <Panel idx={idx} ans={ans} />;
@@ -43,11 +53,16 @@ const QuizResult = ({ allAnswers = [] }) => {
     };
     return (
         <>
-        <style jsx global>{`.font-cursive {font-family: 'Playwrite CU' !important;}`}</style>
-            <div className="bg-pink-500 min-h-screen p-2">
+            <style jsx global>{`
+                .font-cursive {
+                    font-family: 'Playwrite CU' !important;
+                }
+            `}</style>
+            <div className="bg-pink-500  p-2">
                 <TopPanel />
                 <AnswePanel allAnswers={allAnswers} />
                 {renderPanels()}
+                <RestartBtn resetQuiz={resetQuiz} />
             </div>
         </>
     );

@@ -22,7 +22,7 @@ export default function RootLayout({ children, ...props }) {
                 </head>
                 <body className="font-base bg-white">
                     <Header />
-                    <main className="pb-20 md:pb-0">{children}</main>
+                    <main className="pb-20 md:pb-0" id="main">{children}</main>
                     <BottomNav />
                     <Toaster position="bottom-right" />
                 </body>

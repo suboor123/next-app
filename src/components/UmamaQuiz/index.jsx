@@ -17,6 +17,16 @@ const UmamaQuiz = () => {
     setAllAnswers(JSON.parse(allAns));
     setCurrScreen(QUIZ_SCREENS.RESULT);
    }
+
+   const mainEl = document.querySelector('#main');
+   if(mainEl) {
+    mainEl.style.paddingBottom = '0px'
+   }
+  }
+
+  const resetQuiz = () => {
+    localStorage.removeItem('allAns');
+    setCurrScreen(QUIZ_SCREENS.QA);
   }
 
   const getAllAnswers = async(ans = []) => {
@@ -40,7 +50,7 @@ const UmamaQuiz = () => {
   const activeScreen = {
     [QUIZ_SCREENS.LANDING]: <QuizLanding handleStart={handleStart} />,
     [QUIZ_SCREENS.QA]: <Questions getAllAnswers={getAllAnswers} />,
-    [QUIZ_SCREENS.RESULT]: <QuizResult allAnswers={allAnswers} />
+    [QUIZ_SCREENS.RESULT]: <QuizResult resetQuiz={resetQuiz} allAnswers={allAnswers} />
   }
 
   useEffect(() => {
