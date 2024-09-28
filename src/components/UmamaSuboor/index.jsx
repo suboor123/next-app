@@ -12,7 +12,7 @@ import Proposal from './Proposal';
 import UmamaWords from './UmamaName';
 
 
-const hideLayouts = () => {
+export const hideLayouts = () => {
     const header = document.querySelector('#header');
     if (header) header.style.display = 'none';
 
