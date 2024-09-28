@@ -3,8 +3,8 @@ import React from 'react';
 const TopPanel = () => {
     return (
         <div className="bg-white rounded-lg  shadow px-3 py-5 my-3">
-            <h2 className="font-bold text-lg border-b pb-3 font-cursive">Well Done! My Girl</h2>
-            <p className="text-md pt-3">There’s no right or wrong answer; I created this quiz to understand you better. ❤️</p>
+            <h2 className="font-bold text-lg  font-cursive">Well Done! My Girl</h2>
+            {/* <p className="text-md pt-3">There’s no right or wrong answer; I created this quiz to understand you better. ❤️</p> */}
         </div>
     );
 };
