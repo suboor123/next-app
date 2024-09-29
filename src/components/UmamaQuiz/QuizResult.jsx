@@ -12,9 +12,9 @@ const TopPanel = () => {
 const RestartBtn = ({ resetQuiz }) => {
     return (
         <div className="bg-white rounded-lg  shadow px-3 py-10 my-3 text-center">
-            <button onClick={resetQuiz} className="w-[70%] mx-auto py-2 bg-pink-600 text-white rounded-lg hover:bg-blue-500 transition duration-200">
+            {/* <button onClick={resetQuiz} className="w-[70%] mx-auto py-2 bg-pink-600 text-white rounded-lg hover:bg-blue-500 transition duration-200">
                 Restart Quiz
-            </button>
+            </button> */}
         </div>
     );
 };
