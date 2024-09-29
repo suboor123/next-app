@@ -34,7 +34,7 @@ const Questions = ({ getAllAnswers }) => {
                         <div className="flex flex-col space-y-3">
                             {quiz.options.map((o, idx) => (
                                 <label key={`opt-${idx}`} onClick={() => setCurrAnswer(o)} className="flex items-center p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-200">
-                                    <input checked={currAnswer === o} type="radio" name="answer" defaultValue="paris" className="form-radio text-blue-600" required />
+                                    <input checked={currAnswer === o} type="radio" name="answer" defaultValue="paris" className="form-radio text-pink-600" required />
                                     <span className="ml-2">{o}</span>
                                 </label>
                             ))}
