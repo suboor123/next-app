@@ -21,6 +21,9 @@ const RestartBtn = ({ resetQuiz }) => {
 
 const AnswePanel = ({ allAnswers = [] }) => {
     const getAnswerText = (idx) => {
+        if(allAnswers[idx] && allAnswers[idx].herAnswer && idx === 8) {
+            return <span className="font-bold">{getLoylTxt(allAnswers[idx].herAnswer)}</span>;
+        }
         if (allAnswers[idx] && allAnswers[idx].herAnswer) {
             return <span className="font-bold">{allAnswers[idx].herAnswer}</span>;
         }
@@ -31,6 +34,7 @@ const AnswePanel = ({ allAnswers = [] }) => {
         if (txt === 'Beauty') return 'Beautiful but I care about Loyalty more';
         if (txt === 'Intelligence') return 'Intelligent but I care about Loyalty more';
         if (txt === 'Romance') return 'Romantic but I care about Loyalty more';
+        return txt;
     };
 
     return (
