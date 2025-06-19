@@ -16,7 +16,7 @@ const StopIcon = () => (
     </svg>
 );
 
-const SONGS = [
+const SONGS_DEFAULT = [
     { name: 'Kaise Mujhe Tum Mil Gyin', url: '/assets/kaise.mp3' },
     { name: 'Pehli Dafa', url: '/assets/pehli.mp3' },
     { name: 'Tera He Rahoon', url: '/assets/tera_he_rahoon.mp3' },
@@ -24,7 +24,7 @@ const SONGS = [
     { name: 'Hona Tha Pyaar', url: '/assets/pyr.mp3' },
 ];
 
-const SongList = () => {
+const SongList = ({ SONGS =  SONGS_DEFAULT}) => {
     const [currentSong, setCurrentSong] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
