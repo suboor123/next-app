@@ -42,16 +42,16 @@ export default function RomanticLovePage() {
           Everything Will Be Alright 💞
         </h2>
         <ul className="list-disc list-inside space-y-4 text-lg font-poppins">
-          <li>We’ll rebuild our dreams, brick by brick, together 🏡</li>
-          <li>We’ll travel to all the places we dreamed of 🌍</li>
-          <li>We’ll find joy in the little things, side by side 🌅</li>
-          <li>We’ll celebrate each win and grow from every struggle 🌱</li>
-          <li>We’ll create a peaceful, loving home filled with laughter 🎶</li>
-          <li>We’ll grow older together and still hold hands 👵🏽👴🏽</li>
-          <li>We’ll become the couple we always wanted to be 💑</li>
-          <li>We’ll turn our pain into strength and wisdom 🛡️</li>
+          <li>We’ll rebuild our dreams, brick by brick, together </li>
+          <li>We’ll travel to all the places we dreamed of </li>
+          <li>We’ll find joy in the little things, side by side </li>
+          <li>We’ll celebrate each win and grow from every struggle </li>
+          <li>We’ll create a peaceful, loving home filled with laughter </li>
+          <li>We’ll grow older together and still hold hands </li>
+          <li>We’ll become the couple we always wanted to be </li>
+          <li>We’ll turn our pain into strength and wisdom </li>
           <li>We’ll never give up on us, not now, not ever 💍</li>
-          <li>We’ll make this love story one to remember forever 📖</li>
+          <li>We’ll make this love story one to remember forever</li>
         </ul>
       </motion.section>
 
@@ -64,19 +64,19 @@ export default function RomanticLovePage() {
         className="py-16 px-6 bg-pink-100 rounded-3xl max-w-3xl mx-auto shadow-lg"
       >
         <h2 className="text-3xl font-bold text-pink-500 mb-6 text-center font-cursive">
-          I Will Make You Feel Better 🌈
+          I Will Make You Feel Better 
         </h2>
         <ul className="list-decimal list-inside space-y-3 text-lg font-poppins">
-          <li>Hold you tight when you're sad 🤗</li>
-          <li>Make you smile every morning 🌅</li>
-          <li>Write little love notes for your day 📝</li>
-          <li>Plan surprise dates just for us 🎁</li>
-          <li>Cook your favorite meals with love 🍝</li>
-          <li>Play your favorite songs to dance around 🎶</li>
-          <li>Give you space when needed, but never let go 🤍</li>
-          <li>Compliment you every single day ✨</li>
-          <li>Talk through every emotion with patience 🫶</li>
-          <li>Remind you that you are never alone 🕊️</li>
+          <li>Hold you tight when you're sad </li>
+          <li>Make you smile every morning </li>
+          <li>Write little love notes for your day </li>
+          <li>Plan surprise dates just for us </li>
+          <li>Cook your favorite meals with love </li>
+          <li>Play your favorite songs to dance around </li>
+          <li>Give you space when needed, but never let go </li>
+          <li>Compliment you every single day </li>
+          <li>Talk through every emotion with patience </li>
+          <li>Remind you that you are never alone </li>
         </ul>
       </motion.section>
 
@@ -92,7 +92,7 @@ export default function RomanticLovePage() {
           You Are the Most Beautiful Woman in the World 🌹
         </h2>
         <ul className="list-disc list-inside space-y-3 text-lg font-poppins">
-          <li>Your smile lights up my world ☀️</li>
+          <li>Aap Shibra se bh zyada khoobsurat hain</li>
           <li>Your eyes hold galaxies I get lost in 🌌</li>
           <li>Your voice calms every storm in me 🌊</li>
           <li>Your laugh is my favorite melody 🎵</li>

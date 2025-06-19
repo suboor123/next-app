@@ -11,9 +11,8 @@ const SongsUmama = () => {
   return (
     <section className="px-4 md:px-20 py-16 bg-pink-50 rounded-xl shadow-md space-y-8">
       <h2 className="text-xl md:text-3xl font-bold text-pink- font-poppins leading-relaxed max-w-3xl mx-auto text-center">
-        These songs are little pieces of my heart, <br />
-        dedicated to you — the love of my life. 🎶❤️ <br />
-        Every beat, every lyric, every note is us. 💖
+       
+        Songs for you 💖
       </h2>
 
       <div className="flex justify-center">
