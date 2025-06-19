@@ -10,7 +10,7 @@ export default function RomanticLovePage() {
         className="relative h-[90vh] bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage:
-            "url('/assets/umama.jpeg')",
+            "url('/assets/su.jpeg')",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-center px-4">
