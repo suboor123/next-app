@@ -93,15 +93,10 @@ export default function RomanticLovePage() {
         </h2>
         <ul className="list-disc list-inside space-y-3 text-lg font-poppins">
           <li>Aap Shibra se bh zyada khoobsurat hain</li>
-          <li>Your eyes hold galaxies I get lost in 🌌</li>
-          <li>Your voice calms every storm in me 🌊</li>
-          <li>Your laugh is my favorite melody 🎵</li>
-          <li>Your heart is the kindest I’ve ever known 💝</li>
-          <li>Your strength is breathtaking 💪</li>
-          <li>Your softness makes me feel safe 🧸</li>
-          <li>Your soul is radiant, inside and out 🌟</li>
-          <li>Your beauty is timeless, effortless, eternal ⏳</li>
-          <li>To me, you are everything — the most beautiful woman on Earth 🌍</li>
+          <li>Aapki aankhon ki kashish aur chehre ka noor</li>
+          <li>Apki wo lambi kaali zulfein aur halki si muskurahat</li>
+          <li>Aapko jitni baar dekhta hoon utni baar sochta hoon aapko to aasmano se to nhi utara kahi</li>
+          <li>waise to bht kuch hai bolne ki lekin ye poori zindagi chahiye sb btane ko</li>
         </ul>
       </motion.section>
     </div>
