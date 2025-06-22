@@ -17,23 +17,23 @@ const ListItem = ({ emoji, text }) => {
         </motion.li>
     );
 };
-
 const promises = [
-    { emoji: '💖', text: 'I will do everything to make you happy.' },
-    { emoji: '🌟', text: 'I will take care of you so much and always be by your side through all the ups and downs.' },
-    { emoji: '🤗', text: 'I will be there whenever you feel sad or uncomfortable, to make you feel better.' },
-    { emoji: '❤️', text: 'I will love you more than anything else in the whole world.' },
-    { emoji: '👑', text: 'I will never let you down and will treat you like the princess you are.' },
-    { emoji: '💫', text: 'Everything else will come after you for me.' },
-    { emoji: '🎁', text: 'I will fulfill all your big and small wishes.' },
-    { emoji: '🌈', text: 'I will do everything to make you love me even more.' },
-    { emoji: '😂', text: 'I will make you laugh and fill your days with happiness.' },
-    { emoji: '🤲', text: 'I will hug you whenever you cry.' },
-    { emoji: '🌹', text: 'I will be the best version of myself for you.' },
-    { emoji: '🌹', text: 'I will bring roses for you.' },
-    { emoji: '💬', text: 'I will always tell you that you are the most beautiful girl in the world.' },
-    { emoji: '📝', text: 'There are a lot of other promises I want to make, but it will take me many days to type them all here. It already took me a week to create this.' },
+    { emoji: '💖', text: 'I’ll always do my best to make you smile and feel appreciated.' },
+    { emoji: '🌟', text: 'I’ll be by your side, through calm days and chaotic ones — no matter what.' },
+    { emoji: '🤗', text: 'Whenever you’re feeling low, I’ll be someone you can count on for comfort and support.' },
+    { emoji: '❤️', text: 'I’ll care for you deeply, more than words can ever explain.' },
+    { emoji: '👑', text: 'I’ll always treat you with the kindness and respect you truly deserve.' },
+    { emoji: '💫', text: 'You’ll always be a priority in my world — your happiness matters to me.' },
+    { emoji: '🎁', text: 'From little surprises to thoughtful gestures, I’ll try to bring joy to your everyday life.' },
+    { emoji: '🌈', text: 'I’ll try every day to be someone you’re glad to have in your life.' },
+    { emoji: '😂', text: 'I’ll make sure to keep you laughing and bring some sunshine to your days.' },
+    { emoji: '🤲', text: 'If ever you need a shoulder, I’ll be there — quietly, patiently, just for you.' },
+    { emoji: '🌹', text: 'I’ll keep working on myself to be someone you can trust and rely on.' },
+    { emoji: '🌼', text: 'I’ll bring small things that brighten your day — maybe a flower, a note, or just time.' },
+    { emoji: '💬', text: 'I’ll always remind you of how special you are — inside and out.' },
+    { emoji: '📝', text: 'There’s so much more I wish I could promise, but it would take forever to write them all — because you deserve the world.' },
 ];
+
 
 // MyPromises component
 const MyPromises = () => {
