@@ -39,7 +39,7 @@ const promises = [
 const MyPromises = () => {
     return (
         <section className="px-3 py-10 md:px-20 block md:flex md:justify-center md:items-center">
-            <h2 className="font-bold my-5 text-xl font-cursive text-pink-700">Promises to You, My Love</h2>
+            <h2 className="font-bold my-5 text-xl font-cursive text-pink-700">Promises to You</h2>
             <ul className="list-none text-sm list-inside space-y-4">
                 {promises.map((promise, index) => (
                     <ListItem key={index} emoji={promise.emoji} idx={index} text={promise.text} />
