@@ -119,49 +119,71 @@ const Game1 = ({ onComplete }) => {
 export default Game1;
 
 
-// ====== Main Game Container ======
+
 export const UmamaGame = () => {
     const [currentLevel, setCurrentLevel] = useState(1);
     const [scores, setScores] = useState([0, 0, 0]);
-
+    const audioRef = useRef(null);
+  
     useEffect(() => {
-        hideLayouts?.();
+      hideLayouts?.();
     }, []);
-
-    // Callback when a game level completes, receives score
+  
     const handleLevelComplete = (score) => {
-        setScores((prev) => {
-            const newScores = [...prev];
-            newScores[currentLevel - 1] = score;
-            return newScores;
-        });
-
-        setTimeout(() => {
-            if (currentLevel < 3) {
-                setCurrentLevel(currentLevel + 1);
-            } else {
-                setCurrentLevel('score');
-            }
-        }, 300);
+      setScores((prev) => {
+        const newScores = [...prev];
+        newScores[currentLevel - 1] = score;
+        return newScores;
+      });
+  
+      setTimeout(() => {
+        if (currentLevel < 3) {
+          setCurrentLevel(currentLevel + 1);
+        } else {
+          setCurrentLevel('score');
+        }
+      }, 300);
     };
-
-    // Restart entire game
+  
     const restartAll = () => {
-        setScores([0, 0, 0]);
-        setCurrentLevel(1);
+      setScores([0, 0, 0]);
+      setCurrentLevel(1);
     };
-
+  
+    // Play audio on first user interaction
+    const startAudio = () => {
+      if (audioRef.current) {
+        audioRef.current.play().catch(() => {
+          // Handle if autoplay blocked or already playing
+        });
+      }
+    };
+  
     return (
-        <div className="flex flex-col h-screen">
-            {/* Header with level indicator */}
-            <header className="bg-pink-100 p-4 text-center font-semibold text-pink-700">{currentLevel === 'score' ? 'Final Score' : `Level ${currentLevel} of 3`}</header>
-
-            <main className="flex-grow overflow-auto">
-                {currentLevel === 1 && <Game1 onComplete={handleLevelComplete} />}
-                {currentLevel === 2 && <Game2 onComplete={handleLevelComplete} />}
-                {currentLevel === 3 && <Game3 onComplete={handleLevelComplete} />}
-                {currentLevel === 'score' && <ScorePage scores={scores} onRestart={restartAll} />}
-            </main>
-        </div>
+      <div
+        className="flex flex-col h-screen"
+        onClick={startAudio} // User interaction triggers audio
+        onTouchStart={startAudio} // For mobile
+      >
+        {/* Hidden audio element */}
+        <audio
+          ref={audioRef}
+          src="/assets/hawale.mp3"
+          loop
+          controls={false}
+          style={{ display: 'none' }}
+        />
+  
+        <header className="bg-pink-100 p-4 text-center font-semibold text-pink-700">
+          {currentLevel === 'score' ? 'Final Score' : `Level ${currentLevel} of 3`}
+        </header>
+  
+        <main className="flex-grow overflow-auto">
+          {currentLevel === 1 && <Game1 onComplete={handleLevelComplete} />}
+          {currentLevel === 2 && <Game2 onComplete={handleLevelComplete} />}
+          {currentLevel === 3 && <Game3 onComplete={handleLevelComplete} />}
+          {currentLevel === 'score' && <ScorePage scores={scores} onRestart={restartAll} />}
+        </main>
+      </div>
     );
-};
+  };
