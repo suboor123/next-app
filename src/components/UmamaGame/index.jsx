@@ -121,7 +121,7 @@ export default Game1;
 
 
 export const UmamaGame = () => {
-    const [currentLevel, setCurrentLevel] = useState(2);
+    const [currentLevel, setCurrentLevel] = useState(1);
     const [scores, setScores] = useState([0, 0, 0]);
     const audioRef = useRef(null);
   
