@@ -10,7 +10,7 @@ const url = `${HOST}`;
 const title = 'Umama’s Love Game – A Heartfelt Journey of Fun and Romance ❤️';
 const description = 'Play the Love Game with Umama! Catch hearts, guess sweet messages, and celebrate your special bond with fun, laughter, and love. Every level is crafted just for you.';
 const keywords = 'Umama, Love Game, romantic games, love messages, heart catcher game, guess the message, fun with Umama, romantic surprises, love challenges, heartfelt fun';
-const image = `${HOST}/assets/su.jpeg`;
+const image = `${HOST}/assets/couple.png`;
 
 // Create metadata object for SEO
 export const metadata = {
