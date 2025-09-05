@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 const messages = [
   {
     id: 1,
-    text: "Aap meri haan hain umama",
+    text: "Aap meri biwi hain umama",
   },
   {
     id: 2,
