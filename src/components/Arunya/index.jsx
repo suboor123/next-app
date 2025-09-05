@@ -33,22 +33,7 @@ const UmamaSuboor = ({ router }) => {
     }
 
     return (
-        <>
-            <style jsx global>{`.font-cursive {font-family: 'Playwrite CU' !important;}`}</style>
-            <UmamaHero />
-            <UmamaMain />
-            <SongsPlaylist />
-            {/* <LazyImg className="my-4 w-full min-h-[200px]" src="/assets/moon.webp"/> */}
-            <MyPromises />
-            {/* <LazyImg className="my-4 w-full min-h-[200px]" src="/assets/couple.webp"/> */}
-            <LazyImg src="/assets/matter.gif" className="mx-auto w-[70%] min-h-[200px]" />
-            {/* <FinalSection /> */}
-            {/* <UmamaWords /> */}
-            <h3 className='font-extrabold text-3xl text-center py-20 px-4 bg-black text-white'>
-                YOU ARE MY WHOLE WORLD!❤️
-            </h3>
-            <Proposal />
-        </>
+        <> </>
     );
 };
 

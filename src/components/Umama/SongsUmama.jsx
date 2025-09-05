@@ -7,9 +7,9 @@ const SONGS_DEFAULT = [
   { name: 'Aankhon se', url: '/assets/aankho_se.mp3' },
 ];
 
-const SongsUmama = () => {
+const SongsUmama = () => {  
   return (
-    <section className="px-4 md:px-20 py-16 bg-pink-50 rounded-xl shadow-md space-y-8">
+    <section className="px-4 md:p x-20 py-16 bg-pink-50 rounded-xl shadow-md space-y-8">
       <h2 className="text-xl md:text-3xl font-bold text-pink- font-poppins leading-relaxed max-w-3xl mx-auto text-center">
        
         Songs for you 💖
