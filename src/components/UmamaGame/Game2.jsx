@@ -52,7 +52,7 @@ const Game2 = ({ onComplete }) => {
       setHearts((prev) =>
         prev
           .map((heart) => ({ ...heart, top: heart.top + 10 }))
-          .filter((heart) => heart.top < window.innerHeight)
+          .filter((heart) => heart.top < window.innerHeight * 0.9) // respect 90vh
       );
     }, 50);
     return () => clearInterval(fallInterval);
@@ -63,7 +63,7 @@ const Game2 = ({ onComplete }) => {
     const caughtHearts = hearts.filter((heart) => {
       const heartBottom = heart.top + 30;
       const isCaught =
-        heartBottom >= window.innerHeight - 100 &&
+        heartBottom >= window.innerHeight * 0.9 - 100 &&
         heart.left >= basketX &&
         heart.left <= basketX + basketWidth;
       return isCaught;
@@ -105,7 +105,11 @@ const Game2 = ({ onComplete }) => {
   const moveRight = () => started && setBasketX((x) => Math.min(x + 30, window.innerWidth - basketWidth));
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-pink-50">
+    <div
+      className="relative w-full overflow-hidden bg-pink-50"
+      style={{ height: '90vh', overflow: 'hidden', touchAction: 'none' }}
+      ref={gameRef}
+    >
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 bg-white shadow-md p-4 flex justify-between px-6 z-10">
         <h2 className="text-lg md:text-xl font-bold text-pink-600">
@@ -146,10 +150,12 @@ const Game2 = ({ onComplete }) => {
       {/* Basket (emoji 🧺) */}
       {started && (
         <div
-          className="absolute bottom-[50px] text-7xl"
+          className="absolute text-7xl"
           style={{
+            bottom: 50,
             left: basketX,
             transition: 'left 0.1s',
+            userSelect: 'none',
           }}
         >
           🧺
@@ -158,7 +164,7 @@ const Game2 = ({ onComplete }) => {
 
       {/* Mobile Controls */}
       {started && (
-        <div className="fixed bottom-0 left-0 right-0 flex justify-between p-4 md:hidden z-20">
+        <div className="fixed bottom-0 left-0 right-0 flex justify-between p-4 md:hidden z-20 bg-pink-50">
           <button
             onClick={moveLeft}
             className="bg-white text-pink-500 shadow px-6 py-3 rounded-full text-xl font-bold"
