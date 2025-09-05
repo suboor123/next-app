@@ -3,18 +3,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const Game2 = ({ onComplete }) => {
-  const gameDuration = 15; // seconds
-  const heartFallInterval = 800; // ms
+  const gameDuration = 15;
+  const heartFallInterval = 800;
   const basketWidth = 50;
 
   const [started, setStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(gameDuration);
   const [hearts, setHearts] = useState([]);
   const [caught, setCaught] = useState(0);
-  const [basketX, setBasketX] = useState(typeof window !== 'undefined' ? window.innerWidth / 2 - basketWidth / 2 : 150);
+  const [basketX, setBasketX] = useState(0);
   const [gameOver, setGameOver] = useState(false);
 
-  const gameRef = useRef();
+  const gameRef = useRef(null);
+
+  // Set initial basket position after mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setBasketX(window.innerWidth / 2 - basketWidth / 2);
+    }
+  }, []);
 
   // Start timer
   useEffect(() => {
@@ -52,7 +59,7 @@ const Game2 = ({ onComplete }) => {
       setHearts((prev) =>
         prev
           .map((heart) => ({ ...heart, top: heart.top + 10 }))
-          .filter((heart) => heart.top < window.innerHeight * 0.9) // respect 90vh
+          .filter((heart) => heart.top < window.innerHeight)
       );
     }, 50);
     return () => clearInterval(fallInterval);
@@ -75,7 +82,7 @@ const Game2 = ({ onComplete }) => {
     }
   }, [hearts, basketX]);
 
-  // Keyboard control
+  // Keyboard controls
   useEffect(() => {
     const handleMove = (e) => {
       if (!started) return;
@@ -89,7 +96,7 @@ const Game2 = ({ onComplete }) => {
     return () => window.removeEventListener('keydown', handleMove);
   }, [started]);
 
-  // Game over → send score
+  // Game over score calculation
   useEffect(() => {
     if (gameOver) {
       const timeout = setTimeout(() => {
@@ -100,14 +107,13 @@ const Game2 = ({ onComplete }) => {
     }
   }, [gameOver, caught, onComplete]);
 
-  // Mobile control buttons
+  // Mobile controls
   const moveLeft = () => started && setBasketX((x) => Math.max(x - 30, 0));
   const moveRight = () => started && setBasketX((x) => Math.min(x + 30, window.innerWidth - basketWidth));
 
   return (
     <div
-      className="relative w-full overflow-hidden bg-pink-50"
-      style={{ height: '90vh', overflow: 'hidden', touchAction: 'none' }}
+      className="relative w-full min-h-[90dvh] overflow-hidden bg-pink-50 touch-none"
       ref={gameRef}
     >
       {/* Header */}
@@ -140,22 +146,23 @@ const Game2 = ({ onComplete }) => {
       {hearts.map((heart) => (
         <div
           key={heart.id}
-          className="absolute text-2xl"
+          className="absolute text-2xl z-10"
           style={{ top: heart.top, left: heart.left }}
         >
           💖
         </div>
       ))}
 
-      {/* Basket (emoji 🧺) */}
+      {/* Basket */}
       {started && (
         <div
-          className="absolute text-7xl"
+          className="absolute text-7xl z-20"
           style={{
-            bottom: 50,
+            bottom: 60, // space above mobile buttons
             left: basketX,
             transition: 'left 0.1s',
             userSelect: 'none',
+            pointerEvents: 'none',
           }}
         >
           🧺
@@ -164,7 +171,7 @@ const Game2 = ({ onComplete }) => {
 
       {/* Mobile Controls */}
       {started && (
-        <div className="fixed bottom-0 left-0 right-0 flex justify-between p-4 md:hidden z-20 bg-pink-50">
+        <div className="fixed bottom-0 left-0 right-0 flex justify-between p-4 md:hidden z-30 bg-pink-50">
           <button
             onClick={moveLeft}
             className="bg-white text-pink-500 shadow px-6 py-3 rounded-full text-xl font-bold"
@@ -182,10 +189,12 @@ const Game2 = ({ onComplete }) => {
 
       {/* Game Over Screen */}
       {gameOver && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-30">
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-40">
           <div className="bg-white p-6 rounded-lg shadow text-center">
             <h3 className="text-2xl font-bold text-pink-700 mb-2">Time’s Up!</h3>
-            <p className="text-pink-600 mb-2">You caught <strong>{caught}</strong> hearts!</p>
+            <p className="text-pink-600 mb-2">
+              You caught <strong>{caught}</strong> hearts!
+            </p>
             <p className="text-pink-600">Calculating score...</p>
           </div>
         </div>
