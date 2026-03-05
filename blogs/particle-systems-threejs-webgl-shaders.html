@@ -10,21 +10,21 @@
   <meta name="keywords" content="Three.js Particle Systems, WebGL GLSL Shaders Tutorial, GPU Particles JavaScript, BufferGeometry Three.js, WebGL Performance, Suboor Khan"/>
   <meta name="author" content="Suboor Khan"/>
   <meta name="robots" content="index, follow"/>
-  <link rel="canonical" href="https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html"/>
+  <link rel="canonical" href="https://suboorkhan.com/blogs/particle-systems-threejs-webgl-shaders.html"/>
   <meta name="theme-color" content="#7c3aed"/>
 
   <!-- Open Graph -->
   <meta property="og:type"                  content="article"/>
-  <meta property="og:url"                   content="https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html"/>
+  <meta property="og:url"                   content="https://suboorkhan.com/blogs/particle-systems-threejs-webgl-shaders.html"/>
   <meta property="og:site_name"             content="Suboor Khan — Blog"/>
   <meta property="og:title"                 content="Building Particle Systems with Three.js & WebGL Shaders"/>
   <meta property="og:description"           content="A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders."/>
-  <meta property="og:image"                 content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:image"                 content="https://suboorkhan.com/og-cover.png"/>
   <meta property="og:image:width"           content="1200"/>
   <meta property="og:image:height"          content="630"/>
   <meta property="og:image:alt"             content="Building Particle Systems with Three.js & WebGL Shaders — Suboor Khan"/>
   <meta property="og:locale"                content="en_GB"/>
-  <meta property="article:author"           content="https://suboorkhan.dev/"/>
+  <meta property="article:author"           content="https://suboorkhan.com/"/>
   <meta property="article:published_time"   content="2026-02-18T00:00:00.000Z"/>
   <meta property="article:modified_time"    content="2026-03-05T00:00:00+00:00"/>
   <meta property="article:section"          content="WebGL"/>
@@ -41,7 +41,7 @@
   <meta name="twitter:creator"     content="@suboorkhan"/>
   <meta name="twitter:title"       content="Building Particle Systems with Three.js & WebGL Shaders"/>
   <meta name="twitter:description" content="A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders."/>
-  <meta name="twitter:image"       content="https://suboorkhan.dev/og-cover.png"/>
+  <meta name="twitter:image"       content="https://suboorkhan.com/og-cover.png"/>
   <meta name="twitter:label1"      content="Reading time"/>
   <meta name="twitter:data1"       content="15 min read"/>
   <meta name="twitter:label2"      content="Category"/>
@@ -54,48 +54,48 @@
     "@graph": [
       {
         "@type": "BlogPosting",
-        "@id": "https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html#article",
-        "url": "https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html",
+        "@id": "https://suboorkhan.com/blogs/particle-systems-threejs-webgl-shaders.html#article",
+        "url": "https://suboorkhan.com/blogs/particle-systems-threejs-webgl-shaders.html",
         "headline": "Building Particle Systems with Three.js & WebGL Shaders",
         "description": "A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders.",
         "image": {
           "@type": "ImageObject",
-          "url": "https://suboorkhan.dev/og-cover.png",
+          "url": "https://suboorkhan.com/og-cover.png",
           "width": 1200,
           "height": 630
         },
         "author": {
           "@type": "Person",
-          "@id": "https://suboorkhan.dev/#person",
+          "@id": "https://suboorkhan.com/#person",
           "name": "Suboor Khan",
-          "url": "https://suboorkhan.dev/",
+          "url": "https://suboorkhan.com/",
           "sameAs": ["https://github.com/suboor123","https://linkedin.com/in/suboorkhan","https://twitter.com/suboorkhan"]
         },
         "publisher": {
           "@type": "Person",
           "name": "Suboor Khan",
-          "url": "https://suboorkhan.dev/"
+          "url": "https://suboorkhan.com/"
         },
         "datePublished": "2026-02-18T00:00:00.000Z",
         "dateModified": "2026-03-05T00:00:00+00:00",
         "inLanguage": "en-GB",
-        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html" },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://suboorkhan.com/blogs/particle-systems-threejs-webgl-shaders.html" },
         "keywords": ["Three.js","WebGL","GLSL","GPU","Shaders","Performance"],
         "articleSection": "WebGL & Graphics",
         "wordCount": 3800,
         "timeRequired": "PT15M",
         "isPartOf": {
           "@type": "Blog",
-          "@id": "https://suboorkhan.dev/blog.html",
+          "@id": "https://suboorkhan.com/blog.html",
           "name": "Suboor Khan — Tech Blog",
-          "url": "https://suboorkhan.dev/blog.html"
+          "url": "https://suboorkhan.com/blog.html"
         },
         "breadcrumb": {
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home",        "item": "https://suboorkhan.dev/" },
-            { "@type": "ListItem", "position": 2, "name": "Blog",        "item": "https://suboorkhan.dev/blog.html" },
-            { "@type": "ListItem", "position": 3, "name": "Building Particle Systems with Three.js & WebGL Shaders", "item": "https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html" }
+            { "@type": "ListItem", "position": 1, "name": "Home",        "item": "https://suboorkhan.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog",        "item": "https://suboorkhan.com/blog.html" },
+            { "@type": "ListItem", "position": 3, "name": "Building Particle Systems with Three.js & WebGL Shaders", "item": "https://suboorkhan.com/blogs/particle-systems-threejs-webgl-shaders.html" }
           ]
         }
       }
@@ -234,7 +234,7 @@
           <p class="text-xs dark:text-gray-500 text-gray-400">Full-Stack Developer &amp; Technical Writer</p>
         </div>
         <div class="ml-auto flex gap-2 flex-shrink-0">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html&text=Building%20Particle%20Systems%20with%20Three.js%20%26%20WebGL%20Shaders" target="_blank" rel="noopener noreferrer" class="glass w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-transform" aria-label="Share on X (Twitter)">
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.com%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html&text=Building%20Particle%20Systems%20with%20Three.js%20%26%20WebGL%20Shaders" target="_blank" rel="noopener noreferrer" class="glass w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-transform" aria-label="Share on X (Twitter)">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
           <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓')" class="glass px-3 h-9 rounded-full text-xs font-semibold hover:scale-110 transition-transform" aria-label="Copy link to clipboard">Copy link</button>
@@ -438,11 +438,11 @@ requestAnimationFrame(animate);</code></pre>
           <div class="glass rounded-2xl p-5 reveal">
             <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Share</p>
             <div class="space-y-2">
-              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html&text=Building%20Particle%20Systems%20with%20Three.js%20%26%20WebGL%20Shaders%20by%20%40suboorkhan" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-sky-400 hover:text-sky-600 transition-colors">
+              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.com%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html&text=Building%20Particle%20Systems%20with%20Three.js%20%26%20WebGL%20Shaders%20by%20%40suboorkhan" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-sky-400 hover:text-sky-600 transition-colors">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 Share on X
               </a>
-              <a href="https://linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-blue-400 hover:text-blue-600 transition-colors">
+              <a href="https://linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsuboorkhan.com%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-blue-400 hover:text-blue-600 transition-colors">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416z"/></svg>
                 Share on LinkedIn
               </a>

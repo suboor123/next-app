@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <!-- Primary SEO -->
+    <title>Suboor Khan Pricing — Freelance Full-Stack Developer Rates</title>
+    <meta name="description" content="View pricing for hiring Suboor Khan — a Full-Stack Developer specialising in React, Next.js, Node.js, TypeScript and AI-powered applications. Transparent freelance and contract development rates."/>
+    <meta name="keywords" content="Full Stack Developer Pricing, Freelance Developer Rates, React Developer Cost, Next.js Developer Pricing, Hire Developer Cost, Suboor Khan Pricing, Software Development Rates"/>
+    <meta name="author" content="Suboor Khan"/>
+    <meta name="robots" content="index, follow"/>
+    
+    <link rel="canonical" href="https://suboorkhan.com/pricing"/>
+    <meta name="theme-color" content="#7c3aed"/>
+    
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://suboorkhan.com/pricing"/>
+    <meta property="og:site_name"   content="Suboor Khan — Portfolio"/>
+    <meta property="og:title"       content="Suboor Khan Pricing — Freelance Full-Stack Developer Rates"/>
+    <meta property="og:description" content="Explore freelance and contract pricing for React, Next.js, Node.js and AI-powered development services by Suboor Khan."/>
+    <meta property="og:image"       content="https://suboorkhan.com/og-cover.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:locale"      content="en_GB"/>
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image"/>
+    <meta name="twitter:title"       content="Suboor Khan Pricing — Freelance Full-Stack Developer Rates"/>
+    <meta name="twitter:description" content="Transparent pricing for freelance full-stack development including React, Next.js, Node.js and AI integrations."/>
+    <meta name="twitter:image"       content="https://suboorkhan.com/og-cover.png"/>
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://suboorkhan.com/#person",
+          "name": "Suboor Khan",
+          "url": "https://suboorkhan.com/",
+          "jobTitle": "Full-Stack Software Developer",
+          "description": "Full-Stack Software Developer with 5+ years experience building scalable applications with React, Next.js, Node.js and AI.",
+          "sameAs": [
+            "https://github.com/suboor123",
+            "https://linkedin.com/in/suboorkhan",
+            "https://twitter.com/suboorkhan"
+          ]
+        },
+        {
+          "@type": "Service",
+          "name": "Full-Stack Web Development Pricing",
+          "provider": { "@id": "https://suboorkhan.com/#person" },
+          "serviceType": "Software Development",
+          "description": "Freelance and contract pricing for building modern web applications using React, Next.js, Node.js, TypeScript and AI integrations.",
+          "areaServed": "Worldwide",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "description": "Hourly, project-based and contract pricing available depending on project scope."
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://suboorkhan.com/pricing.html",
+          "url": "https://suboorkhan.com/pricing.html",
+          "name": "Suboor Khan Pricing — Freelance Developer Rates",
+          "isPartOf": { "@id": "https://suboorkhan.com/#website" },
+          "about": { "@id": "https://suboorkhan.com/#person" },
+          "description": "Pricing page for Suboor Khan — transparent freelance full-stack development rates.",
+          "inLanguage": "en-GB",
+          "dateModified": "2026-03-04"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+    <style>
+      *{cursor:none !important}
+      #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+      #cursor.hovered{width:36px;height:36px;background:#ec4899}
+      #cursor.clicking{width:8px;height:8px}
+      #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+      #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);z-index:1001;transition:width .08s linear;border-radius:0 2px 2px 0}
+      .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+      html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+      .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+      .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+      .reveal{opacity:0;transform:translateY(44px);transition:opacity .75s ease,transform .75s ease}
+      .reveal.from-left{transform:translateX(-44px)}
+      .reveal.from-right{transform:translateX(44px)}
+      .reveal.visible{opacity:1;transform:translate(0,0)}
+      .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+      .tilt-card:hover{box-shadow:0 24px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.12)}
+      .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.22) 0%,transparent 65%)}
+      .tilt-card:hover .card-glow{opacity:1}
+      .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.2);font-weight:500}
+      html:not(.dark) .skill-tag{background:rgba(124,58,237,.08);color:#7c3aed;border-color:rgba(124,58,237,.15)}
+      .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#7c3aed 0%,#ec4899 40%,#f97316 60%,#7c3aed 100%);animation:shimmer 3s ease infinite}
+      .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.25),transparent)}
+      .plan-card{position:relative;border-radius:1.5rem;padding:2rem;transition:transform .3s ease,box-shadow .3s ease}
+      .plan-card:hover{transform:translateY(-6px)}
+      .plan-popular{border:2px solid transparent;background:linear-gradient(rgba(6,6,15,1),rgba(6,6,15,1)) padding-box,linear-gradient(135deg,#7c3aed,#ec4899) border-box}
+      html:not(.dark) .plan-popular{background:linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)) padding-box,linear-gradient(135deg,#7c3aed,#ec4899) border-box}
+      .step-line{position:absolute;left:1.375rem;top:3rem;bottom:-1rem;width:2px;background:linear-gradient(180deg,rgba(124,58,237,.4),transparent)}
+      .faq-item summary{list-style:none;cursor:pointer}
+      .faq-item summary::-webkit-details-marker{display:none}
+      .faq-item[open] .faq-icon{transform:rotate(45deg)}
+      .faq-icon{transition:transform .3s ease}
+      *,*::before,*::after{transition:background-color .3s ease,border-color .3s ease,color .2s ease}
+      .availability-dot{width:10px;height:10px;background:#10b981;border-radius:50%;animation:pulse2 2s ease-in-out infinite;box-shadow:0 0 0 4px rgba(16,185,129,.2)}
+    </style>
+  
+</head>
+<body>
+    <section class="py-28 relative overflow-hidden" aria-label="Pricing plans">
+        <div class="blob w-96 h-96 dark:bg-violet-800 bg-violet-200 -top-20 -right-20" style="animation-delay:1s" aria-hidden="true"></div>
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-16 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Engagement Models</p>
+            <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4">Simple, Honest <span class="grad-text">Pricing</span></h2>
+            <p class="dark:text-gray-400 text-gray-500 text-sm max-w-lg mx-auto">No surprise invoices. Pick the model that fits your needs — all include daily communication and weekly reports.</p>
+          </div>
+  
+          <div class="grid md:grid-cols-3 gap-6 items-stretch">
+  
+            <!-- Starter -->
+            <div class="plan-card glass reveal tilt-card relative" style="transition-delay:.05s">
+              <div class="card-glow"></div>
+              <p class="text-xs uppercase tracking-widest dark:text-gray-500 text-gray-400 font-semibold mb-2">Starter</p>
+              <div class="flex items-end gap-1 mb-1">
+                <span class="font-display font-extrabold text-4xl dark:text-white text-gray-900">$65</span>
+                <span class="dark:text-gray-500 text-gray-400 text-sm mb-1">/hour</span>
+              </div>
+              <p class="text-xs dark:text-gray-500 text-gray-400 mb-6">Best for small tasks &amp; bug fixes</p>
+              <ul class="space-y-3 text-sm mb-8" aria-label="Starter plan features">
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Up to 20 hrs/week</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">React / Node.js fixes</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">48-hour response SLA</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Slack communication</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-gray-600" aria-hidden="true">—</span> <span class="dark:text-gray-500 text-gray-400">Code review</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-gray-600" aria-hidden="true">—</span> <span class="dark:text-gray-500 text-gray-400">Architecture guidance</span></li>
+              </ul>
+              <a href="mailto:suboork100@gmail.com?subject=Starter%20Plan%20Enquiry" class="block text-center py-3 rounded-full glass font-semibold text-sm hover:scale-105 transition-transform border dark:border-white/10 border-gray-200">
+                Get Started →
+              </a>
+            </div>
+  
+            <!-- Pro (popular) -->
+            <div class="plan-card plan-popular reveal tilt-card relative" style="transition-delay:.1s">
+              <div class="card-glow"></div>
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span class="btn-shimmer text-white text-xs font-bold px-4 py-1 rounded-full">Most Popular</span>
+              </div>
+              <p class="text-xs uppercase tracking-widest dark:text-purple-300 text-purple-600 font-semibold mb-2 mt-2">Pro</p>
+              <div class="flex items-end gap-1 mb-1">
+                <span class="font-display font-extrabold text-4xl dark:text-white text-gray-900">$5,500</span>
+                <span class="dark:text-gray-400 text-gray-500 text-sm mb-1">/month</span>
+              </div>
+              <p class="text-xs dark:text-gray-400 text-gray-500 mb-6">Dedicated full-time engagement</p>
+              <ul class="space-y-3 text-sm mb-8" aria-label="Pro plan features">
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">40 hrs/week guaranteed</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Full-stack development</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">4-hour response SLA</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Daily standups + Slack</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Code reviews included</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Architecture guidance</span></li>
+              </ul>
+              <a href="mailto:suboork100@gmail.com?subject=Pro%20Plan%20Enquiry" class="block text-center py-3 rounded-full btn-shimmer font-bold text-sm text-white hover:scale-105 transition-transform shadow-lg shadow-purple-500/30">
+                Hire Me Now →
+              </a>
+            </div>
+  
+            <!-- Enterprise -->
+            <div class="plan-card glass reveal tilt-card relative" style="transition-delay:.15s">
+              <div class="card-glow"></div>
+              <p class="text-xs uppercase tracking-widest dark:text-gray-500 text-gray-400 font-semibold mb-2">Enterprise</p>
+              <div class="flex items-end gap-1 mb-1">
+                <span class="font-display font-extrabold text-4xl dark:text-white text-gray-900">Custom</span>
+              </div>
+              <p class="text-xs dark:text-gray-500 text-gray-400 mb-6">For large teams &amp; long-term projects</p>
+              <ul class="space-y-3 text-sm mb-8" aria-label="Enterprise plan features">
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Flexible hours / team</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Tech lead services</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">1-hour response SLA</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">NDA + MSA available</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">IP ownership transfer</span></li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span class="dark:text-gray-300 text-gray-600">Fractional CTO option</span></li>
+              </ul>
+              <a href="mailto:suboork100@gmail.com?subject=Enterprise%20Enquiry" class="block text-center py-3 rounded-full glass font-semibold text-sm hover:scale-105 transition-transform border dark:border-white/10 border-gray-200">
+                Let's Talk →
+              </a>
+            </div>
+  
+          </div>
+  
+          <p class="text-center text-xs dark:text-gray-600 text-gray-400 mt-6 reveal">All prices in USD. Invoiced bi-weekly via Wise, PayPal or bank transfer. Fixed-price projects also available — <a href="mailto:suboork100@gmail.com" class="dark:text-purple-400 text-purple-600 hover:underline">get a quote</a>.</p>
+        </div>
+      </section>
+  
+      <div class="s-divider"></div>
+</body>
+</html>

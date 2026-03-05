@@ -6,7 +6,7 @@
 const fs   = require('fs');
 const path = require('path');
 
-const BASE = 'https://suboorkhan.dev';
+const BASE = 'https://suboorkhan.com';
 
 const blogs = JSON.parse(fs.readFileSync(path.join(__dirname,'data/blogs.json'),'utf8')).posts;
 
@@ -753,9 +753,9 @@ new ModuleFederationPlugin({
 new ModuleFederationPlugin({
   name:    'shell',
   remotes: {
-    product: 'product@https://product.suboorkhan.dev/remoteEntry.js',
-    checkout: 'checkout@https://checkout.suboorkhan.dev/remoteEntry.js',
-    auth:     'auth@https://auth.suboorkhan.dev/remoteEntry.js',
+    product: 'product@https://product.suboorkhan.com/remoteEntry.js',
+    checkout: 'checkout@https://checkout.suboorkhan.com/remoteEntry.js',
+    auth:     'auth@https://auth.suboorkhan.com/remoteEntry.js',
   },
   shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
 })</code></pre>

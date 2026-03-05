@@ -8,13 +8,13 @@
   <meta name="keywords" content="React Server Components, RSC, Next.js App Router, Streaming, use client, Suspense, Data Fetching, Suboor Khan"/>
   <meta name="author" content="Suboor Khan"/>
   <meta name="robots" content="index, follow"/>
-  <link rel="canonical" href="https://suboorkhan.dev/blogs/react-server-components-deep-dive.html"/>
+  <link rel="canonical" href="https://suboorkhan.com/blogs/react-server-components-deep-dive.html"/>
   <meta name="theme-color" content="#7c3aed"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:url" content="https://suboorkhan.dev/blogs/react-server-components-deep-dive.html"/>
+  <meta property="og:url" content="https://suboorkhan.com/blogs/react-server-components-deep-dive.html"/>
   <meta property="og:title" content="React Server Components Deep Dive: When, Why and How"/>
   <meta property="og:description" content="A thorough examination of RSC architecture — the mental model shift, server/client boundaries, streaming, and real-world patterns."/>
-  <meta property="og:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:image" content="https://suboorkhan.com/og-cover.png"/>
   <meta property="og:locale" content="en_GB"/>
   <meta property="article:published_time" content="2026-02-25T00:00:00+00:00"/>
   <meta property="article:section" content="React"/>
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="React Server Components Deep Dive: When, Why and How"/>
   <meta name="twitter:description" content="RSC architecture, streaming, server/client boundaries, and real-world Next.js App Router patterns."/>
-  <meta name="twitter:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta name="twitter:image" content="https://suboorkhan.com/og-cover.png"/>
   <meta name="twitter:label1" content="Reading time"/>
   <meta name="twitter:data1" content="13 min read"/>
   <script type="application/ld+json">
@@ -31,13 +31,13 @@
     "@context":"https://schema.org",
     "@graph":[{
       "@type":"BlogPosting",
-      "@id":"https://suboorkhan.dev/blogs/react-server-components-deep-dive.html#article",
-      "url":"https://suboorkhan.dev/blogs/react-server-components-deep-dive.html",
+      "@id":"https://suboorkhan.com/blogs/react-server-components-deep-dive.html#article",
+      "url":"https://suboorkhan.com/blogs/react-server-components-deep-dive.html",
       "headline":"React Server Components Deep Dive: When, Why and How",
       "description":"A thorough examination of RSC architecture — the mental model shift, server/client boundaries, streaming, and real-world patterns.",
-      "image":{"@type":"ImageObject","url":"https://suboorkhan.dev/og-cover.png","width":1200,"height":630},
-      "author":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
-      "publisher":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "image":{"@type":"ImageObject","url":"https://suboorkhan.com/og-cover.png","width":1200,"height":630},
+      "author":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.com/"},
+      "publisher":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.com/"},
       "datePublished":"2026-02-25T00:00:00+00:00",
       "dateModified":"2026-03-01T00:00:00+00:00",
       "inLanguage":"en-GB",
@@ -45,11 +45,11 @@
       "articleSection":"React",
       "wordCount":3500,
       "timeRequired":"PT13M",
-      "isPartOf":{"@type":"Blog","@id":"https://suboorkhan.dev/blog.html","name":"Suboor Khan — Tech Blog","url":"https://suboorkhan.dev/blog.html"},
+      "isPartOf":{"@type":"Blog","@id":"https://suboorkhan.com/blog.html","name":"Suboor Khan — Tech Blog","url":"https://suboorkhan.com/blog.html"},
       "breadcrumb":{"@type":"BreadcrumbList","itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Home","item":"https://suboorkhan.dev/"},
-        {"@type":"ListItem","position":2,"name":"Blog","item":"https://suboorkhan.dev/blog.html"},
-        {"@type":"ListItem","position":3,"name":"React Server Components Deep Dive","item":"https://suboorkhan.dev/blogs/react-server-components-deep-dive.html"}
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://suboorkhan.com/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":"https://suboorkhan.com/blog.html"},
+        {"@type":"ListItem","position":3,"name":"React Server Components Deep Dive","item":"https://suboorkhan.com/blogs/react-server-components-deep-dive.html"}
       ]}
     }]
   }
@@ -168,7 +168,7 @@
         <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-bold text-white text-lg flex-shrink-0" style="background:rgba(124,58,237,.4)">SK</div>
         <div><p class="font-semibold text-sm">Suboor Khan</p><p class="text-xs dark:text-gray-500 text-gray-400">Full-Stack Developer &amp; Technical Writer</p></div>
         <div class="ml-auto flex gap-2 flex-shrink-0">
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Freact-server-components-deep-dive.html&text=React%20Server%20Components%20Deep%20Dive%20by%20%40suboorkhan" target="_blank" rel="noopener noreferrer" class="glass w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-transform" aria-label="Share on X"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.com%2Fblogs%2Freact-server-components-deep-dive.html&text=React%20Server%20Components%20Deep%20Dive%20by%20%40suboorkhan" target="_blank" rel="noopener noreferrer" class="glass w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-transform" aria-label="Share on X"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
           <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓')" class="glass px-3 h-9 rounded-full text-xs font-semibold hover:scale-110 transition-transform">Copy link</button>
         </div>
       </div>
@@ -413,7 +413,7 @@ export function NewPostForm() {
           <div class="glass rounded-2xl p-5 reveal">
             <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Share</p>
             <div class="space-y-2">
-              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Freact-server-components-deep-dive.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-sky-400 hover:text-sky-600 transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Share on X</a>
+              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.com%2Fblogs%2Freact-server-components-deep-dive.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-sky-400 hover:text-sky-600 transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Share on X</a>
               <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓ Copied!')" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-purple-400 w-full text-left"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy link</button>
             </div>
           </div>
