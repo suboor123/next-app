@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prompt Engineering for Production LLMs: Advanced Techniques That Actually Work — Suboor Khan Blog</title>
+  <meta name="description" content="Beyond basic prompting: chain-of-thought, self-consistency, structured extraction, evaluation loops, and prompt versioning patterns for production AI."/>
+  <meta name="keywords" content="Prompt Engineering, Chain of Thought, Few-Shot Prompting, LLM Evaluation, Structured Extraction, Self-Consistency, Production AI, Suboor Khan"/>
+  <meta name="author" content="Suboor Khan"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://suboorkhan.dev/blogs/prompt-engineering-production-llms.html"/>
+  <meta name="theme-color" content="#7c3aed"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://suboorkhan.dev/blogs/prompt-engineering-production-llms.html"/>
+  <meta property="og:title" content="Prompt Engineering for Production LLMs: Advanced Techniques That Actually Work"/>
+  <meta property="og:description" content="Beyond basic prompting: chain-of-thought, self-consistency, structured extraction, evaluation loops, and prompt versioning patterns."/>
+  <meta property="og:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-01-30T00:00:00+00:00"/>
+  <meta property="article:section" content="AI/LLMs"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Prompt Engineering for Production LLMs"/>
+  <meta name="twitter:description" content="Chain-of-thought, self-consistency, structured extraction, evaluation loops, and prompt versioning for production AI."/>
+  <meta name="twitter:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta name="twitter:label1" content="Reading time"/>
+  <meta name="twitter:data1" content="12 min read"/>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[{
+      "@type":"BlogPosting",
+      "@id":"https://suboorkhan.dev/blogs/prompt-engineering-production-llms.html#article",
+      "url":"https://suboorkhan.dev/blogs/prompt-engineering-production-llms.html",
+      "headline":"Prompt Engineering for Production LLMs: Advanced Techniques That Actually Work",
+      "description":"Beyond basic prompting: chain-of-thought, self-consistency, structured extraction, evaluation loops, and prompt versioning.",
+      "image":{"@type":"ImageObject","url":"https://suboorkhan.dev/og-cover.png","width":1200,"height":630},
+      "author":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "publisher":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "datePublished":"2026-01-30T00:00:00+00:00",
+      "dateModified":"2026-02-10T00:00:00+00:00",
+      "inLanguage":"en-GB",
+      "keywords":["Prompt Engineering","Chain of Thought","LLM","Production AI","Few-Shot","Evaluation"],
+      "articleSection":"AI/LLMs",
+      "wordCount":3200,
+      "timeRequired":"PT12M",
+      "isPartOf":{"@type":"Blog","@id":"https://suboorkhan.dev/blog.html","name":"Suboor Khan — Tech Blog","url":"https://suboorkhan.dev/blog.html"},
+      "breadcrumb":{"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://suboorkhan.dev/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":"https://suboorkhan.dev/blog.html"},
+        {"@type":"ListItem","position":3,"name":"Prompt Engineering for Production LLMs","item":"https://suboorkhan.dev/blogs/prompt-engineering-production-llms.html"}
+      ]}
+    }]
+  }
+  </script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{cursor:none !important}
+    #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+    #cursor.hovered{width:36px;height:36px;background:#ec4899}
+    #cursor.clicking{width:8px;height:8px}
+    #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);z-index:1001;transition:width .08s linear}
+    .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+    html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+    .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+    .tilt-card:hover{box-shadow:0 24px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.12)}
+    .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.22) 0%,transparent 65%)}
+    .tilt-card:hover .card-glow{opacity:1}
+    .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.2);font-weight:500}
+    html:not(.dark) .skill-tag{background:rgba(124,58,237,.08);color:#7c3aed;border-color:rgba(124,58,237,.15)}
+    .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#7c3aed 0%,#ec4899 40%,#f97316 60%,#7c3aed 100%);animation:shimmer 3s ease infinite}
+    .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.25),transparent)}
+    .prose h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;margin:2.5rem 0 1rem;line-height:1.3}
+    .prose h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:2rem 0 .75rem}
+    .prose p{margin-bottom:1.25rem;line-height:1.85;font-size:.925rem}
+    .prose ul,.prose ol{margin:1rem 0 1.5rem 1.25rem}
+    .prose ul{list-style:disc}.prose ol{list-style:decimal}
+    .prose li{margin-bottom:.5rem;font-size:.925rem;line-height:1.75}
+    .prose blockquote{border-left:3px solid #7c3aed;padding:.75rem 1.25rem;margin:1.5rem 0;background:rgba(124,58,237,.06);border-radius:0 .75rem .75rem 0}
+    .prose blockquote p{margin:0;color:#a78bfa;font-style:italic}
+    .prose code{font-size:.8rem;background:rgba(124,58,237,.12);color:#a78bfa;padding:.15rem .4rem;border-radius:.3rem;font-family:'Courier New',monospace}
+    .prose pre{background:#0d0d1a;border:1px solid rgba(124,58,237,.2);border-radius:1rem;padding:1.25rem 1.5rem;margin:1.5rem 0;overflow-x:auto}
+    .prose pre code{background:none;color:#e2e8f0;padding:0;font-size:.8rem}
+    .toc-link{font-size:.8rem;padding:.3rem .75rem;border-radius:.5rem;transition:all .2s;display:block}
+    .toc-link:hover,.toc-link.active{background:rgba(124,58,237,.12);color:#a78bfa}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float{animation:float 4s ease-in-out infinite}
+  </style>
+</head>
+<body class="dark:bg-[#06060f] bg-gray-50 dark:text-gray-100 text-gray-900 font-sans antialiased overflow-x-hidden">
+<a href="#article-body" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-lg focus:text-sm">Skip to article</a>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<div id="progress-bar" style="width:0%" aria-hidden="true"></div>
+<header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="font-display text-xl font-bold grad-text tracking-tight">SK.</a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <li><a href="../index.html#about" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">About</a></li>
+        <li><a href="../projects.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="../blog.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors font-semibold" style="color:#7c3aed">Blog</a></li>
+        <li><a href="../ai-skills.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">AI &amp; Skills</a></li>
+        <li><a href="../resume.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="../contact.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Contact</a></li>
+        <li><a href="../hire-me.html" class="px-4 py-2 rounded-full btn-shimmer text-white font-semibold text-sm hover:scale-105 transition-transform shadow-md shadow-purple-500/25">Hire Me</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button id="menu-btn" class="md:hidden w-10 h-10 glass rounded-full flex flex-col items-center justify-center gap-[5px]" aria-label="Open menu" aria-expanded="false">
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar1"></span>
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar2"></span>
+          <span class="w-4 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass mx-4 mb-4 rounded-2xl overflow-hidden">
+      <ul class="flex flex-col p-4 gap-2 text-sm font-medium">
+        <li><a href="../index.html#about" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">About</a></li>
+        <li><a href="../projects.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Projects</a></li>
+        <li><a href="../blog.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Blog</a></li>
+        <li><a href="../ai-skills.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">AI &amp; Skills</a></li>
+        <li><a href="../resume.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Resume</a></li>
+        <li><a href="../contact.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Contact</a></li>
+        <li><a href="../hire-me.html" class="mobile-link block px-4 py-2.5 rounded-xl bg-purple-600/20 text-purple-400 font-semibold">✦ Hire Me</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="relative pt-32 pb-0 overflow-hidden">
+    <div class="blob w-[32rem] h-[32rem] dark:bg-orange-900 bg-orange-200 -top-32 -right-32" style="animation-delay:0s"></div>
+    <div class="blob w-64 h-64 dark:bg-red-800 bg-red-200 bottom-0 left-0" style="animation-delay:6s"></div>
+    <div class="max-w-5xl mx-auto px-6">
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs dark:text-gray-500 text-gray-400 mb-8 animate-[fadeUp_.5s_ease_forwards]">
+        <a href="../index.html" class="hover:dark:text-purple-300 hover:text-purple-600">Home</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="../blog.html" class="hover:dark:text-purple-300 hover:text-purple-600">Blog</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="dark:text-gray-300 text-gray-600 truncate max-w-[200px]">Prompt Engineering</span>
+      </nav>
+      <div class="flex flex-wrap items-center gap-3 mb-5 animate-[fadeUp_.5s_.05s_ease_both]">
+        <span class="skill-tag">AI/LLMs</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">30 Jan 2026</span>
+        <span class="dark:text-gray-700 text-gray-300">·</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">12 min read</span>
+      </div>
+      <h1 class="font-display font-extrabold leading-tight mb-6 animate-[fadeUp_.6s_.1s_ease_both]" style="font-size:clamp(1.8rem,5vw,3.5rem)">Prompt Engineering for Production LLMs: Advanced Techniques That Actually Work</h1>
+      <p class="dark:text-gray-400 text-gray-500 text-base leading-relaxed mb-8 max-w-2xl animate-[fadeUp_.6s_.12s_ease_both]">Beyond basic prompting: chain-of-thought, self-consistency, structured extraction, evaluation loops, and prompt versioning for production AI systems.</p>
+      <div class="flex items-center gap-4 mb-12 animate-[fadeUp_.6s_.15s_ease_both]">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-bold text-white text-lg flex-shrink-0" style="background:rgba(124,58,237,.4)">SK</div>
+        <div><p class="font-semibold text-sm">Suboor Khan</p><p class="text-xs dark:text-gray-500 text-gray-400">Full-Stack Developer &amp; Technical Writer</p></div>
+        <div class="ml-auto">
+          <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓')" class="glass px-3 h-9 rounded-full text-xs font-semibold hover:scale-110 transition-transform">Copy link</button>
+        </div>
+      </div>
+      <div class="rounded-3xl overflow-hidden mb-0 float" style="background:linear-gradient(135deg,#0f0800,#1f1200,#3d2600);height:340px;position:relative">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(251,146,60,.6) 1px,transparent 1px);background-size:28px 28px"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-[5rem]" style="filter:drop-shadow(0 0 60px rgba(251,146,60,.5))">🎯</div>
+        <div class="absolute bottom-5 right-6 glass px-3 py-1.5 rounded-xl text-xs font-semibold dark:text-orange-300 text-orange-700">AI/LLMs</div>
+      </div>
+    </div>
+  </section>
+  <section class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-12 items-start">
+        <article id="article-body" class="prose dark:text-gray-300 text-gray-700">
+
+<div id="intro">
+  <p>Most "prompt engineering" guides teach you to say "think step by step" and call it a day. Production systems need more: deterministic output formats, accuracy guarantees, cost-controlled evaluation pipelines, and a way to iterate on prompts without breaking things.</p>
+  <p>This article covers the techniques that survive contact with real users and real scale.</p>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="cot">
+  <h2 class="dark:text-white text-gray-900">Chain-of-Thought (CoT) Prompting</h2>
+  <p>CoT prompting asks the model to reason through a problem before answering. Two variants:</p>
+  <h3 class="dark:text-white text-gray-900">Zero-Shot CoT</h3>
+  <pre><code>const prompt = `You are a financial analyst.
+
+Question: Should a startup with $200K runway burn $30K/month on marketing?
+
+Think through this step-by-step before giving your recommendation.`;
+// Simple and effective for single-turn reasoning tasks</code></pre>
+  <h3 class="dark:text-white text-gray-900">Few-Shot CoT (More Reliable)</h3>
+  <pre><code>const prompt = `Analyse business decisions step by step.
+
+Example:
+Question: A B2B SaaS company has 80% gross margin — should they raise prices?
+Thinking:
+1. High gross margin means pricing has room — cost isn't the constraint
+2. B2B buyers are rational; price increases require value justification
+3. Churn risk depends on switching costs and competitor pricing
+4. A 10% price increase on 80% margin adds ~10% to bottom line
+Recommendation: Yes — implement a 10-15% increase for new customers first, monitor churn.
+
+Now answer this:
+Question: A consumer app has 500K MAU but only 1% convert to paid. Should they invest in new features or conversion optimisation?
+Thinking:`;</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="self-consistency">
+  <h2 class="dark:text-white text-gray-900">Self-Consistency for High-Stakes Decisions</h2>
+  <p>Run the same prompt N times at high temperature, then take the majority answer. This significantly improves accuracy on classification and extraction tasks.</p>
+  <pre><code>async function selfConsistencyClassify(text: string, n = 5): Promise&lt;string&gt; {
+  const results = await Promise.all(
+    Array.from({ length: n }, () =>
+      openai.chat.completions.create({
+        model: 'gpt-4o-mini',  // cheap model, run multiple times
+        messages: [
+          { role: 'system', content: 'Classify the sentiment. Reply with exactly one word: Positive, Negative, or Neutral.' },
+          { role: 'user', content: text }
+        ],
+        temperature: 0.7,  // high temperature for diversity
+        max_tokens: 5,
+      }).then(r => r.choices[0].message.content?.trim())
+    )
+  );
+
+  // Majority vote
+  const counts = results.reduce((acc, r) => {
+    if (r) acc[r] = (acc[r] || 0) + 1;
+    return acc;
+  }, {} as Record&lt;string, number&gt;);
+
+  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+}
+
+// 5 × gpt-4o-mini << 1 × gpt-4o in cost, but comparable accuracy
+const sentiment = await selfConsistencyClassify("The product is okay but delivery was late");</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="structured">
+  <h2 class="dark:text-white text-gray-900">Structured Extraction with XML Tags</h2>
+  <p>When you don't have JSON mode available (or need intermediate reasoning), XML tags reliably demarcate structured sections in LLM output.</p>
+  <pre><code>const prompt = `Extract the key information from this job posting.
+
+Return your response in exactly this format:
+&lt;extraction&gt;
+  &lt;title&gt;[job title]&lt;/title&gt;
+  &lt;company&gt;[company name]&lt;/company&gt;
+  &lt;salary_min&gt;[number or null]&lt;/salary_min&gt;
+  &lt;salary_max&gt;[number or null]&lt;/salary_max&gt;
+  &lt;remote&gt;[true/false/hybrid]&lt;/remote&gt;
+  &lt;required_skills&gt;[comma-separated list]&lt;/required_skills&gt;
+&lt;/extraction&gt;
+
+Job posting:
+${jobPostingText}`;
+
+// Parse with regex (reliable for simple schemas)
+function parseXmlExtraction(text: string) {
+  const get = (tag: string) => text.match(new RegExp(`&lt;${tag}&gt;(.+?)&lt;\\/${tag}&gt;`, 's'))?.[1]?.trim();
+  return {
+    title:          get('title'),
+    company:        get('company'),
+    salaryMin:      Number(get('salary_min')) || null,
+    salaryMax:      Number(get('salary_max')) || null,
+    remote:         get('remote'),
+    requiredSkills: get('required_skills')?.split(',').map(s => s.trim()),
+  };
+}</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="evaluation">
+  <h2 class="dark:text-white text-gray-900">LLM-as-Judge Evaluation Loops</h2>
+  <p>Manual evaluation doesn't scale. Use a capable model (GPT-4o or Claude) as an automated judge to evaluate outputs — ideal for catching regressions when you change prompts.</p>
+  <pre><code>async function evaluateOutput(
+  input: string,
+  output: string,
+  criteria: string[]
+): Promise&lt;{ scores: Record&lt;string, number&gt;; feedback: string }&gt; {
+  const criteriaList = criteria.map((c, i) => `${i + 1}. ${c}`).join('\n');
+
+  const judge = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [{
+      role: 'user',
+      content: `You are an impartial evaluator. Score the AI output on each criterion from 1-5.
+
+INPUT: ${input}
+
+AI OUTPUT: ${output}
+
+CRITERIA:
+${criteriaList}
+
+Respond as JSON: {"scores": {"criterion_name": score}, "feedback": "brief explanation"}`
+    }],
+    response_format: { type: 'json_object' },
+    temperature: 0,
+  });
+
+  return JSON.parse(judge.choices[0].message.content!);
+}
+
+// Run eval suite before deploying prompt changes
+const results = await Promise.all(
+  testCases.map(tc => evaluateOutput(tc.input, await runPrompt(tc.input), ['accuracy', 'helpfulness', 'conciseness']))
+);
+const avgScores = results.reduce((acc, r) => { /* aggregate */ return acc; }, {});</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="versioning">
+  <h2 class="dark:text-white text-gray-900">Prompt Versioning &amp; A/B Testing</h2>
+  <blockquote><p>Treat prompts like code. They should live in version control, have changelogs, and be deployed through a proper release process — not edited directly in a `.env` file.</p></blockquote>
+  <pre><code>// prompts/summarise.ts — versioned prompt templates
+export const SUMMARISE_V3 = {
+  version: '3.0.0',
+  model:   'gpt-4o-mini',
+  system: `You are a concise technical writer. Summarise content in plain English.
+Rules:
+- Maximum 3 sentences
+- No jargon unless essential (define it if so)
+- Focus on what the reader gains, not what the text contains`,
+  user: (content: string) => `Summarise this:\n\n${content}`,
+};
+
+// Feature flag A/B test
+async function summarise(content: string, userId: string): Promise&lt;string&gt; {
+  const template = isInExperiment(userId, 'summarise-v4') ? SUMMARISE_V4 : SUMMARISE_V3;
+
+  const response = await openai.chat.completions.create({
+    model: template.model,
+    messages: [
+      { role: 'system', content: template.system },
+      { role: 'user',   content: template.user(content) },
+    ],
+  });
+
+  // Log for analysis
+  await logPromptResult({ userId, templateVersion: template.version, input: content, output: response.choices[0].message.content });
+
+  return response.choices[0].message.content!;
+}</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="temperature">
+  <h2 class="dark:text-white text-gray-900">Temperature &amp; Parameter Tuning</h2>
+  <div class="not-prose grid grid-cols-2 gap-4 my-6">
+    <div class="glass rounded-2xl p-4">
+      <p class="text-xs font-semibold dark:text-purple-400 text-purple-600 mb-2">Low Temperature (0–0.3)</p>
+      <ul class="text-xs space-y-1 dark:text-gray-400 text-gray-600">
+        <li>• Extraction tasks</li>
+        <li>• Classification</li>
+        <li>• Code generation</li>
+        <li>• Factual Q&amp;A</li>
+      </ul>
+    </div>
+    <div class="glass rounded-2xl p-4">
+      <p class="text-xs font-semibold dark:text-orange-400 text-orange-600 mb-2">High Temperature (0.7–1.0)</p>
+      <ul class="text-xs space-y-1 dark:text-gray-400 text-gray-600">
+        <li>• Creative writing</li>
+        <li>• Brainstorming</li>
+        <li>• Self-consistency sampling</li>
+        <li>• Diverse suggestions</li>
+      </ul>
+    </div>
+  </div>
+  <pre><code>// Production defaults by task type
+const TASK_CONFIGS = {
+  extraction:     { temperature: 0,    max_tokens: 500  },
+  classification: { temperature: 0,    max_tokens: 10   },
+  summarisation:  { temperature: 0.2,  max_tokens: 300  },
+  generation:     { temperature: 0.7,  max_tokens: 1500 },
+  creative:       { temperature: 0.95, max_tokens: 2000 },
+} as const;</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="summary">
+  <h2 class="dark:text-white text-gray-900">Summary</h2>
+  <ul>
+    <li>CoT: zero-shot for single tasks, few-shot for high-accuracy requirements</li>
+    <li>Self-consistency: N cheap model calls + majority vote beats 1 expensive call</li>
+    <li>XML tags: reliable structured output when JSON mode isn't available</li>
+    <li>LLM-as-judge: automated evaluation enables confident prompt iteration</li>
+    <li>Version prompts in code; A/B test with feature flags; log everything</li>
+    <li>Match temperature to task type — not one-size-fits-all</li>
+  </ul>
+</div>
+
+        </article>
+        <aside class="lg:sticky lg:top-28 space-y-5">
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">In This Article</p>
+            <nav>
+              <a href="#intro" class="toc-link dark:text-gray-400 text-gray-600">Introduction</a>
+              <a href="#cot" class="toc-link dark:text-gray-400 text-gray-600">Chain-of-Thought</a>
+              <a href="#self-consistency" class="toc-link dark:text-gray-400 text-gray-600">Self-Consistency</a>
+              <a href="#structured" class="toc-link dark:text-gray-400 text-gray-600">Structured Extraction</a>
+              <a href="#evaluation" class="toc-link dark:text-gray-400 text-gray-600">LLM-as-Judge Evals</a>
+              <a href="#versioning" class="toc-link dark:text-gray-400 text-gray-600">Prompt Versioning</a>
+              <a href="#temperature" class="toc-link dark:text-gray-400 text-gray-600">Temperature Tuning</a>
+              <a href="#summary" class="toc-link dark:text-gray-400 text-gray-600">Summary</a>
+            </nav>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal space-y-3 text-xs">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold">Article Info</p>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Published</span><span class="font-medium">30 Jan 2026</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Read time</span><span class="font-medium">12 min read</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Category</span><span class="font-medium">AI/LLMs</span></div>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Tags</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Prompt Engineering</span><span class="skill-tag">CoT</span><span class="skill-tag">LLMs</span><span class="skill-tag">Evaluation</span>
+            </div>
+          </div>
+          <a href="../hire-me.html" class="glass block rounded-2xl p-5 reveal text-center hover:scale-[1.02] transition-transform"><p class="text-xs dark:text-purple-400 text-purple-600 font-semibold mb-1">Building AI features?</p><p class="font-display font-bold text-sm mb-2">Work with me</p><span class="btn-shimmer text-white text-xs font-bold px-4 py-1.5 rounded-full inline-block">Hire Me →</span></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <div class="s-divider max-w-5xl mx-auto px-6 my-4"></div>
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="font-display font-bold text-2xl mb-8 reveal">More <span class="grad-text">Articles</span></h2>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <a href="agentic-ai-langgraph-autonomous-workflows.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#00080a,#001a20,#003040)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🕸️</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">Agentic AI with LangGraph</h3><p class="text-xs dark:text-gray-500 text-gray-400">20 min read</p></div>
+        </a>
+        <a href="claude-api-masterclass-tool-use-vision.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:.05s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#1a0a00,#3d1a00,#6b3000)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🟠</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">Claude API Masterclass</h3><p class="text-xs dark:text-gray-500 text-gray-400">14 min read</p></div>
+        </a>
+        <a href="gpt-4o-advanced-prompting-function-calling.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:.1s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#001a00,#003000,#005500)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🟢</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">GPT-4o Deep Dive</h3><p class="text-xs dark:text-gray-500 text-gray-400">13 min read</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="pb-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="reveal glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="blob w-64 h-64 dark:bg-purple-700 bg-purple-200 -top-10 -right-10"></div>
+        <div class="relative z-10">
+          <h3 class="font-display font-bold text-3xl mb-3">Stay Updated</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-sm mb-8 max-w-md mx-auto">Deep-dive articles on AI and software engineering — twice a month. No spam.</p>
+          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return false">
+            <input type="email" placeholder="your@email.com" class="flex-1 rounded-xl px-4 py-3 text-sm outline-none border dark:border-white/10 border-gray-200 focus:border-purple-500 dark:bg-white/5 bg-white/70"/>
+            <button type="submit" class="btn-shimmer text-white font-semibold text-sm px-6 py-3 rounded-xl hover:scale-105 transition-transform">Subscribe Free</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="py-12 border-t dark:border-white/5 border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div><p class="font-display font-bold text-xl grad-text mb-1">Suboor Khan</p><p class="text-xs dark:text-gray-600 text-gray-400">Crafting digital experiences since 2018</p></div>
+    <p class="text-xs dark:text-gray-600 text-gray-400">&copy; 2026 Suboor Khan</p>
+  </div>
+</footer>
+<script>
+(() => {
+  const html=document.documentElement;
+  if(localStorage.getItem('theme')==='light')html.classList.remove('dark');else html.classList.add('dark');
+  document.getElementById('theme-toggle').addEventListener('click',()=>{html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  const pb=document.getElementById('progress-bar');
+  window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.style.background='rgba(6,6,15,.85)';navbar.style.backdropFilter='blur(20px)';}else{navbar.style.background=navbar.style.backdropFilter='';}},{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu');
+  const b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;menuBtn.setAttribute('aria-expanded',open);mobileMenu.classList.toggle('hidden',!open);b1.style.transform=open?'rotate(45deg) translateY(7px)':'';b2.style.opacity=open?'0':'1';b3.style.transform=open?'rotate(-45deg) translateY(-7px)':'';});
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{open=false;mobileMenu.classList.add('hidden');b1.style.transform=b3.style.transform='';b2.style.opacity='1';}));
+  const cur=document.getElementById('cursor'),fol=document.getElementById('cursor-follower');
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mousedown',()=>cur.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('clicking'));
+  document.querySelectorAll('a,button,input,.tilt-card').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('hovered'));el.addEventListener('mouseleave',()=>cur.classList.remove('hovered'));});
+  (function tick(){fx+=(mx-fx)*.1;fy+=(my-fy)*.1;fol.style.left=fx+'px';fol.style.top=fy+'px';requestAnimationFrame(tick);})();
+  const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  document.querySelectorAll('.tilt-card').forEach(card=>{const glow=card.querySelector('.card-glow');card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(800px) rotateX('+(-y*10)+'deg) rotateY('+(x*10)+'deg) scale3d(1.02,1.02,1.02)';if(glow){glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}});card.addEventListener('mouseleave',()=>{card.style.transform='';});});
+  const tocLinks=document.querySelectorAll('.toc-link');
+  if(tocLinks.length){const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){tocLinks.forEach(l=>l.classList.remove('active'));const a=[...tocLinks].find(l=>l.getAttribute('href')==='#'+e.target.id);if(a)a.classList.add('active');}});},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('article [id]').forEach(s=>obs.observe(s));}
+})();
+</script>
+</body>
+</html>

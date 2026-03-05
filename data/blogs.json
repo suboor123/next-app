@@ -1,0 +1,233 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "slug": "react-19-concurrency-deep-dive",
+      "title": "React 19 Concurrency: A Deep Dive into useTransition and Suspense",
+      "category": "Performance",
+      "emoji": "⚡",
+      "featured": true,
+      "date": "2026-02-24",
+      "dateLabel": "24 Feb 2026",
+      "readTime": "12 min read",
+      "excerpt": "Exploring the full power of React's concurrent features for building fluid, responsive UIs that never block the main thread.",
+      "gradient": "linear-gradient(135deg,#0d001a,#2d0052,#4c1d8c)",
+      "accentColor": "#4c1d8c",
+      "link": "blogs/react-19-concurrency-deep-dive.html"
+    },
+    {
+      "id": 2,
+      "slug": "particle-systems-threejs-webgl-shaders",
+      "title": "Building Particle Systems with Three.js & WebGL Shaders",
+      "category": "WebGL",
+      "emoji": "🌌",
+      "featured": false,
+      "date": "2026-02-18",
+      "dateLabel": "18 Feb 2026",
+      "readTime": "15 min read",
+      "excerpt": "A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders.",
+      "gradient": "linear-gradient(135deg,#00060f,#001030,#0a1a5c)",
+      "accentColor": "#0a1a5c",
+      "link": "blogs/particle-systems-threejs-webgl-shaders.html"
+    },
+    {
+      "id": 3,
+      "slug": "production-rag-pipelines-langchain-supabase",
+      "title": "Building Production RAG Pipelines with LangChain & Supabase",
+      "category": "AI/LLMs",
+      "emoji": "🤖",
+      "featured": false,
+      "date": "2026-02-10",
+      "dateLabel": "10 Feb 2026",
+      "readTime": "18 min read",
+      "excerpt": "End-to-end guide to retrieval-augmented generation: vector embeddings, semantic search, and streaming responses.",
+      "gradient": "linear-gradient(135deg,#0f1200,#2a3200,#4a5c00)",
+      "accentColor": "#4a5c00",
+      "link": "blogs/production-rag-pipelines-langchain-supabase.html"
+    },
+    {
+      "id": 4,
+      "slug": "advanced-typescript-patterns",
+      "title": "Advanced TypeScript Patterns: Conditional Types & Template Literals",
+      "category": "TypeScript",
+      "emoji": "🔷",
+      "featured": false,
+      "date": "2026-02-02",
+      "dateLabel": "2 Feb 2026",
+      "readTime": "10 min read",
+      "excerpt": "Level up your type-safety game with inferred types, mapped types, and the dark arts of conditional type manipulation.",
+      "gradient": "linear-gradient(135deg,#001020,#002040,#003060)",
+      "accentColor": "#003060",
+      "link": "blogs/advanced-typescript-patterns.html"
+    },
+    {
+      "id": 5,
+      "slug": "zero-downtime-deployments-blue-green-feature-flags",
+      "title": "Zero-Downtime Deployments with Blue-Green & Feature Flags",
+      "category": "DevOps",
+      "emoji": "🚀",
+      "featured": false,
+      "date": "2026-01-27",
+      "dateLabel": "27 Jan 2026",
+      "readTime": "9 min read",
+      "excerpt": "Production deployment strategies that eliminate downtime and let you ship fearlessly to millions of users.",
+      "gradient": "linear-gradient(135deg,#100005,#300015,#5c002a)",
+      "accentColor": "#5c002a",
+      "link": "blogs/zero-downtime-deployments-blue-green-feature-flags.html"
+    },
+    {
+      "id": 6,
+      "slug": "micro-frontends-at-scale",
+      "title": "Micro-Frontends at Scale: Lessons from a 50-Team Org",
+      "category": "Architecture",
+      "emoji": "🏗️",
+      "featured": false,
+      "date": "2026-01-19",
+      "dateLabel": "19 Jan 2026",
+      "readTime": "14 min read",
+      "excerpt": "Hard-won insights from architecting a micro-frontend platform used by 50 product teams across 3 continents.",
+      "gradient": "linear-gradient(135deg,#080008,#1a001a,#350035)",
+      "accentColor": "#350035",
+      "link": "blogs/micro-frontends-at-scale.html"
+    },
+    {
+      "id": 7,
+      "slug": "css-container-queries-layout-revolution",
+      "title": "CSS Container Queries: The Layout Revolution You've Been Waiting For",
+      "category": "Performance",
+      "emoji": "💧",
+      "featured": false,
+      "date": "2026-01-11",
+      "dateLabel": "11 Jan 2026",
+      "readTime": "7 min read",
+      "excerpt": "Container queries finally solve the component-driven layout problem. Here's everything you need to migrate today.",
+      "gradient": "linear-gradient(135deg,#000a10,#001f30,#003a5c)",
+      "accentColor": "#003a5c",
+      "link": "blogs/css-container-queries-layout-revolution.html"
+    },
+    {
+      "id": 8,
+      "slug": "fine-tuning-llms-on-a-budget",
+      "title": "Fine-Tuning LLMs on a Budget: LoRA, QLoRA and Modal",
+      "category": "AI/LLMs",
+      "emoji": "🧠",
+      "featured": false,
+      "date": "2026-01-03",
+      "dateLabel": "3 Jan 2026",
+      "readTime": "16 min read",
+      "excerpt": "A cost-effective path to custom language models using parameter-efficient fine-tuning techniques on cloud GPUs.",
+      "gradient": "linear-gradient(135deg,#0a0000,#200005,#400010)",
+      "accentColor": "#400010",
+      "link": "blogs/fine-tuning-llms-on-a-budget.html"
+    },
+    {
+      "id": 9,
+      "slug": "claude-api-masterclass-tool-use-vision",
+      "title": "Claude API Masterclass: Tool Use, Vision & Extended Thinking",
+      "category": "AI/LLMs",
+      "emoji": "🟠",
+      "featured": false,
+      "date": "2026-03-01",
+      "dateLabel": "1 Mar 2026",
+      "readTime": "14 min read",
+      "excerpt": "A complete guide to Anthropic's Claude API — tool use (function calling), vision inputs, extended thinking mode, and production best practices.",
+      "gradient": "linear-gradient(135deg,#1a0a00,#3d1a00,#6b3000)",
+      "accentColor": "#6b3000",
+      "link": "blogs/claude-api-masterclass-tool-use-vision.html"
+    },
+    {
+      "id": 10,
+      "slug": "gpt-4o-advanced-prompting-function-calling",
+      "title": "GPT-4o Deep Dive: Advanced Prompting, Function Calling & Structured Outputs",
+      "category": "AI/LLMs",
+      "emoji": "🟢",
+      "featured": false,
+      "date": "2026-02-26",
+      "dateLabel": "26 Feb 2026",
+      "readTime": "13 min read",
+      "excerpt": "Master GPT-4o with chain-of-thought prompting, JSON mode, function calling schemas, and cost-optimisation patterns for production.",
+      "gradient": "linear-gradient(135deg,#001a00,#003000,#005500)",
+      "accentColor": "#005500",
+      "link": "blogs/gpt-4o-advanced-prompting-function-calling.html"
+    },
+    {
+      "id": 11,
+      "slug": "building-ai-agents-from-scratch",
+      "title": "Building AI Agents from Scratch: Memory, Tools & Autonomy",
+      "category": "AI/LLMs",
+      "emoji": "🕵️",
+      "featured": false,
+      "date": "2026-02-20",
+      "dateLabel": "20 Feb 2026",
+      "readTime": "17 min read",
+      "excerpt": "Design and implement AI agents with persistent memory, tool use loops, and autonomous multi-step reasoning — no framework required.",
+      "gradient": "linear-gradient(135deg,#000a1a,#001433,#002966)",
+      "accentColor": "#002966",
+      "link": "blogs/building-ai-agents-from-scratch.html"
+    },
+    {
+      "id": 12,
+      "slug": "react-server-components-deep-dive",
+      "title": "React Server Components: The Mental Model, Patterns & Pitfalls",
+      "category": "React",
+      "emoji": "⚛️",
+      "featured": false,
+      "date": "2026-02-14",
+      "dateLabel": "14 Feb 2026",
+      "readTime": "15 min read",
+      "excerpt": "RSC changes everything about how we think about data fetching and rendering. Here's the mental model you need to use them correctly.",
+      "gradient": "linear-gradient(135deg,#00101a,#002033,#00305c)",
+      "accentColor": "#00305c",
+      "link": "blogs/react-server-components-deep-dive.html"
+    },
+    {
+      "id": 13,
+      "slug": "react-performance-advanced-patterns",
+      "title": "React Performance: useMemo, useCallback, and When NOT to Use Them",
+      "category": "React",
+      "emoji": "🔬",
+      "featured": false,
+      "date": "2026-02-08",
+      "dateLabel": "8 Feb 2026",
+      "readTime": "11 min read",
+      "excerpt": "Most developers over-optimise and make things slower. Learn the profiling-first approach to React performance with real flame graph examples.",
+      "gradient": "linear-gradient(135deg,#0a001a,#1a0040,#2d0066)",
+      "accentColor": "#2d0066",
+      "link": "blogs/react-performance-advanced-patterns.html"
+    }
+  ],
+  "categories": [
+    {
+      "key": "all",
+      "label": "All"
+    },
+    {
+      "key": "Performance",
+      "label": "Performance"
+    },
+    {
+      "key": "WebGL",
+      "label": "WebGL"
+    },
+    {
+      "key": "AI/LLMs",
+      "label": "AI & LLMs"
+    },
+    {
+      "key": "TypeScript",
+      "label": "TypeScript"
+    },
+    {
+      "key": "DevOps",
+      "label": "DevOps"
+    },
+    {
+      "key": "Architecture",
+      "label": "Architecture"
+    },
+    {
+      "key": "React",
+      "label": "React"
+    }
+  ]
+}

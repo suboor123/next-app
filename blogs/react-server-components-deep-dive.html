@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>React Server Components Deep Dive: When, Why and How — Suboor Khan Blog</title>
+  <meta name="description" content="A thorough examination of RSC architecture — the mental model shift, server/client boundaries, streaming, and real-world patterns in Next.js App Router."/>
+  <meta name="keywords" content="React Server Components, RSC, Next.js App Router, Streaming, use client, Suspense, Data Fetching, Suboor Khan"/>
+  <meta name="author" content="Suboor Khan"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://suboorkhan.dev/blogs/react-server-components-deep-dive.html"/>
+  <meta name="theme-color" content="#7c3aed"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://suboorkhan.dev/blogs/react-server-components-deep-dive.html"/>
+  <meta property="og:title" content="React Server Components Deep Dive: When, Why and How"/>
+  <meta property="og:description" content="A thorough examination of RSC architecture — the mental model shift, server/client boundaries, streaming, and real-world patterns."/>
+  <meta property="og:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-02-25T00:00:00+00:00"/>
+  <meta property="article:section" content="React"/>
+  <meta property="article:tag" content="React Server Components"/>
+  <meta property="article:tag" content="Next.js"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="React Server Components Deep Dive: When, Why and How"/>
+  <meta name="twitter:description" content="RSC architecture, streaming, server/client boundaries, and real-world Next.js App Router patterns."/>
+  <meta name="twitter:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta name="twitter:label1" content="Reading time"/>
+  <meta name="twitter:data1" content="13 min read"/>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[{
+      "@type":"BlogPosting",
+      "@id":"https://suboorkhan.dev/blogs/react-server-components-deep-dive.html#article",
+      "url":"https://suboorkhan.dev/blogs/react-server-components-deep-dive.html",
+      "headline":"React Server Components Deep Dive: When, Why and How",
+      "description":"A thorough examination of RSC architecture — the mental model shift, server/client boundaries, streaming, and real-world patterns.",
+      "image":{"@type":"ImageObject","url":"https://suboorkhan.dev/og-cover.png","width":1200,"height":630},
+      "author":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "publisher":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "datePublished":"2026-02-25T00:00:00+00:00",
+      "dateModified":"2026-03-01T00:00:00+00:00",
+      "inLanguage":"en-GB",
+      "keywords":["React Server Components","Next.js","App Router","Streaming","Suspense","RSC"],
+      "articleSection":"React",
+      "wordCount":3500,
+      "timeRequired":"PT13M",
+      "isPartOf":{"@type":"Blog","@id":"https://suboorkhan.dev/blog.html","name":"Suboor Khan — Tech Blog","url":"https://suboorkhan.dev/blog.html"},
+      "breadcrumb":{"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://suboorkhan.dev/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":"https://suboorkhan.dev/blog.html"},
+        {"@type":"ListItem","position":3,"name":"React Server Components Deep Dive","item":"https://suboorkhan.dev/blogs/react-server-components-deep-dive.html"}
+      ]}
+    }]
+  }
+  </script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{cursor:none !important}
+    #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+    #cursor.hovered{width:36px;height:36px;background:#ec4899}
+    #cursor.clicking{width:8px;height:8px}
+    #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);z-index:1001;transition:width .08s linear}
+    .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+    html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+    .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+    .tilt-card:hover{box-shadow:0 24px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.12)}
+    .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.22) 0%,transparent 65%)}
+    .tilt-card:hover .card-glow{opacity:1}
+    .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.2);font-weight:500}
+    html:not(.dark) .skill-tag{background:rgba(124,58,237,.08);color:#7c3aed;border-color:rgba(124,58,237,.15)}
+    .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#7c3aed 0%,#ec4899 40%,#f97316 60%,#7c3aed 100%);animation:shimmer 3s ease infinite}
+    .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.25),transparent)}
+    .prose h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;margin:2.5rem 0 1rem;line-height:1.3}
+    .prose h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:2rem 0 .75rem}
+    .prose p{margin-bottom:1.25rem;line-height:1.85;font-size:.925rem}
+    .prose ul,.prose ol{margin:1rem 0 1.5rem 1.25rem}
+    .prose ul{list-style:disc}.prose ol{list-style:decimal}
+    .prose li{margin-bottom:.5rem;font-size:.925rem;line-height:1.75}
+    .prose blockquote{border-left:3px solid #7c3aed;padding:.75rem 1.25rem;margin:1.5rem 0;background:rgba(124,58,237,.06);border-radius:0 .75rem .75rem 0}
+    .prose blockquote p{margin:0;color:#a78bfa;font-style:italic}
+    html:not(.dark) .prose blockquote p{color:#7c3aed}
+    .prose code{font-size:.8rem;background:rgba(124,58,237,.12);color:#a78bfa;padding:.15rem .4rem;border-radius:.3rem;font-family:'Courier New',monospace}
+    html:not(.dark) .prose code{background:rgba(124,58,237,.08);color:#6d28d9}
+    .prose pre{background:#0d0d1a;border:1px solid rgba(124,58,237,.2);border-radius:1rem;padding:1.25rem 1.5rem;margin:1.5rem 0;overflow-x:auto}
+    html:not(.dark) .prose pre{background:#f5f3ff}
+    .prose pre code{background:none;color:#e2e8f0;padding:0;font-size:.8rem}
+    html:not(.dark) .prose pre code{color:#3730a3}
+    .toc-link{font-size:.8rem;padding:.3rem .75rem;border-radius:.5rem;transition:all .2s;display:block}
+    .toc-link:hover,.toc-link.active{background:rgba(124,58,237,.12);color:#a78bfa}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float{animation:float 4s ease-in-out infinite}
+  </style>
+</head>
+<body class="dark:bg-[#06060f] bg-gray-50 dark:text-gray-100 text-gray-900 font-sans antialiased overflow-x-hidden">
+<a href="#article-body" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-lg focus:text-sm">Skip to article</a>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<div id="progress-bar" style="width:0%" aria-hidden="true"></div>
+<header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="font-display text-xl font-bold grad-text tracking-tight">SK.</a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <li><a href="../index.html#about" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">About</a></li>
+        <li><a href="../projects.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="../blog.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors font-semibold" style="color:#7c3aed">Blog</a></li>
+        <li><a href="../ai-skills.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">AI &amp; Skills</a></li>
+        <li><a href="../resume.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="../contact.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Contact</a></li>
+        <li><a href="../hire-me.html" class="px-4 py-2 rounded-full btn-shimmer text-white font-semibold text-sm hover:scale-105 transition-transform shadow-md shadow-purple-500/25">Hire Me</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button id="menu-btn" class="md:hidden w-10 h-10 glass rounded-full flex flex-col items-center justify-center gap-[5px]" aria-label="Open menu" aria-expanded="false">
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar1"></span>
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar2"></span>
+          <span class="w-4 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass mx-4 mb-4 rounded-2xl overflow-hidden">
+      <ul class="flex flex-col p-4 gap-2 text-sm font-medium">
+        <li><a href="../index.html#about" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">About</a></li>
+        <li><a href="../projects.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Projects</a></li>
+        <li><a href="../blog.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Blog</a></li>
+        <li><a href="../ai-skills.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">AI &amp; Skills</a></li>
+        <li><a href="../resume.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Resume</a></li>
+        <li><a href="../contact.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Contact</a></li>
+        <li><a href="../hire-me.html" class="mobile-link block px-4 py-2.5 rounded-xl bg-purple-600/20 text-purple-400 font-semibold">✦ Hire Me</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="relative pt-32 pb-0 overflow-hidden">
+    <div class="blob w-[32rem] h-[32rem] dark:bg-cyan-900 bg-cyan-200 -top-32 -right-32" style="animation-delay:0s"></div>
+    <div class="blob w-64 h-64 dark:bg-blue-700 bg-blue-200 bottom-0 left-0" style="animation-delay:6s"></div>
+    <div class="max-w-5xl mx-auto px-6">
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs dark:text-gray-500 text-gray-400 mb-8 animate-[fadeUp_.5s_ease_forwards]">
+        <a href="../index.html" class="hover:dark:text-purple-300 hover:text-purple-600 transition-colors">Home</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="../blog.html" class="hover:dark:text-purple-300 hover:text-purple-600 transition-colors">Blog</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="dark:text-gray-300 text-gray-600 truncate max-w-[200px]">React Server Components</span>
+      </nav>
+      <div class="flex flex-wrap items-center gap-3 mb-5 animate-[fadeUp_.5s_.05s_ease_both]">
+        <span class="skill-tag">React</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">25 Feb 2026</span>
+        <span class="dark:text-gray-700 text-gray-300">·</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">13 min read</span>
+        <span class="dark:text-gray-700 text-gray-300">·</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">3.1K views</span>
+      </div>
+      <h1 class="font-display font-extrabold leading-tight mb-6 animate-[fadeUp_.6s_.1s_ease_both]" style="font-size:clamp(1.8rem,5vw,3.5rem)">React Server Components Deep Dive: When, Why, and How</h1>
+      <p class="dark:text-gray-400 text-gray-500 text-base leading-relaxed mb-8 max-w-2xl animate-[fadeUp_.6s_.12s_ease_both]">A thorough examination of RSC architecture — the mental model shift, server/client boundaries, streaming with Suspense, and real-world patterns in Next.js App Router.</p>
+      <div class="flex items-center gap-4 mb-12 animate-[fadeUp_.6s_.15s_ease_both]">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-bold text-white text-lg flex-shrink-0" style="background:rgba(124,58,237,.4)">SK</div>
+        <div><p class="font-semibold text-sm">Suboor Khan</p><p class="text-xs dark:text-gray-500 text-gray-400">Full-Stack Developer &amp; Technical Writer</p></div>
+        <div class="ml-auto flex gap-2 flex-shrink-0">
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Freact-server-components-deep-dive.html&text=React%20Server%20Components%20Deep%20Dive%20by%20%40suboorkhan" target="_blank" rel="noopener noreferrer" class="glass w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-transform" aria-label="Share on X"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓')" class="glass px-3 h-9 rounded-full text-xs font-semibold hover:scale-110 transition-transform">Copy link</button>
+        </div>
+      </div>
+      <div class="rounded-3xl overflow-hidden mb-0 float" style="background:linear-gradient(135deg,#00101a,#002035,#003a5c);height:340px;position:relative">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(56,189,248,.6) 1px,transparent 1px);background-size:28px 28px"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-[5rem]" style="filter:drop-shadow(0 0 60px rgba(56,189,248,.5))">⚛️</div>
+        <div class="absolute bottom-5 right-6 glass px-3 py-1.5 rounded-xl text-xs font-semibold dark:text-cyan-300 text-cyan-700">React</div>
+      </div>
+    </div>
+  </section>
+  <section class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-12 items-start">
+        <article id="article-body" class="prose dark:text-gray-300 text-gray-700">
+
+<div id="intro">
+  <p>React Server Components (RSC) represent the biggest architectural shift in React since hooks. They move component rendering to the server — not as SSR/SSG (which still shipped JS) but as a fundamentally different execution model where server-only components never ship their code to the browser.</p>
+  <p>If you're still thinking of RSC as "just SSR", this guide will reframe your mental model completely.</p>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="mental-model">
+  <h2 class="dark:text-white text-gray-900">The Mental Model Shift</h2>
+  <p>In the old React model, <em>all</em> components ran on the client (with SSR components also running on the server for hydration). With RSC, there are two distinct environments:</p>
+  <ul>
+    <li><strong>Server Components</strong> — render on the server, never hydrate, never ship their JS, can <code>await</code> anything (DB, filesystem, APIs)</li>
+    <li><strong>Client Components</strong> — marked with <code>'use client'</code>, shipped to browser, interactive, have access to state, effects, DOM APIs</li>
+  </ul>
+  <blockquote><p>RSC is not about performance alone — it's about moving the right work to the right place. DB queries belong on the server. Click handlers belong on the client.</p></blockquote>
+  <div class="not-prose grid grid-cols-2 gap-4 my-6">
+    <div class="glass rounded-2xl p-4">
+      <p class="text-xs font-semibold dark:text-green-400 text-green-600 mb-2">✓ Server Component can</p>
+      <ul class="text-xs space-y-1 dark:text-gray-400 text-gray-600">
+        <li>• <code class="text-[.75rem]">await db.query()</code> directly</li>
+        <li>• Read environment variables</li>
+        <li>• Import server-only packages</li>
+        <li>• Zero JS sent to browser</li>
+      </ul>
+    </div>
+    <div class="glass rounded-2xl p-4">
+      <p class="text-xs font-semibold dark:text-red-400 text-red-600 mb-2">✗ Server Component cannot</p>
+      <ul class="text-xs space-y-1 dark:text-gray-400 text-gray-600">
+        <li>• useState / useEffect</li>
+        <li>• Event handlers (onClick…)</li>
+        <li>• Access browser APIs</li>
+        <li>• Use Context (consuming)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="boundaries">
+  <h2 class="dark:text-white text-gray-900">Server / Client Boundaries</h2>
+  <p>The <code>'use client'</code> directive doesn't mean only client — it means "this component and anything imported from it can use browser APIs". Server components can render client components. Client components cannot render server components (but can receive them as props/children).</p>
+  <pre><code>// app/dashboard/page.tsx (Server Component — default in App Router)
+import { db } from '@/lib/db';
+import { UserCard } from './UserCard'; // Server Component
+import { LikeButton } from './LikeButton'; // Client Component
+
+export default async function DashboardPage() {
+  // Direct DB access — no API route needed!
+  const users = await db.select().from(usersTable).limit(20);
+
+  return (
+    &lt;main&gt;
+      {users.map(user =&gt; (
+        &lt;UserCard key={user.id} user={user}&gt;
+          {/* Client Component as child of Server Component */}
+          &lt;LikeButton userId={user.id} /&gt;
+        &lt;/UserCard&gt;
+      ))}
+    &lt;/main&gt;
+  );
+}</code></pre>
+  <pre><code>// app/dashboard/LikeButton.tsx
+'use client';  // ← boundary directive
+import { useState } from 'react';
+
+export function LikeButton({ userId }: { userId: string }) {
+  const [liked, setLiked] = useState(false);
+  return (
+    &lt;button onClick={() =&gt; setLiked(l =&gt; !l)}&gt;
+      {liked ? '❤️' : '🤍'} Like
+    &lt;/button&gt;
+  );
+}</code></pre>
+  <p>The key insight: <code>LikeButton</code>'s parent (<code>UserCard</code>) is a Server Component. The client boundary starts at <code>LikeButton</code> and includes everything imported inside it — but not its server-rendered parents.</p>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="streaming">
+  <h2 class="dark:text-white text-gray-900">Streaming with Suspense</h2>
+  <p>RSC pairs with Suspense and HTTP streaming so slow data-fetching components don't block fast ones. The browser receives and renders fast content immediately, then fills in slow content as it arrives.</p>
+  <pre><code>// app/dashboard/page.tsx
+import { Suspense } from 'react';
+import { FastHeader } from './FastHeader';       // instant
+import { SlowMetrics } from './SlowMetrics';     // slow DB query (wrapped)
+import { SlowSkeleton } from './SlowSkeleton';   // placeholder UI
+
+export default function DashboardPage() {
+  return (
+    &lt;&gt;
+      &lt;FastHeader /&gt;  {/* Rendered and streamed immediately */}
+
+      &lt;Suspense fallback={&lt;SlowSkeleton /&gt;}&gt;
+        &lt;SlowMetrics /&gt;  {/* Streamed when ready */}
+      &lt;/Suspense&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+  <pre><code>// app/dashboard/SlowMetrics.tsx (Server Component)
+import { db } from '@/lib/db';
+
+export async function SlowMetrics() {
+  // This can take seconds — Suspense handles the wait gracefully
+  const metrics = await db.query('SELECT * FROM slow_analytics_view');
+  return &lt;MetricsChart data={metrics} /&gt;;
+}</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="caching">
+  <h2 class="dark:text-white text-gray-900">Data Fetching &amp; Caching Patterns</h2>
+  <h3 class="dark:text-white text-gray-900">Request Deduplication</h3>
+  <p>React automatically deduplicates identical <code>fetch</code> calls within a single render tree — even across components. Call <code>getUser(id)</code> in 5 components; only 1 network request fires.</p>
+  <pre><code>// lib/data.ts
+export async function getUser(id: string) {
+  // Next.js extends fetch with memoisation per request
+  const res = await fetch(`https://api.example.com/users/${id}`, {
+    next: { revalidate: 60 },  // ISR: revalidate every 60s
+  });
+  return res.json();
+}
+
+// Call in 5 different components — only 1 fetch fires per request
+const user = await getUser(params.id);</code></pre>
+  <h3 class="dark:text-white text-gray-900">Cache Strategies</h3>
+  <pre><code>// Static (build time) — fastest, never changes
+fetch(url, { cache: 'force-cache' });
+
+// Incremental Static Regeneration — revalidate after N seconds
+fetch(url, { next: { revalidate: 3600 } });
+
+// Dynamic per-request — always fresh, no caching
+fetch(url, { cache: 'no-store' });
+
+// Tag-based revalidation (on-demand)
+fetch(url, { next: { tags: ['user', `user-${id}`] } });
+// Later: revalidateTag('user') from a Server Action</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="server-actions">
+  <h2 class="dark:text-white text-gray-900">Server Actions</h2>
+  <p>Server Actions let you run server-side mutations directly from client components — no API route needed. They're async functions marked with <code>'use server'</code>.</p>
+  <pre><code>// app/actions.ts
+'use server';
+import { db } from '@/lib/db';
+import { revalidateTag } from 'next/cache';
+
+export async function createPost(formData: FormData) {
+  const title   = formData.get('title') as string;
+  const content = formData.get('content') as string;
+
+  await db.insert(postsTable).values({ title, content });
+  revalidateTag('posts');  // Purge cached post list
+}
+
+// app/NewPostForm.tsx
+'use client';
+import { createPost } from '../actions';
+
+export function NewPostForm() {
+  return (
+    &lt;form action={createPost}&gt;  {/* Server Action as form action */}
+      &lt;input name="title" required /&gt;
+      &lt;textarea name="content" /&gt;
+      &lt;button type="submit"&gt;Publish&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="pitfalls">
+  <h2 class="dark:text-white text-gray-900">Common Pitfalls</h2>
+  <ul>
+    <li><strong>Passing non-serialisable props across boundaries.</strong> Server → Client props must be serialisable (JSON). Functions, class instances, and Dates as objects will fail.</li>
+    <li><strong>Importing server-only packages in Client Components.</strong> Add <code>import 'server-only'</code> to your DB and secret modules to get a build error rather than a runtime leak.</li>
+    <li><strong>Context in Server Components.</strong> You can't consume regular React Context in server components. Use it only in client sub-trees, or use cookies/headers for server-side "context".</li>
+    <li><strong>Over-using <code>'use client'</code>.</strong> Boundary should be as deep in the tree as possible. Push interactivity to leaf components; keep data fetching in server parents.</li>
+  </ul>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="summary">
+  <h2 class="dark:text-white text-gray-900">Summary</h2>
+  <ul>
+    <li>RSC = zero-JS server rendering (not just SSR) — wrong components never ship to the browser</li>
+    <li><code>'use client'</code> marks a boundary, not a classification — everything below it hydrates</li>
+    <li>Streaming + Suspense = progressive rendering without the waterfall</li>
+    <li>Fetch deduplication + tag-based revalidation replaces most manual caching logic</li>
+    <li>Server Actions = type-safe server mutations without API routes</li>
+  </ul>
+</div>
+
+        </article>
+        <aside class="lg:sticky lg:top-28 space-y-5">
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">In This Article</p>
+            <nav>
+              <a href="#intro" class="toc-link dark:text-gray-400 text-gray-600">Introduction</a>
+              <a href="#mental-model" class="toc-link dark:text-gray-400 text-gray-600">Mental Model</a>
+              <a href="#boundaries" class="toc-link dark:text-gray-400 text-gray-600">Server / Client Boundaries</a>
+              <a href="#streaming" class="toc-link dark:text-gray-400 text-gray-600">Streaming with Suspense</a>
+              <a href="#caching" class="toc-link dark:text-gray-400 text-gray-600">Data Fetching &amp; Caching</a>
+              <a href="#server-actions" class="toc-link dark:text-gray-400 text-gray-600">Server Actions</a>
+              <a href="#pitfalls" class="toc-link dark:text-gray-400 text-gray-600">Common Pitfalls</a>
+              <a href="#summary" class="toc-link dark:text-gray-400 text-gray-600">Summary</a>
+            </nav>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal space-y-3 text-xs">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold">Article Info</p>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Published</span><span class="font-medium">25 Feb 2026</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Read time</span><span class="font-medium">13 min read</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Category</span><span class="font-medium">React</span></div>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Tags</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">RSC</span><span class="skill-tag">Next.js</span><span class="skill-tag">App Router</span><span class="skill-tag">Streaming</span><span class="skill-tag">Suspense</span>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Share</p>
+            <div class="space-y-2">
+              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Freact-server-components-deep-dive.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-sky-400 hover:text-sky-600 transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Share on X</a>
+              <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓ Copied!')" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-purple-400 w-full text-left"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy link</button>
+            </div>
+          </div>
+          <a href="../hire-me.html" class="glass block rounded-2xl p-5 reveal text-center hover:scale-[1.02] transition-transform"><p class="text-xs dark:text-purple-400 text-purple-600 font-semibold mb-1">Like what you read?</p><p class="font-display font-bold text-sm mb-2">Work with me</p><span class="btn-shimmer text-white text-xs font-bold px-4 py-1.5 rounded-full inline-block">Hire Me →</span></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <div class="s-divider max-w-5xl mx-auto px-6 my-4"></div>
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="font-display font-bold text-2xl mb-8 reveal">More <span class="grad-text">Articles</span></h2>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <a href="react-query-v5-advanced-patterns.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#0d0a00,#1f1600,#3d2c00)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🔄</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">React</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">React Query v5 Advanced Patterns</h3><p class="text-xs dark:text-gray-500 text-gray-400">10 min read</p></div>
+        </a>
+        <a href="react-19-concurrency-deep-dive.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:.05s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#00101a,#00203a,#003060)"><div class="absolute inset-0 flex items-center justify-center text-4xl">⚡</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">React</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">React 19 Concurrency Deep Dive</h3><p class="text-xs dark:text-gray-500 text-gray-400">14 min read</p></div>
+        </a>
+        <a href="gpt-4o-advanced-prompting-function-calling.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:.1s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#001a00,#003000,#005500)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🟢</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">GPT-4o Deep Dive: Function Calling &amp; Structured Outputs</h3><p class="text-xs dark:text-gray-500 text-gray-400">13 min read</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="pb-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="reveal glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="blob w-64 h-64 dark:bg-purple-700 bg-purple-200 -top-10 -right-10"></div>
+        <div class="relative z-10">
+          <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Stay Updated</p>
+          <h3 class="font-display font-bold text-3xl mb-3">Enjoyed this article?</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-sm mb-8 max-w-md mx-auto">Deep-dive articles on React, AI, and software craft — twice a month.</p>
+          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return false">
+            <input type="email" placeholder="your@email.com" class="flex-1 rounded-xl px-4 py-3 text-sm outline-none border dark:border-white/10 border-gray-200 focus:border-purple-500 dark:bg-white/5 bg-white/70"/>
+            <button type="submit" class="btn-shimmer text-white font-semibold text-sm px-6 py-3 rounded-xl hover:scale-105 transition-transform">Subscribe Free</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="py-12 border-t dark:border-white/5 border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left"><p class="font-display font-bold text-xl grad-text mb-1">Suboor Khan</p><p class="text-xs dark:text-gray-600 text-gray-400">Crafting digital experiences since 2018</p></div>
+    <div class="flex items-center gap-3">
+      <a href="https://github.com/suboor123" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-3.79 23.39c.6.11.82-.26.82-.58v-2.17c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0012 0z"/></svg></a>
+      <a href="https://linkedin.com/in/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416z"/></svg></a>
+    </div>
+    <p class="text-xs dark:text-gray-600 text-gray-400">&copy; 2026 Suboor Khan</p>
+  </div>
+</footer>
+<script>
+(() => {
+  const html=document.documentElement;
+  if(localStorage.getItem('theme')==='light')html.classList.remove('dark');else html.classList.add('dark');
+  document.getElementById('theme-toggle').addEventListener('click',()=>{html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  const pb=document.getElementById('progress-bar');
+  window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.style.background='rgba(6,6,15,.85)';navbar.style.backdropFilter='blur(20px)';}else{navbar.style.background=navbar.style.backdropFilter='';}},{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu');
+  const b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;menuBtn.setAttribute('aria-expanded',open);mobileMenu.classList.toggle('hidden',!open);b1.style.transform=open?'rotate(45deg) translateY(7px)':'';b2.style.opacity=open?'0':'1';b3.style.transform=open?'rotate(-45deg) translateY(-7px)':'';});
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{open=false;mobileMenu.classList.add('hidden');b1.style.transform=b3.style.transform='';b2.style.opacity='1';}));
+  const cur=document.getElementById('cursor'),fol=document.getElementById('cursor-follower');
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mousedown',()=>cur.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('clicking'));
+  document.querySelectorAll('a,button,input,.tilt-card').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('hovered'));el.addEventListener('mouseleave',()=>cur.classList.remove('hovered'));});
+  (function tick(){fx+=(mx-fx)*.1;fy+=(my-fy)*.1;fol.style.left=fx+'px';fol.style.top=fy+'px';requestAnimationFrame(tick);})();
+  const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  document.querySelectorAll('.tilt-card').forEach(card=>{const glow=card.querySelector('.card-glow');card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(800px) rotateX('+(-y*10)+'deg) rotateY('+(x*10)+'deg) scale3d(1.02,1.02,1.02)';if(glow){glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}});card.addEventListener('mouseleave',()=>{card.style.transform='';});});
+  const tocLinks=document.querySelectorAll('.toc-link');
+  if(tocLinks.length){const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){tocLinks.forEach(l=>l.classList.remove('active'));const a=[...tocLinks].find(l=>l.getAttribute('href')==='#'+e.target.id);if(a)a.classList.add('active');}});},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('article [id]').forEach(s=>obs.observe(s));}
+})();
+</script>
+</body>
+</html>

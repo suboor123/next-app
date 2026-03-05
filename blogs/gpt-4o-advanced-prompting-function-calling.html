@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GPT-4o Deep Dive: Advanced Prompting, Function Calling & Structured Outputs — Suboor Khan Blog</title>
+  <meta name="description" content="Master GPT-4o with chain-of-thought prompting, JSON mode, function calling schemas, and cost-optimisation patterns for production."/>
+  <meta name="keywords" content="GPT-4o Tutorial, OpenAI Function Calling, GPT-4o Structured Output, Chain of Thought Prompting, OpenAI JSON Mode, GPT Production Patterns, Suboor Khan"/>
+  <meta name="author" content="Suboor Khan"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://suboorkhan.dev/blogs/gpt-4o-advanced-prompting-function-calling.html"/>
+  <meta name="theme-color" content="#7c3aed"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://suboorkhan.dev/blogs/gpt-4o-advanced-prompting-function-calling.html"/>
+  <meta property="og:title" content="GPT-4o Deep Dive: Advanced Prompting, Function Calling & Structured Outputs"/>
+  <meta property="og:description" content="Master GPT-4o with chain-of-thought prompting, JSON mode, function calling schemas, and cost-optimisation patterns for production."/>
+  <meta property="og:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-02-26T00:00:00+00:00"/>
+  <meta property="article:section" content="AI/LLMs"/>
+  <meta property="article:tag" content="GPT-4o"/>
+  <meta property="article:tag" content="OpenAI"/>
+  <meta property="article:tag" content="Function Calling"/>
+  <meta property="article:tag" content="Structured Outputs"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@suboorkhan"/>
+  <meta name="twitter:creator" content="@suboorkhan"/>
+  <meta name="twitter:title" content="GPT-4o Deep Dive: Advanced Prompting, Function Calling & Structured Outputs"/>
+  <meta name="twitter:description" content="Master GPT-4o with chain-of-thought prompting, JSON mode, function calling schemas, and cost-optimisation patterns."/>
+  <meta name="twitter:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta name="twitter:label1" content="Reading time"/>
+  <meta name="twitter:data1" content="13 min read"/>
+  <meta name="twitter:label2" content="Category"/>
+  <meta name="twitter:data2" content="AI/LLMs"/>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[{
+      "@type":"BlogPosting",
+      "@id":"https://suboorkhan.dev/blogs/gpt-4o-advanced-prompting-function-calling.html#article",
+      "url":"https://suboorkhan.dev/blogs/gpt-4o-advanced-prompting-function-calling.html",
+      "headline":"GPT-4o Deep Dive: Advanced Prompting, Function Calling & Structured Outputs",
+      "description":"Master GPT-4o with chain-of-thought prompting, JSON mode, function calling schemas, and cost-optimisation patterns for production.",
+      "image":{"@type":"ImageObject","url":"https://suboorkhan.dev/og-cover.png","width":1200,"height":630},
+      "author":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "publisher":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "datePublished":"2026-02-26T00:00:00+00:00",
+      "dateModified":"2026-03-05T00:00:00+00:00",
+      "inLanguage":"en-GB",
+      "keywords":["GPT-4o","OpenAI","Function Calling","Structured Outputs","Chain of Thought","LLMs"],
+      "articleSection":"AI/LLMs",
+      "wordCount":3400,
+      "timeRequired":"PT13M",
+      "isPartOf":{"@type":"Blog","@id":"https://suboorkhan.dev/blog.html","name":"Suboor Khan — Tech Blog","url":"https://suboorkhan.dev/blog.html"},
+      "breadcrumb":{"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://suboorkhan.dev/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":"https://suboorkhan.dev/blog.html"},
+        {"@type":"ListItem","position":3,"name":"GPT-4o Deep Dive","item":"https://suboorkhan.dev/blogs/gpt-4o-advanced-prompting-function-calling.html"}
+      ]}
+    }]
+  }
+  </script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{cursor:none !important}
+    #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+    #cursor.hovered{width:36px;height:36px;background:#ec4899}
+    #cursor.clicking{width:8px;height:8px}
+    #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);z-index:1001;transition:width .08s linear;border-radius:0 2px 2px 0}
+    .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+    html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+    .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+    .tilt-card:hover{box-shadow:0 24px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.12)}
+    .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.22) 0%,transparent 65%)}
+    .tilt-card:hover .card-glow{opacity:1}
+    .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.2);font-weight:500}
+    html:not(.dark) .skill-tag{background:rgba(124,58,237,.08);color:#7c3aed;border-color:rgba(124,58,237,.15)}
+    .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#7c3aed 0%,#ec4899 40%,#f97316 60%,#7c3aed 100%);animation:shimmer 3s ease infinite}
+    .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.25),transparent)}
+    .prose h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;margin:2.5rem 0 1rem;line-height:1.3}
+    .prose h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:2rem 0 .75rem}
+    .prose p{margin-bottom:1.25rem;line-height:1.85;font-size:.925rem}
+    .prose ul,.prose ol{margin:1rem 0 1.5rem 1.25rem}
+    .prose ul{list-style:disc}.prose ol{list-style:decimal}
+    .prose li{margin-bottom:.5rem;font-size:.925rem;line-height:1.75}
+    .prose blockquote{border-left:3px solid #7c3aed;padding:.75rem 1.25rem;margin:1.5rem 0;background:rgba(124,58,237,.06);border-radius:0 .75rem .75rem 0}
+    .prose blockquote p{margin:0;color:#a78bfa;font-style:italic}
+    html:not(.dark) .prose blockquote p{color:#7c3aed}
+    .prose code{font-size:.8rem;background:rgba(124,58,237,.12);color:#a78bfa;padding:.15rem .4rem;border-radius:.3rem;font-family:'Courier New',monospace}
+    html:not(.dark) .prose code{background:rgba(124,58,237,.08);color:#6d28d9}
+    .prose pre{background:#0d0d1a;border:1px solid rgba(124,58,237,.2);border-radius:1rem;padding:1.25rem 1.5rem;margin:1.5rem 0;overflow-x:auto}
+    html:not(.dark) .prose pre{background:#f5f3ff}
+    .prose pre code{background:none;color:#e2e8f0;padding:0;font-size:.8rem}
+    html:not(.dark) .prose pre code{color:#3730a3}
+    .toc-link{font-size:.8rem;padding:.3rem .75rem;border-radius:.5rem;transition:all .2s;display:block}
+    .toc-link:hover,.toc-link.active{background:rgba(124,58,237,.12);color:#a78bfa}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float{animation:float 4s ease-in-out infinite}
+  </style>
+</head>
+<body class="dark:bg-[#06060f] bg-gray-50 dark:text-gray-100 text-gray-900 font-sans antialiased overflow-x-hidden">
+<a href="#article-body" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-lg focus:text-sm">Skip to article</a>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<div id="progress-bar" style="width:0%" aria-hidden="true"></div>
+<header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="font-display text-xl font-bold grad-text tracking-tight">SK.</a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <li><a href="../index.html#about" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">About</a></li>
+        <li><a href="../projects.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="../blog.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors font-semibold" style="color:#7c3aed">Blog</a></li>
+        <li><a href="../ai-skills.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">AI &amp; Skills</a></li>
+        <li><a href="../resume.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="../contact.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Contact</a></li>
+        <li><a href="../hire-me.html" class="px-4 py-2 rounded-full btn-shimmer text-white font-semibold text-sm hover:scale-105 transition-transform shadow-md shadow-purple-500/25">Hire Me</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button id="menu-btn" class="md:hidden w-10 h-10 glass rounded-full flex flex-col items-center justify-center gap-[5px]" aria-label="Open menu" aria-expanded="false">
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar1"></span>
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar2"></span>
+          <span class="w-4 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass mx-4 mb-4 rounded-2xl overflow-hidden">
+      <ul class="flex flex-col p-4 gap-2 text-sm font-medium">
+        <li><a href="../index.html#about" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">About</a></li>
+        <li><a href="../projects.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Projects</a></li>
+        <li><a href="../blog.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Blog</a></li>
+        <li><a href="../ai-skills.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">AI &amp; Skills</a></li>
+        <li><a href="../resume.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Resume</a></li>
+        <li><a href="../contact.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Contact</a></li>
+        <li><a href="../hire-me.html" class="mobile-link block px-4 py-2.5 rounded-xl bg-purple-600/20 text-purple-400 font-semibold">✦ Hire Me</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="relative pt-32 pb-0 overflow-hidden">
+    <div class="blob w-[32rem] h-[32rem] dark:bg-green-900 bg-green-200 -top-32 -right-32" style="animation-delay:0s"></div>
+    <div class="blob w-64 h-64 dark:bg-teal-700 bg-teal-200 bottom-0 left-0" style="animation-delay:6s"></div>
+    <div class="max-w-5xl mx-auto px-6">
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs dark:text-gray-500 text-gray-400 mb-8 animate-[fadeUp_.5s_ease_forwards]">
+        <a href="../index.html" class="hover:dark:text-purple-300 hover:text-purple-600 transition-colors">Home</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="../blog.html" class="hover:dark:text-purple-300 hover:text-purple-600 transition-colors">Blog</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="dark:text-gray-300 text-gray-600 truncate max-w-[200px]">GPT-4o Deep Dive</span>
+      </nav>
+      <div class="flex flex-wrap items-center gap-3 mb-5 animate-[fadeUp_.5s_.05s_ease_both]">
+        <span class="skill-tag">AI/LLMs</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">26 Feb 2026</span>
+        <span class="dark:text-gray-700 text-gray-300">·</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">13 min read</span>
+        <span class="dark:text-gray-700 text-gray-300">·</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">2.7K views</span>
+      </div>
+      <h1 class="font-display font-extrabold leading-tight mb-6 animate-[fadeUp_.6s_.1s_ease_both]" style="font-size:clamp(1.8rem,5vw,3.5rem)">GPT-4o Deep Dive: Advanced Prompting, Function Calling &amp; Structured Outputs</h1>
+      <p class="dark:text-gray-400 text-gray-500 text-base leading-relaxed mb-8 max-w-2xl animate-[fadeUp_.6s_.12s_ease_both]">Master GPT-4o with chain-of-thought prompting, JSON mode, function calling schemas, and cost-optimisation patterns for production.</p>
+      <div class="flex items-center gap-4 mb-12 animate-[fadeUp_.6s_.15s_ease_both]">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-bold text-white text-lg flex-shrink-0" style="background:rgba(124,58,237,.4)">SK</div>
+        <div><p class="font-semibold text-sm">Suboor Khan</p><p class="text-xs dark:text-gray-500 text-gray-400">Full-Stack Developer &amp; Technical Writer</p></div>
+        <div class="ml-auto flex gap-2 flex-shrink-0">
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fgpt-4o-advanced-prompting-function-calling.html&text=GPT-4o%20Deep%20Dive%20by%20%40suboorkhan" target="_blank" rel="noopener noreferrer" class="glass w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-transform" aria-label="Share on X"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓')" class="glass px-3 h-9 rounded-full text-xs font-semibold hover:scale-110 transition-transform">Copy link</button>
+        </div>
+      </div>
+      <div class="rounded-3xl overflow-hidden mb-0 float" style="background:linear-gradient(135deg,#001a00,#003000,#005500);height:340px;position:relative">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(134,239,172,.6) 1px,transparent 1px);background-size:28px 28px"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-[5rem]" style="filter:drop-shadow(0 0 60px rgba(134,239,172,.5))">🟢</div>
+        <div class="absolute bottom-5 right-6 glass px-3 py-1.5 rounded-xl text-xs font-semibold dark:text-green-300 text-green-700">AI/LLMs</div>
+      </div>
+    </div>
+  </section>
+  <section class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-12 items-start">
+        <article id="article-body" class="prose dark:text-gray-300 text-gray-700">
+
+<div id="intro">
+  <p>GPT-4o is OpenAI's flagship model — faster, cheaper, and multimodal. But calling <code>chat.completions.create</code> with a plain user message is leaving a huge amount of capability on the table. Once you understand function calling, structured outputs, and advanced prompting techniques, GPT-4o becomes a programmable reasoning engine rather than a chatbot.</p>
+  <p>This guide covers everything from zero-shot vs. few-shot prompting, chain-of-thought techniques, the modern function calling API, JSON mode, and hard-won cost optimisation tricks.</p>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="prompting">
+  <h2 class="dark:text-white text-gray-900">Advanced Prompting Patterns</h2>
+  <h3 class="dark:text-white text-gray-900">Chain-of-Thought (CoT)</h3>
+  <p>Simply appending "Think step by step." to your prompt dramatically improves accuracy on reasoning tasks. For even better results, use few-shot CoT: provide 2-3 examples of the reasoning chain before the actual question.</p>
+  <pre><code>const response = await openai.chat.completions.create({
+  model: 'gpt-4o',
+  messages: [
+    {
+      role: 'system',
+      content: `You are a precise analyst. When asked a question, always:
+1. Break the problem into steps
+2. Show your reasoning for each step
+3. State your final answer clearly`
+    },
+    {
+      role: 'user',
+      content: 'Should we migrate our monolith to microservices? We have 8 engineers and 50K MAU.'
+    }
+  ],
+  temperature: 0.3,  // lower = more consistent reasoning
+});</code></pre>
+
+  <h3 class="dark:text-white text-gray-900">Role Prompting</h3>
+  <pre><code>// System prompt persona engineering
+const systemPrompt = `You are a senior software architect with 15 years of experience
+at Google and Netflix. You give direct, opinionated advice based on real production
+experience. You cite specific technologies and trade-offs. You never say "it depends"
+without explaining what it depends *on* and why.`;</code></pre>
+
+  <h3 class="dark:text-white text-gray-900">Output Format Control (without JSON mode)</h3>
+  <pre><code>// Constrain output format via prompt
+const prompt = `Analyse this code for security vulnerabilities.
+Return your response in EXACTLY this format:
+SEVERITY: [Critical|High|Medium|Low]
+VULNERABILITY: [name]
+LOCATION: [file:line]
+DESCRIPTION: [2 sentences max]
+FIX: [specific code fix]
+
+Code to analyse:
+${userCode}`;</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="function-calling">
+  <h2 class="dark:text-white text-gray-900">Function Calling (Tools API)</h2>
+  <p>Function calling lets GPT-4o invoke your code. You define tool schemas; the model decides when and how to call them based on the conversation. The response contains structured arguments you validate and execute.</p>
+  <pre><code>import OpenAI from 'openai';
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+const tools = [
+  {
+    type: 'function',
+    function: {
+      name: 'get_stock_price',
+      description: 'Get the current stock price for a ticker symbol.',
+      parameters: {
+        type: 'object',
+        properties: {
+          ticker: {
+            type: 'string',
+            description: 'Stock ticker, e.g. AAPL, MSFT',
+          },
+          currency: {
+            type: 'string',
+            enum: ['USD', 'EUR', 'GBP'],
+            description: 'Return price in this currency',
+          },
+        },
+        required: ['ticker'],
+        additionalProperties: false,
+      },
+    },
+  },
+];
+
+const messages = [{ role: 'user', content: 'What is Apple stock trading at right now?' }];
+
+const response = await openai.chat.completions.create({
+  model: 'gpt-4o',
+  messages,
+  tools,
+  tool_choice: 'auto',  // 'none' | 'auto' | {type:'function',function:{name:...}}
+});
+
+const msg = response.choices[0].message;
+
+if (msg.tool_calls) {
+  for (const call of msg.tool_calls) {
+    const args   = JSON.parse(call.function.arguments);
+    const result = await fetchStockPrice(args.ticker, args.currency ?? 'USD');
+
+    messages.push(msg);  // assistant message with tool call
+    messages.push({
+      role:         'tool',
+      tool_call_id: call.id,
+      content:      JSON.stringify(result),
+    });
+  }
+
+  // Final response after tool execution
+  const final = await openai.chat.completions.create({ model: 'gpt-4o', messages, tools });
+  console.log(final.choices[0].message.content);
+}</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="structured">
+  <h2 class="dark:text-white text-gray-900">Structured Outputs (2024+)</h2>
+  <p>Structured Outputs guarantee the model's response matches your JSON schema exactly — eliminating parse errors. Pass <code>response_format</code> with <code>type: 'json_schema'</code>.</p>
+  <pre><code>import { zodResponseFormat } from 'openai/helpers/zod';
+import { z } from 'zod';
+
+const BugReport = z.object({
+  severity:    z.enum(['critical', 'high', 'medium', 'low']),
+  title:       z.string(),
+  description: z.string(),
+  steps:       z.array(z.string()),
+  fix:         z.string().optional(),
+});
+
+const response = await openai.beta.chat.completions.parse({
+  model: 'gpt-4o-2024-08-06',  // structured outputs requires this version or later
+  messages: [
+    { role: 'system', content: 'You are a QA engineer. Analyse bug reports.' },
+    { role: 'user',   content: 'The login button disappears on mobile after form validation fails.' },
+  ],
+  response_format: zodResponseFormat(BugReport, 'bug_report'),
+});
+
+const bug = response.choices[0].message.parsed;
+// TypeScript knows the exact shape — no casting needed
+console.log(bug.severity, bug.title, bug.steps);</code></pre>
+  <blockquote><p>Structured Outputs vs. JSON mode: JSON mode just guarantees valid JSON. Structured Outputs guarantee your exact schema. Always prefer Structured Outputs for production.</p></blockquote>
+  <div class="grid grid-cols-3 gap-4 not-prose my-6">
+    <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">100%</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">Schema compliance</p></div>
+    <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">0</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">Parse errors in prod</p></div>
+    <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">~15%</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">Latency overhead</p></div>
+  </div>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="costs">
+  <h2 class="dark:text-white text-gray-900">Cost Optimisation Patterns</h2>
+  <ul>
+    <li><strong>Use GPT-4o-mini for simple tasks.</strong> It costs 15× less than GPT-4o and handles classification, extraction, summarisation, and simple Q&amp;A just as well.</li>
+    <li><strong>Cache deterministic prompts.</strong> The Prompt Cache API reduces cost by up to 50% for repeated system prompts + prefixes. Keep your system prompt consistent across requests.</li>
+    <li><strong>Limit <code>max_tokens</code>.</strong> You pay for output tokens. If answers should be short, set <code>max_tokens</code> to 200. Don't leave it unbounded.</li>
+    <li><strong>Batch API for offline workloads.</strong> The Batch API is 50% cheaper for non-real-time tasks (document processing, bulk extraction). Use it aggressively.</li>
+    <li><strong>Use logprobs for classification.</strong> For binary or small-set classification, request <code>logprobs: true, top_logprobs: 5</code> and classify by the highest probability token — much cheaper than full completion.</li>
+  </ul>
+  <pre><code>// Model routing by task complexity
+function selectModel(taskComplexity: 'simple' | 'moderate' | 'complex') {
+  const models = {
+    simple:   'gpt-4o-mini',          // $0.15/1M tokens
+    moderate: 'gpt-4o',               // $2.50/1M tokens
+    complex:  'o3-mini',              // deep reasoning
+  };
+  return models[taskComplexity];
+}</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="streaming">
+  <h2 class="dark:text-white text-gray-900">Streaming in Next.js App Router</h2>
+  <pre><code>// app/api/chat/route.ts
+import OpenAI from 'openai';
+import { OpenAIStream, StreamingTextResponse } from 'ai';
+
+const openai = new OpenAI();
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+
+  const response = await openai.chat.completions.create({
+    model:    'gpt-4o',
+    messages,
+    stream:   true,
+    max_tokens: 1024,
+  });
+
+  const stream = OpenAIStream(response);
+  return new StreamingTextResponse(stream);
+}</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="summary">
+  <h2 class="dark:text-white text-gray-900">Summary</h2>
+  <ul>
+    <li>CoT prompting + low temperature = dramatically better reasoning</li>
+    <li>Function calling: define schemas, run the tool loop, return results</li>
+    <li>Structured Outputs with Zod: type-safe, schema-guaranteed responses — no parse errors</li>
+    <li>Route to GPT-4o-mini for simple tasks (15× cheaper, same quality on easy problems)</li>
+    <li>Use Batch API for offline workloads — 50% cost reduction</li>
+    <li>Stream all user-facing completions for perceived-latency improvements</li>
+  </ul>
+</div>
+
+        </article>
+        <aside class="lg:sticky lg:top-28 space-y-5">
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">In This Article</p>
+            <nav>
+              <a href="#intro" class="toc-link dark:text-gray-400 text-gray-600">Introduction</a>
+              <a href="#prompting" class="toc-link dark:text-gray-400 text-gray-600">Advanced Prompting</a>
+              <a href="#function-calling" class="toc-link dark:text-gray-400 text-gray-600">Function Calling</a>
+              <a href="#structured" class="toc-link dark:text-gray-400 text-gray-600">Structured Outputs</a>
+              <a href="#costs" class="toc-link dark:text-gray-400 text-gray-600">Cost Optimisation</a>
+              <a href="#streaming" class="toc-link dark:text-gray-400 text-gray-600">Streaming</a>
+              <a href="#summary" class="toc-link dark:text-gray-400 text-gray-600">Summary</a>
+            </nav>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal space-y-3 text-xs">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold">Article Info</p>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Published</span><span class="font-medium">26 Feb 2026</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Read time</span><span class="font-medium">13 min read</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Views</span><span class="font-medium">2.7K</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Words</span><span class="font-medium">3,400</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Category</span><span class="font-medium">AI/LLMs</span></div>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Tags</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">GPT-4o</span><span class="skill-tag">OpenAI</span><span class="skill-tag">Function Calling</span><span class="skill-tag">Structured Outputs</span><span class="skill-tag">CoT</span><span class="skill-tag">LLMs</span>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Share</p>
+            <div class="space-y-2">
+              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fgpt-4o-advanced-prompting-function-calling.html&text=GPT-4o%20Deep%20Dive%20by%20%40suboorkhan" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-sky-400 hover:text-sky-600 transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Share on X</a>
+              <a href="https://linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fgpt-4o-advanced-prompting-function-calling.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-blue-400 hover:text-blue-600 transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416z"/></svg> Share on LinkedIn</a>
+              <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓ Link copied!')" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-purple-400 hover:text-purple-600 transition-colors w-full text-left"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy link</button>
+            </div>
+          </div>
+          <a href="../hire-me.html" class="glass block rounded-2xl p-5 reveal text-center hover:scale-[1.02] transition-transform border-purple-500/20 border">
+            <p class="text-xs dark:text-purple-400 text-purple-600 font-semibold mb-1">Like what you read?</p>
+            <p class="font-display font-bold text-sm mb-2">Work with me</p>
+            <span class="btn-shimmer text-white text-xs font-bold px-4 py-1.5 rounded-full inline-block">Hire Me →</span>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <div class="s-divider max-w-5xl mx-auto px-6 my-4"></div>
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="font-display font-bold text-2xl mb-8 reveal">More <span class="grad-text">Articles</span></h2>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <a href="claude-api-masterclass-tool-use-vision.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#1a0a00,#3d1a00,#6b3000)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🟠</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">Claude API Masterclass: Tool Use, Vision & Extended Thinking</h3><p class="text-xs dark:text-gray-500 text-gray-400">14 min read</p></div>
+        </a>
+        <a href="building-ai-agents-from-scratch.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:.05s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#000a1a,#001433,#002966)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🕵️</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">Building AI Agents from Scratch</h3><p class="text-xs dark:text-gray-500 text-gray-400">17 min read</p></div>
+        </a>
+        <a href="fine-tuning-llms-on-a-budget.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:.1s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#0a0000,#200005,#400010)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🧠</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">Fine-Tuning LLMs on a Budget</h3><p class="text-xs dark:text-gray-500 text-gray-400">16 min read</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="pb-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="reveal glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="blob w-64 h-64 dark:bg-purple-700 bg-purple-200 -top-10 -right-10" style="animation-delay:1s"></div>
+        <div class="relative z-10">
+          <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Stay Updated</p>
+          <h3 class="font-display font-bold text-3xl mb-3">Enjoyed this article?</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-sm mb-8 max-w-md mx-auto">Deep-dive articles on AI, React, and software craft — twice a month. No spam, ever.</p>
+          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return false">
+            <input type="email" placeholder="your@email.com" class="flex-1 rounded-xl px-4 py-3 text-sm dark:text-gray-100 text-gray-800 outline-none border dark:border-white/10 border-gray-200 focus:border-purple-500 dark:bg-white/5 bg-white/70"/>
+            <button type="submit" class="btn-shimmer text-white font-semibold text-sm px-6 py-3 rounded-xl hover:scale-105 transition-transform whitespace-nowrap">Subscribe Free</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="py-12 border-t dark:border-white/5 border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left"><p class="font-display font-bold text-xl grad-text mb-1">Suboor Khan</p><p class="text-xs dark:text-gray-600 text-gray-400">Crafting digital experiences since 2018</p></div>
+    <div class="flex items-center gap-3">
+      <a href="https://github.com/suboor123" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-3.79 23.39c.6.11.82-.26.82-.58v-2.17c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0012 0z"/></svg></a>
+      <a href="https://linkedin.com/in/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416z"/></svg></a>
+      <a href="https://twitter.com/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    </div>
+    <p class="text-xs dark:text-gray-600 text-gray-400">&copy; 2026 Suboor Khan</p>
+  </div>
+</footer>
+<script>
+(() => {
+  const html=document.documentElement;
+  if(localStorage.getItem('theme')==='light')html.classList.remove('dark');else html.classList.add('dark');
+  document.getElementById('theme-toggle').addEventListener('click',()=>{html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  const pb=document.getElementById('progress-bar');
+  window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.style.background='rgba(6,6,15,.85)';navbar.style.backdropFilter='blur(20px)';navbar.style.borderBottom='1px solid rgba(255,255,255,.05)';}else{navbar.style.background=navbar.style.backdropFilter=navbar.style.borderBottom='';}},{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu');
+  const b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;menuBtn.setAttribute('aria-expanded',open);mobileMenu.classList.toggle('hidden',!open);b1.style.transform=open?'rotate(45deg) translateY(7px)':'';b2.style.opacity=open?'0':'1';b3.style.transform=open?'rotate(-45deg) translateY(-7px)':'';});
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{open=false;mobileMenu.classList.add('hidden');b1.style.transform=b3.style.transform='';b2.style.opacity='1';}));
+  const cur=document.getElementById('cursor'),fol=document.getElementById('cursor-follower');
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mousedown',()=>cur.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('clicking'));
+  document.querySelectorAll('a,button,input,.tilt-card').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('hovered'));el.addEventListener('mouseleave',()=>cur.classList.remove('hovered'));});
+  (function tick(){fx+=(mx-fx)*.1;fy+=(my-fy)*.1;fol.style.left=fx+'px';fol.style.top=fy+'px';requestAnimationFrame(tick);})();
+  const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  document.querySelectorAll('.tilt-card').forEach(card=>{const glow=card.querySelector('.card-glow');card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(800px) rotateX('+(-y*10)+'deg) rotateY('+(x*10)+'deg) scale3d(1.02,1.02,1.02)';if(glow){glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}});card.addEventListener('mouseleave',()=>{card.style.transform='';});});
+  const tocLinks=document.querySelectorAll('.toc-link');
+  if(tocLinks.length){const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){tocLinks.forEach(l=>l.classList.remove('active'));const a=[...tocLinks].find(l=>l.getAttribute('href')==='#'+e.target.id);if(a)a.classList.add('active');}});},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('article [id]').forEach(s=>obs.observe(s));}
+})();
+</script>
+</body>
+</html>

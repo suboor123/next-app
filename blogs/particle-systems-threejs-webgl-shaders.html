@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Primary SEO -->
+  <title>Building Particle Systems with Three.js & WebGL Shaders — Suboor Khan Blog</title>
+  <meta name="description" content="A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders."/>
+  <meta name="keywords" content="Three.js Particle Systems, WebGL GLSL Shaders Tutorial, GPU Particles JavaScript, BufferGeometry Three.js, WebGL Performance, Suboor Khan"/>
+  <meta name="author" content="Suboor Khan"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html"/>
+  <meta name="theme-color" content="#7c3aed"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type"                  content="article"/>
+  <meta property="og:url"                   content="https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html"/>
+  <meta property="og:site_name"             content="Suboor Khan — Blog"/>
+  <meta property="og:title"                 content="Building Particle Systems with Three.js & WebGL Shaders"/>
+  <meta property="og:description"           content="A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders."/>
+  <meta property="og:image"                 content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:image:width"           content="1200"/>
+  <meta property="og:image:height"          content="630"/>
+  <meta property="og:image:alt"             content="Building Particle Systems with Three.js & WebGL Shaders — Suboor Khan"/>
+  <meta property="og:locale"                content="en_GB"/>
+  <meta property="article:author"           content="https://suboorkhan.dev/"/>
+  <meta property="article:published_time"   content="2026-02-18T00:00:00.000Z"/>
+  <meta property="article:modified_time"    content="2026-03-05T00:00:00+00:00"/>
+  <meta property="article:section"          content="WebGL"/>
+  <meta property="article:tag" content="Three.js"/>
+  <meta property="article:tag" content="WebGL"/>
+  <meta property="article:tag" content="GLSL"/>
+  <meta property="article:tag" content="GPU"/>
+  <meta property="article:tag" content="Shaders"/>
+  <meta property="article:tag" content="Performance"/>
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:site"        content="@suboorkhan"/>
+  <meta name="twitter:creator"     content="@suboorkhan"/>
+  <meta name="twitter:title"       content="Building Particle Systems with Three.js & WebGL Shaders"/>
+  <meta name="twitter:description" content="A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders."/>
+  <meta name="twitter:image"       content="https://suboorkhan.dev/og-cover.png"/>
+  <meta name="twitter:label1"      content="Reading time"/>
+  <meta name="twitter:data1"       content="15 min read"/>
+  <meta name="twitter:label2"      content="Category"/>
+  <meta name="twitter:data2"       content="WebGL"/>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html#article",
+        "url": "https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html",
+        "headline": "Building Particle Systems with Three.js & WebGL Shaders",
+        "description": "A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders.",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://suboorkhan.dev/og-cover.png",
+          "width": 1200,
+          "height": 630
+        },
+        "author": {
+          "@type": "Person",
+          "@id": "https://suboorkhan.dev/#person",
+          "name": "Suboor Khan",
+          "url": "https://suboorkhan.dev/",
+          "sameAs": ["https://github.com/suboor123","https://linkedin.com/in/suboorkhan","https://twitter.com/suboorkhan"]
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Suboor Khan",
+          "url": "https://suboorkhan.dev/"
+        },
+        "datePublished": "2026-02-18T00:00:00.000Z",
+        "dateModified": "2026-03-05T00:00:00+00:00",
+        "inLanguage": "en-GB",
+        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html" },
+        "keywords": ["Three.js","WebGL","GLSL","GPU","Shaders","Performance"],
+        "articleSection": "WebGL & Graphics",
+        "wordCount": 3800,
+        "timeRequired": "PT15M",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://suboorkhan.dev/blog.html",
+          "name": "Suboor Khan — Tech Blog",
+          "url": "https://suboorkhan.dev/blog.html"
+        },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home",        "item": "https://suboorkhan.dev/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog",        "item": "https://suboorkhan.dev/blog.html" },
+            { "@type": "ListItem", "position": 3, "name": "Building Particle Systems with Three.js & WebGL Shaders", "item": "https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html" }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind -->
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{cursor:none !important}
+    #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+    #cursor.hovered{width:36px;height:36px;background:#ec4899}
+    #cursor.clicking{width:8px;height:8px}
+    #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);z-index:1001;transition:width .08s linear;border-radius:0 2px 2px 0}
+    .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+    html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+    .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+    .tilt-card:hover{box-shadow:0 24px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.12)}
+    .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.22) 0%,transparent 65%)}
+    .tilt-card:hover .card-glow{opacity:1}
+    .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.2);font-weight:500}
+    html:not(.dark) .skill-tag{background:rgba(124,58,237,.08);color:#7c3aed;border-color:rgba(124,58,237,.15)}
+    .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#7c3aed 0%,#ec4899 40%,#f97316 60%,#7c3aed 100%);animation:shimmer 3s ease infinite}
+    .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.25),transparent)}
+    *,*::before,*::after{transition:background-color .3s ease,border-color .3s ease,color .2s ease}
+    .prose h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;margin:2.5rem 0 1rem;line-height:1.3}
+    .prose h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:2rem 0 .75rem}
+    .prose p{margin-bottom:1.25rem;line-height:1.85;font-size:.925rem}
+    .prose ul,.prose ol{margin:1rem 0 1.5rem 1.25rem}
+    .prose ul{list-style:disc}.prose ol{list-style:decimal}
+    .prose li{margin-bottom:.5rem;font-size:.925rem;line-height:1.75}
+    .prose blockquote{border-left:3px solid #7c3aed;padding:.75rem 1.25rem;margin:1.5rem 0;background:rgba(124,58,237,.06);border-radius:0 .75rem .75rem 0}
+    .prose blockquote p{margin:0;color:#a78bfa;font-style:italic}
+    html:not(.dark) .prose blockquote p{color:#7c3aed}
+    .prose code{font-size:.8rem;background:rgba(124,58,237,.12);color:#a78bfa;padding:.15rem .4rem;border-radius:.3rem;font-family:'Courier New',monospace}
+    html:not(.dark) .prose code{background:rgba(124,58,237,.08);color:#6d28d9}
+    .prose pre{background:#0d0d1a;border:1px solid rgba(124,58,237,.2);border-radius:1rem;padding:1.25rem 1.5rem;margin:1.5rem 0;overflow-x:auto}
+    html:not(.dark) .prose pre{background:#f5f3ff}
+    .prose pre code{background:none;color:#e2e8f0;padding:0;font-size:.8rem}
+    html:not(.dark) .prose pre code{color:#3730a3}
+    .toc-link{font-size:.8rem;padding:.3rem .75rem;border-radius:.5rem;transition:all .2s;display:block}
+    .toc-link:hover,.toc-link.active{background:rgba(124,58,237,.12);color:#a78bfa}
+    html:not(.dark) .toc-link:hover,html:not(.dark) .toc-link.active{color:#7c3aed}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float{animation:float 4s ease-in-out infinite}
+  </style>
+</head>
+<body class="dark:bg-[#06060f] bg-gray-50 dark:text-gray-100 text-gray-900 font-sans antialiased overflow-x-hidden">
+<a href="#article-body" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-lg focus:text-sm">Skip to article</a>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<div id="progress-bar" style="width:0%" aria-hidden="true"></div>
+
+<header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="font-display text-xl font-bold grad-text tracking-tight" aria-label="Suboor Khan — Home">SK.</a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
+        <li><a href="../index.html#about"  class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">About</a></li>
+        <li><a href="../projects.html"     class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="../blog.html"         class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors text-accent font-semibold">Blog</a></li>
+        <li><a href="../ai-skills.html"    class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">AI &amp; Skills</a></li>
+        <li><a href="../resume.html"       class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="../contact.html"      class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Contact</a></li>
+        <li><a href="../hire-me.html"      class="px-4 py-2 rounded-full btn-shimmer text-white font-semibold text-sm hover:scale-105 transition-transform shadow-md shadow-purple-500/25">Hire Me</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button id="menu-btn" class="md:hidden w-10 h-10 glass rounded-full flex flex-col items-center justify-center gap-[5px]" aria-label="Open menu" aria-expanded="false">
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar1"></span>
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar2"></span>
+          <span class="w-4 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass mx-4 mb-4 rounded-2xl overflow-hidden" role="menu">
+      <ul class="flex flex-col p-4 gap-2 text-sm font-medium">
+        <li><a href="../index.html#about" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">About</a></li>
+        <li><a href="../projects.html"    class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Projects</a></li>
+        <li><a href="../blog.html"        class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Blog</a></li>
+        <li><a href="../ai-skills.html"   class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">AI &amp; Skills</a></li>
+        <li><a href="../resume.html"      class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Resume</a></li>
+        <li><a href="../contact.html"     class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Contact</a></li>
+        <li><a href="../hire-me.html"     class="mobile-link block px-4 py-2.5 rounded-xl bg-purple-600/20 text-purple-400 font-semibold">✦ Hire Me</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="relative pt-32 pb-0 overflow-hidden" aria-label="Article header">
+    <div class="blob w-[32rem] h-[32rem] dark:bg-indigo-800 bg-indigo-200 -top-32 -right-32" style="animation-delay:0s" aria-hidden="true"></div>
+    <div class="blob w-64 h-64 dark:bg-pink-700 bg-pink-200 bottom-0 left-0" style="animation-delay:6s" aria-hidden="true"></div>
+    <div class="max-w-5xl mx-auto px-6">
+
+      <!-- Breadcrumb (also in JSON-LD above) -->
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs dark:text-gray-500 text-gray-400 mb-8 animate-[fadeUp_.5s_ease_forwards]">
+        <a href="../index.html" class="hover:dark:text-purple-300 hover:text-purple-600 transition-colors">Home</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="../blog.html" class="hover:dark:text-purple-300 hover:text-purple-600 transition-colors">Blog</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="dark:text-gray-300 text-gray-600 truncate max-w-[200px]">Building Particle Systems with Three.js & WebGL Shaders</span>
+      </nav>
+
+      <!-- Meta -->
+      <div class="flex flex-wrap items-center gap-3 mb-5 animate-[fadeUp_.5s_.05s_ease_both]">
+        <span class="skill-tag">WebGL</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">18 Feb 2026</span>
+        <span class="dark:text-gray-700 text-gray-300" aria-hidden="true">·</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">15 min read</span>
+        <span class="dark:text-gray-700 text-gray-300" aria-hidden="true">·</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">2.1K views</span>
+      </div>
+
+      <h1 class="font-display font-extrabold leading-tight mb-6 animate-[fadeUp_.6s_.1s_ease_both]" style="font-size:clamp(1.8rem,5vw,3.5rem)">Building Particle Systems with Three.js & WebGL Shaders</h1>
+      <p class="dark:text-gray-400 text-gray-500 text-base leading-relaxed mb-8 max-w-2xl animate-[fadeUp_.6s_.12s_ease_both]">A practical walkthrough of creating high-performance 3D particle effects entirely on the GPU using custom GLSL shaders.</p>
+
+      <!-- Author -->
+      <div class="flex items-center gap-4 mb-12 animate-[fadeUp_.6s_.15s_ease_both]">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-bold text-white text-lg flex-shrink-0" style="background:rgba(124,58,237,.4)" aria-hidden="true">SK</div>
+        <div>
+          <p class="font-semibold text-sm">Suboor Khan</p>
+          <p class="text-xs dark:text-gray-500 text-gray-400">Full-Stack Developer &amp; Technical Writer</p>
+        </div>
+        <div class="ml-auto flex gap-2 flex-shrink-0">
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html&text=Building%20Particle%20Systems%20with%20Three.js%20%26%20WebGL%20Shaders" target="_blank" rel="noopener noreferrer" class="glass w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-transform" aria-label="Share on X (Twitter)">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓')" class="glass px-3 h-9 rounded-full text-xs font-semibold hover:scale-110 transition-transform" aria-label="Copy link to clipboard">Copy link</button>
+        </div>
+      </div>
+
+      <!-- Cover -->
+      <div class="rounded-3xl overflow-hidden mb-0 float" style="background:linear-gradient(135deg,#00060f,#001030,#0a1a5c);height:340px;position:relative" role="img" aria-label="Article cover: 🌌">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(167,139,250,.6) 1px,transparent 1px);background-size:28px 28px" aria-hidden="true"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-[5rem]" style="filter:drop-shadow(0 0 60px rgba(167,139,250,.5))" aria-hidden="true">🌌</div>
+        <div class="absolute bottom-5 right-6 glass px-3 py-1.5 rounded-xl text-xs font-semibold dark:text-purple-300 text-purple-700">WebGL</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE + SIDEBAR -->
+  <section class="py-20" aria-label="Article content">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-12 items-start">
+
+        <!-- ARTICLE BODY -->
+        <article id="article-body" class="prose dark:text-gray-300 text-gray-700">
+          
+<div id="intro">
+  <p>A single GPU thread can process thousands of particles in parallel. A single JavaScript thread cannot. That fundamental truth is why GPU-based particle systems run at 60fps with a million points while CPU-based approaches choke at ten thousand.</p>
+  <p>In this article we'll build a high-performance 3D particle system entirely on the GPU using Three.js custom ShaderMaterial and raw GLSL—no postprocessing libraries, no helpers, just the metal.</p>
+</div>
+<div class="s-divider my-8"></div>
+<div id="geometry">
+  <h2 class="dark:text-white text-gray-900">Setting Up BufferGeometry</h2>
+  <p>Every particle is a vertex. We pre-allocate a <code>Float32Array</code> and upload it once. The GPU owns it after that—we never touch it from JavaScript each frame.</p>
+  <pre><code>const COUNT = 200_000;
+const geometry = new THREE.BufferGeometry();
+
+const positions  = new Float32Array(COUNT * 3);
+const randoms    = new Float32Array(COUNT * 3);
+const scales     = new Float32Array(COUNT);
+
+for (let i = 0; i &lt; COUNT; i++) {
+  // Random sphere distribution
+  const theta = Math.random() * Math.PI * 2;
+  const phi   = Math.acos(2 * Math.random() - 1);
+  const r     = Math.cbrt(Math.random()) * 4;
+
+  positions[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+  positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+  positions[i*3+2] = r * Math.cos(phi);
+  randoms[i*3]     = Math.random();
+  randoms[i*3+1]   = Math.random();
+  randoms[i*3+2]   = Math.random();
+  scales[i]        = Math.random();
+}
+
+geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+geometry.setAttribute('aRandom',  new THREE.BufferAttribute(randoms,   3));
+geometry.setAttribute('aScale',   new THREE.BufferAttribute(scales,    1));</code></pre>
+</div>
+<div class="s-divider my-8"></div>
+<div id="vertex">
+  <h2 class="dark:text-white text-gray-900">The Vertex Shader</h2>
+  <p>The vertex shader runs once per particle, per frame, on the GPU. We pass <code>uTime</code> as a uniform and animate position entirely on the GPU—zero JS per-frame cost.</p>
+  <pre><code>// vertexShader.glsl
+uniform float uTime;
+uniform float uSize;
+
+attribute vec3 aRandom;
+attribute float aScale;
+
+varying float vLife;
+
+void main() {
+  vec3 pos = position;
+
+  // Orbit each particle at a unique speed + phase
+  float angle = uTime * (0.3 + aRandom.x * 0.7);
+  float radius = length(pos.xz);
+  pos.x = cos(angle) * radius;
+  pos.z = sin(angle) * radius;
+
+  // Breathing Y motion
+  pos.y += sin(uTime * aRandom.y * 2.0) * 0.2;
+
+  vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+  gl_Position   = projectionMatrix * mv;
+  gl_PointSize  = uSize * aScale * (1.0 / -mv.z);
+
+  vLife = aRandom.z;
+}</code></pre>
+</div>
+<div class="s-divider my-8"></div>
+<div id="fragment">
+  <h2 class="dark:text-white text-gray-900">The Fragment Shader</h2>
+  <p>Each particle renders as a <code>gl_POINTS</code> quad. We shape it into a soft circle and apply colour from a gradient based on <code>vLife</code>.</p>
+  <pre><code>// fragmentShader.glsl
+varying float vLife;
+
+void main() {
+  vec2 uv = gl_PointCoord - 0.5;
+  float d = length(uv);
+  if (d > 0.5) discard;                     // circular crop
+
+  float alpha = 1.0 - smoothstep(0.3, 0.5, d);
+
+  vec3 colA = vec3(0.486, 0.239, 0.929);   // purple
+  vec3 colB = vec3(0.925, 0.447, 0.600);   // pink
+  vec3 col  = mix(colA, colB, vLife);
+
+  gl_FragColor = vec4(col, alpha * 0.85);
+}</code></pre>
+</div>
+<div class="s-divider my-8"></div>
+<div id="animation">
+  <h2 class="dark:text-white text-gray-900">Animation Loop</h2>
+  <p>The only thing we do per frame from JavaScript is increment the time uniform. The GPU handles everything else.</p>
+  <pre><code>const material = new THREE.ShaderMaterial({
+  vertexShader, fragmentShader,
+  uniforms: {
+    uTime: { value: 0 },
+    uSize: { value: 120 * renderer.getPixelRatio() },
+  },
+  transparent:  true,
+  depthWrite:   false,
+  blending:     THREE.AdditiveBlending,
+});
+
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+
+function animate(t) {
+  requestAnimationFrame(animate);
+  material.uniforms.uTime.value = t * 0.001;  // only this per frame
+  renderer.render(scene, camera);
+}
+requestAnimationFrame(animate);</code></pre>
+</div>
+<div class="s-divider my-8"></div>
+<div id="perf">
+  <h2 class="dark:text-white text-gray-900">Performance Tips</h2>
+  <ul>
+    <li>Set <code>depthWrite: false</code> and use additive blending for transparent particles—avoids expensive depth sorting</li>
+    <li>Cap <code>pixelRatio</code> at 1.5 on mobile with <code>renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5))</code></li>
+    <li>Use <code>IntersectionObserver</code> to pause the animation loop when the canvas is off-screen</li>
+    <li>Prefer <code>gl_PointSize</code> over instanced meshes for pure-point particles—cheaper overdraw</li>
+    <li>Use <code>powerPreference: 'low-power'</code> on mobile to avoid draining the battery</li>
+  </ul>
+  <div class="grid grid-cols-3 gap-4 not-prose my-6">
+    <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">200K</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">Particles @ 60fps</p></div>
+    <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">0.3ms</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">JS per frame</p></div>
+    <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">~4MB</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">GPU memory</p></div>
+  </div>
+</div>
+<div class="s-divider my-8"></div>
+<div id="summary">
+  <h2 class="dark:text-white text-gray-900">Summary</h2>
+  <ul>
+    <li>Allocate all geometry data once as typed arrays—let the GPU own it</li>
+    <li>Drive all animation through uniforms—zero per-particle JS each frame</li>
+    <li>Use additive blending + <code>discard</code> for soft circle particles</li>
+    <li>Pause the loop with IntersectionObserver when not visible</li>
+    <li>Custom ShaderMaterial beats all high-level abstractions for raw particle counts</li>
+  </ul>
+</div>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside class="lg:sticky lg:top-28 space-y-5" aria-label="Article sidebar">
+
+          <!-- ToC -->
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">In This Article</p>
+            <nav aria-label="Table of contents">
+              <a href="#intro" class="toc-link dark:text-gray-400 text-gray-600">Introduction</a>
+              <a href="#geometry" class="toc-link dark:text-gray-400 text-gray-600">BufferGeometry Setup</a>
+              <a href="#vertex" class="toc-link dark:text-gray-400 text-gray-600">Vertex Shader</a>
+              <a href="#fragment" class="toc-link dark:text-gray-400 text-gray-600">Fragment Shader</a>
+              <a href="#animation" class="toc-link dark:text-gray-400 text-gray-600">Animation Loop</a>
+              <a href="#perf" class="toc-link dark:text-gray-400 text-gray-600">Performance Tips</a>
+              <a href="#summary" class="toc-link dark:text-gray-400 text-gray-600">Summary</a>
+            </nav>
+          </div>
+
+          <!-- Article info -->
+          <div class="glass rounded-2xl p-5 reveal space-y-3 text-xs">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold">Article Info</p>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Published</span><time datetime="2026-02-18T00:00:00.000Z" class="font-medium">18 Feb 2026</time></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Read time</span><span class="font-medium">15 min read</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Views</span><span class="font-medium">2.1K</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Words</span><span class="font-medium">3,800</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Category</span><span class="font-medium">WebGL</span></div>
+          </div>
+
+          <!-- Tags -->
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Tags</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Three.js</span><span class="skill-tag">WebGL</span><span class="skill-tag">GLSL</span><span class="skill-tag">GPU</span><span class="skill-tag">Shaders</span><span class="skill-tag">Performance</span>
+            </div>
+          </div>
+
+          <!-- Share -->
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Share</p>
+            <div class="space-y-2">
+              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html&text=Building%20Particle%20Systems%20with%20Three.js%20%26%20WebGL%20Shaders%20by%20%40suboorkhan" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-sky-400 hover:text-sky-600 transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Share on X
+              </a>
+              <a href="https://linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsuboorkhan.dev%2Fblogs%2Fparticle-systems-threejs-webgl-shaders.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-blue-400 hover:text-blue-600 transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416z"/></svg>
+                Share on LinkedIn
+              </a>
+              <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓ Link copied!')" class="flex items-center gap-2 text-xs font-semibold dark:text-gray-400 text-gray-600 hover:dark:text-purple-400 hover:text-purple-600 transition-colors w-full text-left">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                Copy link
+              </button>
+            </div>
+          </div>
+
+          <!-- Hire me CTA -->
+          <a href="../hire-me.html" class="glass block rounded-2xl p-5 reveal text-center hover:scale-[1.02] transition-transform border-purple-500/20 border">
+            <p class="text-xs dark:text-purple-400 text-purple-600 font-semibold mb-1">Like what you read?</p>
+            <p class="font-display font-bold text-sm mb-2">Work with me</p>
+            <span class="btn-shimmer text-white text-xs font-bold px-4 py-1.5 rounded-full inline-block">Hire Me →</span>
+          </a>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider max-w-5xl mx-auto px-6 my-4"></div>
+
+  <!-- MORE ARTICLES -->
+  <section class="py-16" aria-label="Related articles">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="font-display font-bold text-2xl mb-8 reveal">More <span class="grad-text">Articles</span></h2>
+      <div class="grid sm:grid-cols-3 gap-5">
+        
+        <a href="../blogs/react-19-concurrency-deep-dive.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:0.05s" aria-label="Read: React 19 Concurrency: A Deep Dive into useTransition and Suspense">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#0d001a,#2d0052,#4c1d8c)">
+            <div class="absolute inset-0 flex items-center justify-center text-4xl">⚡</div>
+          </div>
+          <div class="p-4">
+            <span class="skill-tag text-[10px] mb-2 inline-block">Performance</span>
+            <h3 class="font-display font-bold text-sm mb-1 leading-snug">React 19 Concurrency: A Deep Dive into useTransition and Suspense</h3>
+            <p class="text-xs dark:text-gray-500 text-gray-400">12 min read</p>
+          </div>
+        </a>
+        <a href="../blogs/production-rag-pipelines-langchain-supabase.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:0.1s" aria-label="Read: Building Production RAG Pipelines with LangChain & Supabase">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#0f1200,#2a3200,#4a5c00)">
+            <div class="absolute inset-0 flex items-center justify-center text-4xl">🤖</div>
+          </div>
+          <div class="p-4">
+            <span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span>
+            <h3 class="font-display font-bold text-sm mb-1 leading-snug">Building Production RAG Pipelines with LangChain & Supabase</h3>
+            <p class="text-xs dark:text-gray-500 text-gray-400">18 min read</p>
+          </div>
+        </a>
+        <a href="../blogs/advanced-typescript-patterns.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:0.15000000000000002s" aria-label="Read: Advanced TypeScript Patterns: Conditional Types & Template Literals">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#001020,#002040,#003060)">
+            <div class="absolute inset-0 flex items-center justify-center text-4xl">🔷</div>
+          </div>
+          <div class="p-4">
+            <span class="skill-tag text-[10px] mb-2 inline-block">TypeScript</span>
+            <h3 class="font-display font-bold text-sm mb-1 leading-snug">Advanced TypeScript Patterns: Conditional Types & Template Literals</h3>
+            <p class="text-xs dark:text-gray-500 text-gray-400">10 min read</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="pb-24" aria-label="Newsletter signup">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="reveal glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="blob w-64 h-64 dark:bg-purple-700 bg-purple-200 -top-10 -right-10" style="animation-delay:1s" aria-hidden="true"></div>
+        <div class="relative z-10">
+          <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Stay Updated</p>
+          <h3 class="font-display font-bold text-3xl mb-3">Enjoyed this article?</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-sm mb-8 max-w-md mx-auto">Deep-dive articles on React, AI, WebGL, and software craft — twice a month. No spam, ever.</p>
+          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return false" aria-label="Newsletter signup form">
+            <label for="email-input" class="sr-only">Email address</label>
+            <input id="email-input" type="email" placeholder="your@email.com" autocomplete="email" class="flex-1 rounded-xl px-4 py-3 text-sm dark:text-gray-100 text-gray-800 outline-none border dark:border-white/10 border-gray-200 focus:border-purple-500 dark:bg-white/5 bg-white/70"/>
+            <button type="submit" class="btn-shimmer text-white font-semibold text-sm px-6 py-3 rounded-xl hover:scale-105 transition-transform whitespace-nowrap">Subscribe Free</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="py-12 border-t dark:border-white/5 border-gray-100" aria-label="Site footer">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left">
+      <p class="font-display font-bold text-xl grad-text mb-1">Suboor Khan</p>
+      <p class="text-xs dark:text-gray-600 text-gray-400">Crafting digital experiences since 2018</p>
+    </div>
+    <nav aria-label="Social links"><ul class="flex items-center gap-3" role="list">
+      <li><a href="https://github.com/suboor123" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0a12 12 0 00-3.79 23.39c.6.11.82-.26.82-.58v-2.17c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0012 0z"/></svg></a></li>
+      <li><a href="https://linkedin.com/in/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416z"/></svg></a></li>
+      <li><a href="https://twitter.com/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></li>
+    </ul></nav>
+    <p class="text-xs dark:text-gray-600 text-gray-400">&copy; 2026 Suboor Khan</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const html=document.documentElement;
+  const saved=localStorage.getItem('theme');
+  if(saved==='light')html.classList.remove('dark');else html.classList.add('dark');
+  document.getElementById('theme-toggle').addEventListener('click',()=>{html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  const pb=document.getElementById('progress-bar');
+  window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.style.background='rgba(6,6,15,.85)';navbar.style.backdropFilter='blur(20px)';navbar.style.borderBottom='1px solid rgba(255,255,255,.05)';}else{navbar.style.background=navbar.style.backdropFilter=navbar.style.borderBottom='';}},{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu');
+  const b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;menuBtn.setAttribute('aria-expanded',open);mobileMenu.classList.toggle('hidden',!open);b1.style.transform=open?'rotate(45deg) translateY(7px)':'';b2.style.opacity=open?'0':'1';b3.style.transform=open?'rotate(-45deg) translateY(-7px)':'';});
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{open=false;mobileMenu.classList.add('hidden');b1.style.transform=b3.style.transform='';b2.style.opacity='1';}));
+  const cur=document.getElementById('cursor'),fol=document.getElementById('cursor-follower');
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mousedown',()=>cur.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('clicking'));
+  document.querySelectorAll('a,button,input,textarea,.tilt-card,summary').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('hovered'));el.addEventListener('mouseleave',()=>cur.classList.remove('hovered'));});
+  (function tick(){fx+=(mx-fx)*.1;fy+=(my-fy)*.1;fol.style.left=fx+'px';fol.style.top=fy+'px';requestAnimationFrame(tick);})();
+  const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  document.querySelectorAll('.tilt-card').forEach(card=>{
+    const glow=card.querySelector('.card-glow');
+    card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(800px) rotateX('+(-y*10)+'deg) rotateY('+(x*10)+'deg) scale3d(1.02,1.02,1.02)';if(glow){glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}});
+    card.addEventListener('mouseleave',()=>{card.style.transform='';});
+  });
+})();
+
+// Active ToC on scroll
+(() => {
+  const tocLinks=document.querySelectorAll('.toc-link');
+  if(!tocLinks.length) return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        tocLinks.forEach(l=>l.classList.remove('active'));
+        const active=[...tocLinks].find(l=>l.getAttribute('href')==='#'+e.target.id);
+        if(active)active.classList.add('active');
+      }
+    });
+  },{rootMargin:'-15% 0px -75% 0px'});
+  document.querySelectorAll('article [id]').forEach(s=>obs.observe(s));
+})();
+</script>
+</body>
+</html>
