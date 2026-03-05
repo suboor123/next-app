@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI & Skills — Suboor Khan</title>
+  <meta name="description" content="Suboor Khan's AI/ML capabilities, tech stack, and skill proficiency — LLMs, RAG, Computer Vision, full-stack engineering."/>
+  <meta name="author" content="Suboor Khan"/>
+  <meta name="robots" content="index, follow"/>
+
+  <link rel="canonical" href="https://suboorkhan.dev/ai-skills.html"/>
+  <meta name="keywords" content="Suboor Khan AI Skills, LLM Developer, RAG Pipeline, OpenAI Developer, Machine Learning Web Dev, Computer Vision, Full Stack AI Engineer, TypeScript AI"/>
+  <meta name="theme-color" content="#7c3aed"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type"          content="website"/>
+  <meta property="og:url"           content="https://suboorkhan.dev/ai-skills.html"/>
+  <meta property="og:site_name"     content="Suboor Khan — Portfolio"/>
+  <meta property="og:title"         content="AI &amp; Skills — Suboor Khan | LLM, RAG &amp; Full-Stack Engineer"/>
+  <meta property="og:description"   content="Suboor Khan's AI/ML capabilities: LLMs, RAG pipelines, Computer Vision, OpenAI, LangChain — combined with full-stack engineering expertise."/>
+  <meta property="og:image"         content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:image:width"   content="1200"/>
+  <meta property="og:image:height"  content="630"/>
+  <meta property="og:image:alt"     content="Suboor Khan AI and Engineering Skills"/>
+  <meta property="og:locale"        content="en_GB"/>
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"         content="summary_large_image"/>
+  <meta name="twitter:site"         content="@suboorkhan"/>
+  <meta name="twitter:creator"      content="@suboorkhan"/>
+  <meta name="twitter:title"        content="AI &amp; Skills — Suboor Khan | LLM, RAG &amp; Full-Stack Engineer"/>
+  <meta name="twitter:description"  content="AI/ML capabilities: LLMs, RAG, Computer Vision, OpenAI, LangChain — full-stack engineering at FAANG-scale."/>
+  <meta name="twitter:image"        content="https://suboorkhan.dev/og-cover.png"/>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://suboorkhan.dev/ai-skills.html#webpage",
+        "url": "https://suboorkhan.dev/ai-skills.html",
+        "name": "AI & Skills — Suboor Khan",
+        "description": "Comprehensive overview of Suboor Khan's AI/ML and full-stack engineering skills.",
+        "inLanguage": "en-GB",
+        "dateModified": "2026-03-02",
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://suboorkhan.dev/",
+          "name": "Suboor Khan — Portfolio"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://suboorkhan.dev/#person",
+        "name": "Suboor Khan",
+        "url": "https://suboorkhan.dev/",
+        "hasCredential": [
+          {"@type":"EducationalOccupationalCredential","name":"React Advanced Certification"},
+          {"@type":"EducationalOccupationalCredential","name":"AWS Solutions Architect"},
+          {"@type":"EducationalOccupationalCredential","name":"Google Cloud Professional"}
+        ],
+        "knowsAbout": [
+          "Large Language Models","RAG Pipelines","OpenAI API","LangChain","Computer Vision",
+          "React","Next.js","Node.js","TypeScript","Python","PostgreSQL","Redis","Docker","Kubernetes","AWS"
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{cursor:none !important}
+    #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+    #cursor.hovered{width:36px;height:36px;background:#ec4899}
+    #cursor.clicking{width:8px;height:8px}
+    #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);z-index:1001;transition:width .08s linear;border-radius:0 2px 2px 0}
+    .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+    html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+    .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+    .tilt-card:hover{box-shadow:0 24px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.12)}
+    .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.22) 0%,transparent 65%)}
+    .tilt-card:hover .card-glow{opacity:1}
+    .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.2);font-weight:500}
+    html:not(.dark) .skill-tag{background:rgba(124,58,237,.08);color:#7c3aed;border-color:rgba(124,58,237,.15)}
+    .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#7c3aed 0%,#ec4899 40%,#f97316 60%,#7c3aed 100%);animation:shimmer 3s ease infinite}
+    .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.25),transparent)}
+    *,*::before,*::after{transition:background-color .3s ease,border-color .3s ease,color .2s ease}
+    .bar-fill{width:0;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+    .tab-btn{padding:.45rem 1.2rem;border-radius:9999px;font-size:.75rem;font-weight:600;border:1px solid rgba(124,58,237,.2);transition:all .25s;color:#a78bfa;background:rgba(124,58,237,.08)}
+    html:not(.dark) .tab-btn{color:#7c3aed;background:rgba(124,58,237,.06)}
+    .tab-btn.active,.tab-btn:hover{background:#7c3aed;color:#fff;border-color:#7c3aed}
+    .tab-panel{display:none}.tab-panel.active{display:grid}
+    .tool-chip{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;font-weight:600;padding:.3rem .8rem;border-radius:9999px;border:1px solid rgba(124,58,237,.18);background:rgba(124,58,237,.07);color:#a78bfa;transition:all .2s}
+    html:not(.dark) .tool-chip{background:rgba(124,58,237,.06);color:#7c3aed}
+    .tool-chip:hover{background:#7c3aed;color:#fff;border-color:#7c3aed;transform:translateY(-2px)}
+    @keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(124,58,237,.4)}70%{box-shadow:0 0 0 12px rgba(124,58,237,0)}100%{box-shadow:0 0 0 0 rgba(124,58,237,0)}}
+    .pulse{animation:pulse-ring 2.5s infinite}
+  </style>
+</head>
+<body class="dark:bg-[#06060f] bg-gray-50 dark:text-gray-100 text-gray-900 font-sans antialiased overflow-x-hidden">
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<div id="progress-bar" style="width:0%" aria-hidden="true"></div>
+<header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-display text-xl font-bold grad-text tracking-tight" aria-label="Suboor Khan — Home">SK.</a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
+        <li><a href="index.html#about" class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">About</a></li>
+        <li><a href="projects.html" class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="blog.html" class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Blog</a></li>
+        <li><a href="ai-skills.html" class="nav-link text-accent font-semibold">AI &amp; Skills</a></li>
+        <li><a href="performance.html"   class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Performance</a></li>
+        <li><a href="resume.html" class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="contact.html" class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle dark/light theme" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <svg id="icon-sun" class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="icon-moon" class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button id="menu-btn" class="md:hidden w-10 h-10 glass rounded-full flex flex-col items-center justify-center gap-[5px] hover:scale-110 transition-transform" aria-label="Open menu" aria-expanded="false">
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar1"></span>
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar2"></span>
+          <span class="w-4 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass mx-4 mb-4 rounded-2xl overflow-hidden" role="menu">
+      <ul class="flex flex-col p-4 gap-2 text-sm font-medium">
+        <li><a href="index.html#about" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">About</a></li>
+        <li><a href="projects.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Projects</a></li>
+        <li><a href="blog.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Blog</a></li>
+        <li><a href="ai-skills.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition text-accent font-semibold">AI &amp; Skills</a></li>
+        <li><a href="performance.html"  class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Performance</a></li>
+        <li><a href="resume.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Resume</a></li>
+        <li><a href="contact.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+
+  <!-- ── HERO ────────────────────────────────────────────────────────────── -->
+  <section class="relative pt-36 pb-24 overflow-hidden" aria-label="Page header">
+    <div class="blob w-[34rem] h-[34rem] dark:bg-violet-800 bg-violet-200 -top-32 -left-32" style="animation-delay:0s" aria-hidden="true"></div>
+    <div class="blob w-80 h-80 dark:bg-fuchsia-700 bg-fuchsia-200 bottom-0 right-0" style="animation-delay:5s" aria-hidden="true"></div>
+    <div class="blob w-56 h-56 dark:bg-pink-700 bg-pink-200 top-1/2 left-1/2" style="animation-delay:9s" aria-hidden="true"></div>
+    <div class="absolute inset-0 pointer-events-none opacity-[0.025]" style="background-image:radial-gradient(rgba(124,58,237,.8) 1px,transparent 1px);background-size:34px 34px" aria-hidden="true"></div>
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-xs font-semibold dark:text-purple-300 text-purple-600 mb-8 animate-[fadeUp_.5s_ease_forwards]">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse"></span>Actively building AI-native products
+      </div>
+      <h1 class="font-display font-extrabold leading-tight mb-6 animate-[fadeUp_.6s_.1s_ease_both]" style="font-size:clamp(3rem,8vw,7rem)">
+        AI &amp; <span class="grad-text">Skills</span>
+      </h1>
+      <p class="max-w-2xl mx-auto dark:text-gray-400 text-gray-500 text-sm md:text-base leading-relaxed mb-10 animate-[fadeUp_.6s_.2s_ease_both]">
+        From LLM orchestration and RAG pipelines to computer vision and edge inference — a full view of the AI toolkit and engineering stack I bring to every product.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 animate-[fadeUp_.6s_.3s_ease_both]">
+        <a href="projects.html" class="btn-shimmer text-white font-semibold text-sm px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-lg shadow-purple-500/25">See Projects →</a>
+        <a href="contact.html" class="glass font-semibold text-sm px-6 py-3 rounded-full hover:scale-105 transition-transform">Work With Me</a>
+      </div>
+      <!-- quick stat pills -->
+      <div class="flex flex-wrap justify-center gap-6 mt-14 animate-[fadeUp_.6s_.4s_ease_both]">
+        <div class="glass px-5 py-3 rounded-2xl text-center"><p class="font-display font-bold text-2xl grad-text">3+</p><p class="text-[10px] dark:text-gray-500 text-gray-400 mt-0.5">Years with LLMs</p></div>
+        <div class="glass px-5 py-3 rounded-2xl text-center"><p class="font-display font-bold text-2xl grad-text">15+</p><p class="text-[10px] dark:text-gray-500 text-gray-400 mt-0.5">AI Projects Shipped</p></div>
+        <div class="glass px-5 py-3 rounded-2xl text-center"><p class="font-display font-bold text-2xl grad-text">9</p><p class="text-[10px] dark:text-gray-500 text-gray-400 mt-0.5">AI Domains</p></div>
+        <div class="glass px-5 py-3 rounded-2xl text-center"><p class="font-display font-bold text-2xl grad-text">40+</p><p class="text-[10px] dark:text-gray-500 text-gray-400 mt-0.5">Tools Mastered</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider"></div>
+
+  <!-- ── AI CAPABILITIES ──────────────────────────────────────────────────── -->
+  <section class="py-28 relative overflow-hidden" aria-label="AI capabilities">
+    <div class="blob w-72 h-72 dark:bg-purple-700 bg-purple-200 top-0 right-0" style="animation-delay:3s" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Intelligence Layer</p>
+        <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-3">AI <span class="grad-text">Capabilities</span></h2>
+        <p class="max-w-xl mx-auto dark:text-gray-400 text-gray-500 text-sm leading-relaxed">Nine distinct AI disciplines — each applied in shipped, production products.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.00s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(124,58,237,.18)">🧠</div>
+  <h3 class="font-display font-bold text-lg mb-2">LLM Integration</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">Production pipelines with GPT-4o, Claude 3.5, and Gemini 2.0 — streaming, function-calling, structured outputs, and multi-agent orchestration.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">OpenAI API</span><span class="skill-tag">Anthropic SDK</span><span class="skill-tag">Vercel AI SDK</span><span class="skill-tag">Gemini</span></div>
+</article><article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.07s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(236,72,153,.18)">🔍</div>
+  <h3 class="font-display font-bold text-lg mb-2">RAG & Vector Search</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">End-to-end retrieval-augmented generation with semantic chunking, HyDE, re-ranking, and hybrid BM25+vector search for accurate, grounded answers.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">LangChain</span><span class="skill-tag">LlamaIndex</span><span class="skill-tag">pgvector</span><span class="skill-tag">Pinecone</span><span class="skill-tag">Supabase</span></div>
+</article><article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.14s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(245,158,11,.18)">👁️</div>
+  <h3 class="font-display font-bold text-lg mb-2">Computer Vision</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">Real-time object detection, pose estimation, and OCR pipelines deployed to edge for sub-50ms inference in production mobile and web apps.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">PyTorch</span><span class="skill-tag">YOLO v9</span><span class="skill-tag">MediaPipe</span><span class="skill-tag">ONNX</span><span class="skill-tag">TensorRT</span></div>
+</article><article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.21s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(16,185,129,.18)">⚙️</div>
+  <h3 class="font-display font-bold text-lg mb-2">Fine-Tuning & LoRA</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">Parameter-efficient fine-tuning of Llama, Mistral, and Gemma on custom datasets using LoRA/QLoRA — from data curation to evaluation and deployment.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">Hugging Face</span><span class="skill-tag">PEFT</span><span class="skill-tag">Axolotl</span><span class="skill-tag">Modal</span><span class="skill-tag">Unsloth</span></div>
+</article><article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.28s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(59,130,246,.18)">🎨</div>
+  <h3 class="font-display font-bold text-lg mb-2">Generative Media</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">Image, audio, and video generation integrated into product workflows — DALL·E 3, Stable Diffusion XL, Sora, and ElevenLabs TTS/STS.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">DALL·E 3</span><span class="skill-tag">SDXL</span><span class="skill-tag">ComfyUI</span><span class="skill-tag">ElevenLabs</span><span class="skill-tag">Sora</span></div>
+</article><article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.35s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(239,68,68,.18)">📊</div>
+  <h3 class="font-display font-bold text-lg mb-2">ML Ops & Serving</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">Model versioning, A/B evaluation, and high-throughput inference serving with auto-scaling GPU pods, vLLM batching, and Prometheus observability.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">MLflow</span><span class="skill-tag">BentoML</span><span class="skill-tag">vLLM</span><span class="skill-tag">Triton</span><span class="skill-tag">Weights & Biases</span></div>
+</article><article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.42s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(167,139,250,.18)">🤖</div>
+  <h3 class="font-display font-bold text-lg mb-2">Agents & Automation</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">Multi-step autonomous agents with memory, tool use, and human-in-the-loop approval flows — shipped into production dashboards and Slack bots.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">LangGraph</span><span class="skill-tag">AutoGen</span><span class="skill-tag">CrewAI</span><span class="skill-tag">Tool Calling</span><span class="skill-tag">MCP</span></div>
+</article><article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.49s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(52,211,153,.18)">🔒</div>
+  <h3 class="font-display font-bold text-lg mb-2">AI Safety & Evals</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">Guardrails, hallucination detection, PII redaction, and systematic LLM evaluation frameworks to keep AI features reliable and compliant.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">Guardrails AI</span><span class="skill-tag">RAGAS</span><span class="skill-tag">DeepEval</span><span class="skill-tag">Cleanlab</span><span class="skill-tag">PromptFoo</span></div>
+</article><article class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:0.56s">
+  <div class="card-glow"></div>
+  <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(251,191,36,.18)">⚡</div>
+  <h3 class="font-display font-bold text-lg mb-2">Edge AI & WASM</h3>
+  <p class="text-xs dark:text-gray-500 text-gray-500 mb-4 leading-relaxed">Running quantised models (GGUF / INT4) directly in the browser via WebAssembly and WebGPU — zero-latency inference with full privacy.</p>
+  <div class="flex flex-wrap gap-2"><span class="skill-tag">llama.cpp</span><span class="skill-tag">Transformers.js</span><span class="skill-tag">WebGPU</span><span class="skill-tag">GGUF</span><span class="skill-tag">MLC LLM</span></div>
+</article>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider"></div>
+
+  <!-- ── AI PROFICIENCY BARS + BUILD LIST ─────────────────────────────────── -->
+  <section class="py-28 relative overflow-hidden" aria-label="AI proficiency">
+    <div class="blob w-64 h-64 dark:bg-pink-700 bg-pink-200 bottom-0 left-0" style="animation-delay:6s" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="glass rounded-3xl overflow-hidden relative">
+        <div class="absolute inset-0 pointer-events-none opacity-[0.025]" style="background-image:radial-gradient(rgba(124,58,237,.9) 1px,transparent 1px);background-size:28px 28px" aria-hidden="true"></div>
+        <div class="blob w-72 h-72 dark:bg-purple-700 bg-purple-200 -top-12 -right-12" style="animation-delay:2s" aria-hidden="true"></div>
+        <div class="relative z-10 p-8 md:p-12">
+          <div class="grid md:grid-cols-2 gap-12 items-start">
+
+            <!-- Proficiency bars -->
+            <div>
+              <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-7">AI Proficiency</p>
+              <div class="space-y-5 reveal" data-bars>
+<div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Prompt Engineering & Chain-of-Thought</span><span class="dark:text-purple-300 text-purple-600">95%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="95" style="background:linear-gradient(90deg,#7c3aed,#ec4899)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">RAG Pipeline Design</span><span class="dark:text-purple-300 text-purple-600">91%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="91" style="background:linear-gradient(90deg,#7c3aed,#ec4899)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">LLM Fine-Tuning (LoRA/QLoRA)</span><span class="dark:text-purple-300 text-purple-600">83%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="83" style="background:linear-gradient(90deg,#7c3aed,#ec4899)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Computer Vision (PyTorch)</span><span class="dark:text-purple-300 text-purple-600">79%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="79" style="background:linear-gradient(90deg,#7c3aed,#ec4899)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Agent & Multi-Agent Systems</span><span class="dark:text-purple-300 text-purple-600">87%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="87" style="background:linear-gradient(90deg,#7c3aed,#ec4899)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">AI Product Integration</span><span class="dark:text-purple-300 text-purple-600">93%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="93" style="background:linear-gradient(90deg,#7c3aed,#ec4899)"></div></div></div>
+              </div>
+            </div>
+
+            <!-- What I build -->
+            <div class="reveal">
+              <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-7">What I Build With AI</p>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700"><span class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background:rgba(124,58,237,.2)">01</span><span>Intelligent chatbots &amp; co-pilots with persistent memory, tool use, and multi-step reasoning</span></li>
+                <li class="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700"><span class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background:rgba(236,72,153,.2)">02</span><span>Document Q&amp;A, semantic search, and enterprise knowledge bases (RAG)</span></li>
+                <li class="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700"><span class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background:rgba(245,158,11,.2)">03</span><span>AI-powered recommendation and real-time personalisation engines</span></li>
+                <li class="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700"><span class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background:rgba(16,185,129,.2)">04</span><span>Real-time anomaly detection, fraud prevention, and classification systems</span></li>
+                <li class="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700"><span class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background:rgba(59,130,246,.2)">05</span><span>Generative content pipelines &amp; creative tooling for marketing and product teams</span></li>
+                <li class="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700"><span class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold" style="background:rgba(167,139,250,.2)">06</span><span>Autonomous multi-agent workflows replacing manual back-office processes</span></li>
+              </ul>
+
+              <!-- model logos -->
+              <div class="mt-8 flex flex-wrap gap-2">
+                <span class="tool-chip">GPT-4o</span><span class="tool-chip">Claude 3.5</span><span class="tool-chip">Gemini 2.0</span><span class="tool-chip">Llama 3.3</span><span class="tool-chip">Mistral</span><span class="tool-chip">Qwen 2.5</span><span class="tool-chip">DeepSeek R1</span><span class="tool-chip">Phi-4</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider"></div>
+
+  <!-- ── ENGINEERING SKILLS TABS ──────────────────────────────────────────── -->
+  <section class="py-28 relative overflow-hidden" aria-label="Engineering skills">
+    <div class="blob w-80 h-80 dark:bg-blue-700 bg-blue-200 -top-20 -left-20" style="animation-delay:4s" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Engineering Stack</p>
+        <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-3">Technical <span class="grad-text">Skills</span></h2>
+        <p class="max-w-lg mx-auto dark:text-gray-400 text-gray-500 text-sm leading-relaxed">Five years of full-stack engineering across frontend, backend, data, and cloud.</p>
+      </div>
+
+      <!-- Tab buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-2 reveal">
+        <button class="tab-btn active" data-group="skills" data-target="panel-frontend">Frontend</button>
+        <button class="tab-btn" data-group="skills" data-target="panel-backend">Backend</button>
+        <button class="tab-btn" data-group="skills" data-target="panel-data">Data &amp; DBs</button>
+        <button class="tab-btn" data-group="skills" data-target="panel-devops">DevOps &amp; Cloud</button>
+      </div>
+
+      <div class="glass rounded-3xl p-8 md:p-10 reveal">
+<div id="panel-frontend" data-group="skills" class="tab-panel active grid md:grid-cols-2 gap-8 mt-8">
+  <div class="space-y-4" data-bars><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">React 19 / Next.js 15</span><span class="dark:text-purple-300 text-purple-600">96%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="96" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">TypeScript</span><span class="dark:text-purple-300 text-purple-600">94%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="94" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Tailwind CSS</span><span class="dark:text-purple-300 text-purple-600">92%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="92" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Three.js / WebGL</span><span class="dark:text-purple-300 text-purple-600">80%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="80" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Framer Motion</span><span class="dark:text-purple-300 text-purple-600">85%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="85" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Testing (Vitest/Playwright)</span><span class="dark:text-purple-300 text-purple-600">82%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="82" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div></div></div>
+  <div><p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Full Toolbox</p><div class="flex flex-wrap gap-2"><span class="tool-chip">React</span><span class="tool-chip">Next.js</span><span class="tool-chip">TypeScript</span><span class="tool-chip">Tailwind CSS</span><span class="tool-chip">Three.js</span><span class="tool-chip">WebGL</span><span class="tool-chip">GSAP</span><span class="tool-chip">Framer Motion</span><span class="tool-chip">Radix UI</span><span class="tool-chip">shadcn/ui</span><span class="tool-chip">Zustand</span><span class="tool-chip">React Query</span><span class="tool-chip">Storybook</span><span class="tool-chip">Vitest</span><span class="tool-chip">Playwright</span></div></div>
+</div><div id="panel-backend" data-group="skills" class="tab-panel grid md:grid-cols-2 gap-8 mt-8">
+  <div class="space-y-4" data-bars><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Node.js / Express</span><span class="dark:text-purple-300 text-purple-600">93%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="93" style="background:linear-gradient(90deg,#ec4899,#f97316)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Python / FastAPI</span><span class="dark:text-purple-300 text-purple-600">89%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="89" style="background:linear-gradient(90deg,#ec4899,#f97316)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Go</span><span class="dark:text-purple-300 text-purple-600">75%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="75" style="background:linear-gradient(90deg,#ec4899,#f97316)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">GraphQL</span><span class="dark:text-purple-300 text-purple-600">84%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="84" style="background:linear-gradient(90deg,#ec4899,#f97316)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">REST API Design</span><span class="dark:text-purple-300 text-purple-600">95%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="95" style="background:linear-gradient(90deg,#ec4899,#f97316)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Microservices</span><span class="dark:text-purple-300 text-purple-600">86%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="86" style="background:linear-gradient(90deg,#ec4899,#f97316)"></div></div></div></div>
+  <div><p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Full Toolbox</p><div class="flex flex-wrap gap-2"><span class="tool-chip">Node.js</span><span class="tool-chip">Python</span><span class="tool-chip">Go</span><span class="tool-chip">FastAPI</span><span class="tool-chip">Express</span><span class="tool-chip">GraphQL</span><span class="tool-chip">tRPC</span><span class="tool-chip">REST</span><span class="tool-chip">Prisma</span><span class="tool-chip">Drizzle ORM</span><span class="tool-chip">WebSockets</span><span class="tool-chip">gRPC</span><span class="tool-chip">Bull MQ</span><span class="tool-chip">Zod</span></div></div>
+</div><div id="panel-data" data-group="skills" class="tab-panel grid md:grid-cols-2 gap-8 mt-8">
+  <div class="space-y-4" data-bars><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">PostgreSQL</span><span class="dark:text-purple-300 text-purple-600">90%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="90" style="background:linear-gradient(90deg,#3b82f6,#06b6d4)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Redis</span><span class="dark:text-purple-300 text-purple-600">88%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="88" style="background:linear-gradient(90deg,#3b82f6,#06b6d4)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">MongoDB</span><span class="dark:text-purple-300 text-purple-600">80%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="80" style="background:linear-gradient(90deg,#3b82f6,#06b6d4)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Vector DBs</span><span class="dark:text-purple-300 text-purple-600">85%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="85" style="background:linear-gradient(90deg,#3b82f6,#06b6d4)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Data Modelling</span><span class="dark:text-purple-300 text-purple-600">87%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="87" style="background:linear-gradient(90deg,#3b82f6,#06b6d4)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Query Optimisation</span><span class="dark:text-purple-300 text-purple-600">83%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="83" style="background:linear-gradient(90deg,#3b82f6,#06b6d4)"></div></div></div></div>
+  <div><p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Full Toolbox</p><div class="flex flex-wrap gap-2"><span class="tool-chip">PostgreSQL</span><span class="tool-chip">Redis</span><span class="tool-chip">MongoDB</span><span class="tool-chip">Supabase</span><span class="tool-chip">PlanetScale</span><span class="tool-chip">Neon</span><span class="tool-chip">pgvector</span><span class="tool-chip">Pinecone</span><span class="tool-chip">Weaviate</span><span class="tool-chip">Elasticsearch</span><span class="tool-chip">ClickHouse</span><span class="tool-chip">DynamoDB</span><span class="tool-chip">SQLite</span></div></div>
+</div><div id="panel-devops" data-group="skills" class="tab-panel grid md:grid-cols-2 gap-8 mt-8">
+  <div class="space-y-4" data-bars><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">AWS (EC2/S3/Lambda)</span><span class="dark:text-purple-300 text-purple-600">85%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="85" style="background:linear-gradient(90deg,#10b981,#22d3ee)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Docker / Kubernetes</span><span class="dark:text-purple-300 text-purple-600">82%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="82" style="background:linear-gradient(90deg,#10b981,#22d3ee)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">CI/CD Pipelines</span><span class="dark:text-purple-300 text-purple-600">90%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="90" style="background:linear-gradient(90deg,#10b981,#22d3ee)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Terraform / IaC</span><span class="dark:text-purple-300 text-purple-600">75%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="75" style="background:linear-gradient(90deg,#10b981,#22d3ee)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Observability</span><span class="dark:text-purple-300 text-purple-600">80%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="80" style="background:linear-gradient(90deg,#10b981,#22d3ee)"></div></div></div><div><div class="flex justify-between text-xs font-medium mb-1.5"><span class="dark:text-gray-300 text-gray-700">Security & IAM</span><span class="dark:text-purple-300 text-purple-600">78%</span></div><div class="h-1.5 rounded-full dark:bg-white/10 bg-gray-200"><div class="bar-fill h-1.5 rounded-full" data-pct="78" style="background:linear-gradient(90deg,#10b981,#22d3ee)"></div></div></div></div>
+  <div><p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Full Toolbox</p><div class="flex flex-wrap gap-2"><span class="tool-chip">AWS</span><span class="tool-chip">GCP</span><span class="tool-chip">Vercel</span><span class="tool-chip">Docker</span><span class="tool-chip">Kubernetes</span><span class="tool-chip">Terraform</span><span class="tool-chip">GitHub Actions</span><span class="tool-chip">Prometheus</span><span class="tool-chip">Grafana</span><span class="tool-chip">Datadog</span><span class="tool-chip">Nginx</span><span class="tool-chip">Cloudflare Workers</span><span class="tool-chip">Pulumi</span></div></div>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider"></div>
+
+  <!-- ── TOOLS ECOSYSTEM ─────────────────────────────────────────────────── -->
+  <section class="py-28 relative overflow-hidden" aria-label="Tools and ecosystem">
+    <div class="blob w-64 h-64 dark:bg-emerald-700 bg-emerald-200 bottom-10 right-10" style="animation-delay:7s" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Ecosystem</p>
+        <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-3">Tools &amp; <span class="grad-text">Libraries</span></h2>
+        <p class="max-w-lg mx-auto dark:text-gray-400 text-gray-500 text-sm leading-relaxed">Every tool is battle-tested in shipped production projects, not just tutorials.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden">
+          <div class="card-glow"></div>
+          <div class="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center text-lg mb-4">🤖</div>
+          <h3 class="font-display font-bold text-base mb-4">AI / ML</h3>
+          <div class="flex flex-wrap gap-2"><span class="tool-chip">OpenAI</span><span class="tool-chip">Anthropic</span><span class="tool-chip">Google AI</span><span class="tool-chip">LangChain</span><span class="tool-chip">LlamaIndex</span><span class="tool-chip">LangGraph</span><span class="tool-chip">PEFT</span><span class="tool-chip">Axolotl</span><span class="tool-chip">vLLM</span><span class="tool-chip">Ollama</span><span class="tool-chip">RAGAS</span><span class="tool-chip">Guardrails AI</span><span class="tool-chip">Weights & Biases</span><span class="tool-chip">Modal</span><span class="tool-chip">BentoML</span></div>
+        </div>
+        <div class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:.08s">
+          <div class="card-glow"></div>
+          <div class="w-10 h-10 rounded-xl bg-pink-500/15 flex items-center justify-center text-lg mb-4">🎨</div>
+          <h3 class="font-display font-bold text-base mb-4">UI / Frontend</h3>
+          <div class="flex flex-wrap gap-2"><span class="tool-chip">React</span><span class="tool-chip">Next.js</span><span class="tool-chip">Tailwind</span><span class="tool-chip">shadcn/ui</span><span class="tool-chip">Radix UI</span><span class="tool-chip">Framer Motion</span><span class="tool-chip">Three.js</span><span class="tool-chip">D3.js</span><span class="tool-chip">Zustand</span><span class="tool-chip">React Query</span><span class="tool-chip">SWR</span><span class="tool-chip">Storybook</span><span class="tool-chip">Vitest</span></div>
+        </div>
+        <div class="reveal tilt-card glass rounded-2xl p-6 relative overflow-hidden" style="transition-delay:.16s">
+          <div class="card-glow"></div>
+          <div class="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center text-lg mb-4">🛠️</div>
+          <h3 class="font-display font-bold text-base mb-4">Backend &amp; Infra</h3>
+          <div class="flex flex-wrap gap-2"><span class="tool-chip">Node.js</span><span class="tool-chip">FastAPI</span><span class="tool-chip">Prisma</span><span class="tool-chip">Drizzle</span><span class="tool-chip">Supabase</span><span class="tool-chip">Postgres</span><span class="tool-chip">Redis</span><span class="tool-chip">Docker</span><span class="tool-chip">Kubernetes</span><span class="tool-chip">Terraform</span><span class="tool-chip">GitHub Actions</span><span class="tool-chip">AWS</span><span class="tool-chip">Vercel</span><span class="tool-chip">Cloudflare</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider"></div>
+
+  <!-- ── LEARNING & CERTS ────────────────────────────────────────────────── -->
+  <section class="py-28 relative overflow-hidden" aria-label="Certifications and learning">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">Credentials</p>
+        <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-3">Certs &amp; <span class="grad-text">Learning</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div class="reveal tilt-card glass rounded-2xl p-6 text-center relative overflow-hidden"><div class="card-glow"></div><p class="text-3xl mb-3">☁️</p><h3 class="font-display font-semibold text-sm mb-1">AWS Solutions Architect</h3><p class="text-xs dark:text-gray-500 text-gray-400">Amazon · 2024</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-6 text-center relative overflow-hidden" style="transition-delay:.08s"><div class="card-glow"></div><p class="text-3xl mb-3">📜</p><h3 class="font-display font-semibold text-sm mb-1">Google Cloud Professional</h3><p class="text-xs dark:text-gray-500 text-gray-400">Google · 2023</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-6 text-center relative overflow-hidden" style="transition-delay:.16s"><div class="card-glow"></div><p class="text-3xl mb-3">🔐</p><h3 class="font-display font-semibold text-sm mb-1">Certified Kubernetes Admin</h3><p class="text-xs dark:text-gray-500 text-gray-400">CNCF · 2022</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-6 text-center relative overflow-hidden" style="transition-delay:.24s"><div class="card-glow"></div><p class="text-3xl mb-3">🤖</p><h3 class="font-display font-semibold text-sm mb-1">DeepLearning.AI Specialisation</h3><p class="text-xs dark:text-gray-500 text-gray-400">Coursera · 2023</p></div>
+      </div>
+
+      <!-- CTA strip -->
+      <div class="reveal glass rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <div class="blob w-64 h-64 dark:bg-purple-700 bg-purple-200 -top-10 -right-10" style="animation-delay:1s" aria-hidden="true"></div>
+        <div class="relative z-10">
+          <h3 class="font-display font-bold text-2xl mb-2">Want to build something with AI?</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-sm leading-relaxed max-w-lg">I'm open to AI product consulting, co-building, and engineering contracts. Let's explore what's possible.</p>
+        </div>
+        <div class="flex gap-4 flex-shrink-0 relative z-10">
+          <a href="contact.html" class="btn-shimmer text-white font-semibold text-sm px-7 py-3.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-purple-500/25 whitespace-nowrap">Let's Talk →</a>
+          <a href="resume.html"  class="glass font-semibold text-sm px-7 py-3.5 rounded-full hover:scale-105 transition-transform whitespace-nowrap">View Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="py-12 border-t dark:border-white/5 border-gray-100 mt-24" aria-label="Site footer">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left">
+      <p class="font-display font-bold text-xl grad-text mb-1">Suboor Khan</p>
+      <p class="text-xs dark:text-gray-600 text-gray-400">Crafting digital experiences since 2018</p>
+    </div>
+    <nav aria-label="Social media links">
+      <ul class="flex items-center gap-3" role="list">
+        <li><a href="https://github.com/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-purple-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-3.79 23.39c.6.11.82-.26.82-.58v-2.17c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0012 0z"/></svg></a></li>
+        <li><a href="https://linkedin.com/in/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416zM5.337 7.433a1.921 1.921 0 11-.001-3.842 1.921 1.921 0 010 3.842zM6.843 20.452H3.83V9h3.013v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
+        <li><a href="https://twitter.com/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-sky-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></li>
+      </ul>
+    </nav>
+    <p class="text-xs dark:text-gray-600 text-gray-400 text-center md:text-right">&copy; 2026 Suboor Khan &middot; Tailwind CSS</p>
+  </div>
+</footer>
+<script>
+(() => {
+  const html=document.documentElement;
+  const saved=localStorage.getItem('theme');
+  if(saved==='light')html.classList.remove('dark');else html.classList.add('dark');
+  document.getElementById('theme-toggle').addEventListener('click',()=>{html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  const pb=document.getElementById('progress-bar');
+  window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.style.background='rgba(6,6,15,.85)';navbar.style.backdropFilter='blur(20px)';navbar.style.borderBottom='1px solid rgba(255,255,255,.05)';}else{navbar.style.background=navbar.style.backdropFilter=navbar.style.borderBottom='';}},{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu');
+  const b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;menuBtn.setAttribute('aria-expanded',open);mobileMenu.classList.toggle('hidden',!open);b1.style.transform=open?'rotate(45deg) translateY(7px)':'';b2.style.opacity=open?'0':'1';b3.style.transform=open?'rotate(-45deg) translateY(-7px)':'';});
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{open=false;menuBtn.setAttribute('aria-expanded',false);mobileMenu.classList.add('hidden');b1.style.transform=b3.style.transform='';b2.style.opacity='1';}));
+  const cur=document.getElementById('cursor'),fol=document.getElementById('cursor-follower');
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mousedown',()=>cur.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('clicking'));
+  (function tick(){fx+=(mx-fx)*.1;fy+=(my-fy)*.1;fol.style.left=fx+'px';fol.style.top=fy+'px';requestAnimationFrame(tick);})();
+  document.querySelectorAll('a,button,input,textarea,.tilt-card').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('hovered'));el.addEventListener('mouseleave',()=>cur.classList.remove('hovered'));});
+  const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  const TILT=12;
+  document.querySelectorAll('.tilt-card').forEach(card=>{
+    const glow=card.querySelector('.card-glow');
+    card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(800px) rotateX('+(-y*TILT)+'deg) rotateY('+(x*TILT)+'deg) scale3d(1.025,1.025,1.025)';if(glow){glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}});
+    card.addEventListener('mouseleave',()=>{card.style.transform='perspective(800px) rotateX(0) rotateY(0) scale3d(1,1,1)';});
+  });
+  // Animate proficiency bars on scroll
+  const barSections = document.querySelectorAll('[data-bars]');
+  const barObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.bar-fill').forEach((b,i)=>{setTimeout(()=>{b.style.width=b.dataset.pct+'%';},i*100);});barObs.unobserve(e.target);}});
+  },{threshold:.25});
+  barSections.forEach(s=>barObs.observe(s));
+  // Skill tabs
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const group=btn.dataset.group;
+      document.querySelectorAll('.tab-btn[data-group="'+group+'"]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-panel[data-group="'+group+'"]').forEach(p=>p.classList.remove('active'));
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

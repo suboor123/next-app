@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Core Web Vitals &amp; Performance — Suboor Khan</title>
+  <meta name="description" content="Suboor Khan's performance engineering expertise: Core Web Vitals, LCP, CLS, INP, FCP, bundle optimization, caching, and real-world case studies with before/after metrics."/>
+  <meta name="author" content="Suboor Khan"/>
+
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://suboorkhan.dev/performance.html"/>
+  <meta name="keywords" content="Core Web Vitals, Web Performance Optimization, Lighthouse Score 100, LCP Optimization, CLS Fix, INP Optimization, React Performance, Next.js Performance, Suboor Khan"/>
+  <meta name="theme-color" content="#10b981"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type"          content="website"/>
+  <meta property="og:url"           content="https://suboorkhan.dev/performance.html"/>
+  <meta property="og:site_name"     content="Suboor Khan — Portfolio"/>
+  <meta property="og:title"         content="Core Web Vitals &amp; Performance Optimization — Suboor Khan"/>
+  <meta property="og:description"   content="Real-world web performance engineering: Lighthouse 100, LCP 1.2s, INP 38ms, CLS 0.01. Before/after case studies, optimization techniques and tooling."/>
+  <meta property="og:image"         content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:image:width"   content="1200"/>
+  <meta property="og:image:height"  content="630"/>
+  <meta property="og:image:alt"     content="Core Web Vitals Performance Dashboard"/>
+  <meta property="og:locale"        content="en_GB"/>
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"         content="summary_large_image"/>
+  <meta name="twitter:site"         content="@suboorkhan"/>
+  <meta name="twitter:creator"      content="@suboorkhan"/>
+  <meta name="twitter:title"        content="Core Web Vitals &amp; Performance Optimization — Suboor Khan"/>
+  <meta name="twitter:description"  content="Lighthouse 100, LCP 1.2s, INP 38ms, CLS 0.01. Real performance engineering with proven before/after results."/>
+  <meta name="twitter:image"        content="https://suboorkhan.dev/og-cover.png"/>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://suboorkhan.dev/performance.html#webpage",
+        "url": "https://suboorkhan.dev/performance.html",
+        "name": "Core Web Vitals & Performance Optimization — Suboor Khan",
+        "description": "Real-world web performance engineering. Lighthouse 100, LCP 1.2s, INP 38ms, CLS 0.01 achieved through systematic optimization.",
+        "inLanguage": "en-GB",
+        "dateModified": "2026-03-02",
+        "author": {
+          "@type": "Person",
+          "@id": "https://suboorkhan.dev/#person",
+          "name": "Suboor Khan",
+          "url": "https://suboorkhan.dev/"
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://suboorkhan.dev/",
+          "name": "Suboor Khan — Portfolio"
+        },
+        "mainEntity": {
+          "@type": "HowTo",
+          "name": "How to Achieve Lighthouse Score 100",
+          "description": "Step-by-step approach to optimizing Core Web Vitals: LCP, CLS, INP, FCP",
+          "step": [
+            {"@type":"HowToStep","name":"Audit with Lighthouse CI","text":"Run Lighthouse on every PR to establish baseline and catch regressions."},
+            {"@type":"HowToStep","name":"Fix LCP","text":"Preload hero image, use AVIF format, inline critical CSS, enable ISR/SSG."},
+            {"@type":"HowToStep","name":"Eliminate CLS","text":"Reserve space for images and ads, use font-display:optional, avoid dynamic insertions above the fold."},
+            {"@type":"HowToStep","name":"Reduce INP","text":"Use useTransition for heavy renders, break long tasks with scheduler.yield(), virtualise long lists."},
+            {"@type":"HowToStep","name":"Monitor with RUM","text":"Instrument web-vitals.js to capture field data from real users on real networks."}
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is a good LCP score?",
+            "acceptedAnswer": {"@type":"Answer","text":"A good LCP is under 2.5 seconds. Suboor consistently achieves LCP under 1.2s through image optimization, ISR, and resource hints."}
+          },
+          {
+            "@type": "Question",
+            "name": "What is INP and why does it matter?",
+            "acceptedAnswer": {"@type":"Answer","text":"INP (Interaction to Next Paint) measures responsiveness to user interactions. A good score is under 200ms. Suboor achieves INP of 38ms using useTransition, virtualisation, and long-task yielding."}
+          },
+          {
+            "@type": "Question",
+            "name": "What tools are used for web performance auditing?",
+            "acceptedAnswer": {"@type":"Answer","text":"Lighthouse CI, WebPageTest, Chrome UX Report (CrUX), Sentry Performance, Vercel Speed Insights, and web-vitals.js for real user monitoring."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{cursor:none !important}
+    #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+    #cursor.hovered{width:36px;height:36px;background:#ec4899}
+    #cursor.clicking{width:8px;height:8px}
+    #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#10b981,#06b6d4,#7c3aed);z-index:1001;transition:width .08s linear;border-radius:0 2px 2px 0}
+    .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+    html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+    .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .green-text{background:linear-gradient(135deg,#10b981 0%,#06b6d4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+    .tilt-card:hover{box-shadow:0 24px 60px rgba(16,185,129,.18),0 0 0 1px rgba(16,185,129,.1)}
+    .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(16,185,129,.18) 0%,transparent 65%)}
+    .tilt-card:hover .card-glow{opacity:1}
+    .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(16,185,129,.1);color:#34d399;border:1px solid rgba(16,185,129,.2);font-weight:500}
+    html:not(.dark) .skill-tag{background:rgba(16,185,129,.08);color:#059669;border-color:rgba(16,185,129,.15)}
+    .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#10b981 0%,#06b6d4 40%,#7c3aed 60%,#10b981 100%);animation:shimmer 3s ease infinite}
+    .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(16,185,129,.2),transparent)}
+    *,*::before,*::after{transition:background-color .3s ease,border-color .3s ease,color .2s ease}
+    /* Score ring */
+    .score-ring{filter:drop-shadow(0 0 12px rgba(16,185,129,.4))}
+    /* Toc */
+    .toc-link{font-size:.8rem;padding:.35rem .75rem;border-radius:.5rem;transition:all .2s;display:block;border-left:2px solid transparent}
+    .toc-link:hover,.toc-link.active{background:rgba(16,185,129,.1);color:#10b981;border-left-color:#10b981}
+    html:not(.dark) .toc-link:hover,html:not(.dark) .toc-link.active{color:#059669}
+    /* Timeline */
+    .timeline-item{position:relative;padding-left:2rem;border-left:2px solid rgba(16,185,129,.2)}
+    .timeline-item::before{content:'';position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.2)}
+    /* Bars */
+    .perf-fill{height:100%;border-radius:9999px;width:0%;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+    /* Good badge */
+    .badge-good{background:rgba(16,185,129,.15);color:#10b981;font-size:.65rem;font-weight:700;padding:.15rem .6rem;border-radius:9999px;text-transform:uppercase;letter-spacing:.05em}
+    .badge-needs{background:rgba(245,158,11,.15);color:#f59e0b;font-size:.65rem;font-weight:700;padding:.15rem .6rem;border-radius:9999px;text-transform:uppercase;letter-spacing:.05em}
+    .badge-poor{background:rgba(239,68,68,.15);color:#ef4444;font-size:.65rem;font-weight:700;padding:.15rem .6rem;border-radius:9999px;text-transform:uppercase;letter-spacing:.05em}
+    /* Browser mockup */
+    .browser-bar{height:32px;background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:0 12px;gap:6px}
+    html:not(.dark) .browser-bar{background:rgba(0,0,0,.04);border-bottom-color:rgba(0,0,0,.06)}
+    .browser-dot{width:10px;height:10px;border-radius:50%}
+    /* Waterfall bar */
+    .wf-bar{height:20px;border-radius:4px;position:relative;font-size:.65rem;font-weight:600;display:flex;align-items:center;padding:0 8px;color:#fff;white-space:nowrap;overflow:hidden}
+    /* Flip card for tool -->
+    .flip{perspective:700px}
+    .flip-inner{transform-style:preserve-3d;transition:transform .5s}
+    .flip:hover .flip-inner{transform:rotateY(180deg)}
+    .flip-front,.flip-back{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .flip-back{transform:rotateY(180deg)}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float{animation:float 4s ease-in-out infinite}
+    @keyframes ping2{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
+    .ping2{animation:ping2 1.5s ease-out infinite}
+  </style>
+</head>
+<body class="dark:bg-[#06060f] bg-gray-50 dark:text-gray-100 text-gray-900 font-sans antialiased overflow-x-hidden">
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<div id="progress-bar" style="width:0%" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-display text-xl font-bold grad-text tracking-tight">SK.</a>
+      <ul class="hidden md:flex items-center gap-6 text-sm font-medium" role="list">
+        <li><a href="index.html#about"   class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">About</a></li>
+        <li><a href="projects.html"      class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="blog.html"          class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Blog</a></li>
+        <li><a href="ai-skills.html"     class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">AI &amp; Skills</a></li>
+        <li><a href="performance.html"   class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors text-accent font-semibold">Performance</a></li>
+        <li><a href="resume.html"        class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="contact.html"       class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button id="menu-btn" class="md:hidden w-10 h-10 glass rounded-full flex flex-col items-center justify-center gap-[5px] hover:scale-110 transition-transform" aria-label="Open menu" aria-expanded="false">
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar1"></span>
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar2"></span>
+          <span class="w-4 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass mx-4 mb-4 rounded-2xl overflow-hidden">
+      <ul class="flex flex-col p-4 gap-2 text-sm font-medium">
+        <li><a href="index.html#about"  class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-emerald-500/10 transition">About</a></li>
+        <li><a href="projects.html"     class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-emerald-500/10 transition">Projects</a></li>
+        <li><a href="blog.html"         class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-emerald-500/10 transition">Blog</a></li>
+        <li><a href="ai-skills.html"    class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-emerald-500/10 transition">AI &amp; Skills</a></li>
+        <li><a href="performance.html"  class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-emerald-500/10 transition text-emerald-400 font-semibold">Performance</a></li>
+        <li><a href="resume.html"       class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-emerald-500/10 transition">Resume</a></li>
+        <li><a href="contact.html"      class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-emerald-500/10 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ── HERO ──────────────────────────────────────────────────────────── -->
+  <section class="relative pt-32 pb-0 overflow-hidden min-h-[80vh] flex items-center">
+    <div class="blob w-[42rem] h-[42rem] dark:bg-emerald-800 bg-emerald-200 -top-40 -left-40" style="animation-delay:0s"></div>
+    <div class="blob w-96 h-96 dark:bg-cyan-700 bg-cyan-200 top-10 right-0" style="animation-delay:4s"></div>
+    <div class="blob w-72 h-72 dark:bg-teal-700 bg-teal-200 bottom-0 left-1/3" style="animation-delay:8s"></div>
+    <div class="max-w-7xl mx-auto px-6 w-full">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: text -->
+        <div>
+          <p class="text-xs tracking-widest uppercase text-emerald-400 font-semibold mb-5 animate-[fadeUp_.5s_ease_forwards]">Performance Engineering</p>
+          <h1 class="font-display font-extrabold leading-tight mb-6 animate-[fadeUp_.6s_.05s_ease_both]" style="font-size:clamp(2.8rem,6vw,5.5rem)">
+            Core Web Vitals<br/>&amp; <span class="green-text">Optimization</span>
+          </h1>
+          <p class="dark:text-gray-400 text-gray-600 text-sm md:text-base leading-relaxed mb-8 max-w-lg animate-[fadeUp_.6s_.1s_ease_both]">
+            Speed is a feature. I engineer web experiences that score&nbsp;<strong class="dark:text-white text-gray-900">100 on Lighthouse</strong>, load in under a second, and never drop a frame — measured on real devices, real networks, real data.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-10 animate-[fadeUp_.6s_.15s_ease_both]">
+            <a href="#case-studies" class="btn-shimmer text-white font-semibold text-sm px-7 py-3.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-emerald-500/25">View Case Studies ↓</a>
+            <a href="contact.html"  class="glass font-semibold text-sm px-7 py-3.5 rounded-full hover:scale-105 transition-transform">Audit My Site →</a>
+          </div>
+          <!-- Quick stat pills -->
+          <div class="flex flex-wrap gap-3 animate-[fadeUp_.6s_.2s_ease_both]">
+            <span class="glass px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> LCP &lt; 1.2s</span>
+            <span class="glass px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> CLS &lt; 0.01</span>
+            <span class="glass px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> INP &lt; 40ms</span>
+            <span class="glass px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> FCP &lt; 0.6s</span>
+          </div>
+        </div>
+
+        <!-- Right: Lighthouse score display -->
+        <div class="flex justify-center animate-[fadeUp_.7s_.2s_ease_both]">
+          <div class="relative" style="width:min(420px,100%)">
+            <!-- Browser mockup -->
+            <div class="glass rounded-2xl overflow-hidden">
+              <div class="browser-bar">
+                <span class="browser-dot bg-red-400"></span>
+                <span class="browser-dot bg-yellow-400"></span>
+                <span class="browser-dot bg-green-400"></span>
+                <span class="flex-1 text-center text-xs dark:text-gray-500 text-gray-400 font-mono ml-2">suboorkhan.dev</span>
+              </div>
+              <div class="p-6 dark:bg-[#0a0a18] bg-white">
+                <!-- Lighthouse scores -->
+                <p class="text-xs text-center dark:text-gray-500 text-gray-400 mb-5 font-semibold uppercase tracking-wider">Lighthouse Report</p>
+                <div class="grid grid-cols-4 gap-3 mb-6">
+                  <!-- Score circles -->
+                  <div class="text-center">
+                    <div class="relative mx-auto" style="width:72px;height:72px">
+                      <svg viewBox="0 0 72 72" class="w-full h-full -rotate-90 score-ring">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(16,185,129,.12)" stroke-width="6"/>
+                        <circle id="lh-perf" cx="36" cy="36" r="30" fill="none" stroke="#10b981" stroke-width="6"
+                          stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5" style="transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1)"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span id="n-perf" class="font-display font-extrabold text-sm" style="color:#10b981">0</span>
+                      </div>
+                    </div>
+                    <p class="text-[10px] dark:text-gray-500 text-gray-500 mt-1">Performance</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="relative mx-auto" style="width:72px;height:72px">
+                      <svg viewBox="0 0 72 72" class="w-full h-full -rotate-90 score-ring">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(16,185,129,.12)" stroke-width="6"/>
+                        <circle id="lh-a11y" cx="36" cy="36" r="30" fill="none" stroke="#10b981" stroke-width="6"
+                          stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5" style="transition:stroke-dashoffset 1.6s .2s cubic-bezier(.4,0,.2,1)"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span id="n-a11y" class="font-display font-extrabold text-sm" style="color:#10b981">0</span>
+                      </div>
+                    </div>
+                    <p class="text-[10px] dark:text-gray-500 text-gray-500 mt-1">Accessibility</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="relative mx-auto" style="width:72px;height:72px">
+                      <svg viewBox="0 0 72 72" class="w-full h-full -rotate-90 score-ring">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(16,185,129,.12)" stroke-width="6"/>
+                        <circle id="lh-bp" cx="36" cy="36" r="30" fill="none" stroke="#10b981" stroke-width="6"
+                          stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5" style="transition:stroke-dashoffset 1.6s .4s cubic-bezier(.4,0,.2,1)"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span id="n-bp" class="font-display font-extrabold text-sm" style="color:#10b981">0</span>
+                      </div>
+                    </div>
+                    <p class="text-[10px] dark:text-gray-500 text-gray-500 mt-1">Best Practices</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="relative mx-auto" style="width:72px;height:72px">
+                      <svg viewBox="0 0 72 72" class="w-full h-full -rotate-90 score-ring">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(16,185,129,.12)" stroke-width="6"/>
+                        <circle id="lh-seo" cx="36" cy="36" r="30" fill="none" stroke="#10b981" stroke-width="6"
+                          stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5" style="transition:stroke-dashoffset 1.6s .6s cubic-bezier(.4,0,.2,1)"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span id="n-seo" class="font-display font-extrabold text-sm" style="color:#10b981">0</span>
+                      </div>
+                    </div>
+                    <p class="text-[10px] dark:text-gray-500 text-gray-500 mt-1">SEO</p>
+                  </div>
+                </div>
+                <!-- Metrics list -->
+                <div class="space-y-2 text-xs font-mono">
+                  <div class="flex justify-between items-center"><span class="dark:text-gray-400 text-gray-500">First Contentful Paint</span><div class="flex items-center gap-2"><span class="dark:text-white text-gray-800 font-bold">0.6 s</span><span class="badge-good">Good</span></div></div>
+                  <div class="flex justify-between items-center"><span class="dark:text-gray-400 text-gray-500">Largest Contentful Paint</span><div class="flex items-center gap-2"><span class="dark:text-white text-gray-800 font-bold">1.2 s</span><span class="badge-good">Good</span></div></div>
+                  <div class="flex justify-between items-center"><span class="dark:text-gray-400 text-gray-500">Total Blocking Time</span><div class="flex items-center gap-2"><span class="dark:text-white text-gray-800 font-bold">0 ms</span><span class="badge-good">Good</span></div></div>
+                  <div class="flex justify-between items-center"><span class="dark:text-gray-400 text-gray-500">Cumulative Layout Shift</span><div class="flex items-center gap-2"><span class="dark:text-white text-gray-800 font-bold">0.01</span><span class="badge-good">Good</span></div></div>
+                  <div class="flex justify-between items-center"><span class="dark:text-gray-400 text-gray-500">Speed Index</span><div class="flex items-center gap-2"><span class="dark:text-white text-gray-800 font-bold">0.9 s</span><span class="badge-good">Good</span></div></div>
+                </div>
+              </div>
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -top-4 -right-4 float">
+              <div class="w-20 h-20 rounded-full flex items-center justify-center font-display font-extrabold text-2xl text-white relative" style="background:linear-gradient(135deg,#10b981,#06b6d4)">
+                <span class="absolute inset-0 rounded-full ping2 opacity-20" style="background:linear-gradient(135deg,#10b981,#06b6d4)"></span>
+                100
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION DIVIDER ─────────────────────────────────────────────── -->
+  <div class="s-divider max-w-6xl mx-auto my-0"></div>
+
+  <!-- ── 4 VITAL GAUGES ─────────────────────────────────────────────── -->
+  <section id="vitals" class="py-24 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-xs tracking-widest uppercase text-emerald-400 font-semibold mb-4">The Big 4</p>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl mb-3">Core Web Vitals — <span class="green-text">All Green</span></h2>
+        <p class="dark:text-gray-500 text-gray-500 text-sm max-w-xl mx-auto">Google's user-experience signals that directly influence search rankings and real user satisfaction.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- LCP -->
+        <div class="reveal tilt-card glass rounded-3xl p-6 text-center relative overflow-hidden" id="v-lcp" style="transition-delay:.0s">
+          <div class="card-glow"></div>
+          <div class="relative mx-auto mb-4" style="width:130px;height:130px">
+            <svg viewBox="0 0 130 130" class="w-full h-full -rotate-90">
+              <circle cx="65" cy="65" r="55" fill="none" stroke="rgba(16,185,129,.1)" stroke-width="10"/>
+              <circle class="vring" cx="65" cy="65" r="55" fill="none" stroke="#10b981" stroke-width="10" stroke-linecap="round"
+                stroke-dasharray="345.58" stroke-dashoffset="345.58" data-fill="92" style="transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1)"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span class="font-display font-extrabold text-2xl" style="color:#10b981">1.2s</span>
+              <span class="text-[10px] dark:text-gray-500 text-gray-500">&lt; 2.5s target</span>
+            </div>
+          </div>
+          <h3 class="font-display font-bold text-base mb-1 dark:text-white text-gray-900">LCP</h3>
+          <p class="text-xs dark:text-gray-500 text-gray-500 mb-3 leading-relaxed">Largest Contentful Paint — how fast the biggest visible element loads</p>
+          <span class="badge-good">&#9679; Good</span>
+          <div class="mt-4 space-y-1 text-left">
+            <p class="text-[11px] dark:text-gray-600 text-gray-400 font-medium">Key fixes:</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Preload hero image / font</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Server-side render above-fold</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Remove render-blocking CSS</p>
+          </div>
+        </div>
+
+        <!-- CLS -->
+        <div class="reveal tilt-card glass rounded-3xl p-6 text-center relative overflow-hidden" id="v-cls" style="transition-delay:.08s">
+          <div class="card-glow"></div>
+          <div class="relative mx-auto mb-4" style="width:130px;height:130px">
+            <svg viewBox="0 0 130 130" class="w-full h-full -rotate-90">
+              <circle cx="65" cy="65" r="55" fill="none" stroke="rgba(16,185,129,.1)" stroke-width="10"/>
+              <circle class="vring" cx="65" cy="65" r="55" fill="none" stroke="#10b981" stroke-width="10" stroke-linecap="round"
+                stroke-dasharray="345.58" stroke-dashoffset="345.58" data-fill="99" style="transition:stroke-dashoffset 1.6s .1s cubic-bezier(.4,0,.2,1)"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span class="font-display font-extrabold text-2xl" style="color:#10b981">0.01</span>
+              <span class="text-[10px] dark:text-gray-500 text-gray-500">&lt; 0.1 target</span>
+            </div>
+          </div>
+          <h3 class="font-display font-bold text-base mb-1 dark:text-white text-gray-900">CLS</h3>
+          <p class="text-xs dark:text-gray-500 text-gray-500 mb-3 leading-relaxed">Cumulative Layout Shift — visual stability, no elements jumping around</p>
+          <span class="badge-good">&#9679; Good</span>
+          <div class="mt-4 space-y-1 text-left">
+            <p class="text-[11px] dark:text-gray-600 text-gray-400 font-medium">Key fixes:</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Explicit width/height on images</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; font-display: optional</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Reserve space for ads/embeds</p>
+          </div>
+        </div>
+
+        <!-- INP -->
+        <div class="reveal tilt-card glass rounded-3xl p-6 text-center relative overflow-hidden" id="v-inp" style="transition-delay:.16s">
+          <div class="card-glow"></div>
+          <div class="relative mx-auto mb-4" style="width:130px;height:130px">
+            <svg viewBox="0 0 130 130" class="w-full h-full -rotate-90">
+              <circle cx="65" cy="65" r="55" fill="none" stroke="rgba(16,185,129,.1)" stroke-width="10"/>
+              <circle class="vring" cx="65" cy="65" r="55" fill="none" stroke="#10b981" stroke-width="10" stroke-linecap="round"
+                stroke-dasharray="345.58" stroke-dashoffset="345.58" data-fill="96" style="transition:stroke-dashoffset 1.6s .2s cubic-bezier(.4,0,.2,1)"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span class="font-display font-extrabold text-2xl" style="color:#10b981">38ms</span>
+              <span class="text-[10px] dark:text-gray-500 text-gray-500">&lt; 200ms target</span>
+            </div>
+          </div>
+          <h3 class="font-display font-bold text-base mb-1 dark:text-white text-gray-900">INP</h3>
+          <p class="text-xs dark:text-gray-500 text-gray-500 mb-3 leading-relaxed">Interaction to Next Paint — responsiveness to every user interaction</p>
+          <span class="badge-good">&#9679; Good</span>
+          <div class="mt-4 space-y-1 text-left">
+            <p class="text-[11px] dark:text-gray-600 text-gray-400 font-medium">Key fixes:</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; useTransition for heavy renders</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Break up long JS tasks (&gt;50ms)</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Yield with scheduler.yield()</p>
+          </div>
+        </div>
+
+        <!-- FCP -->
+        <div class="reveal tilt-card glass rounded-3xl p-6 text-center relative overflow-hidden" id="v-fcp" style="transition-delay:.24s">
+          <div class="card-glow"></div>
+          <div class="relative mx-auto mb-4" style="width:130px;height:130px">
+            <svg viewBox="0 0 130 130" class="w-full h-full -rotate-90">
+              <circle cx="65" cy="65" r="55" fill="none" stroke="rgba(6,182,212,.1)" stroke-width="10"/>
+              <circle class="vring" cx="65" cy="65" r="55" fill="none" stroke="#06b6d4" stroke-width="10" stroke-linecap="round"
+                stroke-dasharray="345.58" stroke-dashoffset="345.58" data-fill="97" style="transition:stroke-dashoffset 1.6s .3s cubic-bezier(.4,0,.2,1)"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span class="font-display font-extrabold text-2xl" style="color:#06b6d4">0.6s</span>
+              <span class="text-[10px] dark:text-gray-500 text-gray-500">&lt; 1.8s target</span>
+            </div>
+          </div>
+          <h3 class="font-display font-bold text-base mb-1 dark:text-white text-gray-900">FCP</h3>
+          <p class="text-xs dark:text-gray-500 text-gray-500 mb-3 leading-relaxed">First Contentful Paint — when the user first sees something useful</p>
+          <span class="badge-good" style="background:rgba(6,182,212,.15);color:#06b6d4">&#9679; Good</span>
+          <div class="mt-4 space-y-1 text-left">
+            <p class="text-[11px] dark:text-gray-600 text-gray-400 font-medium">Key fixes:</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Inline critical CSS</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; Preconnect to CDN origins</p>
+            <p class="text-[10px] dark:text-gray-600 text-gray-400">&#10003; HTTP/3 + Early Hints</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider max-w-6xl mx-auto"></div>
+
+  <!-- ── BEFORE / AFTER CASE STUDIES ────────────────────────────────── -->
+  <section id="case-studies" class="py-24 relative overflow-hidden">
+    <div class="blob w-80 h-80 dark:bg-emerald-800 bg-emerald-200 top-0 right-0" style="animation-delay:2s"></div>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-xs tracking-widest uppercase text-emerald-400 font-semibold mb-4">Real Projects</p>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl mb-3"><span class="green-text">Before &amp; After</span> — Real Numbers</h2>
+        <p class="dark:text-gray-500 text-gray-500 text-sm max-w-xl mx-auto">Every number below was measured with Lighthouse CI, WebPageTest, and Chrome UX Report — no synthetic lab simulations.</p>
+      </div>
+
+      <!-- Case studies grid -->
+      <div class="space-y-8">
+
+        <!-- Case 1 -->
+        <div class="reveal glass rounded-3xl p-6 md:p-8 relative overflow-hidden">
+          <div class="blob w-48 h-48 dark:bg-emerald-700 bg-emerald-100 -top-4 -right-4" style="animation-delay:1s"></div>
+          <div class="grid lg:grid-cols-[1fr_2fr] gap-8 items-center relative z-10">
+            <div>
+              <span class="skill-tag mb-3 inline-block">E-commerce</span>
+              <h3 class="font-display font-bold text-xl mb-2 dark:text-white text-gray-900">ShopSphere — Full Replatform</h3>
+              <p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed mb-4">Migrated a 6-year-old jQuery monolith to Next.js 15 with ISR, image CDN, and Redis edge caching. Primary goal was LCP &amp; conversion rate.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">Next.js 15</span><span class="skill-tag">Vercel ISR</span><span class="skill-tag">Redis</span><span class="skill-tag">AVIF</span>
+              </div>
+            </div>
+            <div class="space-y-4" id="bars-1">
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">LCP</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">6.1s</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">1.2s</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#10b981,#06b6d4)" data-pct="20"></div></div></div>
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">INP</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">420ms</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">38ms</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#10b981,#06b6d4)" data-pct="9"></div></div></div>
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">Lighthouse Score</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">41</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">100</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#10b981,#06b6d4)" data-pct="100"></div></div></div>
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">JS Bundle</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">2.4MB</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">185KB</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#10b981,#06b6d4)" data-pct="8"></div></div></div>
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">Conversion Rate</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">1.8%</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">3.4%</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#10b981,#06b6d4)" data-pct="68"></div></div></div>
+            </div>
+          </div>
+          <!-- Impact callout -->
+          <div class="mt-6 grid sm:grid-cols-4 gap-4 relative z-10">
+            <div class="dark:bg-white/[.03] bg-black/[.03] rounded-xl p-3 text-center"><p class="font-display font-bold text-xl" style="color:#10b981">80%&#8595;</p><p class="text-[10px] dark:text-gray-500 text-gray-500 mt-0.5">LCP reduction</p></div>
+            <div class="dark:bg-white/[.03] bg-black/[.03] rounded-xl p-3 text-center"><p class="font-display font-bold text-xl" style="color:#10b981">91%&#8595;</p><p class="text-[10px] dark:text-gray-500 text-gray-500 mt-0.5">INP reduction</p></div>
+            <div class="dark:bg-white/[.03] bg-black/[.03] rounded-xl p-3 text-center"><p class="font-display font-bold text-xl" style="color:#10b981">92%&#8595;</p><p class="text-[10px] dark:text-gray-500 text-gray-500 mt-0.5">Bundle size</p></div>
+            <div class="dark:bg-white/[.03] bg-black/[.03] rounded-xl p-3 text-center"><p class="font-display font-bold text-xl" style="color:#10b981">+89%&#8593;</p><p class="text-[10px] dark:text-gray-500 text-gray-500 mt-0.5">Conversions</p></div>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="reveal glass rounded-3xl p-6 md:p-8 relative overflow-hidden" style="transition-delay:.1s">
+          <div class="blob w-48 h-48 dark:bg-cyan-700 bg-cyan-100 -top-4 -left-4" style="animation-delay:3s"></div>
+          <div class="grid lg:grid-cols-[1fr_2fr] gap-8 items-center relative z-10">
+            <div>
+              <span class="skill-tag mb-3 inline-block" style="background:rgba(6,182,212,.1);color:#22d3ee;border-color:rgba(6,182,212,.2)">SaaS Dashboard</span>
+              <h3 class="font-display font-bold text-xl mb-2 dark:text-white text-gray-900">NexusAI — Dashboard Optimization</h3>
+              <p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed mb-4">200-metric analytics dashboard with React virtualisation, canvas-based charts, and useTransition to eliminate INP spikes during data refresh.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag" style="background:rgba(6,182,212,.1);color:#22d3ee;border-color:rgba(6,182,212,.2)">React 19</span>
+                <span class="skill-tag" style="background:rgba(6,182,212,.1);color:#22d3ee;border-color:rgba(6,182,212,.2)">uPlot</span>
+                <span class="skill-tag" style="background:rgba(6,182,212,.1);color:#22d3ee;border-color:rgba(6,182,212,.2)">virtualisation</span>
+              </div>
+            </div>
+            <div class="space-y-4" id="bars-2">
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">INP (interaction spike)</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">380ms</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">12ms</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#06b6d4,#10b981)" data-pct="3"></div></div></div>
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">LCP</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">4.2s</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">0.9s</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#06b6d4,#10b981)" data-pct="21"></div></div></div>
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">Lighthouse</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">68</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">97</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#06b6d4,#10b981)" data-pct="97"></div></div></div>
+              <div class="perf-row"><div class="flex justify-between text-xs mb-1"><span class="dark:text-gray-400 text-gray-600 font-medium">MTTR on incidents</span><div class="flex items-center gap-3"><span class="text-red-400 line-through">47 min</span><span class="dark:text-gray-500 text-gray-400">&#8594;</span><span style="color:#10b981" class="font-bold">11 min</span></div></div><div class="h-2 dark:bg-white/5 bg-gray-100 rounded-full overflow-hidden"><div class="perf-fill" style="background:linear-gradient(90deg,#06b6d4,#10b981)" data-pct="23"></div></div></div>
+            </div>
+          </div>
+          <div class="mt-6 grid sm:grid-cols-4 gap-4 relative z-10">
+            <div class="dark:bg-white/[.03] bg-black/[.03] rounded-xl p-3 text-center"><p class="font-display font-bold text-xl" style="color:#06b6d4">97%&#8595;</p><p class="text-[10px] dark:text-gray-500 text-gray-500 mt-0.5">INP</p></div>
+            <div class="dark:bg-white/[.03] bg-black/[.03] rounded-xl p-3 text-center"><p class="font-display font-bold text-xl" style="color:#06b6d4">79%&#8595;</p><p class="text-[10px] dark:text-gray-500 text-gray-500 mt-0.5">LCP</p></div>
+            <div class="dark:bg-white/[.03] bg-black/[.03] rounded-xl p-3 text-center"><p class="font-display font-bold text-xl" style="color:#06b6d4">+29 pts</p><p class="text-[10px] dark:text-gray-500 text-gray-500 mt-0.5">Lighthouse</p></div>
+            <div class="dark:bg-white/[.03] bg-black/[.03] rounded-xl p-3 text-center"><p class="font-display font-bold text-xl" style="color:#06b6d4">77%&#8595;</p><p class="text-[10px] dark:text-gray-500 text-gray-500 mt-0.5">MTTR</p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider max-w-6xl mx-auto"></div>
+
+  <!-- ── OPTIMIZATION TECHNIQUES ────────────────────────────────────── -->
+  <section id="techniques" class="py-24 relative overflow-hidden">
+    <div class="blob w-96 h-96 dark:bg-teal-800 bg-teal-200 bottom-0 left-0" style="animation-delay:3s"></div>
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-xs tracking-widest uppercase text-emerald-400 font-semibold mb-4">Techniques</p>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl mb-3">My <span class="green-text">Optimization Playbook</span></h2>
+        <p class="dark:text-gray-500 text-gray-500 text-sm max-w-xl mx-auto">Every technique I reach for, categorised by the vital it primarily targets.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10 reveal" id="tech-tabs">
+        <button class="tech-tab-btn active-tech px-5 py-2 rounded-full text-sm font-semibold transition-all" data-tab="loading">&#128190; Loading</button>
+        <button class="tech-tab-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-tab="rendering">&#128084; Rendering</button>
+        <button class="tech-tab-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-tab="assets">&#127912; Assets</button>
+        <button class="tech-tab-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-tab="network">&#127760; Network</button>
+      </div>
+
+      <!-- Tab panels -->
+      <div class="reveal">
+        <div id="tab-loading" class="tech-tab-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#9889;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Code Splitting</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">LCP</span><span class="badge-good" style="font-size:.6rem">FCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Route-based + dynamic imports. Ship only what the current page needs. Reduced initial bundle by 88% on ShopSphere.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128036;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Resource Hints</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">FCP</span><span class="badge-good" style="font-size:.6rem">LCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">preload, prefetch, preconnect, and Early Hints (103) to front-load critical resource discovery before HTML parsing completes.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128712;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Critical CSS Inline</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">FCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Inline only above-fold CSS in &lt;head&gt;. Defer all other stylesheets with media trick. Eliminates render-blocking entirely.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128339;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Lazy Loading</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">LCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">loading="lazy" on off-screen images, IntersectionObserver for heavy components, dynamic imports for third-party scripts.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128230;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Tree Shaking</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">FCP</span><span class="badge-good" style="font-size:.6rem">INP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">ESM-only imports, sideEffect:false in package.json, custom Rollup/Vite configs to eliminate dead code paths.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#127968;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">ISR / Static Gen</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">LCP</span><span class="badge-good" style="font-size:.6rem">TTFB</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Incremental Static Regeneration serves pre-built HTML from CDN edge. Sub-5ms TTFB globally, zero cold starts.</p></div>
+        </div>
+        <div id="tab-rendering" class="tech-tab-panel hidden grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#129504;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">useTransition</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">INP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Mark expensive state updates as non-urgent. React keeps the UI responsive while preparing the next render in the background.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128521;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Virtualisation</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">INP</span><span class="badge-good" style="font-size:.6rem">LCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">TanStack Virtual / react-window for lists of 1000+ items. Only DOM nodes in viewport are rendered — constant memory.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#9973;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Server Components</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">LCP</span><span class="badge-good" style="font-size:.6rem">FCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">React Server Components and Suspense streaming. Data-fetching components run on server; HTML streams to client progressively.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128209;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Memoisation</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">INP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">React.memo, useMemo, useCallback placed surgically after profiling. Rule: never memoize without measuring — can hurt.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128084;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">CSS Containment</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">CLS</span><span class="badge-good" style="font-size:.6rem">INP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">contain: layout style paint to isolate component reflows. content-visibility: auto to skip off-screen rendering entirely.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#127917;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Long Task Yielding</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">INP</span><span class="badge-good" style="font-size:.6rem">TBT</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Break tasks >50ms with scheduler.yield() / setTimeout chunks. Keeps main thread free for user input between chunks.</p></div>
+        </div>
+        <div id="tab-assets" class="tech-tab-panel hidden grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128444;&#65039;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">AVIF / WebP Images</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">LCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">AVIF delivers 50% smaller files vs JPEG. Serve via &lt;picture&gt; with WebP fallback. Next/Image automates this pipeline.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128362;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Font Subsetting</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">FCP</span><span class="badge-good" style="font-size:.6rem">CLS</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">glyphhanger + Unicode-range to subset fonts to only used characters. 90KB IBM Plex → 8KB. font-display: optional kills FOUT.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128190;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">SVG Optimization</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">LCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">SVGO with custom plugin config: remove metadata, inline styles, inline fonts. Icon sprites instead of individual requests.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128296;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Bundle Analysis</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">FCP</span><span class="badge-good" style="font-size:.6rem">INP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">@next/bundle-analyzer + source-map-explorer to find and eliminate duplicates, barrel file sins, and moment.js-scale bloat.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#127775;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Compression</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">FCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Brotli (level 11) for text assets, zopfli for PNG. Pre-compressed at build time — zero runtime CPU on CDN nodes.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128247;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Responsive Images</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">LCP</span><span class="badge-good" style="font-size:.6rem">CLS</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">srcset + sizes attributes so mobile gets 320w images not desktop 1920w. Eliminates LCP bandwidth waste on phones.</p></div>
+        </div>
+        <div id="tab-network" class="tech-tab-panel hidden grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#127760;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">HTTP/3 + QUIC</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">TTFB</span><span class="badge-good" style="font-size:.6rem">FCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">UDP-based QUIC eliminates head-of-line blocking. 0-RTT reconnects on mobile handoffs. 15–20% TTFB win over TLS/TCP.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#129695;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Edge Caching</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">TTFB</span><span class="badge-good" style="font-size:.6rem">LCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Cloudflare Cache Rules + Vercel Edge Network. stale-while-revalidate for dynamic content. Sub-5ms TTFB from 300+ PoPs.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128268;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Service Worker</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">LCP</span><span class="badge-good" style="font-size:.6rem">FCP</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Workbox with network-first for API, stale-while-revalidate for assets. Instant repeat visits — content from cache before network.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128260;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">API Response Caching</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">TTFB</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Redis for per-user + shared caches, Upstash for serverless. Deduped in-flight requests with SWR/TanStack Query.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128200;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">RUM Monitoring</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">All</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">web-vitals.js + Sentry Performance + Vercel Speed Insights. Real users, real devices. Lab data is a lie — ship only when RUM confirms.</p></div>
+          <div class="tilt-card glass rounded-2xl p-5 relative"><div class="card-glow"></div><div class="text-xl mb-2">&#128269;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Lighthouse CI</h4><div class="flex gap-1 mb-2"><span class="badge-good" style="font-size:.6rem">All</span></div><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Lighthouse CI on every PR, budget.json enforces score minimums. Any regression blocks merge. Performance debt never accumulates.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider max-w-6xl mx-auto"></div>
+
+  <!-- ── TOOLS ───────────────────────────────────────────────────────── -->
+  <section id="tools" class="py-24 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <p class="text-xs tracking-widest uppercase text-emerald-400 font-semibold mb-4">Toolbelt</p>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl mb-3">Performance <span class="green-text">Tool Stack</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="reveal tilt-card glass rounded-2xl p-5 relative" style="transition-delay:.0s"><div class="card-glow"></div><div class="text-2xl mb-3">&#128161;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Lighthouse CI</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Automated perf audits on every pull request. Budget enforcement with budget.json. Never ship a regression.</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-5 relative" style="transition-delay:.06s"><div class="card-glow"></div><div class="text-2xl mb-3">&#127981;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">WebPageTest</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Deep waterfall analysis, filmstrip view, connection throttling on real mobile hardware in global PoPs.</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-5 relative" style="transition-delay:.12s"><div class="card-glow"></div><div class="text-2xl mb-3">&#128200;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">CrUX (Chrome UX Report)</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Real-user field data from Chrome users worldwide. The truth about what real users experience on real networks.</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-5 relative" style="transition-delay:.18s"><div class="card-glow"></div><div class="text-2xl mb-3">&#128312;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Sentry Performance</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Distributed tracing, N+1 query detection, frontend transaction profiling across React component boundaries.</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-5 relative" style="transition-delay:.24s"><div class="card-glow"></div><div class="text-2xl mb-3">&#9889;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Vercel Speed Insights</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Zero-config real-user monitoring. Per-page INP, LCP, FCP segmented by device type and geography.</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-5 relative" style="transition-delay:.3s"><div class="card-glow"></div><div class="text-2xl mb-3">&#128295;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Bundle Analyzer</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">@next/bundle-analyzer + source-map-explorer for visual treemaps of who is costing you the most bytes.</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-5 relative" style="transition-delay:.36s"><div class="card-glow"></div><div class="text-2xl mb-3">&#128269;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Chrome DevTools</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Performance panel, Layers view, Coverage tab (dead CSS/JS), Memory profiler, and the new Performance Insights panel.</p></div>
+        <div class="reveal tilt-card glass rounded-2xl p-5 relative" style="transition-delay:.42s"><div class="card-glow"></div><div class="text-2xl mb-3">&#128202;</div><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">web-vitals.js</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Google's official library. Measure LCP, CLS, INP, FCP, TTFB in real user sessions and send to any analytics endpoint.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider max-w-6xl mx-auto"></div>
+
+  <!-- ── CTA ────────────────────────────────────────────────────────── -->
+  <section class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="reveal glass rounded-3xl p-8 md:p-14 text-center relative overflow-hidden">
+        <div class="blob w-72 h-72 dark:bg-emerald-700 bg-emerald-200 -top-10 -right-10" style="animation-delay:1s"></div>
+        <div class="blob w-56 h-56 dark:bg-cyan-700 bg-cyan-200 bottom-0 -left-10" style="animation-delay:5s"></div>
+        <div class="relative z-10">
+          <p class="text-xs tracking-widest uppercase text-emerald-400 font-semibold mb-5">Get a Free Audit</p>
+          <h2 class="font-display font-extrabold text-3xl md:text-5xl mb-4">Is Your Site <span class="green-text">Fast Enough?</span></h2>
+          <p class="dark:text-gray-400 text-gray-600 text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed">A 1-second delay in LCP costs ~7% conversion rate. Let me audit your Core Web Vitals, find the biggest wins, and ship a performance roadmap — for free.</p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="contact.html" class="btn-shimmer text-white font-semibold px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-lg shadow-emerald-500/25">Request Free Audit &#8594;</a>
+            <a href="projects.html" class="glass font-semibold px-8 py-4 rounded-full hover:scale-105 transition-transform">See My Work</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="py-12 border-t dark:border-white/5 border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left">
+      <p class="font-display font-bold text-xl grad-text mb-1">Suboor Khan</p>
+      <p class="text-xs dark:text-gray-600 text-gray-400">Crafting digital experiences since 2018</p>
+    </div>
+    <nav aria-label="Social links"><ul class="flex items-center gap-3">
+      <li><a href="https://github.com/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-emerald-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-3.79 23.39c.6.11.82-.26.82-.58v-2.17c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0012 0z"/></svg></a></li>
+      <li><a href="https://linkedin.com/in/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416zM5.337 7.433a1.921 1.921 0 11-.001-3.842 1.921 1.921 0 010 3.842zM6.843 20.452H3.83V9h3.013v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
+      <li><a href="https://twitter.com/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-sky-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></li>
+    </ul></nav>
+    <p class="text-xs dark:text-gray-600 text-gray-400">&copy; 2026 Suboor Khan</p>
+  </div>
+</footer>
+
+<style>
+  .tech-tab-btn{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);color:inherit}
+  html:not(.dark) .tech-tab-btn{background:rgba(255,255,255,.65);border-color:rgba(0,0,0,.06)}
+  .active-tech{background:linear-gradient(135deg,#10b981,#06b6d4)!important;color:#fff!important;border-color:transparent!important}
+</style>
+
+<script>
+// ── CORE JS ──────────────────────────────────────────────────────────────────
+(()=>{
+  const html=document.documentElement;
+  const saved=localStorage.getItem('theme');
+  if(saved==='light')html.classList.remove('dark');else html.classList.add('dark');
+  document.getElementById('theme-toggle').addEventListener('click',()=>{html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  const pb=document.getElementById('progress-bar');
+  window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>50){navbar.style.background='rgba(6,6,15,.85)';navbar.style.backdropFilter='blur(20px)';navbar.style.borderBottom='1px solid rgba(255,255,255,.05)';}
+    else{navbar.style.background=navbar.style.backdropFilter=navbar.style.borderBottom='';}
+  },{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu');
+  const b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;menuBtn.setAttribute('aria-expanded',open);mobileMenu.classList.toggle('hidden',!open);b1.style.transform=open?'rotate(45deg) translateY(7px)':'';b2.style.opacity=open?'0':'1';b3.style.transform=open?'rotate(-45deg) translateY(-7px)':'';});
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{open=false;mobileMenu.classList.add('hidden');b1.style.transform=b3.style.transform='';b2.style.opacity='1';}));
+  const cur=document.getElementById('cursor'),fol=document.getElementById('cursor-follower');
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mousedown',()=>cur.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('clicking'));
+  (function tick(){fx+=(mx-fx)*.1;fy+=(my-fy)*.1;fol.style.left=fx+'px';fol.style.top=fy+'px';requestAnimationFrame(tick);})();
+  document.querySelectorAll('a,button,input,textarea,.tilt-card').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('hovered'));el.addEventListener('mouseleave',()=>cur.classList.remove('hovered'));});
+  const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  const TILT=10;
+  document.querySelectorAll('.tilt-card').forEach(card=>{
+    const glow=card.querySelector('.card-glow');
+    card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(800px) rotateX('+(-y*TILT)+'deg) rotateY('+(x*TILT)+'deg) scale3d(1.02,1.02,1.02)';if(glow){glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}});
+    card.addEventListener('mouseleave',()=>{card.style.transform='perspective(800px) rotateX(0) rotateY(0) scale3d(1,1,1)';});
+  });
+})();
+
+// ── LIGHTHOUSE RINGS (hero) ───────────────────────────────────────────────────
+(function(){
+  const scores={perf:100,a11y:98,bp:100,seo:100};
+  const TOTAL=188.5;
+  function animRing(id,scoreId,target){
+    setTimeout(()=>{
+      document.getElementById(id).style.strokeDashoffset=TOTAL-(TOTAL*(target/100));
+      let n=0,t=setInterval(()=>{document.getElementById(scoreId).textContent=Math.min(++n,target);if(n>=target)clearInterval(t);},18);
+    },300);
+  }
+  const obs=new IntersectionObserver(entries=>{
+    if(!entries[0].isIntersecting)return;obs.disconnect();
+    animRing('lh-perf','n-perf',scores.perf);
+    animRing('lh-a11y','n-a11y',scores.a11y);
+    animRing('lh-bp','n-bp',scores.bp);
+    animRing('lh-seo','n-seo',scores.seo);
+  },{threshold:0.3});
+  const hero=document.querySelector('section');
+  if(hero)obs.observe(hero);
+})();
+
+// ── VITAL RINGS ───────────────────────────────────────────────────────────────
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.vring').forEach(r=>{
+        const pct=parseFloat(r.dataset.fill)/100;
+        r.style.strokeDashoffset=345.58-(345.58*pct);
+      });
+      obs.unobserve(e.target);
+    });
+  },{threshold:0.2});
+  document.querySelectorAll('#v-lcp,#v-cls,#v-inp,#v-fcp').forEach(el=>obs.observe(el));
+})();
+
+// ── PERF BARS (case studies) ──────────────────────────────────────────────────
+(function(){
+  ['bars-1','bars-2'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const obs=new IntersectionObserver(entries=>{
+      if(!entries[0].isIntersecting)return;obs.disconnect();
+      el.querySelectorAll('.perf-fill').forEach(b=>{
+        setTimeout(()=>{b.style.width=b.dataset.pct+'%';},80);
+      });
+    },{threshold:0.2});
+    obs.observe(el);
+  });
+})();
+
+// ── TECHNIQUE TABS ────────────────────────────────────────────────────────────
+document.querySelectorAll('.tech-tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tech-tab-btn').forEach(b=>b.classList.remove('active-tech'));
+    btn.classList.add('active-tech');
+    document.querySelectorAll('.tech-tab-panel').forEach(p=>p.classList.add('hidden'));
+    const panel=document.getElementById('tab-'+btn.dataset.tab);
+    if(panel)panel.classList.remove('hidden');
+  });
+});
+</script>
+</body>
+</html>

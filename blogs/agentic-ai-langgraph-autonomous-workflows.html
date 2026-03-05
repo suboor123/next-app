@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agentic AI with LangGraph: Building Autonomous Multi-Step Workflows — Suboor Khan Blog</title>
+  <meta name="description" content="Design and deploy AI agents that plan, execute, and recover from failures using LangGraph's state machines, conditional routing, and checkpointing."/>
+  <meta name="keywords" content="LangGraph, AI Agents, Autonomous Workflows, LangChain, State Machine AI, Tool Calling, Human-in-the-Loop, Suboor Khan"/>
+  <meta name="author" content="Suboor Khan"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://suboorkhan.dev/blogs/agentic-ai-langgraph-autonomous-workflows.html"/>
+  <meta name="theme-color" content="#7c3aed"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://suboorkhan.dev/blogs/agentic-ai-langgraph-autonomous-workflows.html"/>
+  <meta property="og:title" content="Agentic AI with LangGraph: Building Autonomous Multi-Step Workflows"/>
+  <meta property="og:description" content="Design and deploy AI agents that plan, execute and recover from failures using LangGraph's state machines and checkpointing."/>
+  <meta property="og:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:locale" content="en_GB"/>
+  <meta property="article:published_time" content="2026-02-08T00:00:00+00:00"/>
+  <meta property="article:section" content="AI/LLMs"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Agentic AI with LangGraph: Autonomous Workflows"/>
+  <meta name="twitter:description" content="LangGraph state machines, nodes, conditional routing, checkpointing, and human-in-the-loop patterns."/>
+  <meta name="twitter:image" content="https://suboorkhan.dev/og-cover.png"/>
+  <meta name="twitter:label1" content="Reading time"/>
+  <meta name="twitter:data1" content="20 min read"/>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[{
+      "@type":"BlogPosting",
+      "@id":"https://suboorkhan.dev/blogs/agentic-ai-langgraph-autonomous-workflows.html#article",
+      "url":"https://suboorkhan.dev/blogs/agentic-ai-langgraph-autonomous-workflows.html",
+      "headline":"Agentic AI with LangGraph: Building Autonomous Multi-Step Workflows",
+      "description":"Design and deploy AI agents that plan, execute and recover from failures using LangGraph's state machines and checkpointing.",
+      "image":{"@type":"ImageObject","url":"https://suboorkhan.dev/og-cover.png","width":1200,"height":630},
+      "author":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "publisher":{"@type":"Person","name":"Suboor Khan","url":"https://suboorkhan.dev/"},
+      "datePublished":"2026-02-08T00:00:00+00:00",
+      "dateModified":"2026-02-15T00:00:00+00:00",
+      "inLanguage":"en-GB",
+      "keywords":["LangGraph","AI Agents","Autonomous Workflows","LangChain","State Machines","Tool Calling"],
+      "articleSection":"AI/LLMs",
+      "wordCount":5200,
+      "timeRequired":"PT20M",
+      "isPartOf":{"@type":"Blog","@id":"https://suboorkhan.dev/blog.html","name":"Suboor Khan — Tech Blog","url":"https://suboorkhan.dev/blog.html"},
+      "breadcrumb":{"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://suboorkhan.dev/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":"https://suboorkhan.dev/blog.html"},
+        {"@type":"ListItem","position":3,"name":"Agentic AI with LangGraph","item":"https://suboorkhan.dev/blogs/agentic-ai-langgraph-autonomous-workflows.html"}
+      ]}
+    }]
+  }
+  </script>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{cursor:none !important}
+    #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+    #cursor.hovered{width:36px;height:36px;background:#ec4899}
+    #cursor.clicking{width:8px;height:8px}
+    #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);z-index:1001;transition:width .08s linear}
+    .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+    html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+    .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+    .tilt-card:hover{box-shadow:0 24px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.12)}
+    .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.22) 0%,transparent 65%)}
+    .tilt-card:hover .card-glow{opacity:1}
+    .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.2);font-weight:500}
+    html:not(.dark) .skill-tag{background:rgba(124,58,237,.08);color:#7c3aed;border-color:rgba(124,58,237,.15)}
+    .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#7c3aed 0%,#ec4899 40%,#f97316 60%,#7c3aed 100%);animation:shimmer 3s ease infinite}
+    .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.25),transparent)}
+    .prose h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;margin:2.5rem 0 1rem;line-height:1.3}
+    .prose h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:2rem 0 .75rem}
+    .prose p{margin-bottom:1.25rem;line-height:1.85;font-size:.925rem}
+    .prose ul,.prose ol{margin:1rem 0 1.5rem 1.25rem}
+    .prose ul{list-style:disc}.prose ol{list-style:decimal}
+    .prose li{margin-bottom:.5rem;font-size:.925rem;line-height:1.75}
+    .prose blockquote{border-left:3px solid #7c3aed;padding:.75rem 1.25rem;margin:1.5rem 0;background:rgba(124,58,237,.06);border-radius:0 .75rem .75rem 0}
+    .prose blockquote p{margin:0;color:#a78bfa;font-style:italic}
+    .prose code{font-size:.8rem;background:rgba(124,58,237,.12);color:#a78bfa;padding:.15rem .4rem;border-radius:.3rem;font-family:'Courier New',monospace}
+    .prose pre{background:#0d0d1a;border:1px solid rgba(124,58,237,.2);border-radius:1rem;padding:1.25rem 1.5rem;margin:1.5rem 0;overflow-x:auto}
+    .prose pre code{background:none;color:#e2e8f0;padding:0;font-size:.8rem}
+    .toc-link{font-size:.8rem;padding:.3rem .75rem;border-radius:.5rem;transition:all .2s;display:block}
+    .toc-link:hover,.toc-link.active{background:rgba(124,58,237,.12);color:#a78bfa}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float{animation:float 4s ease-in-out infinite}
+  </style>
+</head>
+<body class="dark:bg-[#06060f] bg-gray-50 dark:text-gray-100 text-gray-900 font-sans antialiased overflow-x-hidden">
+<a href="#article-body" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-lg focus:text-sm">Skip to article</a>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<div id="progress-bar" style="width:0%" aria-hidden="true"></div>
+<header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="font-display text-xl font-bold grad-text tracking-tight">SK.</a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <li><a href="../index.html#about" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">About</a></li>
+        <li><a href="../projects.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="../blog.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors font-semibold" style="color:#7c3aed">Blog</a></li>
+        <li><a href="../ai-skills.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">AI &amp; Skills</a></li>
+        <li><a href="../resume.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="../contact.html" class="dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Contact</a></li>
+        <li><a href="../hire-me.html" class="px-4 py-2 rounded-full btn-shimmer text-white font-semibold text-sm hover:scale-105 transition-transform shadow-md shadow-purple-500/25">Hire Me</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button id="menu-btn" class="md:hidden w-10 h-10 glass rounded-full flex flex-col items-center justify-center gap-[5px]" aria-label="Open menu" aria-expanded="false">
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar1"></span>
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar2"></span>
+          <span class="w-4 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass mx-4 mb-4 rounded-2xl overflow-hidden">
+      <ul class="flex flex-col p-4 gap-2 text-sm font-medium">
+        <li><a href="../index.html#about" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">About</a></li>
+        <li><a href="../projects.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Projects</a></li>
+        <li><a href="../blog.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Blog</a></li>
+        <li><a href="../ai-skills.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">AI &amp; Skills</a></li>
+        <li><a href="../resume.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Resume</a></li>
+        <li><a href="../contact.html" class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Contact</a></li>
+        <li><a href="../hire-me.html" class="mobile-link block px-4 py-2.5 rounded-xl bg-purple-600/20 text-purple-400 font-semibold">✦ Hire Me</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="relative pt-32 pb-0 overflow-hidden">
+    <div class="blob w-[32rem] h-[32rem] dark:bg-teal-900 bg-teal-200 -top-32 -right-32" style="animation-delay:0s"></div>
+    <div class="blob w-64 h-64 dark:bg-cyan-800 bg-cyan-200 bottom-0 left-0" style="animation-delay:6s"></div>
+    <div class="max-w-5xl mx-auto px-6">
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs dark:text-gray-500 text-gray-400 mb-8 animate-[fadeUp_.5s_ease_forwards]">
+        <a href="../index.html" class="hover:dark:text-purple-300 hover:text-purple-600">Home</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="../blog.html" class="hover:dark:text-purple-300 hover:text-purple-600">Blog</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="dark:text-gray-300 text-gray-600">Agentic AI with LangGraph</span>
+      </nav>
+      <div class="flex flex-wrap items-center gap-3 mb-5 animate-[fadeUp_.5s_.05s_ease_both]">
+        <span class="skill-tag">AI/LLMs</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">8 Feb 2026</span>
+        <span class="dark:text-gray-700 text-gray-300">·</span>
+        <span class="text-xs dark:text-gray-500 text-gray-400">20 min read</span>
+      </div>
+      <h1 class="font-display font-extrabold leading-tight mb-6 animate-[fadeUp_.6s_.1s_ease_both]" style="font-size:clamp(1.8rem,5vw,3.5rem)">Agentic AI with LangGraph: Building Autonomous Multi-Step Workflows</h1>
+      <p class="dark:text-gray-400 text-gray-500 text-base leading-relaxed mb-8 max-w-2xl animate-[fadeUp_.6s_.12s_ease_both]">Design and deploy AI agents that plan, execute, and recover from failures using LangGraph's state machines, conditional routing, and checkpointing.</p>
+      <div class="flex items-center gap-4 mb-12 animate-[fadeUp_.6s_.15s_ease_both]">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center font-display font-bold text-white text-lg flex-shrink-0" style="background:rgba(124,58,237,.4)">SK</div>
+        <div><p class="font-semibold text-sm">Suboor Khan</p><p class="text-xs dark:text-gray-500 text-gray-400">Full-Stack Developer &amp; Technical Writer</p></div>
+        <div class="ml-auto">
+          <button onclick="navigator.clipboard.writeText(location.href).then(()=>this.textContent='✓')" class="glass px-3 h-9 rounded-full text-xs font-semibold hover:scale-110 transition-transform">Copy link</button>
+        </div>
+      </div>
+      <div class="rounded-3xl overflow-hidden mb-0 float" style="background:linear-gradient(135deg,#00080a,#001a20,#003040);height:340px;position:relative">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(20,184,166,.6) 1px,transparent 1px);background-size:28px 28px"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-[5rem]" style="filter:drop-shadow(0 0 60px rgba(20,184,166,.5))">🕸️</div>
+        <div class="absolute bottom-5 right-6 glass px-3 py-1.5 rounded-xl text-xs font-semibold dark:text-teal-300 text-teal-700">AI/LLMs</div>
+      </div>
+    </div>
+  </section>
+  <section class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-[1fr_260px] gap-12 items-start">
+        <article id="article-body" class="prose dark:text-gray-300 text-gray-700">
+
+<div id="intro">
+  <p>Standard LLM calls are stateless request-response cycles. Agents are different: they run in loops, use tools, accumulate state, and make decisions at each step. LangGraph gives you the primitives to build production-grade agents without fighting against a framework that wants to hide the complexity from you.</p>
+  <p>This guide starts from first principles — what a graph is, how nodes and edges work, conditional routing — and builds up to checkpointing, human-in-the-loop patterns, and multi-agent coordination.</p>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="what-is-langgraph">
+  <h2 class="dark:text-white text-gray-900">What Is LangGraph?</h2>
+  <p>LangGraph is a library for building stateful, multi-actor applications using a directed graph model. Think of it as React's state machine for LLM workflows:</p>
+  <ul>
+    <li><strong>State</strong> — a typed dict/TypedDict that flows through the graph; nodes read and update it</li>
+    <li><strong>Nodes</strong> — functions (sync or async) that receive state and return state updates</li>
+    <li><strong>Edges</strong> — define execution order; can be static or conditional (dynamic routing)</li>
+    <li><strong>Checkpointer</strong> — persists state between steps for long-running or paused workflows</li>
+  </ul>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="first-graph">
+  <h2 class="dark:text-white text-gray-900">Your First LangGraph Agent</h2>
+  <pre><code>from typing import TypedDict, Annotated
+from langgraph.graph import StateGraph, START, END
+from langgraph.prebuilt import ToolNode
+from langchain_anthropic import ChatAnthropic
+from langchain_core.tools import tool
+import operator
+
+# 1. Define state
+class AgentState(TypedDict):
+    messages: Annotated[list, operator.add]  # list that accumulates
+    tool_calls_made: int
+
+# 2. Define tools
+@tool
+def web_search(query: str) -> str:
+    """Search the web for current information."""
+    # Your real search implementation here
+    return f"Search results for: {query}"
+
+@tool
+def calculator(expression: str) -> str:
+    """Evaluate a mathematical expression."""
+    return str(eval(expression))  # use safer eval in production
+
+tools = [web_search, calculator]
+
+# 3. Set up the model with tools bound
+model = ChatAnthropic(model="claude-3-5-sonnet-20241022").bind_tools(tools)
+
+# 4. Define nodes
+def call_model(state: AgentState) -> dict:
+    response = model.invoke(state["messages"])
+    return {
+        "messages": [response],
+        "tool_calls_made": state["tool_calls_made"]
+    }
+
+def should_continue(state: AgentState) -> str:
+    """Conditional edge: route to tools or end."""
+    last = state["messages"][-1]
+    if hasattr(last, "tool_calls") and last.tool_calls:
+        if state["tool_calls_made"] >= 5:
+            return "end"  # Circuit breaker
+        return "tools"
+    return "end"
+
+# 5. Build the graph
+tool_node = ToolNode(tools)
+
+graph = StateGraph(AgentState)
+graph.add_node("agent", call_model)
+graph.add_node("tools", tool_node)
+
+graph.add_edge(START, "agent")
+graph.add_conditional_edges("agent", should_continue, {"tools": "tools", "end": END})
+graph.add_edge("tools", "agent")  # Loop back after tool execution
+
+app = graph.compile()
+
+# 6. Run
+result = app.invoke({
+    "messages": [{"role": "user", "content": "What's the current Bitcoin price in EUR?"}],
+    "tool_calls_made": 0
+})
+print(result["messages"][-1].content)</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="checkpointing">
+  <h2 class="dark:text-white text-gray-900">Checkpointing for Long-Running Workflows</h2>
+  <p>Checkpointers persist state between graph runs. This enables resumable workflows, multi-turn conversations that span hours/days, and human-in-the-loop review at arbitrary points.</p>
+  <pre><code>from langgraph.checkpoint.memory import MemorySaver
+from langgraph.checkpoint.postgres import PostgresSaver
+import psycopg
+
+# Memory checkpointer (dev/testing)
+memory = MemorySaver()
+app = graph.compile(checkpointer=memory)
+
+# Postgres checkpointer (production)
+conn = psycopg.connect("postgresql://user:pass@localhost/langgraph")
+checkpointer = PostgresSaver(conn)
+checkpointer.setup()  # Creates tables
+app = graph.compile(checkpointer=checkpointer)
+
+# Run with a thread_id — same ID continues existing state
+config = {"configurable": {"thread_id": "user-session-abc123"}}
+
+# First run
+result = app.invoke(
+    {"messages": [{"role": "user", "content": "Research quantum computing for me"}]},
+    config=config
+)
+
+# Resume later — state is automatically loaded from checkpoint
+result2 = app.invoke(
+    {"messages": [{"role": "user", "content": "Now summarise what you found in 3 bullets"}]},
+    config=config  # Same thread_id restores previous state
+)</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="human-in-loop">
+  <h2 class="dark:text-white text-gray-900">Human-in-the-Loop</h2>
+  <p>Use <code>interrupt_before</code> to pause the graph before executing a specific node — waiting for human approval before taking an action.</p>
+  <pre><code>from langgraph.types import interrupt
+
+# Pause before the "execute_code" node for human review
+app = graph.compile(
+    checkpointer=memory,
+    interrupt_before=["execute_code"]
+)
+
+config = {"configurable": {"thread_id": "review-thread-1"}}
+
+# Agent plans, then pauses waiting for approval
+state = app.invoke(initial_input, config=config)
+print("Agent wants to execute:", state["messages"][-1].content)
+print("Current graph state:", app.get_state(config))
+
+# Human reviews and approves — continue the graph
+human_decision = input("Approve? (y/n): ")
+if human_decision == "y":
+    final = app.invoke(None, config=config)  # None continues from checkpoint
+else:
+    app.update_state(config, {"messages": [{"role": "user", "content": "Do NOT execute that code. Explain instead."}]})
+    final = app.invoke(None, config=config)</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="multi-agent">
+  <h2 class="dark:text-white text-gray-900">Multi-Agent Patterns</h2>
+  <p>Complex tasks benefit from specialised agents. A <strong>supervisor</strong> agent routes work to sub-agents; a <strong>swarm</strong> pattern has agents hand off to each other based on expertise.</p>
+  <pre><code>from langchain_core.messages import HumanMessage
+from langgraph.graph import StateGraph, MessagesState
+
+# Subgraph 1: Research agent
+research_graph = StateGraph(MessagesState)
+# ... add research-specific tools and nodes
+
+# Subgraph 2: Code agent
+code_graph = StateGraph(MessagesState)
+# ... add code execution tools and nodes
+
+research_app = research_graph.compile()
+code_app     = code_graph.compile()
+
+# Supervisor node
+def supervisor(state: MessagesState) -> dict:
+    """Decide which subgraph handles the task."""
+    task = state["messages"][-1].content
+    if "code" in task or "implement" in task:
+        result = code_app.invoke(state)
+    else:
+        result = research_app.invoke(state)
+    return {"messages": result["messages"]}
+
+parent = StateGraph(MessagesState)
+parent.add_node("supervisor", supervisor)
+parent.add_edge(START, "supervisor")
+parent.add_edge("supervisor", END)
+orchestrator = parent.compile()</code></pre>
+  <blockquote><p>For production multi-agent systems, use LangSmith tracing to visualise agent decision trees and debug tool call sequences across nested graphs.</p></blockquote>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="streaming">
+  <h2 class="dark:text-white text-gray-900">Streaming Agentic Output</h2>
+  <pre><code># Stream each step as it happens
+async for event in app.astream_events(initial_input, config=config, version="v2"):
+    kind = event["event"]
+
+    if kind == "on_chat_model_stream":
+        # Stream LLM tokens to UI
+        chunk = event["data"]["chunk"]
+        print(chunk.content, end="", flush=True)
+
+    elif kind == "on_tool_start":
+        print(f"\n[Tool] {event['name']} called with {event['data']['input']}")
+
+    elif kind == "on_tool_end":
+        print(f"[Tool] Result: {event['data']['output'][:100]}...")</code></pre>
+</div>
+
+<div class="s-divider my-8"></div>
+
+<div id="summary">
+  <h2 class="dark:text-white text-gray-900">Summary</h2>
+  <ul>
+    <li>LangGraph = directed graph of stateful nodes — explicit and debuggable vs. opaque chains</li>
+    <li>Conditional edges enable dynamic routing (tool loop, circuit breakers, fallbacks)</li>
+    <li>Checkpointers make long-running workflows resumable across process restarts</li>
+    <li><code>interrupt_before</code> enables human-in-the-loop review at any node boundary</li>
+    <li>Multi-agent systems: supervisor routes to specialised sub-graphs</li>
+    <li>LangSmith tracing is essential for debugging nested agent calls in production</li>
+  </ul>
+</div>
+
+        </article>
+        <aside class="lg:sticky lg:top-28 space-y-5">
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">In This Article</p>
+            <nav>
+              <a href="#intro" class="toc-link dark:text-gray-400 text-gray-600">Introduction</a>
+              <a href="#what-is-langgraph" class="toc-link dark:text-gray-400 text-gray-600">What Is LangGraph?</a>
+              <a href="#first-graph" class="toc-link dark:text-gray-400 text-gray-600">First Agent</a>
+              <a href="#checkpointing" class="toc-link dark:text-gray-400 text-gray-600">Checkpointing</a>
+              <a href="#human-in-loop" class="toc-link dark:text-gray-400 text-gray-600">Human-in-the-Loop</a>
+              <a href="#multi-agent" class="toc-link dark:text-gray-400 text-gray-600">Multi-Agent Patterns</a>
+              <a href="#streaming" class="toc-link dark:text-gray-400 text-gray-600">Streaming</a>
+              <a href="#summary" class="toc-link dark:text-gray-400 text-gray-600">Summary</a>
+            </nav>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal space-y-3 text-xs">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold">Article Info</p>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Published</span><span class="font-medium">8 Feb 2026</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Read time</span><span class="font-medium">20 min read</span></div>
+            <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Category</span><span class="font-medium">AI/LLMs</span></div>
+          </div>
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Tags</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">LangGraph</span><span class="skill-tag">AI Agents</span><span class="skill-tag">LangChain</span><span class="skill-tag">State Machines</span>
+            </div>
+          </div>
+          <a href="../hire-me.html" class="glass block rounded-2xl p-5 reveal text-center hover:scale-[1.02] transition-transform"><p class="text-xs dark:text-purple-400 text-purple-600 font-semibold mb-1">Build AI agents?</p><p class="font-display font-bold text-sm mb-2">Work with me</p><span class="btn-shimmer text-white text-xs font-bold px-4 py-1.5 rounded-full inline-block">Hire Me →</span></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <div class="s-divider max-w-5xl mx-auto px-6 my-4"></div>
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="font-display font-bold text-2xl mb-8 reveal">More <span class="grad-text">Articles</span></h2>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <a href="claude-api-masterclass-tool-use-vision.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#1a0a00,#3d1a00,#6b3000)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🟠</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">Claude API Masterclass</h3><p class="text-xs dark:text-gray-500 text-gray-400">14 min read</p></div>
+        </a>
+        <a href="building-ai-agents-from-scratch.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:.05s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#000a1a,#001433,#002966)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🕵️</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">Building AI Agents from Scratch</h3><p class="text-xs dark:text-gray-500 text-gray-400">17 min read</p></div>
+        </a>
+        <a href="prompt-engineering-production-llms.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative" style="transition-delay:.1s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#0f0800,#1f1200,#3d2600)"><div class="absolute inset-0 flex items-center justify-center text-4xl">🎯</div></div>
+          <div class="p-4"><span class="skill-tag text-[10px] mb-2 inline-block">AI/LLMs</span><h3 class="font-display font-bold text-sm mb-1 leading-snug">Prompt Engineering for Production LLMs</h3><p class="text-xs dark:text-gray-500 text-gray-400">12 min read</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="pb-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="reveal glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="blob w-64 h-64 dark:bg-purple-700 bg-purple-200 -top-10 -right-10"></div>
+        <div class="relative z-10">
+          <h3 class="font-display font-bold text-3xl mb-3">Stay Updated</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-sm mb-8 max-w-md mx-auto">Deep-dive articles on AI, agents, and software engineering — twice a month.</p>
+          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return false">
+            <input type="email" placeholder="your@email.com" class="flex-1 rounded-xl px-4 py-3 text-sm outline-none border dark:border-white/10 border-gray-200 focus:border-purple-500 dark:bg-white/5 bg-white/70"/>
+            <button type="submit" class="btn-shimmer text-white font-semibold text-sm px-6 py-3 rounded-xl hover:scale-105 transition-transform">Subscribe Free</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="py-12 border-t dark:border-white/5 border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div><p class="font-display font-bold text-xl grad-text mb-1">Suboor Khan</p><p class="text-xs dark:text-gray-600 text-gray-400">Crafting digital experiences since 2018</p></div>
+    <p class="text-xs dark:text-gray-600 text-gray-400">&copy; 2026 Suboor Khan</p>
+  </div>
+</footer>
+<script>
+(() => {
+  const html=document.documentElement;
+  if(localStorage.getItem('theme')==='light')html.classList.remove('dark');else html.classList.add('dark');
+  document.getElementById('theme-toggle').addEventListener('click',()=>{html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  const pb=document.getElementById('progress-bar');
+  window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.style.background='rgba(6,6,15,.85)';navbar.style.backdropFilter='blur(20px)';}else{navbar.style.background=navbar.style.backdropFilter='';}},{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu');
+  const b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;menuBtn.setAttribute('aria-expanded',open);mobileMenu.classList.toggle('hidden',!open);b1.style.transform=open?'rotate(45deg) translateY(7px)':'';b2.style.opacity=open?'0':'1';b3.style.transform=open?'rotate(-45deg) translateY(-7px)':'';});
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{open=false;mobileMenu.classList.add('hidden');b1.style.transform=b3.style.transform='';b2.style.opacity='1';}));
+  const cur=document.getElementById('cursor'),fol=document.getElementById('cursor-follower');
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mousedown',()=>cur.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('clicking'));
+  document.querySelectorAll('a,button,input,.tilt-card').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('hovered'));el.addEventListener('mouseleave',()=>cur.classList.remove('hovered'));});
+  (function tick(){fx+=(mx-fx)*.1;fy+=(my-fy)*.1;fol.style.left=fx+'px';fol.style.top=fy+'px';requestAnimationFrame(tick);})();
+  const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  document.querySelectorAll('.tilt-card').forEach(card=>{const glow=card.querySelector('.card-glow');card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(800px) rotateX('+(-y*10)+'deg) rotateY('+(x*10)+'deg) scale3d(1.02,1.02,1.02)';if(glow){glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}});card.addEventListener('mouseleave',()=>{card.style.transform='';});});
+  const tocLinks=document.querySelectorAll('.toc-link');
+  if(tocLinks.length){const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){tocLinks.forEach(l=>l.classList.remove('active'));const a=[...tocLinks].find(l=>l.getAttribute('href')==='#'+e.target.id);if(a)a.classList.add('active');}});},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('article [id]').forEach(s=>obs.observe(s));}
+})();
+</script>
+</body>
+</html>

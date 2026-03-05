@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NexusAI Dashboard — Project Detail — Suboor Khan</title>
+  <meta name="description" content="Full case study for NexusAI Dashboard — a real-time AI analytics platform processing 10M+ events/day, built with React, Node.js, and AWS."/>
+  <meta name="author" content="Suboor Khan"/>
+
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://suboorkhan.dev/project-detail.html"/>
+  <meta name="keywords" content="NexusAI Case Study, AI Dashboard React, Data Visualization Project, Full Stack Project Showcase, Suboor Khan Projects"/>
+  <meta name="theme-color" content="#7c3aed"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type"          content="article"/>
+  <meta property="og:url"           content="https://suboorkhan.dev/project-detail.html"/>
+  <meta property="og:site_name"     content="Suboor Khan — Portfolio"/>
+  <meta property="og:title"         content="NexusAI — AI Analytics Dashboard | Suboor Khan"/>
+  <meta property="og:description"   content="End-to-end case study of NexusAI: a real-time AI analytics dashboard built with React 19, WebSockets, and RAG pipelines. Performance improved 97%."/>
+  <meta property="og:image"         content="https://suboorkhan.dev/og-cover.png"/>
+  <meta property="og:image:width"   content="1200"/>
+  <meta property="og:image:height"  content="630"/>
+  <meta property="og:image:alt"     content="NexusAI Project Screenshot"/>
+  <meta property="og:locale"        content="en_GB"/>
+  <meta property="article:author"   content="https://suboorkhan.dev/"/>
+  <meta property="article:published_time" content="2026-01-01"/>
+  <meta property="article:tag"      content="React"/>
+  <meta property="article:tag"      content="AI"/>
+  <meta property="article:tag"      content="Dashboard"/>
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card"         content="summary_large_image"/>
+  <meta name="twitter:site"         content="@suboorkhan"/>
+  <meta name="twitter:creator"      content="@suboorkhan"/>
+  <meta name="twitter:title"        content="NexusAI — AI Analytics Dashboard | Suboor Khan"/>
+  <meta name="twitter:description"  content="Case study: real-time AI analytics dashboard. React 19, WebSockets, RAG. INP improved from 380ms to 12ms."/>
+  <meta name="twitter:image"        content="https://suboorkhan.dev/og-cover.png"/>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://suboorkhan.dev/project-detail.html#software",
+        "name": "NexusAI — AI Analytics Dashboard",
+        "url": "https://suboorkhan.dev/project-detail.html",
+        "description": "Real-time AI analytics dashboard with RAG pipelines, WebSocket live data, and React 19 concurrent rendering.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "author": {
+          "@type": "Person",
+          "@id": "https://suboorkhan.dev/#person",
+          "name": "Suboor Khan",
+          "url": "https://suboorkhan.dev/"
+        },
+        "programmingLanguage": ["TypeScript","Python","SQL"],
+        "runtimePlatform": "React 19, Node.js, PostgreSQL",
+        "dateCreated": "2025-06-01",
+        "dateModified": "2026-01-01"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://suboorkhan.dev/project-detail.html#article",
+        "url": "https://suboorkhan.dev/project-detail.html",
+        "headline": "NexusAI — AI Analytics Dashboard Case Study",
+        "description": "End-to-end case study: how Suboor Khan built and optimised a real-time AI analytics dashboard, achieving 97% INP improvement.",
+        "author": {
+          "@type": "Person",
+          "@id": "https://suboorkhan.dev/#person",
+          "name": "Suboor Khan"
+        },
+        "datePublished": "2026-01-01",
+        "dateModified": "2026-03-02",
+        "inLanguage": "en-GB",
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://suboorkhan.dev/",
+          "name": "Suboor Khan — Portfolio"
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{cursor:none !important}
+    #cursor{width:12px;height:12px;background:#7c3aed;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .3s;mix-blend-mode:difference}
+    #cursor.hovered{width:36px;height:36px;background:#ec4899}
+    #cursor.clicking{width:8px;height:8px}
+    #cursor-follower{width:38px;height:38px;border:1.5px solid rgba(124,58,237,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.6}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);z-index:1001;transition:width .08s linear;border-radius:0 2px 2px 0}
+    .glass{background:rgba(255,255,255,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+    html:not(.dark) .glass{background:rgba(255,255,255,.65);border:1px solid rgba(0,0,0,.08)}
+    .blob{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.2;animation:blob 9s infinite;pointer-events:none}
+    .grad-text{background:linear-gradient(135deg,#7c3aed 0%,#ec4899 50%,#f97316 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt-card{transform-style:preserve-3d;transition:transform .08s linear,box-shadow .35s ease;will-change:transform}
+    .tilt-card:hover{box-shadow:0 24px 60px rgba(124,58,237,.22),0 0 0 1px rgba(124,58,237,.12)}
+    .card-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(124,58,237,.22) 0%,transparent 65%)}
+    .tilt-card:hover .card-glow{opacity:1}
+    .skill-tag{font-size:.7rem;padding:.2rem .65rem;border-radius:9999px;background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.2);font-weight:500}
+    html:not(.dark) .skill-tag{background:rgba(124,58,237,.08);color:#7c3aed;border-color:rgba(124,58,237,.15)}
+    .btn-shimmer{background-size:200% auto;background-image:linear-gradient(135deg,#7c3aed 0%,#ec4899 40%,#f97316 60%,#7c3aed 100%);animation:shimmer 3s ease infinite}
+    .s-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.25),transparent)}
+    *,*::before,*::after{transition:background-color .3s ease,border-color .3s ease,color .2s ease}
+    /* Prose styles */
+    .prose h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;margin:2.5rem 0 1rem;line-height:1.3}
+    .prose h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:2rem 0 .75rem}
+    .prose p{margin-bottom:1.25rem;line-height:1.85;font-size:.925rem}
+    .prose ul{margin:1rem 0 1.5rem 1.25rem;list-style:disc;}
+    .prose ul li{margin-bottom:.5rem;font-size:.925rem;line-height:1.75}
+    .prose ol{margin:1rem 0 1.5rem 1.25rem;list-style:decimal}
+    .prose ol li{margin-bottom:.5rem;font-size:.925rem;line-height:1.75}
+    .prose blockquote{border-left:3px solid #7c3aed;padding:.75rem 1.25rem;margin:1.5rem 0;background:rgba(124,58,237,.06);border-radius:0 .75rem .75rem 0}
+    .prose blockquote p{margin:0;color:#a78bfa;font-style:italic}
+    html:not(.dark) .prose blockquote p{color:#7c3aed}
+    .prose code{font-size:.8rem;background:rgba(124,58,237,.12);color:#a78bfa;padding:.15rem .4rem;border-radius:.3rem;font-family:'Courier New',monospace}
+    html:not(.dark) .prose code{background:rgba(124,58,237,.08);color:#6d28d9}
+    .prose pre{background:#0d0d1a;border:1px solid rgba(124,58,237,.2);border-radius:1rem;padding:1.25rem 1.5rem;margin:1.5rem 0;overflow-x:auto}
+    html:not(.dark) .prose pre{background:#f5f3ff}
+    .prose pre code{background:none;color:#e2e8f0;padding:0;font-size:.8rem}
+    html:not(.dark) .prose pre code{color:#3730a3}
+    .toc-link{font-size:.8rem;padding:.3rem .75rem;border-radius:.5rem;transition:all .2s;display:block}
+    .toc-link:hover,.toc-link.active{background:rgba(124,58,237,.12);color:#a78bfa}
+    html:not(.dark) .toc-link:hover,html:not(.dark) .toc-link.active{color:#7c3aed}
+    .feature-check::before{content:"✓";color:#7c3aed;font-weight:700;margin-right:.5rem}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float{animation:float 4s ease-in-out infinite}
+  </style>
+</head>
+<body class="dark:bg-[#06060f] bg-gray-50 dark:text-gray-100 text-gray-900 font-sans antialiased overflow-x-hidden">
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<div id="progress-bar" style="width:0%" aria-hidden="true"></div>
+<header>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-display text-xl font-bold grad-text tracking-tight">SK.</a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
+        <li><a href="index.html#about"  class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">About</a></li>
+        <li><a href="projects.html"     class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="blog.html"         class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Blog</a></li>
+        <li><a href="ai-skills.html"    class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">AI &amp; Skills</a></li>
+        <li><a href="performance.html"   class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Performance</a></li>
+        <li><a href="resume.html"       class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="contact.html"      class="nav-link dark:text-gray-300 text-gray-600 hover:text-accent transition-colors">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="w-5 h-5 text-gray-700 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button id="menu-btn" class="md:hidden w-10 h-10 glass rounded-full flex flex-col items-center justify-center gap-[5px] hover:scale-110 transition-transform" aria-label="Open menu" aria-expanded="false">
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar1"></span>
+          <span class="w-5 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar2"></span>
+          <span class="w-4 h-0.5 dark:bg-white bg-gray-800 rounded transition-all" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden glass mx-4 mb-4 rounded-2xl overflow-hidden">
+      <ul class="flex flex-col p-4 gap-2 text-sm font-medium">
+        <li><a href="index.html#about"  class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">About</a></li>
+        <li><a href="projects.html"     class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Projects</a></li>
+        <li><a href="blog.html"         class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Blog</a></li>
+        <li><a href="ai-skills.html"    class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">AI &amp; Skills</a></li>
+        <li><a href="performance.html"  class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Performance</a></li>
+        <li><a href="resume.html"       class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Resume</a></li>
+        <li><a href="contact.html"      class="mobile-link block px-4 py-2.5 rounded-xl hover:bg-purple-500/10 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+
+  <!-- ── HERO ──────────────────────────────────────────────────────────────── -->
+  <section class="relative pt-32 pb-0 overflow-hidden">
+    <div class="blob w-[32rem] h-[32rem] dark:bg-violet-800 bg-violet-200 -top-32 -left-32" style="animation-delay:0s" aria-hidden="true"></div>
+    <div class="blob w-72 h-72 dark:bg-pink-700 bg-pink-200 top-20 right-0"  style="animation-delay:5s" aria-hidden="true"></div>
+    <div class="max-w-5xl mx-auto px-6">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs dark:text-gray-500 text-gray-400 mb-8 animate-[fadeUp_.5s_ease_forwards]" aria-label="Breadcrumb">
+        <a href="projects.html" class="hover:dark:text-purple-300 hover:text-purple-600 transition-colors">Projects</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="dark:text-gray-300 text-gray-600">NexusAI Dashboard</span>
+      </nav>
+
+      <!-- Category + title -->
+      <div class="animate-[fadeUp_.6s_.05s_ease_both]">
+        <span class="inline-block text-xs tracking-widest uppercase dark:text-purple-400 text-purple-600 font-semibold mb-4">SaaS Platform · 2025</span>
+        <h1 class="font-display font-extrabold leading-tight mb-6" style="font-size:clamp(2.5rem,6vw,5rem)">NexusAI <span class="grad-text">Dashboard</span></h1>
+        <p class="max-w-2xl dark:text-gray-400 text-gray-600 text-sm md:text-base leading-relaxed mb-8">Real-time analytics and AI workflow platform for enterprises. Built from scratch to handle 10M+ events per day with sub-100ms query latency — cutting operational overhead by 60% for our customers.</p>
+      </div>
+
+      <!-- Meta chips -->
+      <div class="flex flex-wrap gap-3 mb-10 animate-[fadeUp_.6s_.1s_ease_both]">
+        <span class="skill-tag">React 19</span><span class="skill-tag">Node.js</span><span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">Redis</span><span class="skill-tag">AWS</span><span class="skill-tag">OpenAI API</span>
+        <span class="skill-tag">WebSockets</span><span class="skill-tag">Docker / K8s</span>
+      </div>
+
+      <!-- CTA row -->
+      <div class="flex flex-wrap gap-4 mb-12 animate-[fadeUp_.6s_.15s_ease_both]">
+        <a href="#" class="btn-shimmer text-white font-semibold text-sm px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-lg shadow-purple-500/25 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+        <a href="https://github.com/suboorkhan" target="_blank" rel="noopener noreferrer" class="glass font-semibold text-sm px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-3.79 23.39c.6.11.82-.26.82-.58v-2.17c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0012 0z"/></svg>
+          View Source
+        </a>
+        <a href="projects.html" class="glass font-semibold text-sm px-6 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2 dark:text-gray-400 text-gray-600">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          All Projects
+        </a>
+      </div>
+
+      <!-- Hero cover -->
+      <div class="relative rounded-3xl overflow-hidden float" style="background:linear-gradient(135deg,#0d0020,#1e0a3c,#4c1d8c);height:420px">
+        <div class="absolute inset-0 opacity-10" style="background-image:linear-gradient(rgba(167,139,250,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(167,139,250,.4) 1px,transparent 1px);background-size:40px 40px"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-[9rem]" style="filter:drop-shadow(0 0 80px rgba(167,139,250,.7))">🌐</div>
+        <!-- Floating stat cards -->
+        <div class="absolute top-6 left-6 glass px-4 py-3 rounded-2xl">
+          <p class="text-xs dark:text-gray-400 text-gray-600 mb-0.5">Events / day</p>
+          <p class="font-display font-bold text-lg grad-text">10M+</p>
+        </div>
+        <div class="absolute top-6 right-6 glass px-4 py-3 rounded-2xl">
+          <p class="text-xs dark:text-gray-400 text-gray-600 mb-0.5">Latency p99</p>
+          <p class="font-display font-bold text-lg text-emerald-400">&lt;100ms</p>
+        </div>
+        <div class="absolute bottom-6 left-6 glass px-4 py-3 rounded-2xl">
+          <p class="text-xs dark:text-gray-400 text-gray-600 mb-0.5">Cost reduction</p>
+          <p class="font-display font-bold text-lg grad-text">60%</p>
+        </div>
+        <div class="absolute bottom-6 right-6 glass px-4 py-3 rounded-2xl">
+          <p class="text-xs dark:text-gray-400 text-gray-600 mb-0.5">Uptime SLA</p>
+          <p class="font-display font-bold text-lg text-emerald-400">99.9%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTENT + SIDEBAR ────────────────────────────────────────────────── -->
+  <section class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-[1fr_280px] gap-12 items-start">
+
+        <!-- MAIN CONTENT -->
+        <article class="prose dark:text-gray-300 text-gray-700">
+
+          <!-- Overview -->
+          <div class="reveal" id="overview">
+            <h2 class="dark:text-white text-gray-900">Project Overview</h2>
+            <p>NexusAI Dashboard started as a consulting engagement with a Series B logistics company that was drowning in operational data spread across six different BI tools. The ask was simple: consolidate everything into one real-time platform and add AI to surface actionable insights automatically.</p>
+            <p>Eighteen months later the platform processes over 10 million events per day, serves 500+ enterprise customers, and has shipped three major feature releases including an AI co-pilot that generates natural-language summaries of anomalies as they happen.</p>
+            <blockquote><p>"NexusAI completely replaced our data team's morning report ritual. The AI summaries land in Slack at 7am before anyone opens a laptop."</p></blockquote>
+          </div>
+
+          <div class="s-divider my-8"></div>
+
+          <!-- Problem -->
+          <div class="reveal" id="problem">
+            <h2 class="dark:text-white text-gray-900">The Problem</h2>
+            <p>The client was running six separate dashboards — Grafana, Metabase, a custom React app, and three vendor portals. Their data team spent 2–3 hours every morning manually stitching together reports. Alerts were firing but nobody could correlate them fast enough to act.</p>
+            <ul>
+              <li>Alert fatigue: 400+ daily alerts across tools, most duplicates</li>
+              <li>Data lag: dashboards refreshed every 15 minutes, not real-time</li>
+              <li>No unified view: cross-system correlation required manual joins in spreadsheets</li>
+              <li>Scaling risk: the existing infrastructure couldn't handle projected 5× traffic growth</li>
+            </ul>
+          </div>
+
+          <div class="s-divider my-8"></div>
+
+          <!-- Architecture -->
+          <div class="reveal" id="architecture">
+            <h2 class="dark:text-white text-gray-900">Architecture &amp; Technical Decisions</h2>
+            <p>The core insight was to treat the platform as an event streaming system, not a polling dashboard. Every data source pushes events via webhooks or CDC (Change Data Capture) into a central Kafka-compatible queue. A Node.js processing layer normalises, enriches, and fans out events to two sinks:</p>
+            <ol>
+              <li><strong>PostgreSQL + TimescaleDB</strong> for historical queries and aggregations</li>
+              <li><strong>Redis Streams</strong> for the live dashboard via WebSocket push</li>
+            </ol>
+            <p>The frontend is a Next.js 15 App Router application using React Server Components for the heavy data tables and Client Components only where real-time updates are needed, keeping the JS bundle lean.</p>
+            <h3 class="dark:text-white text-gray-900">AI Co-Pilot</h3>
+            <p>The AI layer runs on a scheduled LangChain chain that pulls the last 15-minute window of anomalies, runs them through GPT-4o with a custom system prompt that knows the customer's domain vocabulary, and posts the summary to Slack and the in-app notification centre.</p>
+            <pre><code>// Simplified anomaly summary chain
+const chain = RunnableSequence.from([
+  anomalyFetcher,     // pulls last 15m events from Timescale
+  contextEnricher,    // joins with customer metadata
+  summaryPrompt,      // few-shot prompt with domain glossary
+  new ChatOpenAI({ model: 'gpt-4o', temperature: 0.2 }),
+  new StringOutputParser(),
+]);
+
+const summary = await chain.invoke({ windowMinutes: 15 });</code></pre>
+
+            <h3 class="dark:text-white text-gray-900">Infrastructure</h3>
+            <p>Everything runs on AWS: EKS for the application tier, RDS for PostgreSQL, ElastiCache for Redis, and CloudFront + S3 for static assets. GitHub Actions pipelines run tests, build Docker images, and roll out to EKS with zero-downtime blue-green deployments.</p>
+          </div>
+
+          <div class="s-divider my-8"></div>
+
+          <!-- Key features -->
+          <div class="reveal" id="features">
+            <h2 class="dark:text-white text-gray-900">Key Features</h2>
+            <div class="grid sm:grid-cols-2 gap-4 not-prose">
+              <div class="glass rounded-2xl p-5"><p class="text-base mb-1">⚡</p><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Sub-100ms Live Updates</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">WebSocket push from Redis Streams to browser — no polling, no lag.</p></div><div class="glass rounded-2xl p-5"><p class="text-base mb-1">🤖</p><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">AI Anomaly Summaries</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">GPT-4o narrates anomalies in plain English, auto-posted to Slack.</p></div><div class="glass rounded-2xl p-5"><p class="text-base mb-1">📊</p><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">1M+ Point Visualisations</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Canvas-based charts powered by uPlot handle massive datasets at 60fps.</p></div><div class="glass rounded-2xl p-5"><p class="text-base mb-1">🔍</p><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Natural Language Queries</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Ask questions in English, get SQL-backed chart answers in seconds.</p></div><div class="glass rounded-2xl p-5"><p class="text-base mb-1">🔔</p><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Smart Alert Deduplication</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">ML clustering reduces alert noise by 78% vs threshold alerting.</p></div><div class="glass rounded-2xl p-5"><p class="text-base mb-1">👥</p><h4 class="font-display font-bold text-sm mb-1 dark:text-white text-gray-900">Team Workspaces</h4><p class="text-xs dark:text-gray-500 text-gray-500 leading-relaxed">Role-based access, audit logs, and SSO via SAML 2.0 / OIDC.</p></div>
+            </div>
+          </div>
+
+          <div class="s-divider my-8"></div>
+
+          <!-- Results -->
+          <div class="reveal" id="results">
+            <h2 class="dark:text-white text-gray-900">Results &amp; Impact</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 not-prose mb-6">
+              <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">60%</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">Ops cost saved</p></div>
+              <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">78%</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">Alert noise cut</p></div>
+              <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">10M+</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">Events / day</p></div>
+              <div class="glass rounded-2xl p-4 text-center"><p class="font-display font-bold text-2xl grad-text">500+</p><p class="text-xs dark:text-gray-500 text-gray-400 mt-1">Customers</p></div>
+            </div>
+            <p>The platform replaced all six existing tools within 90 days of launch. The data team's morning report ritual went from 2.5 hours to zero — the AI co-pilot handles it overnight. MTTR on production incidents dropped from 47 minutes to 11 minutes because on-call engineers now see correlated context immediately rather than digging across dashboards.</p>
+          </div>
+
+          <!-- Lessons -->
+          <div class="reveal mt-10" id="lessons">
+            <h2 class="dark:text-white text-gray-900">Lessons Learned</h2>
+            <p>The biggest surprise was how much <em>prompt engineering</em> mattered for the AI summaries. The first version used a generic prompt and produced vague, useless output. The breakthrough came when we embedded a customer-specific glossary (their internal product names, metric definitions, and known-good baselines) directly into the system prompt. Accuracy went from 40% useful to 90%+.</p>
+            <p>On the infrastructure side: starting with Kubernetes from day one proved valuable. We scaled from 3 nodes to 18 nodes during a Black Friday spike without any application changes — just <code>kubectl scale</code>.</p>
+          </div>
+
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside class="lg:sticky lg:top-28 space-y-5">
+
+          <!-- Table of contents -->
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Contents</p>
+            <nav aria-label="Table of contents">
+              <a href="#overview"      class="toc-link dark:text-gray-400 text-gray-600">Overview</a>
+              <a href="#problem"       class="toc-link dark:text-gray-400 text-gray-600">The Problem</a>
+              <a href="#architecture"  class="toc-link dark:text-gray-400 text-gray-600">Architecture</a>
+              <a href="#features"      class="toc-link dark:text-gray-400 text-gray-600">Key Features</a>
+              <a href="#results"       class="toc-link dark:text-gray-400 text-gray-600">Results</a>
+              <a href="#lessons"       class="toc-link dark:text-gray-400 text-gray-600">Lessons Learned</a>
+            </nav>
+          </div>
+
+          <!-- Project info card -->
+          <div class="glass rounded-2xl p-5 reveal space-y-4">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold">Project Info</p>
+            <div class="space-y-3 text-xs">
+              <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Timeline</span><span class="font-medium">18 months</span></div>
+              <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Role</span><span class="font-medium">Lead Engineer</span></div>
+              <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Team</span><span class="font-medium">4 engineers</span></div>
+              <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Client</span><span class="font-medium">Enterprise SaaS</span></div>
+              <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Type</span><span class="font-medium">Client project</span></div>
+              <div class="flex justify-between"><span class="dark:text-gray-500 text-gray-400">Year</span><span class="font-medium">2024–2025</span></div>
+            </div>
+          </div>
+
+          <!-- Tech stack -->
+          <div class="glass rounded-2xl p-5 reveal">
+            <p class="text-xs tracking-widest uppercase dark:text-gray-500 text-gray-400 font-semibold mb-3">Stack</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">React 19</span><span class="skill-tag">Next.js 15</span>
+              <span class="skill-tag">Node.js</span><span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">PostgreSQL</span><span class="skill-tag">TimescaleDB</span>
+              <span class="skill-tag">Redis</span><span class="skill-tag">WebSockets</span>
+              <span class="skill-tag">OpenAI</span><span class="skill-tag">LangChain</span>
+              <span class="skill-tag">AWS EKS</span><span class="skill-tag">Docker</span>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="reveal space-y-2">
+            <a href="#" class="flex items-center justify-center gap-2 w-full py-3 rounded-2xl text-sm font-semibold text-white btn-shimmer hover:scale-105 transition-transform">Live Demo ↗</a>
+            <a href="https://github.com/suboorkhan" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-3 rounded-2xl text-sm font-semibold glass hover:scale-105 transition-transform">GitHub Repo ↗</a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="s-divider max-w-5xl mx-auto px-6 my-4"></div>
+
+  <!-- ── RELATED PROJECTS ───────────────────────────────────────────────── -->
+  <section class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="font-display font-bold text-2xl mb-8 reveal">More <span class="grad-text">Projects</span></h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <a href="project-detail.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative group" style="transition-delay:.05s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#060d1f,#0f2a5a,#1a3a8f)"><div class="absolute inset-0 flex items-center justify-center text-5xl" style="filter:drop-shadow(0 0 20px rgba(99,102,241,.5))">🛒</div></div>
+          <div class="p-5"><h3 class="font-display font-bold text-sm mb-1">ShopSphere</h3><p class="text-xs dark:text-gray-500 text-gray-500">Headless e-commerce · $2M+ GMV</p></div>
+        </a>
+        <a href="project-detail.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative group" style="transition-delay:.1s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#060d1e,#0a2040,#094075)"><div class="absolute inset-0 flex items-center justify-center text-5xl" style="filter:drop-shadow(0 0 20px rgba(14,165,233,.5))">📊</div></div>
+          <div class="p-5"><h3 class="font-display font-bold text-sm mb-1">DataCanvas</h3><p class="text-xs dark:text-gray-500 text-gray-500">WebGL viz engine · 3.2K ⭐</p></div>
+        </a>
+        <a href="project-detail.html" class="reveal tilt-card glass rounded-2xl overflow-hidden relative group" style="transition-delay:.15s">
+          <div class="card-glow"></div>
+          <div class="h-36 relative" style="background:linear-gradient(135deg,#120816,#3b0a3a,#7d1461)"><div class="absolute inset-0 flex items-center justify-center text-5xl" style="filter:drop-shadow(0 0 20px rgba(236,72,153,.5))">🔐</div></div>
+          <div class="p-5"><h3 class="font-display font-bold text-sm mb-1">Vaultry Auth</h3><p class="text-xs dark:text-gray-500 text-gray-500">Enterprise auth · SOC2</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────────────────────────────── -->
+  <section class="pb-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="reveal glass rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <div class="blob w-64 h-64 dark:bg-purple-700 bg-purple-200 -top-10 -right-10" style="animation-delay:1s" aria-hidden="true"></div>
+        <div class="relative z-10">
+          <h3 class="font-display font-bold text-2xl mb-2">Have a similar project?</h3>
+          <p class="dark:text-gray-400 text-gray-600 text-sm">Let's talk about what we can build together.</p>
+        </div>
+        <div class="flex gap-4 flex-shrink-0 relative z-10">
+          <a href="contact.html" class="btn-shimmer text-white font-semibold text-sm px-7 py-3.5 rounded-full hover:scale-105 transition-transform shadow-lg shadow-purple-500/25 whitespace-nowrap">Get In Touch →</a>
+          <a href="projects.html" class="glass font-semibold text-sm px-7 py-3.5 rounded-full hover:scale-105 transition-transform whitespace-nowrap">All Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="py-12 border-t dark:border-white/5 border-gray-100 mt-20">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left">
+      <p class="font-display font-bold text-xl grad-text mb-1">Suboor Khan</p>
+      <p class="text-xs dark:text-gray-600 text-gray-400">Crafting digital experiences since 2018</p>
+    </div>
+    <nav aria-label="Social links"><ul class="flex items-center gap-3">
+      <li><a href="https://github.com/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-purple-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-3.79 23.39c.6.11.82-.26.82-.58v-2.17c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0012 0z"/></svg></a></li>
+      <li><a href="https://linkedin.com/in/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.01v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.584V9h3.302v1.561h.046c.458-.87 1.579-1.796 3.25-1.796 3.483 0 4.126 2.291 4.126 5.271v6.416zM5.337 7.433a1.921 1.921 0 11-.001-3.842 1.921 1.921 0 010 3.842zM6.843 20.452H3.83V9h3.013v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
+      <li><a href="https://twitter.com/suboorkhan" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-sky-500/20 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></li>
+    </ul></nav>
+    <p class="text-xs dark:text-gray-600 text-gray-400">&copy; 2026 Suboor Khan</p>
+  </div>
+</footer>
+<script>
+(() => {
+  const html=document.documentElement;
+  const saved=localStorage.getItem('theme');
+  if(saved==='light')html.classList.remove('dark');else html.classList.add('dark');
+  document.getElementById('theme-toggle').addEventListener('click',()=>{html.classList.toggle('dark');localStorage.setItem('theme',html.classList.contains('dark')?'dark':'light');});
+  const pb=document.getElementById('progress-bar');
+  window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.style.background='rgba(6,6,15,.85)';navbar.style.backdropFilter='blur(20px)';navbar.style.borderBottom='1px solid rgba(255,255,255,.05)';}else{navbar.style.background=navbar.style.backdropFilter=navbar.style.borderBottom='';}},{passive:true});
+  const menuBtn=document.getElementById('menu-btn'),mobileMenu=document.getElementById('mobile-menu');
+  const b1=document.getElementById('bar1'),b2=document.getElementById('bar2'),b3=document.getElementById('bar3');
+  let open=false;
+  menuBtn.addEventListener('click',()=>{open=!open;menuBtn.setAttribute('aria-expanded',open);mobileMenu.classList.toggle('hidden',!open);b1.style.transform=open?'rotate(45deg) translateY(7px)':'';b2.style.opacity=open?'0':'1';b3.style.transform=open?'rotate(-45deg) translateY(-7px)':'';});
+  document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{open=false;menuBtn.setAttribute('aria-expanded',false);mobileMenu.classList.add('hidden');b1.style.transform=b3.style.transform='';b2.style.opacity='1';}));
+  const cur=document.getElementById('cursor'),fol=document.getElementById('cursor-follower');
+  let mx=0,my=0,fx=0,fy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mousedown',()=>cur.classList.add('clicking'));
+  document.addEventListener('mouseup',()=>cur.classList.remove('clicking'));
+  (function tick(){fx+=(mx-fx)*.1;fy+=(my-fy)*.1;fol.style.left=fx+'px';fol.style.top=fy+'px';requestAnimationFrame(tick);})();
+  document.querySelectorAll('a,button,input,textarea,.tilt-card').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('hovered'));el.addEventListener('mouseleave',()=>cur.classList.remove('hovered'));});
+  const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  const TILT=10;
+  document.querySelectorAll('.tilt-card').forEach(card=>{
+    const glow=card.querySelector('.card-glow');
+    card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(800px) rotateX('+(-y*TILT)+'deg) rotateY('+(x*TILT)+'deg) scale3d(1.02,1.02,1.02)';if(glow){glow.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');glow.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}});
+    card.addEventListener('mouseleave',()=>{card.style.transform='perspective(800px) rotateX(0) rotateY(0) scale3d(1,1,1)';});
+  });
+})();
+</script>
+<script>
+// Highlight active ToC link on scroll
+const tocLinks = document.querySelectorAll('.toc-link');
+const sections = [...tocLinks].map(l => document.querySelector(l.getAttribute('href')));
+const tocObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      tocLinks.forEach(l => l.classList.remove('active'));
+      const active = [...tocLinks].find(l => l.getAttribute('href') === '#' + e.target.id);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => s && tocObs.observe(s));
+</script>
+</body>
+</html>

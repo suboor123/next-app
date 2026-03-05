@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home -->
+  <url>
+    <loc>https://suboorkhan.dev/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Projects -->
+  <url>
+    <loc>https://suboorkhan.dev/projects.html</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Project Detail -->
+  <url>
+    <loc>https://suboorkhan.dev/project-detail.html</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog -->
+  <url>
+    <loc>https://suboorkhan.dev/blog.html</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://suboorkhan.dev/blogs/react-19-concurrency-deep-dive.html</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://suboorkhan.dev/blogs/particle-systems-threejs-webgl-shaders.html</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://suboorkhan.dev/blogs/production-rag-pipelines-langchain-supabase.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://suboorkhan.dev/blogs/advanced-typescript-patterns.html</loc>
+    <lastmod>2026-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://suboorkhan.dev/blogs/zero-downtime-deployments-blue-green-feature-flags.html</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://suboorkhan.dev/blogs/micro-frontends-at-scale.html</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://suboorkhan.dev/blogs/css-container-queries-layout-revolution.html</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://suboorkhan.dev/blogs/fine-tuning-llms-on-a-budget.html</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- AI & Skills -->
+  <url>
+    <loc>https://suboorkhan.dev/ai-skills.html</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Performance -->
+  <url>
+    <loc>https://suboorkhan.dev/performance.html</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Resume -->
+  <url>
+    <loc>https://suboorkhan.dev/resume.html</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://suboorkhan.dev/contact.html</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Hire Me -->
+  <url>
+    <loc>https://suboorkhan.dev/hire-me.html</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- New Blog Posts -->
+  <url>
+    <loc>https://suboorkhan.dev/blogs/claude-api-masterclass-tool-use-vision.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://suboorkhan.dev/blogs/gpt-4o-advanced-prompting-function-calling.html</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://suboorkhan.dev/blogs/react-server-components-deep-dive.html</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://suboorkhan.dev/blogs/react-query-v5-advanced-patterns.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://suboorkhan.dev/blogs/agentic-ai-langgraph-autonomous-workflows.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://suboorkhan.dev/blogs/prompt-engineering-production-llms.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
