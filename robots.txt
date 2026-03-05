@@ -7,9 +7,6 @@ Allow: /
 # Sitemap location
 Sitemap: https://suboorkhan.com/sitemap.xml
 
-# Crawl-delay for well-behaved bots
-Crawl-delay: 1
-
 # Block AI training scrapers (optional — remove if you want AI visibility)
 User-agent: GPTBot
 Disallow: /
