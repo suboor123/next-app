@@ -38,77 +38,85 @@
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://suboorkhan.com/#person",
-        "name": "Suboor Khan",
-        "url": "https://suboorkhan.com/",
-        "image": {
-          "@type": "ImageObject",
-          "url": "https://suboorkhan.com/og-cover.png",
-          "width": 1200,
-          "height": 630
-        },
-        "sameAs": [
-          "https://github.com/suboor123",
-          "https://linkedin.com/in/suboorkhan",
-          "https://twitter.com/suboorkhan"
-        ],
-        "jobTitle": "Tech Lead",
-        "description": "Tech Lead at Hindustan Times with 5+ years experience building high-performance frontend systems serving 300M+ monthly page views using React, Next.js, Node.js, TypeScript and AI/ML technologies.",
-        "knowsAbout": ["React","Next.js","Node.js","TypeScript","Angular","Core Web Vitals","SSR","ISR","AI Integration","OpenAI API","LLM Integration","Prompt Engineering","Performance Optimization"],
-        "alumniOf": {
-          "@type": "Organization",
-          "name": "Subharti University"
-        },
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Hindustan Times"
-        }
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://suboorkhan.com/#website",
-        "url": "https://suboorkhan.com/",
-        "name": "Suboor Khan — Portfolio",
-        "description": "Portfolio website of Suboor Khan, Full-Stack Software Developer",
-        "publisher": { "@id": "https://suboorkhan.com/#person" },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://suboorkhan.com/?s={search_term_string}"
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://suboorkhan.com/#person",
+          "name": "Suboor Khan",
+          "url": "https://suboorkhan.com/",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://suboorkhan.com/og-cover.png",
+            "width": 1200,
+            "height": 630
           },
-          "query-input": "required name=search_term_string"
+          "sameAs": [
+            "https://github.com/suboor123",
+            "https://linkedin.com/in/suboorkhan",
+            "https://twitter.com/suboorkhan"
+          ],
+          "jobTitle": "Tech Lead",
+          "description": "Tech Lead at Hindustan Times with 5+ years experience building high-performance frontend systems serving 300M+ monthly page views using React, Next.js, Node.js, TypeScript and AI/ML technologies.",
+          "knowsAbout": [
+            "React",
+            "Next.js",
+            "Node.js",
+            "TypeScript",
+            "Angular",
+            "Core Web Vitals",
+            "SSR",
+            "ISR",
+            "AI Integration",
+            "OpenAI API",
+            "LLM Integration",
+            "Prompt Engineering",
+            "Performance Optimization"
+          ],
+          "alumniOf": {
+            "@type": "Organization",
+            "name": "Subharti University"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Hindustan Times",
+            "url": "https://www.hindustantimes.com"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://suboorkhan.com/#website",
+          "url": "https://suboorkhan.com/",
+          "name": "Suboor Khan — Portfolio",
+          "description": "Portfolio website of Suboor Khan, Full-Stack Software Developer",
+          "publisher": { "@id": "https://suboorkhan.com/#person" }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://suboorkhan.com/#webpage",
+          "url": "https://suboorkhan.com/",
+          "name": "Suboor Khan — Full-Stack Developer & Creative Technologist",
+          "isPartOf": { "@id": "https://suboorkhan.com/#website" },
+          "about": { "@id": "https://suboorkhan.com/#person" },
+          "mainEntity": { "@id": "https://suboorkhan.com/#person" },
+          "description": "Full-Stack Software Developer portfolio showcasing projects, AI skills, performance engineering and more.",
+          "inLanguage": "en-GB",
+          "dateModified": "2026-03-04T00:00:00+05:30"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://suboorkhan.com/hire-me",
+          "url": "https://suboorkhan.com/hire-me",
+          "name": "Hire Suboor Khan — Full-Stack Developer for Hire",
+          "isPartOf": { "@id": "https://suboorkhan.com/#website" },
+          "about": { "@id": "https://suboorkhan.com/#person" },
+          "description": "Hire Suboor Khan for freelance, contract or full-time full-stack development work.",
+          "inLanguage": "en-GB"
         }
-      },
-      {
-        "@type": "ProfilePage",
-        "@id": "https://suboorkhan.com/#webpage",
-        "url": "https://suboorkhan.com/",
-        "name": "Suboor Khan — Full-Stack Developer & Creative Technologist",
-        "isPartOf": { "@id": "https://suboorkhan.com/#website" },
-        "about": { "@id": "https://suboorkhan.com/#person" },
-        "description": "Full-Stack Software Developer portfolio showcasing projects, AI skills, performance engineering and more.",
-        "inLanguage": "en-GB",
-        "dateModified": "2026-03-04"
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://suboorkhan.com/hire-me.html",
-        "url": "https://suboorkhan.com/hire-me.html",
-        "name": "Hire Suboor Khan — Full-Stack Developer for Hire",
-        "isPartOf": { "@id": "https://suboorkhan.com/#website" },
-        "about": { "@id": "https://suboorkhan.com/#person" },
-        "description": "Hire Suboor Khan for freelance, contract or full-time full-stack development work.",
-        "inLanguage": "en-GB"
-      }
-    ]
-  }
-  </script>
+      ]
+    }
+    </script>
   <!-- <link rel="stylesheet" href="style.css"> -->
 
   <!-- Google Fonts -->
