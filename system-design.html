@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>System Design | Scalable Web Architecture | Suboor Khan</title>
+
+<meta name="description" content="System design principles used by Suboor Khan to build scalable React and Next.js platforms serving 300M+ monthly page views. Learn about caching, SSR, architecture, and performance strategies.">
+
+<meta name="keywords" content="System Design, Web Architecture, Scalable Systems, Next.js Architecture, High Traffic Websites, Core Web Vitals, Frontend Architecture">
+
+<meta name="author" content="Suboor Khan">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0f172a">
+
+<link rel="canonical" href="https://suboorkhan.com/system-design.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="System Design | Suboor Khan">
+<meta property="og:description" content="How scalable frontend systems are built for high-traffic platforms serving millions of users.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://suboorkhan.com/system-design.html">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="System Design | Suboor Khan">
+<meta name="twitter:description" content="System architecture strategies used for platforms with hundreds of millions of page views.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+font-family: 'JetBrains Mono', monospace;
+}
+</style>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"TechArticle",
+"headline":"System Design for High Traffic Web Platforms",
+"author":{
+"@type":"Person",
+"name":"Suboor Khan",
+"url":"https://suboorkhan.com"
+},
+"description":"System design strategies used for building scalable web applications serving millions of users.",
+"mainEntityOfPage":"https://suboorkhan.com/system-design.html"
+}
+</script>
+
+</head>
+
+<body class="bg-slate-950 text-slate-200">
+
+<header class="max-w-6xl mx-auto px-6 py-10">
+
+<nav class="flex justify-between items-center">
+
+<h1 class="text-2xl font-semibold">System Design</h1>
+
+<div class="space-x-6 text-sm">
+
+<a href="/" class="text-slate-400 hover:text-white">Home</a>
+<a href="/seo.html" class="text-slate-400 hover:text-white">SEO</a>
+<a href="/case-studies.html" class="text-slate-400 hover:text-white">Case Studies</a>
+<a href="/contact" class="text-slate-400 hover:text-white">Contact</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<section class="max-w-4xl mx-auto px-6 py-10">
+
+<h2 class="text-4xl font-bold mb-6 leading-tight">
+Designing Scalable Web Systems
+</h2>
+
+<p class="text-slate-400 text-lg leading-relaxed mb-8">
+Building systems that support millions of users requires thoughtful architecture, performance optimization, and efficient data delivery.  
+At <strong>Hindustan Times</strong>, platforms serve hundreds of millions of page views every month. Designing frontend systems for this scale requires a deep understanding of caching, rendering strategies, and performance optimization.
+</p>
+
+</section>
+
+<section class="max-w-4xl mx-auto px-6 py-6 space-y-14">
+
+<div>
+
+<h3 class="text-2xl font-semibold mb-3">
+1. Rendering Strategy
+</h3>
+
+<p class="text-slate-400 leading-relaxed">
+Choosing the correct rendering strategy is essential for large-scale applications.
+</p>
+
+<ul class="mt-4 space-y-2 text-slate-300">
+
+<li>SSR for dynamic pages</li>
+<li>ISR for frequently updated content</li>
+<li>Static generation for high traffic landing pages</li>
+<li>Client-side rendering for interactive dashboards</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3 class="text-2xl font-semibold mb-3">
+2. CDN & Caching Layer
+</h3>
+
+<p class="text-slate-400 leading-relaxed">
+A strong caching strategy significantly reduces server load and improves response time.
+</p>
+
+<ul class="mt-4 space-y-2 text-slate-300">
+
+<li>Edge CDN caching</li>
+<li>HTTP cache headers</li>
+<li>Stale-while-revalidate strategies</li>
+<li>API response caching</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3 class="text-2xl font-semibold mb-3">
+3. Performance Optimization
+</h3>
+
+<p class="text-slate-400 leading-relaxed">
+Performance directly impacts user experience and SEO rankings.
+</p>
+
+<ul class="mt-4 space-y-2 text-slate-300">
+
+<li>Code splitting</li>
+<li>Lazy loading components</li>
+<li>Hydration optimization</li>
+<li>Minimizing JavaScript bundle size</li>
+<li>Image optimization</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3 class="text-2xl font-semibold mb-3">
+4. High Traffic Architecture
+</h3>
+
+<p class="text-slate-400 leading-relaxed">
+Handling millions of users requires distributed architecture and scalable infrastructure.
+</p>
+
+<ul class="mt-4 space-y-2 text-slate-300">
+
+<li>Microservices architecture</li>
+<li>Serverless deployments</li>
+<li>Load balancing</li>
+<li>Horizontal scaling</li>
+<li>Monitoring and observability</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3 class="text-2xl font-semibold mb-3">
+5. AI Integration
+</h3>
+
+<p class="text-slate-400 leading-relaxed">
+Modern web systems increasingly integrate AI-driven features.
+</p>
+
+<ul class="mt-4 space-y-2 text-slate-300">
+
+<li>Content summarization</li>
+<li>Recommendation engines</li>
+<li>Automated content enrichment</li>
+<li>LLM powered workflows</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section class="max-w-4xl mx-auto px-6 py-16">
+
+<h3 class="text-2xl font-semibold mb-6">
+Why System Design Matters
+</h3>
+
+<p class="text-slate-400 leading-relaxed">
+Well-designed systems scale efficiently, reduce operational cost, and deliver fast experiences to users worldwide.  
+Strong architecture ensures that platforms remain reliable even during traffic spikes and large-scale events.
+</p>
+
+</section>
+
+<footer class="border-t border-slate-800 mt-20">
+
+<div class="max-w-6xl mx-auto px-6 py-10 flex justify-between text-sm text-slate-500">
+
+<p>© 2026 Suboor Khan</p>
+
+<div class="space-x-6">
+
+<a href="/case-studies.html" class="hover:text-white">Case Studies</a>
+<a href="/seo.html" class="hover:text-white">SEO</a>
+<a href="/contact" class="hover:text-white">Contact</a>
+
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
