@@ -1,241 +1,1047 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Agents — Suboor Khan</title>
+  <meta name="description" content="Exploring AI agent architectures, autonomous systems, and multi-agent orchestration. Suboor Khan." />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow+Condensed:wght@200;300;400;600;700;900&family=Sometype+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-<title>AI Agents Developer — Autonomous AI Systems | Suboor Khan</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-<meta name="description"
-content="Suboor Khan builds AI agents that automate tasks, integrate tools and orchestrate workflows using LLMs, APIs and intelligent systems.">
+    :root {
+      --bg:        #08060f;
+      --bg2:       #0d0a1a;
+      --amber:     #ffaa2a;
+      --amber-dim: rgba(255,170,42,0.12);
+      --amber-glow:rgba(255,170,42,0.35);
+      --violet:    #7c5cfc;
+      --violet-dim:rgba(124,92,252,0.12);
+      --rose:      #ff5f7e;
+      --teal:      #2affd6;
+      --white:     #f0eaff;
+      --muted:     rgba(240,234,255,0.45);
+      --border:    rgba(255,170,42,0.1);
+      --border-v:  rgba(124,92,252,0.15);
+    }
 
-<meta name="keywords"
-content="AI Agents Developer, Autonomous AI Agents, LLM Agents, AI Workflow Automation, AI Agent Architecture">
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-<meta name="author" content="Suboor Khan">
+    /* ─── Cursor ─────────────────────────────────────────────────── */
+    #cur {
+      position: fixed; z-index: 9999;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--amber);
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: screen;
+      transition: width .15s, height .15s;
+    }
+    #cur-trail {
+      position: fixed; z-index: 9998;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--amber);
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      opacity: .3;
+      transition: width .25s, height .25s, opacity .25s;
+    }
 
-<link rel="canonical" href="https://www.suboorkhan.com/ai-agents">
+    /* ─── Orb backgrounds ────────────────────────────────────────── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+      opacity: .18;
+      z-index: 0;
+    }
+    .orb-1 { width: 600px; height: 600px; background: var(--violet); top: -200px; right: -100px; animation: orbDrift1 18s ease-in-out infinite alternate; }
+    .orb-2 { width: 400px; height: 400px; background: var(--amber);  bottom: 0;   left: -80px;  animation: orbDrift2 22s ease-in-out infinite alternate; }
+    .orb-3 { width: 300px; height: 300px; background: var(--rose);   top: 40%;    left: 50%;    animation: orbDrift3 14s ease-in-out infinite alternate; opacity: .1; }
 
-<script src="https://cdn.tailwindcss.com"></script>
+    @keyframes orbDrift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(-60px,80px) scale(1.15); } }
+    @keyframes orbDrift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(80px,-60px) scale(1.1); } }
+    @keyframes orbDrift3 { from { transform: translate(-50%,-50%) scale(1); } to { transform: translate(-50%,-50%) scale(1.3); } }
 
-<script>
-tailwind.config = { darkMode:'class' }
-</script>
+    /* ─── Canvas ─────────────────────────────────────────────────── */
+    #cvs { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"TechArticle",
-"headline":"AI Agent Architecture",
-"author":{
-"@type":"Person",
-"name":"Suboor Khan"
-},
-"publisher":{
-"@type":"Organization",
-"name":"Suboor Khan"
-}
-}
-</script>
+    /* ─── Noise ──────────────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: -50%; z-index: 2; pointer-events: none;
+      opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+      animation: grain .4s steps(1) infinite;
+    }
+    @keyframes grain {
+      0%  {transform:translate(0,0)}  20% {transform:translate(-3%,2%)}
+      40% {transform:translate(2%,-3%)} 60% {transform:translate(-2%,3%)}
+      80% {transform:translate(3%,-1%)} 100%{transform:translate(-1%,2%)}
+    }
 
+    /* ─── Header ─────────────────────────────────────────────────── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,6,15,.75);
+      backdrop-filter: blur(20px);
+    }
+    .logo {
+      font-family: 'Sometype Mono', monospace;
+      font-size: .85rem; font-weight: 700;
+      letter-spacing: .06em; color: var(--amber);
+      text-decoration: none;
+    }
+    .logo span { color: var(--violet); }
+    .nav-right {
+      display: flex; align-items: center; gap: 2rem;
+      font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+    }
+    .nav-right a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-right a:hover { color: var(--amber); }
+    .badge {
+      padding: .25rem .7rem;
+      border: 1px solid var(--border);
+      background: var(--amber-dim);
+      color: var(--amber);
+      font-family: 'Sometype Mono', monospace;
+      font-size: .6rem; letter-spacing: .12em;
+      animation: badgePulse 2.5s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%,100% { box-shadow: 0 0 0 0 var(--amber-glow); }
+      50%      { box-shadow: 0 0 16px 4px var(--amber-glow); }
+    }
+
+    /* ─── Wrap ───────────────────────────────────────────────────── */
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 10; }
+
+    /* ─── Hero ───────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 10rem 2.5rem 5rem;
+      position: relative; z-index: 10; overflow: hidden;
+    }
+    .hero-inner { max-width: 1140px; margin: 0 auto; width: 100%; }
+
+    .hero-chip {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-family: 'Sometype Mono', monospace;
+      font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 2.5rem;
+      opacity: 0; animation: riseIn .6s .3s forwards;
+    }
+    .chip-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--amber);
+      animation: chipBlink 1.4s ease-in-out infinite;
+    }
+    @keyframes chipBlink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.7)} }
+
+    .hero-h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3.5rem, 10vw, 9.5rem);
+      line-height: .88; letter-spacing: -.02em;
+      font-style: italic; font-weight: 400;
+      margin-bottom: 1rem;
+      opacity: 0; animation: riseIn .8s .5s forwards;
+    }
+    .hero-h1 .solid { font-style: normal; color: var(--amber); display: block; }
+    .hero-h1 .hollow {
+      -webkit-text-stroke: 1.5px rgba(240,234,255,.25);
+      color: transparent; display: block;
+    }
+
+    .hero-desc {
+      font-size: clamp(.9rem,1.8vw,1.15rem);
+      font-weight: 300; line-height: 1.75;
+      color: var(--muted); max-width: 520px;
+      margin-top: 2.5rem; margin-bottom: 3rem;
+      opacity: 0; animation: riseIn .7s .7s forwards;
+    }
+    .hero-desc strong { color: var(--white); font-weight: 600; }
+
+    .hero-btns {
+      display: flex; gap: .9rem; flex-wrap: wrap;
+      opacity: 0; animation: riseIn .7s .9s forwards;
+    }
+    .btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      padding: .9rem 2.2rem; text-decoration: none; cursor: none;
+      border: none; transition: all .2s;
+    }
+    .btn-amber { background: var(--amber); color: #08060f; }
+    .btn-amber:hover { background: #ffc75a; box-shadow: 0 0 32px var(--amber-glow); transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 1px solid var(--border-v); color: var(--violet); }
+    .btn-outline:hover { border-color: var(--violet); background: var(--violet-dim); transform: translateY(-2px); }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Scroll ticker ──────────────────────────────────────────── */
+    .ticker-wrap {
+      position: relative; z-index: 10;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2); overflow: hidden; padding: 1rem 0;
+    }
+    .ticker { display: flex; width: max-content; animation: tick 30s linear infinite; }
+    @keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .tick-item {
+      white-space: nowrap;
+      font-size: .7rem; font-weight: 300; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--muted); padding: 0 2.5rem;
+      display: flex; align-items: center; gap: 2.5rem;
+    }
+    .tick-item::after { content: '◆'; color: var(--amber); opacity: .5; font-size: .4rem; }
+
+    /* ─── Section labels ─────────────────────────────────────────── */
+    .s-label {
+      font-family: 'Sometype Mono', monospace;
+      font-size: .62rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .s-label::before { content: ''; width: 24px; height: 1px; background: var(--amber); }
+
+    .s-heading {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      line-height: .92; letter-spacing: -.01em;
+      margin-bottom: 4rem;
+    }
+    .s-heading em { color: var(--amber); }
+
+    /* ─── Agent Cards ────────────────────────────────────────────── */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border); border: 1px solid var(--border);
+    }
+
+    .agent-card {
+      background: var(--bg);
+      padding: 2.8rem 2rem;
+      position: relative; overflow: hidden;
+      transition: background .3s;
+    }
+    .agent-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--amber);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .agent-card:hover::after { transform: scaleX(1); }
+    .agent-card:hover { background: rgba(255,170,42,.03); }
+
+    .agent-orb {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.8rem;
+      position: relative;
+    }
+    .agent-orb::before {
+      content: '';
+      position: absolute; inset: -4px; border-radius: 50%;
+      border: 1px solid; opacity: .3;
+      animation: orbRing 3s linear infinite;
+    }
+    @keyframes orbRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .orb-a { background: rgba(255,170,42,.12); }
+    .orb-a::before { border-color: var(--amber); }
+    .orb-b { background: rgba(124,92,252,.12); }
+    .orb-b::before { border-color: var(--violet); }
+    .orb-c { background: rgba(42,255,214,.1); }
+    .orb-c::before { border-color: var(--teal); }
+    .orb-d { background: rgba(255,95,126,.1); }
+    .orb-d::before { border-color: var(--rose); }
+
+    .agent-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem; font-weight: 700;
+      letter-spacing: .03em; margin-bottom: .5rem;
+    }
+    .agent-role {
+      font-family: 'Sometype Mono', monospace;
+      font-size: .62rem; letter-spacing: .15em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .agent-role.amber { color: var(--amber); }
+    .agent-role.violet { color: var(--violet); }
+    .agent-role.teal { color: var(--teal); }
+    .agent-role.rose { color: var(--rose); }
+
+    .agent-desc {
+      font-size: .82rem; font-weight: 300; line-height: 1.75;
+      color: var(--muted); margin-bottom: 1.5rem;
+    }
+
+    .agent-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .a-tag {
+      font-family: 'Sometype Mono', monospace;
+      font-size: .58rem; letter-spacing: .1em;
+      padding: .22rem .65rem;
+      border: 1px solid rgba(255,170,42,.18); color: var(--amber); opacity: .75;
+    }
+    .a-tag.v { border-color: rgba(124,92,252,.2); color: var(--violet); }
+    .a-tag.t { border-color: rgba(42,255,214,.2); color: var(--teal); }
+
+    /* ─── Flow diagram ───────────────────────────────────────────── */
+    .flow-section { padding: 7rem 0; }
+
+    .flow-diagram {
+      display: flex; align-items: stretch;
+      gap: 0; margin-top: 1rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .flow-node {
+      flex: 1; padding: 2.5rem 1.8rem;
+      border-right: 1px solid var(--border);
+      position: relative; background: var(--bg2);
+      transition: background .3s;
+    }
+    .flow-node:last-child { border-right: none; }
+    .flow-node:hover { background: rgba(255,170,42,.04); }
+
+    .flow-arrow {
+      position: absolute; right: -12px; top: 50%;
+      transform: translateY(-50%);
+      width: 24px; height: 24px;
+      background: var(--bg); border: 1px solid var(--amber);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; color: var(--amber);
+      z-index: 2;
+    }
+    .flow-node:last-child .flow-arrow { display: none; }
+
+    .flow-step {
+      font-family: 'Sometype Mono', monospace;
+      font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--amber); opacity: .7; margin-bottom: .75rem;
+    }
+    .flow-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: .04em;
+      margin-bottom: .6rem;
+    }
+    .flow-body {
+      font-size: .78rem; font-weight: 300; line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ─── Use Cases ──────────────────────────────────────────────── */
+    .cases-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .case-item {
+      background: var(--bg);
+      display: grid; grid-template-columns: 80px 1fr 1fr;
+      align-items: center; gap: 2rem; padding: 2rem 2.5rem;
+      transition: background .25s; position: relative; overflow: hidden;
+    }
+    .case-item::before {
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+      width: 0; background: var(--amber); transition: width .3s;
+    }
+    .case-item:hover::before { width: 3px; }
+    .case-item:hover { background: rgba(255,170,42,.025); }
+
+    .case-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.5rem; color: var(--amber); opacity: .25; font-style: italic; line-height: 1;
+    }
+    .case-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem; font-weight: 700; letter-spacing: .03em;
+      margin-bottom: .4rem;
+    }
+    .case-sub { font-size: .78rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+    .case-stack { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: flex-end; }
+
+    /* ─── Manifesto ──────────────────────────────────────────────── */
+    .manifesto {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 8rem 2.5rem;
+      background: var(--bg2);
+      position: relative; z-index: 10; text-align: center;
+    }
+    .manifesto-bg-text {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(6rem, 20vw, 16rem);
+      font-style: italic; font-weight: 400;
+      color: var(--amber); opacity: .03;
+      pointer-events: none; user-select: none;
+      letter-spacing: -.04em; white-space: nowrap;
+    }
+    .manifesto-q {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.6rem, 4vw, 3.4rem);
+      font-style: italic; font-weight: 400;
+      line-height: 1.3; max-width: 780px; margin: 0 auto 2rem;
+    }
+    .manifesto-q strong { font-style: normal; font-weight: 400; color: var(--amber); }
+    .manifesto-body {
+      font-size: .85rem; font-weight: 300; line-height: 1.85;
+      color: var(--muted); max-width: 540px; margin: 0 auto;
+    }
+
+    /* ─── Live agent visualizer ──────────────────────────────────── */
+    .viz-section { position: relative; z-index: 10; padding: 7rem 2.5rem; }
+    .viz-canvas-wrap {
+      border: 1px solid var(--border);
+      background: var(--bg2); position: relative;
+      height: 420px; overflow: hidden; margin-top: 2rem;
+    }
+    #agent-cvs { width: 100%; height: 100%; display: block; }
+
+    .viz-legend {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: .6rem;
+      font-family: 'Sometype Mono', monospace;
+      font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ─── CTA ────────────────────────────────────────────────────── */
+    .cta {
+      position: relative; z-index: 10;
+      padding: 8rem 2.5rem; text-align: center;
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .cta-ghost {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(5rem,18vw,14rem);
+      font-style: italic; color: var(--violet);
+      opacity: .04; pointer-events: none; letter-spacing: -.04em;
+    }
+    .cta-eyebrow {
+      font-family: 'Sometype Mono', monospace;
+      font-size: .65rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 1.5rem;
+    }
+    .cta-h {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      font-style: italic; font-weight: 400; line-height: .95;
+      letter-spacing: -.02em; margin-bottom: 3rem;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    footer {
+      position: relative; z-index: 10;
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Sometype Mono', monospace;
+      font-size: .62rem; letter-spacing: .1em; color: var(--muted);
+    }
+    footer a { color: var(--amber); text-decoration: none; }
+
+    /* ─── Reveal ─────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .agents-grid { grid-template-columns: 1fr 1fr; }
+      .flow-diagram { flex-direction: column; }
+      .flow-node { border-right: none; border-bottom: 1px solid var(--border); }
+      .flow-arrow { display: none; }
+      .case-item { grid-template-columns: 60px 1fr; }
+      .case-stack { display: none; }
+    }
+    @media (max-width: 600px) {
+      .agents-grid { grid-template-columns: 1fr; }
+      .nav-right a { display: none; }
+    }
+  </style>
 </head>
+<body>
 
-<body class="bg-gray-100 dark:bg-black text-gray-800 dark:text-gray-200">
-    <nav class="bg-[#0b0b0f] border-b border-gray-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6">
-        
-        <div class="flex items-center justify-between h-16">
-        
-        <a href="/" class="text-xl font-bold text-white">
-        SK<span class="text-green-500">.</span>
-        </a>
-        
-        <div class="hidden md:flex items-center space-x-6 text-sm text-gray-300">
-        
-        <a href="/">Home</a>
-        <a href="/projects">Projects</a>
-        <a href="/blog">Blog</a>
-        <a href="/react-developer">React</a>
-        <a href="/nextjs-developer">Next.js</a>
-        <a href="/performance">Performance</a>
-        <a href="/ai">AI</a>
-        <a href="/threejs">Three.js</a>
-        <a href="/resume">Resume</a>
-        <a href="/contact">Contact</a>
-        
-        <a href="/hire-me"
-        class="ml-4 px-4 py-2 bg-green-500 text-black rounded-lg font-semibold">
-        Hire Me
-        </a>
-        
-        </div>
-        
-        <button id="menuBtn" class="md:hidden text-gray-300">☰</button>
-        
-        </div>
-        </div>
-        
-        <div id="mobileMenu"
-        class="hidden md:hidden border-t border-gray-800 bg-[#0b0b0f]">
-        
-        <div class="px-6 py-4 flex flex-col space-y-3 text-gray-300 text-sm">
-        
-        <a href="/">Home</a>
-        <a href="/projects">Projects</a>
-        <a href="/blog">Blog</a>
-        
-        <a href="/react-developer">React Developer</a>
-        <a href="/nextjs-developer">Next.js Developer</a>
-        
-        <a href="/performance">Performance</a>
-        <a href="/ai">AI</a>
-        <a href="/threejs">Three.js</a>
-        
-        <a href="/resume">Resume</a>
-        <a href="/contact">Contact</a>
-        
-        <a href="/hire-me"
-        class="mt-2 px-4 py-2 bg-green-500 text-black rounded-lg text-center font-semibold">
-        Hire Me
-        </a>
-        
-        </div>
-        </div>
-        
-        </nav>
-<header class="max-w-6xl mx-auto px-6 py-14">
+<!-- Cursor -->
+<div id="cur"></div>
+<div id="cur-trail"></div>
 
-<h1 class="text-4xl font-bold mb-4">
-AI Agent Development
-</h1>
+<!-- Orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
-<p class="text-gray-500 dark:text-gray-400 max-w-3xl">
-AI agents are intelligent systems capable of performing tasks
-autonomously by combining reasoning, memory, and external tool usage.
-I design and build AI agents that interact with APIs, automate workflows,
-and execute complex tasks using modern LLM architectures.
-</p>
+<!-- Background canvas -->
+<canvas id="cvs"></canvas>
 
+<!-- Header -->
+<header>
+  <a href="#" class="logo">SK<span> / </span>AGENTS</a>
+  <div class="nav-right">
+    <a href="ai.html">← AI Lab</a>
+    <a href="index.html">Portfolio</a>
+    <span class="badge">v2.0 LIVE</span>
+  </div>
 </header>
 
-<main class="max-w-6xl mx-auto px-6">
-
-<section class="mb-16">
-
-<h2 class="text-2xl font-semibold mb-6">
-What Are AI Agents
-</h2>
-
-<p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-AI agents extend large language models by enabling them to take actions,
-use tools and make decisions. These systems combine LLM reasoning with
-external integrations such as APIs, databases, automation tools and
-knowledge systems.
-</p>
-
-</section>
-
-<section class="mb-16">
-
-<h2 class="text-2xl font-semibold mb-8">
-AI Agent Capabilities
-</h2>
-
-<ul class="list-disc ml-6 space-y-3 text-gray-600 dark:text-gray-400">
-
-<li>Autonomous task execution</li>
-<li>Tool usage and API interaction</li>
-<li>Multi-step reasoning workflows</li>
-<li>Memory and context persistence</li>
-<li>AI-driven automation systems</li>
-
-</ul>
-
-</section>
-
-<section class="mb-16">
-
-<h2 class="text-2xl font-semibold mb-8">
-Use Cases
-</h2>
-
-<div class="grid md:grid-cols-3 gap-6">
-
-<div class="border border-gray-800 p-6 rounded-lg">
-<h3 class="font-semibold mb-2">Automation</h3>
-<p class="text-sm text-gray-500">
-Automate repetitive tasks using autonomous AI workflows.
-</p>
-</div>
-
-<div class="border border-gray-800 p-6 rounded-lg">
-<h3 class="font-semibold mb-2">AI Assistants</h3>
-<p class="text-sm text-gray-500">
-Build intelligent assistants capable of interacting with systems.
-</p>
-</div>
-
-<div class="border border-gray-800 p-6 rounded-lg">
-<h3 class="font-semibold mb-2">Developer Tools</h3>
-<p class="text-sm text-gray-500">
-AI agents that support engineering workflows and code operations.
-</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="mb-20">
-
-<h2 class="text-2xl font-semibold mb-6">
-Technologies
-</h2>
-
-<p class="text-gray-600 dark:text-gray-400">
-LLM APIs • AI Agents • Node.js • Python • Tool Integration •
-Workflow Automation • Prompt Engineering
-</p>
-
-</section>
-
-</main>
-<section class="py-24 border-t border-gray-800 text-center">
-
-    <h2 class="text-4xl font-bold mb-6">
-    Let's Build Something Great
-    </h2>
-    
-    <p class="text-gray-400 max-w-2xl mx-auto mb-10">
-    Interested in working together or building high-performance web
-    applications? I’m always open to discussing new opportunities,
-    innovative projects, and AI-powered platforms.
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner wrap">
+    <div class="hero-chip"><div class="chip-dot"></div>Autonomous Systems · Multi-Agent Orchestration</div>
+    <h1 class="hero-h1">
+      <span class="hollow">AGENTS</span>
+      <span class="solid">Think.</span>
+      <span class="hollow">Act.</span>
+    </h1>
+    <p class="hero-desc">
+      Beyond prompts — designing <strong>autonomous systems</strong> that perceive, reason, and execute. Multi-agent architectures that work while you sleep.
     </p>
-    
-    <div class="flex justify-center gap-4 flex-wrap">
-    
-    <a href="mailto:suboork100@gmail.com"
-    class="px-6 py-3 bg-green-500 text-black font-semibold rounded-lg hover:opacity-90 transition">
-    Contact Me
-    </a>
-    
-    <a href="https://suboorkhan.com"
-    class="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-900 transition">
-    Visit Portfolio
-    </a>
-    
-    <a href="/contact.html"
-    class="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-900 transition">
-    LinkedIn
-    </a>
-    
+    <div class="hero-btns">
+      <a href="#agents" class="btn btn-amber">Meet the Agents</a>
+      <a href="#visualizer" class="btn btn-outline">Live Visualizer</a>
     </div>
-    
-    </section>
-<footer class="border-t border-gray-200 dark:border-gray-800 py-6 text-center text-sm text-gray-500">
-© 2026 Suboor Khan
+  </div>
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker">
+    <span class="tick-item">Autonomous Agents</span>
+    <span class="tick-item">Multi-Agent Orchestration</span>
+    <span class="tick-item">ReAct Loop</span>
+    <span class="tick-item">Tool Use</span>
+    <span class="tick-item">Memory Systems</span>
+    <span class="tick-item">LLM Planning</span>
+    <span class="tick-item">Chain-of-Thought</span>
+    <span class="tick-item">Function Calling</span>
+    <span class="tick-item">Agentic Workflows</span>
+    <span class="tick-item">Retrieval-Augmented Generation</span>
+    <span class="tick-item">Agent Routing</span>
+    <span class="tick-item">Prompt Engineering</span>
+    <!-- dupe for loop -->
+    <span class="tick-item">Autonomous Agents</span>
+    <span class="tick-item">Multi-Agent Orchestration</span>
+    <span class="tick-item">ReAct Loop</span>
+    <span class="tick-item">Tool Use</span>
+    <span class="tick-item">Memory Systems</span>
+    <span class="tick-item">LLM Planning</span>
+    <span class="tick-item">Chain-of-Thought</span>
+    <span class="tick-item">Function Calling</span>
+    <span class="tick-item">Agentic Workflows</span>
+    <span class="tick-item">Retrieval-Augmented Generation</span>
+    <span class="tick-item">Agent Routing</span>
+    <span class="tick-item">Prompt Engineering</span>
+  </div>
+</div>
+
+<!-- ═══ AGENT CARDS ═══ -->
+<section id="agents" style="position:relative;z-index:10;padding:7rem 2.5rem;">
+  <div class="wrap">
+    <p class="s-label reveal">Agent Taxonomy</p>
+    <h2 class="s-heading reveal">The cast of<br/><em>characters.</em></h2>
+
+    <div class="agents-grid reveal">
+      <!-- Orchestrator -->
+      <div class="agent-card">
+        <div class="agent-orb orb-a">🧠</div>
+        <div class="agent-name">Orchestrator</div>
+        <div class="agent-role amber">Director Agent</div>
+        <p class="agent-desc">The conductor. Receives high-level goals, decomposes them into subtasks, delegates to specialist agents, and synthesizes the final result. Holds the global context and resolves conflicts.</p>
+        <div class="agent-tags">
+          <span class="a-tag">Task Decomposition</span>
+          <span class="a-tag">Planning</span>
+          <span class="a-tag">CoT</span>
+        </div>
+      </div>
+
+      <!-- Retrieval -->
+      <div class="agent-card">
+        <div class="agent-orb orb-b">🔍</div>
+        <div class="agent-name">Retrieval Agent</div>
+        <div class="agent-role violet">Memory &amp; Context</div>
+        <p class="agent-desc">Fetches relevant documents, embeddings, and live data from vector stores and APIs. Provides grounded context so other agents reason on facts, not hallucinations.</p>
+        <div class="agent-tags">
+          <span class="a-tag v">RAG</span>
+          <span class="a-tag v">Vector DB</span>
+          <span class="a-tag v">Embeddings</span>
+        </div>
+      </div>
+
+      <!-- Executor -->
+      <div class="agent-card">
+        <div class="agent-orb orb-c">⚡</div>
+        <div class="agent-name">Executor Agent</div>
+        <div class="agent-role teal">Action &amp; Tool Use</div>
+        <p class="agent-desc">Bridges language and reality. Calls external APIs, runs code, writes to databases, and triggers automation workflows. The hands of the system.</p>
+        <div class="agent-tags">
+          <span class="a-tag t">Function Calling</span>
+          <span class="a-tag t">API Calls</span>
+          <span class="a-tag t">Code Exec</span>
+        </div>
+      </div>
+
+      <!-- Critic -->
+      <div class="agent-card">
+        <div class="agent-orb orb-d">🛡</div>
+        <div class="agent-name">Critic Agent</div>
+        <div class="agent-role rose" style="color:var(--rose)">Evaluation &amp; Guardrails</div>
+        <p class="agent-desc">Reviews outputs from other agents before they propagate. Checks for factual accuracy, safety violations, and quality thresholds. The system's immune response.</p>
+        <div class="agent-tags">
+          <span class="a-tag" style="border-color:rgba(255,95,126,.2);color:var(--rose)">Self-Critique</span>
+          <span class="a-tag" style="border-color:rgba(255,95,126,.2);color:var(--rose)">Safety</span>
+          <span class="a-tag" style="border-color:rgba(255,95,126,.2);color:var(--rose)">QA</span>
+        </div>
+      </div>
+
+      <!-- Content Agent -->
+      <div class="agent-card">
+        <div class="agent-orb orb-a">✍️</div>
+        <div class="agent-name">Content Agent</div>
+        <div class="agent-role amber">Generation Specialist</div>
+        <p class="agent-desc">Specializes in producing structured outputs — articles, summaries, headlines, metadata. Fine-tuned prompts and format enforcement produce consistently high-quality content at scale.</p>
+        <div class="agent-tags">
+          <span class="a-tag">Summarization</span>
+          <span class="a-tag">Structured Output</span>
+          <span class="a-tag">SEO</span>
+        </div>
+      </div>
+
+      <!-- Router -->
+      <div class="agent-card">
+        <div class="agent-orb orb-b">🔀</div>
+        <div class="agent-name">Router Agent</div>
+        <div class="agent-role violet">Classifier &amp; Dispatcher</div>
+        <p class="agent-desc">Classifies incoming tasks and routes them to the most capable specialist. Reduces latency and cost by avoiding unnecessary LLM calls and using the right model for each job.</p>
+        <div class="agent-tags">
+          <span class="a-tag v">Classification</span>
+          <span class="a-tag v">Model Routing</span>
+          <span class="a-tag v">Cost Opt.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FLOW DIAGRAM ═══ -->
+<section style="position:relative;z-index:10;padding:0 2.5rem 7rem;">
+  <div class="wrap">
+    <p class="s-label reveal">How It Works</p>
+    <h2 class="s-heading reveal">The <em>ReAct</em> loop.</h2>
+
+    <div class="flow-diagram reveal">
+      <div class="flow-node">
+        <div class="flow-step">Step 01</div>
+        <div class="flow-title">Perceive</div>
+        <div class="flow-body">The user submits a goal. The orchestrator parses intent, identifies ambiguities, and constructs an initial reasoning trace.</div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-step">Step 02</div>
+        <div class="flow-title">Plan</div>
+        <div class="flow-body">Chain-of-thought reasoning breaks the goal into ordered subtasks. The router assigns each to the optimal specialist agent.</div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-step">Step 03</div>
+        <div class="flow-title">Retrieve</div>
+        <div class="flow-body">The retrieval agent fetches grounding context from vector stores, live APIs, and memory banks. No hallucinations allowed.</div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-step">Step 04</div>
+        <div class="flow-title">Act</div>
+        <div class="flow-body">Executor agents take actions in the real world — API calls, code execution, database writes, notifications fired.</div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-step">Step 05</div>
+        <div class="flow-title">Evaluate</div>
+        <div class="flow-body">The critic agent audits results. If quality thresholds aren't met, the loop restarts with refined instructions. Otherwise, output is delivered.</div>
+        <div class="flow-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIVE VISUALIZER ═══ -->
+<section class="viz-section" id="visualizer">
+  <div class="wrap">
+    <p class="s-label reveal">Interactive</p>
+    <h2 class="s-heading reveal">Agents, <em>live.</em></h2>
+    <p class="reveal" style="font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.75;max-width:500px;margin-bottom:0;">
+      A real-time simulation of a multi-agent system. Nodes communicate, pass context, and complete tasks. Move your mouse to influence the field.
+    </p>
+    <div class="viz-canvas-wrap reveal">
+      <canvas id="agent-cvs"></canvas>
+    </div>
+    <div class="viz-legend reveal">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div>Orchestrator</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--violet)"></div>Retrieval</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Executor</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rose)"></div>Critic</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(240,234,255,.4)"></div>Message Packet</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ USE CASES ═══ -->
+<section style="position:relative;z-index:10;padding:0 2.5rem 7rem;">
+  <div class="wrap">
+    <p class="s-label reveal">Real-World Applications</p>
+    <h2 class="s-heading reveal">What agents<br/><em>actually do.</em></h2>
+
+    <div class="cases-list reveal">
+      <div class="case-item">
+        <div class="case-num">01</div>
+        <div>
+          <div class="case-title">News Content Automation</div>
+          <div class="case-sub">Retrieval agent fetches breaking stories → Content agent generates headlines + summaries → Critic ensures accuracy → Published automatically to CMS. Deployed at Hindustan Times scale.</div>
+        </div>
+        <div class="case-stack">
+          <span class="a-tag">OpenAI</span><span class="a-tag v">RAG</span><span class="a-tag t">CMS API</span>
+        </div>
+      </div>
+      <div class="case-item">
+        <div class="case-num">02</div>
+        <div>
+          <div class="case-title">Healthcare IoT Monitoring</div>
+          <div class="case-sub">Executor agent ingests real-time device streams → Orchestrator triages by severity → Alert agent notifies caregivers when anomalies detected. Built for Anelto's patient platform.</div>
+        </div>
+        <div class="case-stack">
+          <span class="a-tag t">IoT</span><span class="a-tag">LLM</span><span class="a-tag v">Real-time</span>
+        </div>
+      </div>
+      <div class="case-item">
+        <div class="case-num">03</div>
+        <div>
+          <div class="case-title">Intelligent Content Recommendations</div>
+          <div class="case-sub">User behaviour signals feed retrieval agent → Orchestrator scores relevance → Personalised feeds generated per session. Serving 69M+ unique users with zero extra latency.</div>
+        </div>
+        <div class="case-stack">
+          <span class="a-tag">Embeddings</span><span class="a-tag v">Personalisation</span><span class="a-tag t">Edge</span>
+        </div>
+      </div>
+      <div class="case-item">
+        <div class="case-num">04</div>
+        <div>
+          <div class="case-title">Developer SDK Agent</div>
+          <div class="case-sub">Third-party platforms integrate once → hindustan times.js SDK agent pulls real-time feeds, adapts format, and handles auth autonomously. Zero manual integration overhead.</div>
+        </div>
+        <div class="case-stack">
+          <span class="a-tag">SDK</span><span class="a-tag v">TypeScript</span><span class="a-tag t">Webhooks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MANIFESTO ═══ -->
+<div class="manifesto">
+  <div class="manifesto-bg-text">AGENCY</div>
+  <p class="manifesto-q">
+    "The goal is not to replace thinking —<br/>it's to give products the ability to <strong>keep thinking</strong> after the engineer leaves the room."
+  </p>
+  <p class="manifesto-body">
+    Agents aren't magic. They're carefully engineered loops of perception, reasoning, and action — backed by robust retrieval, rigorous evaluation, and fallback logic. The craft is in making them reliable enough to trust with millions of users.
+  </p>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta">
+  <div class="cta-ghost">Deploy</div>
+  <p class="cta-eyebrow">Let's Build</p>
+  <h2 class="cta-h">Ready to give your<br/>product <em>agency?</em></h2>
+  <a href="mailto:suboork100@gmail.com" class="btn btn-amber">Start the Conversation</a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <span>© 2025 Suboor Khan</span>
+  <span>AI Agents Lab</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="ai.html">AI Lab →</a>
+    <a href="index.html">Portfolio →</a>
+  </div>
 </footer>
 
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+// ── Cursor ──────────────────────────────────────────────────────────────────
+const cur = document.getElementById('cur');
+const trail = document.getElementById('cur-trail');
+let mx = 0, my = 0, tx = 0, ty = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function animCur() {
+  cur.style.cssText = `left:${mx}px;top:${my}px`;
+  tx += (mx - tx) * .1; ty += (my - ty) * .1;
+  trail.style.cssText = `left:${tx}px;top:${ty}px`;
+  requestAnimationFrame(animCur);
+})();
+
+// ── Background spore field ──────────────────────────────────────────────────
+const bgCvs = document.getElementById('cvs');
+const bgCtx = bgCvs.getContext('2d');
+function resizeBg() { bgCvs.width = innerWidth; bgCvs.height = innerHeight; }
+resizeBg(); window.addEventListener('resize', resizeBg);
+
+const SPORES = Array.from({length: 120}, () => ({
+  x: Math.random() * innerWidth,
+  y: Math.random() * innerHeight,
+  r: Math.random() * 1.2 + .3,
+  vx: (Math.random()-.5) * .25,
+  vy: (Math.random()-.5) * .25,
+  hue: Math.random() < .5 ? '#ffaa2a' : '#7c5cfc',
+}));
+
+function drawBg() {
+  bgCtx.clearRect(0, 0, bgCvs.width, bgCvs.height);
+  SPORES.forEach(s => {
+    bgCtx.beginPath();
+    bgCtx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    bgCtx.fillStyle = s.hue === '#ffaa2a' ? 'rgba(255,170,42,.35)' : 'rgba(124,92,252,.3)';
+    bgCtx.fill();
+    s.x = (s.x + s.vx + innerWidth) % innerWidth;
+    s.y = (s.y + s.vy + innerHeight) % innerHeight;
+  });
+
+  // Faint filaments between close spores
+  for (let i = 0; i < SPORES.length; i++) {
+    for (let j = i+1; j < SPORES.length; j++) {
+      const dx = SPORES[i].x - SPORES[j].x;
+      const dy = SPORES[i].y - SPORES[j].y;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      if (d < 100) {
+        bgCtx.beginPath();
+        bgCtx.strokeStyle = `rgba(255,170,42,${(1-d/100)*.06})`;
+        bgCtx.lineWidth = .4;
+        bgCtx.moveTo(SPORES[i].x, SPORES[i].y);
+        bgCtx.lineTo(SPORES[j].x, SPORES[j].y);
+        bgCtx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+// ── Multi-agent Visualizer ──────────────────────────────────────────────────
+const aCvs = document.getElementById('agent-cvs');
+const aC   = aCvs.getContext('2d');
+
+function resizeAgentCvs() {
+  aCvs.width  = aCvs.offsetWidth;
+  aCvs.height = aCvs.offsetHeight;
+}
+resizeAgentCvs();
+window.addEventListener('resize', resizeAgentCvs);
+
+const AGENT_COLORS = { O:'#ffaa2a', R:'#7c5cfc', E:'#2affd6', C:'#ff5f7e' };
+const AGENT_LABELS = { O:'Orchestrator', R:'Retrieval', E:'Executor', C:'Critic' };
+
+let agents = [];
+function initAgents() {
+  const w = aCvs.width, h = aCvs.height;
+  const cx = w/2, cy = h/2;
+  const radius = Math.min(w, h) * 0.32;
+  const types = ['O','R','E','C','O','R'];
+  agents = types.map((type, i) => ({
+    type,
+    x: cx + radius * Math.cos((i / types.length) * Math.PI * 2 - Math.PI/2),
+    y: cy + radius * Math.sin((i / types.length) * Math.PI * 2 - Math.PI/2),
+    baseX: cx + radius * Math.cos((i / types.length) * Math.PI * 2 - Math.PI/2),
+    baseY: cy + radius * Math.sin((i / types.length) * Math.PI * 2 - Math.PI/2),
+    vx: 0, vy: 0,
+    pulse: Math.random() * Math.PI * 2,
+    active: false, activeTimer: 0,
+  }));
+}
+initAgents();
+window.addEventListener('resize', () => { resizeAgentCvs(); initAgents(); });
+
+// Packets
+let packets = [];
+function spawnPacket() {
+  if (agents.length < 2) return;
+  const fromIdx = Math.floor(Math.random() * agents.length);
+  let toIdx;
+  do { toIdx = Math.floor(Math.random() * agents.length); } while (toIdx === fromIdx);
+  agents[fromIdx].active = true; agents[fromIdx].activeTimer = 40;
+  packets.push({
+    x: agents[fromIdx].x, y: agents[fromIdx].y,
+    tx: agents[toIdx].x,  ty: agents[toIdx].y,
+    toIdx, progress: 0, speed: .012 + Math.random() * .015,
+    color: AGENT_COLORS[agents[fromIdx].type],
+  });
+}
+setInterval(spawnPacket, 600);
+
+let aMouse = { x: -999, y: -999 };
+aCvs.addEventListener('mousemove', e => {
+  const rect = aCvs.getBoundingClientRect();
+  aMouse.x = e.clientX - rect.left;
+  aMouse.y = e.clientY - rect.top;
+});
+
+let aFrame = 0;
+function drawAgents() {
+  const w = aCvs.width, h = aCvs.height;
+  aC.clearRect(0, 0, w, h);
+  aFrame += 0.02;
+
+  // Soft glow bg
+  const grad = aC.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.min(w,h)*.6);
+  grad.addColorStop(0, 'rgba(255,170,42,.03)');
+  grad.addColorStop(1, 'rgba(0,0,0,0)');
+  aC.fillStyle = grad;
+  aC.fillRect(0, 0, w, h);
+
+  // Connection lines
+  for (let i = 0; i < agents.length; i++) {
+    for (let j = i+1; j < agents.length; j++) {
+      const a = agents[i], b = agents[j];
+      aC.beginPath();
+      aC.strokeStyle = 'rgba(255,170,42,.07)';
+      aC.lineWidth = .8;
+      aC.setLineDash([4, 8]);
+      aC.moveTo(a.x, a.y);
+      aC.lineTo(b.x, b.y);
+      aC.stroke();
+      aC.setLineDash([]);
+    }
+  }
+
+  // Move agents subtly + mouse repel
+  agents.forEach(a => {
+    const dx = a.x - aMouse.x, dy = a.y - aMouse.y;
+    const d = Math.sqrt(dx*dx + dy*dy);
+    if (d < 80) {
+      a.vx += (dx/d) * 1.2;
+      a.vy += (dy/d) * 1.2;
+    }
+    // Spring back
+    a.vx += (a.baseX - a.x) * 0.04;
+    a.vy += (a.baseY - a.y) * 0.04;
+    a.vx *= 0.88; a.vy *= 0.88;
+    a.x += a.vx; a.y += a.vy;
+
+    a.pulse += 0.04;
+    if (a.activeTimer > 0) a.activeTimer--;
+    else a.active = false;
+
+    const col = AGENT_COLORS[a.type];
+    const r = 20 + Math.sin(a.pulse) * 2;
+
+    // Outer glow ring
+    aC.beginPath();
+    aC.arc(a.x, a.y, r * 2.2, 0, Math.PI*2);
+    aC.fillStyle = hexToRgba(col, a.active ? .12 : .05);
+    aC.fill();
+
+    // Pulse ring
+    aC.beginPath();
+    aC.arc(a.x, a.y, r + 8 + Math.sin(a.pulse)*4, 0, Math.PI*2);
+    aC.strokeStyle = hexToRgba(col, a.active ? .5 : .2);
+    aC.lineWidth = 1;
+    aC.stroke();
+
+    // Main node
+    aC.beginPath();
+    aC.arc(a.x, a.y, r, 0, Math.PI*2);
+    const nodeGrad = aC.createRadialGradient(a.x-4, a.y-4, 0, a.x, a.y, r);
+    nodeGrad.addColorStop(0, hexToRgba(col, .9));
+    nodeGrad.addColorStop(1, hexToRgba(col, .4));
+    aC.fillStyle = nodeGrad;
+    aC.fill();
+
+    // Label
+    aC.fillStyle = 'rgba(240,234,255,.7)';
+    aC.font = '700 10px sans-serif';
+    aC.textAlign = 'center';
+    aC.fillText(AGENT_LABELS[a.type].toUpperCase(), a.x, a.y + r + 16);
+  });
+
+  // Packets
+  packets = packets.filter(p => {
+    p.progress = Math.min(p.progress + p.speed, 1);
+    p.x = lerp(p.x, p.tx, p.speed * 2.5);
+    p.y = lerp(p.y, p.ty, p.speed * 2.5);
+
+    // Glow
+    aC.beginPath();
+    aC.arc(p.x, p.y, 6, 0, Math.PI*2);
+    aC.fillStyle = hexToRgba(p.color, .15);
+    aC.fill();
+    // Core
+    aC.beginPath();
+    aC.arc(p.x, p.y, 3, 0, Math.PI*2);
+    aC.fillStyle = hexToRgba(p.color, .9);
+    aC.fill();
+
+    if (p.progress >= 0.95) {
+      agents[p.toIdx].active = true;
+      agents[p.toIdx].activeTimer = 40;
+      return false;
+    }
+    return true;
+  });
+
+  requestAnimationFrame(drawAgents);
+}
+
+function hexToRgba(hex, a) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+function lerp(a, b, t) { return a + (b-a)*t; }
+
+drawAgents();
+
+// ── Scroll reveal ─────────────────────────────────────────────────────────────
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 90);
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+</script>
 </body>
 </html>
