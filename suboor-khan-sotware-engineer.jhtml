@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Suboor Khan — Tech Lead | Next.js & React Performance Engineer</title>
+
+<meta name="description" content="Suboor Khan is a Tech Lead at Hindustan Times specializing in Next.js, React, and high-performance web applications serving millions of users daily.">
+<meta name="keywords" content="Suboor Khan, React Developer, Next.js Developer, Frontend Engineer, Tech Lead, Performance Engineering">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Suboor Khan — Tech Lead & Full-Stack Developer">
+<meta property="og:description" content="Portfolio of Suboor Khan — building high-performance platforms serving millions of users.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://suboorkhan.com">
+<meta property="og:image" content="https://suboorkhan.com/og.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Suboor Khan — Tech Lead">
+<meta name="twitter:description" content="Next.js & React performance engineer building scalable web platforms.">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+
+<style>
+.glass{
+backdrop-filter: blur(14px);
+background: rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition: all .8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+</style>
+
+<!-- JSON LD -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Person",
+ "name":"Suboor Khan",
+ "url":"https://suboorkhan.com",
+ "jobTitle":"Tech Lead",
+ "email":"suboork100@gmail.com",
+ "telephone":"7011879824",
+ "sameAs":[
+  "https://linkedin.com"
+ ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebSite",
+ "name":"Suboor Khan Portfolio",
+ "url":"https://suboorkhan.com"
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"ProfilePage",
+ "name":"Suboor Khan Developer Portfolio",
+ "url":"https://suboorkhan.com"
+}
+</script>
+
+</head>
+
+<body class="bg-black text-gray-200 font-sans">
+
+<canvas id="bg" class="fixed top-0 left-0 -z-10"></canvas>
+
+<!-- NAVBAR -->
+<header class="fixed w-full top-0 backdrop-blur-lg border-b border-white/10">
+<div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+
+<h1 class="text-xl font-bold">Suboor Khan</h1>
+
+<nav class="space-x-6 hidden md:block">
+<a href="#about">About</a>
+<a href="#experience">Experience</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<button id="themeToggle" class="px-3 py-1 border rounded">
+☀
+</button>
+
+</div>
+</header>
+
+<!-- HERO -->
+<section class="min-h-screen flex items-center justify-center text-center px-6">
+
+<div>
+
+<h1 class="text-5xl md:text-7xl font-bold leading-tight">
+Tech Lead<br>
+<span class="text-indigo-400">Next.js Performance Engineer</span>
+</h1>
+
+<p class="mt-6 max-w-xl mx-auto text-gray-400">
+Building scalable web platforms serving millions of users. 
+Specialized in React, Next.js, and high-traffic performance optimization.
+</p>
+
+<div class="mt-8 space-x-4">
+
+<a href="#projects" class="px-6 py-3 bg-indigo-500 rounded-lg hover:scale-105 transition">
+View Projects
+</a>
+
+<a href="#contact" class="px-6 py-3 border border-white/20 rounded-lg hover:bg-white/10 transition">
+Contact
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 px-6 reveal">
+
+<div class="max-w-4xl mx-auto text-center">
+
+<h2 class="text-4xl font-bold mb-6">About</h2>
+
+<p class="text-gray-400 leading-relaxed">
+Product-focused Software Development Engineer with 5+ years of experience building scalable,
+high-performance web applications serving millions of users daily. Currently working at Hindustan
+Times building enterprise media platforms using Next.js and React while integrating AI-driven
+capabilities for intelligent content systems.
+</p>
+
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="py-24 px-6">
+
+<div class="max-w-6xl mx-auto">
+
+<h2 class="text-4xl font-bold text-center mb-16">Experience</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="glass p-6 rounded-xl reveal">
+
+<h3 class="font-bold text-xl">Hindustan Times</h3>
+<p class="text-indigo-400 text-sm mb-4">Tech Lead — 2023 → Present</p>
+
+<ul class="text-gray-400 space-y-2 text-sm">
+<li>Migrated LiveHindustan.com to Next.js</li>
+<li>Improved Core Web Vitals</li>
+<li>Built hindustantimes.js SDK</li>
+<li>Optimized SSR architecture</li>
+</ul>
+
+</div>
+
+<div class="glass p-6 rounded-xl reveal">
+
+<h3 class="font-bold text-xl">Chetu Inc</h3>
+<p class="text-indigo-400 text-sm mb-4">Senior Software Engineer</p>
+
+<ul class="text-gray-400 space-y-2 text-sm">
+<li>React & Node enterprise apps</li>
+<li>Healthcare dashboards</li>
+<li>IoT platforms</li>
+<li>REST integrations</li>
+</ul>
+
+</div>
+
+<div class="glass p-6 rounded-xl reveal">
+
+<h3 class="font-bold text-xl">Praxiv</h3>
+<p class="text-indigo-400 text-sm mb-4">Software Engineer</p>
+
+<ul class="text-gray-400 space-y-2 text-sm">
+<li>Whats42Nite platform</li>
+<li>Angular + React modules</li>
+<li>Backbone & ES6 architecture</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24 px-6 bg-black/40">
+
+<div class="max-w-6xl mx-auto">
+
+<h2 class="text-4xl font-bold text-center mb-16">Projects</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="glass p-6 rounded-xl reveal">
+
+<h3 class="font-bold text-xl mb-2">HindustanTimes.com</h3>
+
+<p class="text-gray-400 text-sm mb-4">
+High-traffic news platform serving millions of daily readers with AI-powered features.
+</p>
+
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="px-2 py-1 bg-indigo-500/20 rounded">Next.js</span>
+<span class="px-2 py-1 bg-indigo-500/20 rounded">React</span>
+<span class="px-2 py-1 bg-indigo-500/20 rounded">AI</span>
+</div>
+
+</div>
+
+<div class="glass p-6 rounded-xl reveal">
+
+<h3 class="font-bold text-xl mb-2">LiveHindustan</h3>
+
+<p class="text-gray-400 text-sm mb-4">
+Migrated to scalable SSR architecture serving 300M+ monthly page views.
+</p>
+
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="px-2 py-1 bg-indigo-500/20 rounded">Next.js</span>
+<span class="px-2 py-1 bg-indigo-500/20 rounded">Performance</span>
+<span class="px-2 py-1 bg-indigo-500/20 rounded">SEO</span>
+</div>
+
+</div>
+
+<div class="glass p-6 rounded-xl reveal">
+
+<h3 class="font-bold text-xl mb-2">Anelto Dashboard</h3>
+
+<p class="text-gray-400 text-sm mb-4">
+IoT-driven healthcare monitoring dashboard with real-time patient data prioritization.
+</p>
+
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="px-2 py-1 bg-indigo-500/20 rounded">React</span>
+<span class="px-2 py-1 bg-indigo-500/20 rounded">IoT</span>
+<span class="px-2 py-1 bg-indigo-500/20 rounded">Node</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24 px-6">
+
+<div class="max-w-6xl mx-auto">
+
+<h2 class="text-4xl font-bold text-center mb-16">Skills</h2>
+
+<div class="grid md:grid-cols-3 gap-10">
+
+<div class="reveal">
+<h3 class="font-bold text-xl mb-4">Programming</h3>
+<p class="text-gray-400">
+React • Angular • Node.js • TypeScript • JavaScript • Next.js • Firebase • Docker • Tailwind
+</p>
+</div>
+
+<div class="reveal">
+<h3 class="font-bold text-xl mb-4">Performance</h3>
+<p class="text-gray-400">
+Core Web Vitals • Code Splitting • Lazy Loading • Hydration Optimization • SEO
+</p>
+</div>
+
+<div class="reveal">
+<h3 class="font-bold text-xl mb-4">Technology</h3>
+<p class="text-gray-400">
+Git • AWS • Linux • Automation • Artificial Intelligence
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 px-6 bg-black/40">
+
+<div class="max-w-3xl mx-auto text-center">
+
+<h2 class="text-4xl font-bold mb-8">Contact</h2>
+
+<p class="text-gray-400 mb-6">
+Let's collaborate on building scalable web platforms.
+</p>
+
+<div class="space-y-2 text-gray-300">
+
+<p>Email: suboork100@gmail.com</p>
+<p>Phone: 7011879824</p>
+<p>Website: suboorkhan.com</p>
+<p>LinkedIn: coming soon</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="text-center py-8 text-gray-500 border-t border-white/10">
+© 2026 Suboor Khan
+</footer>
+
+<script>
+
+const toggle=document.getElementById("themeToggle")
+
+toggle.onclick=()=>{
+document.documentElement.classList.toggle("dark")
+document.body.classList.toggle("bg-white")
+document.body.classList.toggle("text-black")
+}
+
+const reveals=document.querySelectorAll(".reveal")
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("active")
+}
+})
+})
+
+reveals.forEach(el=>observer.observe(el))
+
+</script>
+
+<script defer>
+
+const scene=new THREE.Scene()
+const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000)
+const renderer=new THREE.WebGLRenderer({canvas:document.querySelector("#bg"),alpha:true})
+
+renderer.setSize(innerWidth,innerHeight)
+camera.position.z=5
+
+const geometry=new THREE.BufferGeometry()
+const vertices=[]
+
+for(let i=0;i<1000;i++){
+vertices.push(
+(Math.random()-0.5)*20,
+(Math.random()-0.5)*20,
+(Math.random()-0.5)*20
+)
+}
+
+geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3))
+
+const material=new THREE.PointsMaterial({size:0.02})
+const points=new THREE.Points(geometry,material)
+
+scene.add(points)
+
+function animate(){
+requestAnimationFrame(animate)
+points.rotation.y+=0.0005
+renderer.render(scene,camera)
+}
+
+animate()
+
+</script>
+
+</body>
+</html>
