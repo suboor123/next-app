@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Three.js Developer | Suboor Khan</title>
+
+<meta name="description" content="Suboor Khan builds interactive 3D web experiences using Three.js, WebGL and modern frontend technologies including React and Next.js.">
+
+<meta name="keywords" content="Three.js Developer, WebGL Developer, 3D Web Developer, React Three.js Developer, Suboor Khan">
+
+<link rel="canonical" href="https://suboorkhan.com/threejs.html">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"Person",
+"name":"Suboor Khan",
+"url":"https://suboorkhan.com",
+"jobTitle":"Tech Lead",
+"knowsAbout":[
+"Three.js",
+"WebGL",
+"3D Web Development",
+"React",
+"Next.js"
+]
+}
+</script>
+
+<style>
+
+body{
+background:#0b0b0f;
+overflow-x:hidden;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+</style>
+
+</head>
+
+<body class="text-gray-200 font-sans">
+
+<canvas id="bg"></canvas>
+
+<div class="max-w-6xl mx-auto px-6">
+
+<!-- HERO -->
+
+<section class="min-h-screen flex flex-col justify-center">
+
+<h1 class="text-5xl md:text-6xl font-bold mb-6">
+Three.js Developer
+</h1>
+
+<p class="text-xl text-gray-400 max-w-2xl mb-8">
+I build interactive 3D experiences on the web using Three.js and WebGL.
+Combining modern frontend frameworks like React and Next.js with 3D
+graphics to create visually immersive digital products.
+</p>
+
+<div class="flex gap-4 text-sm">
+
+<span class="px-5 py-2 bg-green-500 text-black rounded-lg">
+3D Web Experiences
+</span>
+
+<span class="px-5 py-2 border border-gray-700 rounded-lg">
+WebGL Graphics
+</span>
+
+</div>
+
+</section>
+
+<!-- THREEJS EXPERIENCE -->
+
+<section class="py-20 border-t border-gray-800">
+
+<h2 class="text-3xl font-semibold mb-10">
+Three.js Capabilities
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="p-6 border border-gray-800 rounded-xl hover:bg-gray-900">
+
+<h3 class="text-xl font-semibold mb-3">
+3D Interfaces
+</h3>
+
+<p class="text-gray-400">
+Building immersive user interfaces with 3D elements,
+interactive scenes and animated visualizations.
+</p>
+
+</div>
+
+<div class="p-6 border border-gray-800 rounded-xl hover:bg-gray-900">
+
+<h3 class="text-xl font-semibold mb-3">
+WebGL Graphics
+</h3>
+
+<p class="text-gray-400">
+Leveraging WebGL through Three.js to create performant
+3D graphics that run directly inside modern browsers.
+</p>
+
+</div>
+
+<div class="p-6 border border-gray-800 rounded-xl hover:bg-gray-900">
+
+<h3 class="text-xl font-semibold mb-3">
+Interactive Experiences
+</h3>
+
+<p class="text-gray-400">
+Combining animations, physics and user interaction
+to create engaging digital experiences on the web.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TECH STACK -->
+
+<section class="py-20 border-t border-gray-800">
+
+<h2 class="text-3xl font-semibold mb-10">
+3D Web Stack
+</h2>
+
+<div class="flex flex-wrap gap-3">
+
+<span class="px-3 py-1 bg-gray-800 rounded">Three.js</span>
+<span class="px-3 py-1 bg-gray-800 rounded">WebGL</span>
+<span class="px-3 py-1 bg-gray-800 rounded">JavaScript</span>
+<span class="px-3 py-1 bg-gray-800 rounded">React</span>
+<span class="px-3 py-1 bg-gray-800 rounded">Next.js</span>
+<span class="px-3 py-1 bg-gray-800 rounded">GSAP</span>
+<span class="px-3 py-1 bg-gray-800 rounded">Tailwind</span>
+
+</div>
+
+</section>
+
+<!-- DEMO -->
+
+<section class="py-20 border-t border-gray-800">
+
+<h2 class="text-3xl font-semibold mb-10">
+Interactive 3D Demo
+</h2>
+
+<p class="text-gray-400 max-w-2xl">
+The animated 3D scene running in the background of this page
+is powered by Three.js and WebGL. It demonstrates real-time
+rendering and animation directly inside the browser.
+</p>
+
+</section>
+
+<footer class="py-16 border-t border-gray-800 text-center text-gray-500">
+
+Three.js Development — Suboor Khan
+
+</footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+<script>
+
+const scene = new THREE.Scene()
+
+const camera = new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+)
+
+const renderer = new THREE.WebGLRenderer({
+canvas:document.querySelector('#bg'),
+alpha:true
+})
+
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+camera.position.z=40
+
+const geometry = new THREE.TorusKnotGeometry(10,3,100,16)
+
+const material = new THREE.MeshBasicMaterial({
+color:0x22c55e,
+wireframe:true
+})
+
+const knot = new THREE.Mesh(geometry,material)
+
+scene.add(knot)
+
+function animate(){
+
+requestAnimationFrame(animate)
+
+knot.rotation.x += 0.002
+knot.rotation.y += 0.003
+knot.rotation.z += 0.001
+
+renderer.render(scene,camera)
+
+}
+
+animate()
+
+</script>
+
+</body>
+</html>
