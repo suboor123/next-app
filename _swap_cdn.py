@@ -31,3 +31,6 @@ for f in glob.glob('/Users/210093/Desktop/portfolio/blogs/*.html'):
     process(f, '../style.css')
 
 print('\nDone.')
+
+
+
