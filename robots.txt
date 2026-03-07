@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://suboorkhan.com/sitemap.xml
+Sitemap: https://www.suboorkhan.com/sitemap.xml
 
 # Block AI training scrapers (optional — remove if you want AI visibility)
 User-agent: GPTBot

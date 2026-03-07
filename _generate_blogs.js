@@ -6,7 +6,7 @@
 const fs   = require('fs');
 const path = require('path');
 
-const BASE = 'https://suboorkhan.com';
+const BASE = 'https://www.suboorkhan.com';
 
 const blogs = JSON.parse(fs.readFileSync(path.join(__dirname,'data/blogs.json'),'utf8')).posts;
 

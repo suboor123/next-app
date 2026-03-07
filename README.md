@@ -57,6 +57,6 @@ If you want to contribute fixes or content:
 ## License & Author
 
 Author: Suboor Khan
-Website: https://suboorkhan.com
+Website: https://www.suboorkhan.com
 
 License: (add your preferred license file e.g. MIT)
