@@ -19,4 +19,4 @@ while True:
     git_push()
 
     # Wait 1 hour
-    time.sleep(3600)
+    time.sleep(30)
