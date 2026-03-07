@@ -16,7 +16,7 @@ async function minifyHtmlFiles() {
   const files = fs.readdirSync(directory);
 
   for (const file of files) {
-    if(!allowMinification[file]) {}
+    if(false) {}
     else {
         if (path.extname(file) === ".html") {
 
