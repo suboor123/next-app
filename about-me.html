@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-IN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <title>About Suboor Khan | Tech Lead & Next.js Performance Architect</title>
+    <meta name="description" content="Discover the philosophy of Suboor Khan, a Tech Lead specializing in high-scale Next.js architectures serving 300M+ views. Expert in Core Web Vitals and AI-driven frontend.">
+    <link rel="canonical" href="https://www.suboorkhan.com/about">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Suboor Khan",
+        "jobTitle": "Tech Lead",
+        "description": "Tech Lead at Hindustan Times, building high-performance React and Next.js applications.",
+        "knowsAbout": ["Next.js", "React", "Web Performance", "Core Web Vitals", "AI Engineering"],
+        "url": "https://www.suboorkhan.com"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { syne: ['Syne', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: '#22c55e', dark: '#050505' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background: #050505; color: #fafafa; overflow-x: hidden; cursor: none; }
+        .custom-cursor { position: fixed; width: 10px; height: 10px; background: #22c55e; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s ease-out; }
+        .text-outline { -webkit-text-stroke: 1px rgba(255,255,255,0.1); color: transparent; }
+        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.04; z-index: 999; pointer-events: none; background: url('https://grainy-gradients.vercel.app/noise.svg'); }
+        section { position: relative; z-index: 10; }
+        .split-parent { overflow: hidden; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="grain"></div>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <header class="fixed top-0 w-full z-50 p-8 flex justify-between items-center mix-blend-difference">
+        <a href="/" class="text-2xl font-syne font-extrabold">SK<span class="text-brand">.</span></a>
+        <nav class="hidden md:flex gap-10 font-mono text-[10px] uppercase tracking-[0.4em]">
+            <a href="#philosophy" class="hover:text-brand transition">Philosophy</a>
+            <a href="#metrics" class="hover:text-brand transition">Impact</a>
+            <a href="#contact" class="hover:text-brand transition">Connect</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="min-h-screen flex flex-col justify-center px-8 md:px-24">
+            <h1 class="text-[clamp(3rem,10vw,12rem)] font-syne font-extrabold leading-[0.85] tracking-tighter uppercase mb-12">
+                Engineering <br> <span class="text-outline">Digital</span> Velocity.
+            </h1>
+            <div class="grid md:grid-cols-2 gap-12">
+                <p class="text-xl md:text-3xl font-light text-gray-400 leading-tight">
+                    Suboor Khan is a <span class="text-white font-medium">Tech Lead & Performance Architect</span> based in India. He specializes in the intersection of massive-scale frontend and AI-driven capabilities.
+                </p>
+                <div class="flex flex-col justify-end">
+                    <span class="text-brand font-mono text-xs uppercase tracking-widest mb-2">[ 28.61° N // 77.20° E ]</span>
+                    <p class="text-gray-600 text-sm max-w-xs uppercase font-mono tracking-tighter">Current Location: New Delhi / Ghaziabad</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="philosophy" class="py-40 px-8 md:px-24 bg-[#0a0a0a]">
+            <div class="max-w-5xl">
+                <h2 class="text-xs font-mono text-gray-600 uppercase tracking-[0.5em] mb-20">The Vision</h2>
+                <p class="text-4xl md:text-7xl font-syne font-bold leading-tight tracking-tighter philosophy-text">
+                    I believe the web should be <span class="text-brand">invisible.</span> No loaders, no friction, just instant utility. Scaling to 300 million users isn't a challenge of hardware, but a challenge of <span class="text-outline">Precision Engineering.</span>
+                </p>
+            </div>
+        </section>
+
+        <section id="metrics" class="py-40 px-8 md:px-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-1 px-4 bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden">
+                <article class="p-12 hover:bg-white/5 transition border-r border-white/5">
+                    <h3 class="text-gray-500 font-mono text-xs uppercase mb-8">Performance Score</h3>
+                    <div class="text-7xl font-bold font-syne mb-4">99<span class="text-brand">%</span></div>
+                    <p class="text-sm text-gray-400 font-light">Average Lighthouse Core Web Vital score across major production deployments.</p>
+                </article>
+                <article class="p-12 hover:bg-white/5 transition border-r border-white/5">
+                    <h3 class="text-gray-500 font-mono text-xs uppercase mb-8">Monthly Reach</h3>
+                    <div class="text-7xl font-bold font-syne mb-4">300M</div>
+                    <p class="text-sm text-gray-400 font-light">Directly architecting experiences for over three hundred million monthly page views.</p>
+                </article>
+                <article class="p-12 hover:bg-white/5 transition">
+                    <h3 class="text-gray-500 font-mono text-xs uppercase mb-8">Industry Tenure</h3>
+                    <div class="text-7xl font-bold font-syne mb-4">6<span class="text-gray-500 text-3xl">yrs</span></div>
+                    <p class="text-sm text-gray-400 font-light">Focused on React, Next.js, and the evolution of the JavaScript ecosystem.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="py-40 px-8 md:px-24 flex justify-center">
+            <div class="max-w-3xl">
+                <h2 class="text-3xl font-syne font-bold mb-10 text-center">The Professional Blueprint</h2>
+                <div class="space-y-6 text-gray-400 text-lg leading-relaxed text-center italic">
+                    <p>
+                        Currently serving as <strong>Tech Lead at Hindustan Times</strong>, I lead the migration and optimization of LiveHindustan.com, a platform reaching 69M+ unique users. My focus is on <strong>SSR/ISR architecture</strong> and <strong>Hydration Slicing</strong> to minimize Main-Thread blocking.
+                    </p>
+                    <p>
+                        Beyond traditional performance, I am passionate about <strong>AI Integration</strong>—leveraging Large Language Models to create smarter, faster, and more intuitive user interfaces that predict intent.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact" class="h-screen flex flex-col items-center justify-center text-center">
+            <h2 class="text-[8vw] font-syne font-extrabold tracking-tighter mb-10">Collab?</h2>
+            <a href="mailto:suboork100@gmail.com" class="text-4xl md:text-6xl font-syne font-bold hover:text-brand transition duration-500 underline underline-offset-[20px] decoration-1">suboork100@gmail.com</a>
+        </footer>
+    </main>
+
+    <script>
+        // CUSTOM CURSOR
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+        });
+
+        // SCROLL REVEAL (GSAP)
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate the philosophy text on scroll
+        gsap.from(".philosophy-text", {
+            scrollTrigger: {
+                trigger: ".philosophy-text",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out"
+        });
+
+        // Stats counter animation
+        gsap.utils.toArray('.text-7xl').forEach(stat => {
+            gsap.from(stat, {
+                scrollTrigger: { trigger: stat, start: "top 90%" },
+                opacity: 0,
+                scale: 0.9,
+                duration: 1,
+                ease: "expo.out"
+            });
+        });
+    </script>
+</body>
+</html>
