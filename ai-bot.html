@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Suboor AI — Autonomous Intelligence at Scale</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: '#22c55e',
+                        deep: '#030303',
+                        surface: '#0f172a'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #030303; color: #f8fafc; cursor: none; overflow-x: hidden; font-family: 'Inter', sans-serif; }
+        
+        /* Smooth Scroll Wrapper */
+        #smooth-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+        #smooth-content { will-change: transform; }
+
+        /* The Glitch Text Effect */
+        .glitch {
+            position: relative; color: white;
+            font-size: clamp(3rem, 15vw, 12rem); font-weight: 800; font-family: 'Syne'; line-height: 0.8; letter-spacing: -0.05em; text-transform: uppercase;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8;
+        }
+        .glitch::before { color: #22c55e; z-index: -1; animation: glitch-anim-1 2s infinite linear alternate-reverse; }
+        .glitch::after { color: #f8f8f8; z-index: -2; animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+        @keyframes glitch-anim-1 { 0% { top: 0; left: 2px; } 20% { top: -2px; left: -2px; } 100% { top: 2px; left: 0; } }
+        @keyframes glitch-anim-2 { 0% { top: 0; left: -2px; } 20% { top: 2px; left: 2px; } 100% { top: -2px; left: 0; } }
+
+        /* Awwwards Glass Panel */
+        .glass { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); transition: border-color 0.3s; }
+        .glass:hover { border-color: rgba(34, 197, 94, 0.4); }
+
+        /* Subtle Noise Overlay for Texture */
+        .noise { position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: 0.03; background: url('https://grainy-gradients.vercel.app/noise.svg'); }
+
+        #webgl-canvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
+        .cursor-dot { position: fixed; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+        .cursor-outline { position: fixed; width: 40px; height: 40px; border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, border-color 0.3s; }
+        .cursor-hover .cursor-outline { width: 60px; height: 60px; border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+    </style>
+</head>
+<body class="selection:bg-neon selection:text-black antialiased">
+
+    <div class="noise"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+    <canvas id="webgl-canvas"></canvas>
+
+    <header class="fixed top-0 w-full z-50 px-10 py-10 flex justify-between items-center mix-blend-difference">
+        <a href="/" class="text-3xl font-syne font-extrabold tracking-tighter text-white interactive">SUB_AI</a>
+        <nav class="hidden md:flex gap-10 font-mono text-[10px] uppercase tracking-[0.3em] text-gray-300">
+            <a href="#core" class="interactive hover:text-neon transition">System</a>
+            <a href="#deploy" class="interactive hover:text-neon transition">Deploy</a>
+            <a href="#architecture" class="interactive hover:text-neon transition">Architect</a>
+            <a href="#contact" class="px-5 py-2 border border-neon text-neon rounded-full interactive hover:bg-neon hover:text-black transition-all">Connect</a>
+        </nav>
+    </header>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <section class="min-h-screen flex flex-col justify-center px-10 relative">
+                <div class="font-mono text-neon text-xs mb-6 tracking-tighter" id="hero-tag">[ AGENT_STATUS: OPERATIONAL_AT_SCALE ]</div>
+                <h1 class="glitch mb-12" data-text="SUBOOR.AI">SUBOOR.AI</h1>
+                <p class="text-xl md:text-3xl text-gray-400 max-w-2xl leading-tight font-light reveal-text">
+                    Autonomous context orchestration for 300,000,000+ monthly users. Bridging Large Language Models and real-world execution.
+                </p>
+            </div>
+
+            <section id="core" class="py-40 px-10 max-w-7xl mx-auto">
+                <h2 class="text-xs font-mono uppercase tracking-[0.4em] text-gray-500 mb-20">System Kernels</h2>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div class="glass p-10 rounded-3xl md:col-span-8 group interactive">
+                        <div class="w-12 h-12 rounded-full border border-neon/30 flex items-center justify-center mb-6 text-neon group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <h3 class="text-3xl font-syne font-bold text-white mb-4">Context Orchestration</h3>
+                        <p class="text-gray-400 leading-relaxed max-w-xl">Dynamically manage context windows, retrieve relevant vector data, and optimize prompts for maximum LLM efficiency at a massive concurrency level.</p>
+                    </div>
+                    <div class="glass p-10 rounded-3xl md:col-span-4 interactive">
+                        <div class="text-neon font-mono text-xs mb-2">SCALE</div>
+                        <div class="text-5xl font-bold">300M+</div>
+                        <p class="text-sm text-gray-500 mt-2">Active experiences orchestrated per month by Suboor.AI core.</p>
+                    </div>
+                    <div class="glass p-10 rounded-3xl md:col-span-12 interactive flex flex-col md:flex-row gap-12 items-center">
+                        <div>
+                            <h3 class="text-3xl font-syne font-bold text-white mb-4">Multi-Agent Protocol</h3>
+                            <p class="text-gray-400 leading-relaxed">Decompose complex problems into sub-tasks and delegate to specialized, sandboxed AI agents for parallel execution.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <section id="deploy" class="py-40 px-10 border-t border-white/5 bg-deep">
+                <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <h2 class="text-xs font-mono uppercase tracking-[0.4em] text-neon mb-8">Deployment</h2>
+                        <h3 class="text-5xl md:text-7xl font-syne font-bold text-white tracking-tighter leading-[0.9] mb-8">From Prompt<br> to Production.</h3>
+                        <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-10">
+                            Suboor.AI isn't a prototype. It is the high-performance backbone currently serving AI features on platforms reaching 69 million unique users.
+                        </p>
+                        <ul class="space-y-4 font-mono text-sm text-gray-500">
+                            <li class="flex items-center gap-4"><span class="w-2 h-2 bg-neon rounded-full"></span> 69M+ Unique User Implementations</li>
+                            <li class="flex items-center gap-4"><span class="w-2 h-2 bg-neon rounded-full"></span> Sub-second Latency Orchestration</li>
+                            <li class="flex items-center gap-4"><span class="w-2 h-2 bg-neon rounded-full"></span> Next.js & ISR/SSR Optimized Integration</li>
+                        </ul>
+                    </div>
+                    <div class="relative glass rounded-[3rem] p-4 group overflow-hidden interactive">
+                        <div class="absolute -inset-4 bg-neon/10 blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <section id="architecture" class="py-40 px-10 max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-12 items-center">
+                    <div class="md:col-span-3">
+                        <h2 class="text-5xl md:text-7xl font-syne font-bold text-white tracking-tighter mb-8 reveal-text">Engineered<br>by Suboor Khan.</h2>
+                        <p class="text-gray-400 text-lg leading-relaxed max-w-2xl font-light reveal-text">
+                            Built on the experience of leading frontend architecture at <span class="text-white font-medium">Hindustan Times</span>. Suboor.AI is the fusion of high-performance web engineering and advanced autonomous intelligence.
+                        </p>
+                    </div>
+                    <div class="text-center flex flex-col items-center interactive group">
+                        
+                        <a href="https://www.suboorkhan.com" class="text-neon font-mono text-sm mt-4 hover:text-white transition group-hover:underline underline-offset-4">Performance Portfolio</a>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="contact" class="h-screen flex flex-col items-center justify-center text-center px-10 bg-black rounded-[3rem] mx-4 md:mx-10 mb-10">
+                <h2 class="text-[10vw] font-syne font-extrabold tracking-tighter text-neon mb-12">Activate.</h2>
+                <a href="mailto:suboork100@gmail.com" class="interactive text-4xl md:text-6xl font-syne font-bold text-white hover:text-neon transition decoration-1 underline underline-offset-[20px] decoration-neon">suboork100@gmail.com</a>
+                <p class="text-xs font-mono text-gray-600 mt-32 uppercase tracking-[0.5em]">© 2026 SUBOOR.AI / GHZ-CORE-01</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        // Custom Cursor Lerp
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        let mouseX = 0, mouseY = 0;
+        let outlineX = 0, outlineY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Interactivity
+        gsap.utils.toArray('.interactive, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+
+        // 3D Neural Grid Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.z = 5;
+
+        // Plane Geometry with displacement
+        const geometry = new THREE.PlaneGeometry(20, 10, 50, 25);
+        const material = new THREE.MeshBasicMaterial({ color: 0x22c55e, wireframe: true, transparent: true, opacity: 0.1 });
+        const gridMesh = new THREE.Mesh(geometry, material);
+        gridMesh.rotation.x = -Math.PI / 3; // Angle the grid
+        scene.add(gridMesh);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            gridMesh.rotation.z += 0.0005; // Base rotation
+            
+            // Mouse Parallax for Three.js
+            gridMesh.rotation.y += (mouseX/window.innerWidth - 0.5 - gridMesh.rotation.y) * 0.05;
+            gridMesh.rotation.x += (-Math.PI / 3 - mouseY/window.innerHeight + 0.5 - gridMesh.rotation.x) * 0.05;
+            
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // GSAP Initialization
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Custom Smooth Scroll Logic
+        gsap.set("#smooth-wrapper", { height: document.getElementById('smooth-content').clientHeight });
+        gsap.to("#smooth-content", {
+            y: () => -(document.getElementById('smooth-content').clientHeight - window.innerHeight),
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#smooth-content",
+                start: "top top",
+                end: () => "+=" + (document.getElementById('smooth-content').clientHeight - window.innerHeight),
+                scrub: 1, // Momentum / Inertia
+                pin: true,
+                anticipatePin: 1
+            }
+        });
+
+        // Cursor Animation loop
+        function animateCursor() {
+            let dx = mouseX - outlineX;
+            let dy = mouseY - outlineY;
+            outlineX += dx * 0.15;
+            outlineY += dy * 0.15;
+            cursorOutline.style.left = outlineX + 'px';
+            cursorOutline.style.top = outlineY + 'px';
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Scroll Reveals
+        gsap.utils.toArray('.reveal-text').forEach(text => {
+            gsap.from(text, {
+                scrollTrigger: { trigger: text, start: "top 85%" },
+                y: 50,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>
