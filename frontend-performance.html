@@ -1,1 +1,176 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Frontend Performance Engineer | Suboor Khan</title><meta name="description" content="Frontend performance engineering by Suboor Khan focusing on bundle optimization, rendering performance and scalable architecture."><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-[#0b0b0f] text-gray-200 font-sans"><nav class="bg-[#0b0b0f] border-b border-gray-800 sticky top-0 z-50"><div class="max-w-7xl mx-auto px-6"><div class="flex items-center justify-between h-16"><a href="/" class="text-xl font-bold text-white">SK<span class="text-green-500">.</span></a><div class="hidden md:flex items-center space-x-6 text-sm text-gray-300"><a href="/" class="hover:text-white">Home</a> <a href="/projects" class="hover:text-white">Projects</a> <a href="/blog" class="hover:text-white">Blog</a> <a href="/react-developer" class="hover:text-white">React</a> <a href="/nextjs-developer" class="hover:text-white">Next.js</a> <a href="/performance" class="hover:text-white">Performance</a> <a href="/ai" class="hover:text-white">AI</a> <a href="/threejs" class="hover:text-white">Three.js</a> <a href="/resume" class="hover:text-white">Resume</a> <a href="/contact" class="hover:text-white">Contact</a><a href="/hire-me" class="ml-4 px-4 py-2 bg-green-500 text-black rounded-lg font-semibold hover:opacity-90">Hire Me</a></div><button id="menuBtn" class="md:hidden text-gray-300">☰</button></div></div><div id="mobileMenu" class="hidden md:hidden border-t border-gray-800 bg-[#0b0b0f]"><div class="px-6 py-4 flex flex-col space-y-3 text-gray-300 text-sm"><a href="/">Home</a> <a href="/projects">Projects</a> <a href="/blog">Blog</a> <a href="/react-developer">React Developer</a> <a href="/nextjs-developer">Next.js Developer</a> <a href="/performance">Performance</a> <a href="/ai">AI</a> <a href="/threejs">Three.js</a> <a href="/resume">Resume</a> <a href="/contact">Contact</a> <a href="/hire-me" class="mt-2 px-4 py-2 bg-green-500 text-black rounded-lg text-center font-semibold">Hire Me</a></div></div></nav><script>const btn=document.getElementById("menuBtn"),menu=document.getElementById("mobileMenu");btn.addEventListener("click",()=>{menu.classList.toggle("hidden")})</script><div class="max-w-6xl mx-auto px-6"><section class="min-h-screen flex flex-col justify-center"><h1 class="text-5xl font-bold mb-6">Frontend Performance Engineer</h1><p class="text-xl text-gray-400 max-w-2xl">Specialized in optimizing web applications for speed, scalability and performance across millions of users.</p></section><section class="py-20 border-t border-gray-800"><h2 class="text-3xl font-semibold mb-8">Optimization Techniques</h2><div class="grid md:grid-cols-3 gap-8"><div class="p-6 border border-gray-800 rounded-xl"><h3 class="font-semibold mb-2">Bundle Optimization</h3><p class="text-gray-400">Reducing bundle size using code splitting and tree shaking.</p></div><div class="p-6 border border-gray-800 rounded-xl"><h3 class="font-semibold mb-2">Lazy Loading</h3><p class="text-gray-400">Loading components dynamically to improve initial render speed.</p></div><div class="p-6 border border-gray-800 rounded-xl"><h3 class="font-semibold mb-2">Rendering Optimization</h3><p class="text-gray-400">Minimizing re-renders and optimizing React rendering lifecycle.</p></div></div></section></div><section class="py-24 border-t border-gray-800 text-center"><h2 class="text-4xl font-bold mb-6">Let's Build Something Great</h2><p class="text-gray-400 max-w-2xl mx-auto mb-10">Interested in working together or building high-performance web applications? I’m always open to discussing new opportunities, innovative projects, and AI-powered platforms.</p><div class="flex justify-center gap-4 flex-wrap"><a href="mailto:suboork100@gmail.com" class="px-6 py-3 bg-green-500 text-black font-semibold rounded-lg hover:opacity-90 transition">Contact Me </a><a href="https://www.suboorkhan.com" class="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-900 transition">Visit Portfolio </a><a href="/contact.html" class="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-900 transition">LinkedIn</a></div></section></body></html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Frontend Performance Engineer | Suboor Khan — Speed Architect</title>
+    <meta name="description" content="Suboor Khan: Specializing in sub-second LCP, hydration optimization, and bundle engineering for platforms with 300M+ views.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        syne: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        perf: '#22c55e',
+                        bg: '#050505',
+                        card: '#0a0a0c'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background: #050505; color: #888; cursor: crosshair; }
+        .hero-title { font-size: clamp(3rem, 8vw, 10rem); line-height: 0.9; letter-spacing: -0.05em; }
+        .metric-value { font-variant-numeric: tabular-nums; }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(34, 197, 94, 0.1);
+            position: absolute;
+            z-index: 10;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan { 0% { top: 0% } 100% { top: 100% } }
+        .glass-border { border: 1px solid rgba(255,255,255,0.05); }
+        .perf-node:hover { border-color: #22c55e; color: white; }
+    </style>
+</head>
+<body class="font-mono selection:bg-perf selection:text-black antialiased">
+
+    <div class="scanline"></div>
+
+    <header class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-bg/80 backdrop-blur-md border-b glass-border">
+        <div class="flex items-center gap-4">
+            <a href="/" class="text-white font-syne text-xl">SK<span class="text-perf">.</span></a>
+            <div class="hidden md:flex gap-4 text-[9px] uppercase tracking-widest border-l border-white/10 pl-4">
+                <span>Status: Optimized</span>
+                <span class="text-perf">LCP: 0.8s</span>
+                <span>CLS: 0.00</span>
+            </div>
+        </div>
+        <nav class="flex gap-6 text-[10px] uppercase font-bold">
+            <a href="#vitals" class="hover:text-perf">Vitals</a>
+            <a href="#stack" class="hover:text-perf">Stack</a>
+            <a href="mailto:suboork100@gmail.com" class="text-perf border border-perf/20 px-3 py-1 rounded">Request Audit</a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        
+        <section class="min-h-[70vh] flex flex-col justify-center mb-20">
+            <h1 class="hero-title font-syne font-extrabold text-white uppercase mb-8">
+                SPEED IS <br> <span class="text-perf">REVENUE.</span>
+            </h1>
+            <p class="max-w-2xl text-lg md:text-2xl font-light leading-relaxed">
+                Engineering sub-second experiences for <span class="text-white">300M+ users</span>. Every millisecond shaved from the bundle is a user retained.
+            </p>
+        </section>
+
+        <section id="vitals" class="py-20 border-t glass-border">
+            <h2 class="text-[10px] uppercase tracking-[0.5em] mb-16 text-gray-500">Core_Web_Vitals_Specialization</h2>
+            
+            
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="perf-node glass-border p-8 rounded-2xl bg-card transition-all">
+                    <div class="text-xs text-perf mb-4 font-bold tracking-tighter">01 // LCP</div>
+                    <h3 class="text-xl text-white font-bold mb-4 uppercase">Content Loading</h3>
+                    <p class="text-sm leading-relaxed text-gray-500">Optimizing critical rendering paths and resource prefetching to ensure the largest content element appears in under 1.2s.</p>
+                </div>
+                <div class="perf-node glass-border p-8 rounded-2xl bg-card transition-all">
+                    <div class="text-xs text-perf mb-4 font-bold tracking-tighter">02 // INP</div>
+                    <h3 class="text-xl text-white font-bold mb-4 uppercase">Interaction</h3>
+                    <p class="text-sm leading-relaxed text-gray-500">Minimizing long tasks and breaking up hydration blocks to ensure immediate responsiveness to user input.</p>
+                </div>
+                <div class="perf-node glass-border p-8 rounded-2xl bg-card transition-all">
+                    <div class="text-xs text-perf mb-4 font-bold tracking-tighter">03 // CLS</div>
+                    <h3 class="text-xl text-white font-bold mb-4 uppercase">Visual Stability</h3>
+                    <p class="text-sm leading-relaxed text-gray-500">Zero-tolerance for layout shifts. Implementing aspect-ratio containers and skeleton strategies at scale.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="p-10 bg-perf/5 rounded-[3rem] border border-perf/10">
+                <h2 class="text-4xl font-syne font-bold text-white mb-6 uppercase tracking-tighter">Scale Invariant <br> Performance</h2>
+                <p class="mb-6 text-gray-400">At Hindustan Times, I led the initiative to reduce bundle sizes by 40%. For 69M users, this equated to a massive reduction in data egress costs and a significant boost in mobile SEO rankings.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-bg p-4 rounded-xl border glass-border">
+                        <div class="text-[9px] uppercase text-gray-500">Bundle Size</div>
+                        <div class="text-2xl text-perf font-bold">-40%</div>
+                    </div>
+                    <div class="bg-bg p-4 rounded-xl border glass-border">
+                        <div class="text-[9px] uppercase text-gray-500">Traffic Peak</div>
+                        <div class="text-2xl text-perf font-bold">1.2M/min</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <h3 class="text-[10px] uppercase tracking-[0.5em] text-gray-500 mb-8">Technical_Tactics</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-4 py-2 bg-card border glass-border text-[10px] rounded-full">Hydration Slicing</span>
+                    <span class="px-4 py-2 bg-card border glass-border text-[10px] rounded-full">Tree Shaking</span>
+                    <span class="px-4 py-2 bg-card border glass-border text-[10px] rounded-full">Edge Caching</span>
+                    <span class="px-4 py-2 bg-card border glass-border text-[10px] rounded-full">Dynamic Import</span>
+                    <span class="px-4 py-2 bg-card border glass-border text-[10px] rounded-full">Workbox / PWA</span>
+                    <span class="px-4 py-2 bg-card border glass-border text-[10px] rounded-full">Brotli Compression</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-40 text-center">
+            <div class="mb-8 font-mono text-[9px] text-gray-600 uppercase tracking-[1em]">Latency Analysis Complete</div>
+            <a href="mailto:suboork100@gmail.com" class="text-5xl md:text-8xl font-syne font-bold text-white hover:text-perf transition-all duration-500 uppercase tracking-tighter">
+                OPTIMIZE_NOW.
+            </a>
+            <p class="mt-12 text-xs text-gray-700 font-mono tracking-widest">© 2026 Suboor Khan — Compiled in 14ms</p>
+        </footer>
+
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animation
+        gsap.from(".hero-title", {
+            y: 50,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power4.out"
+        });
+
+        // Staggered node entrance
+        gsap.from(".perf-node", {
+            scrollTrigger: {
+                trigger: "#vitals",
+                start: "top 80%"
+            },
+            y: 30,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+            ease: "expo.out"
+        });
+
+        // Mouse Tracker (Custom Cursor)
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.scanline');
+            // Subtle parallax for scanline or other elements can go here
+        });
+    </script>
+</body>
+</html>
