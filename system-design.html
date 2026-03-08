@@ -1,12 +1,196 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>System Design | Scalable Web Architecture | Suboor Khan</title><meta name="description" content="System design principles used by Suboor Khan to build scalable React and Next.js platforms serving 300M+ monthly page views. Learn about caching, SSR, architecture, and performance strategies."><meta name="keywords" content="System Design, Web Architecture, Scalable Systems, Next.js Architecture, High Traffic Websites, Core Web Vitals, Frontend Architecture"><meta name="author" content="Suboor Khan"><meta name="robots" content="index, follow"><meta name="theme-color" content="#0f172a"><link rel="canonical" href="https://www.suboorkhan.com/system-design.html"><meta property="og:title" content="System Design | Suboor Khan"><meta property="og:description" content="How scalable frontend systems are built for high-traffic platforms serving millions of users."><meta property="og:type" content="article"><meta property="og:url" content="https://www.suboorkhan.com/system-design.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="System Design | Suboor Khan"><meta name="twitter:description" content="System architecture strategies used for platforms with hundreds of millions of page views."><script src="https://cdn.tailwindcss.com"></script><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"><style>body{font-family:'JetBrains Mono',monospace}</style><script type="application/ld+json">{
-"@context":"https://schema.org",
-"@type":"TechArticle",
-"headline":"System Design for High Traffic Web Platforms",
-"author":{
-"@type":"Person",
-"name":"Suboor Khan",
-"url":"https://www.suboorkhan.com"
-},
-"description":"System design strategies used for building scalable web applications serving millions of users.",
-"mainEntityOfPage":"https://www.suboorkhan.com/system-design.html"
-}</script></head><body class="bg-slate-950 text-slate-200"><nav class="bg-[#0b0b0f] border-b border-gray-800 sticky top-0 z-50"><div class="max-w-7xl mx-auto px-6"><div class="flex items-center justify-between h-16"><a href="/" class="text-xl font-bold text-white">SK<span class="text-green-500">.</span></a><div class="hidden md:flex items-center space-x-6 text-sm text-gray-300"><a href="/" class="hover:text-white">Home</a> <a href="/projects" class="hover:text-white">Projects</a> <a href="/blog" class="hover:text-white">Blog</a> <a href="/react-developer" class="hover:text-white">React</a> <a href="/nextjs-developer" class="hover:text-white">Next.js</a> <a href="/performance" class="hover:text-white">Performance</a> <a href="/ai" class="hover:text-white">AI</a> <a href="/threejs" class="hover:text-white">Three.js</a> <a href="/resume" class="hover:text-white">Resume</a> <a href="/contact" class="hover:text-white">Contact</a><a href="/hire-me" class="ml-4 px-4 py-2 bg-green-500 text-black rounded-lg font-semibold hover:opacity-90">Hire Me</a></div><button id="menuBtn" class="md:hidden text-gray-300">☰</button></div></div><div id="mobileMenu" class="hidden md:hidden border-t border-gray-800 bg-[#0b0b0f]"><div class="px-6 py-4 flex flex-col space-y-3 text-gray-300 text-sm"><a href="/">Home</a> <a href="/projects">Projects</a> <a href="/blog">Blog</a> <a href="/react-developer">React Developer</a> <a href="/nextjs-developer">Next.js Developer</a> <a href="/performance">Performance</a> <a href="/ai">AI</a> <a href="/threejs">Three.js</a> <a href="/resume">Resume</a> <a href="/contact">Contact</a> <a href="/hire-me" class="mt-2 px-4 py-2 bg-green-500 text-black rounded-lg text-center font-semibold">Hire Me</a></div></div></nav><script>const btn=document.getElementById("menuBtn"),menu=document.getElementById("mobileMenu");btn.addEventListener("click",()=>{menu.classList.toggle("hidden")})</script><header class="max-w-6xl mx-auto px-6 py-10"><nav class="flex justify-between items-center"><h1 class="text-2xl font-semibold">System Design</h1><div class="space-x-6 text-sm"><a href="/" class="text-slate-400 hover:text-white">Home</a> <a href="/seo.html" class="text-slate-400 hover:text-white">SEO</a> <a href="/case-studies.html" class="text-slate-400 hover:text-white">Case Studies</a> <a href="/contact" class="text-slate-400 hover:text-white">Contact</a></div></nav></header><section class="max-w-4xl mx-auto px-6 py-10"><h2 class="text-4xl font-bold mb-6 leading-tight">Designing Scalable Web Systems</h2><p class="text-slate-400 text-lg leading-relaxed mb-8">Building systems that support millions of users requires thoughtful architecture, performance optimization, and efficient data delivery. At <strong>Hindustan Times</strong>, platforms serve hundreds of millions of page views every month. Designing frontend systems for this scale requires a deep understanding of caching, rendering strategies, and performance optimization.</p></section><section class="max-w-4xl mx-auto px-6 py-6 space-y-14"><div><h3 class="text-2xl font-semibold mb-3">1. Rendering Strategy</h3><p class="text-slate-400 leading-relaxed">Choosing the correct rendering strategy is essential for large-scale applications.</p><ul class="mt-4 space-y-2 text-slate-300"><li>SSR for dynamic pages</li><li>ISR for frequently updated content</li><li>Static generation for high traffic landing pages</li><li>Client-side rendering for interactive dashboards</li></ul></div><div><h3 class="text-2xl font-semibold mb-3">2. CDN & Caching Layer</h3><p class="text-slate-400 leading-relaxed">A strong caching strategy significantly reduces server load and improves response time.</p><ul class="mt-4 space-y-2 text-slate-300"><li>Edge CDN caching</li><li>HTTP cache headers</li><li>Stale-while-revalidate strategies</li><li>API response caching</li></ul></div><div><h3 class="text-2xl font-semibold mb-3">3. Performance Optimization</h3><p class="text-slate-400 leading-relaxed">Performance directly impacts user experience and SEO rankings.</p><ul class="mt-4 space-y-2 text-slate-300"><li>Code splitting</li><li>Lazy loading components</li><li>Hydration optimization</li><li>Minimizing JavaScript bundle size</li><li>Image optimization</li></ul></div><div><h3 class="text-2xl font-semibold mb-3">4. High Traffic Architecture</h3><p class="text-slate-400 leading-relaxed">Handling millions of users requires distributed architecture and scalable infrastructure.</p><ul class="mt-4 space-y-2 text-slate-300"><li>Microservices architecture</li><li>Serverless deployments</li><li>Load balancing</li><li>Horizontal scaling</li><li>Monitoring and observability</li></ul></div><div><h3 class="text-2xl font-semibold mb-3">5. AI Integration</h3><p class="text-slate-400 leading-relaxed">Modern web systems increasingly integrate AI-driven features.</p><ul class="mt-4 space-y-2 text-slate-300"><li>Content summarization</li><li>Recommendation engines</li><li>Automated content enrichment</li><li>LLM powered workflows</li></ul></div></section><section class="max-w-4xl mx-auto px-6 py-16"><h3 class="text-2xl font-semibold mb-6">Why System Design Matters</h3><p class="text-slate-400 leading-relaxed">Well-designed systems scale efficiently, reduce operational cost, and deliver fast experiences to users worldwide. Strong architecture ensures that platforms remain reliable even during traffic spikes and large-scale events.</p></section><section class="py-24 border-t border-gray-800 text-center"><h2 class="text-4xl font-bold mb-6">Let's Build Something Great</h2><p class="text-gray-400 max-w-2xl mx-auto mb-10">Interested in working together or building high-performance web applications? I’m always open to discussing new opportunities, innovative projects, and AI-powered platforms.</p><div class="flex justify-center gap-4 flex-wrap"><a href="mailto:suboork100@gmail.com" class="px-6 py-3 bg-green-500 text-black font-semibold rounded-lg hover:opacity-90 transition">Contact Me </a><a href="https://www.suboorkhan.com" class="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-900 transition">Visit Portfolio </a><a href="/contact.html" class="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-900 transition">LinkedIn</a></div></section><footer class="border-t border-slate-800 mt-20"><div class="max-w-6xl mx-auto px-6 py-10 flex justify-between text-sm text-slate-500"><p>© 2026 Suboor Khan</p><div class="space-x-6"><a href="/case-studies.html" class="hover:text-white">Case Studies</a> <a href="/seo.html" class="hover:text-white">SEO</a> <a href="/contact" class="hover:text-white">Contact</a></div></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>System Design & Web Architecture | Suboor Khan</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        blueprint: '#0f172a',
+                        action: '#22c55e',
+                        line: 'rgba(255,255,255,0.05)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #020617; color: #cbd5e1; cursor: crosshair; }
+        .blueprint-grid {
+            background-image: 
+                linear-gradient(var(--line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--line) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .node-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .node-card:hover {
+            border-color: #22c55e;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .draw-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+    </style>
+</head>
+<body class="font-mono antialiased blueprint-grid">
+
+    <header class="fixed top-0 w-full z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <a href="/" class="font-syne font-bold text-xl text-white">SK<span class="text-action">.</span></a>
+            <span class="text-[10px] text-slate-500 hidden md:inline">// ARCHITECTURE_CORE_v4.0</span>
+        </div>
+        <nav class="flex gap-6 text-[10px] uppercase tracking-widest">
+            <a href="#logic" class="hover:text-action transition">Logic</a>
+            <a href="#scaling" class="hover:text-action transition">Scaling</a>
+            <a href="mailto:suboork100@gmail.com" class="text-action font-bold">[ CONSULT_ARCHITECT ]</a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        
+        <section class="mb-32">
+            <h1 class="font-syne text-5xl md:text-8xl text-white uppercase tracking-tighter mb-8 leading-none">
+                System<br><span class="text-slate-500">Design.</span>
+            </h1>
+            <p class="max-w-2xl text-lg text-slate-400 leading-relaxed font-light">
+                Engineering platforms for <span class="text-white border-b border-action/30">300M+ monthly views</span> requires moving beyond simple coding. It requires a distributed philosophy where every millisecond is audited and every byte is cached.
+            </p>
+        </section>
+
+        <section id="logic" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32">
+            
+            <div class="node-card p-8 rounded-2xl flex flex-col justify-between h-[350px]">
+                <div>
+                    <span class="text-action text-xs font-bold mb-4 block">01 / RENDERING_STRATEGY</span>
+                    <h3 class="text-white text-xl font-bold mb-4">Hybrid Hydration</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Implementing SSR for dynamic news cycles, ISR for background regeneration, and Static Generation for edge-delivered landing pages.</p>
+                </div>
+                <div class="flex gap-2">
+                    <span class="text-[9px] bg-slate-900 border border-white/5 px-2 py-1">Next.js</span>
+                    <span class="text-[9px] bg-slate-900 border border-white/5 px-2 py-1">React 19</span>
+                </div>
+            </div>
+
+            <div class="node-card p-8 rounded-2xl flex flex-col justify-between h-[350px]">
+                <div>
+                    <span class="text-action text-xs font-bold mb-4 block">02 / CACHE_ORCHESTRATION</span>
+                    <h3 class="text-white text-xl font-bold mb-4">Multi-Tier Caching</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Orchestrating Edge CDN nodes with stale-while-revalidate headers to ensure a global TTFB of < 50ms.</p>
+                </div>
+                <div class="flex gap-2">
+                    <span class="text-[9px] bg-slate-900 border border-white/5 px-2 py-1">Cloudflare</span>
+                    <span class="text-[9px] bg-slate-900 border border-white/5 px-2 py-1">Vercel Edge</span>
+                </div>
+            </div>
+
+            <div class="node-card p-8 rounded-2xl flex flex-col justify-between h-[350px]">
+                <div>
+                    <span class="text-action text-xs font-bold mb-4 block">03 / PERFORMANCE_AUDIT</span>
+                    <h3 class="text-white text-xl font-bold mb-4">Core Web Vitals</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Automated performance budgeting to keep LCP below 1.2s and CLS at 0 for massive media layouts.</p>
+                </div>
+                <div class="flex gap-2">
+                    <span class="text-[9px] bg-slate-900 border border-white/5 px-2 py-1">Lighthouse</span>
+                    <span class="text-[9px] bg-slate-900 border border-white/5 px-2 py-1">Sentry</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="scaling" class="py-20 border-t border-white/5">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="text-4xl font-syne font-bold text-white mb-6 uppercase">High Traffic <br> Resilience</h2>
+                    <p class="text-slate-400 mb-8">At the scale of Hindustan Times, traffic isn't just a number; it's a flood. We use a micro-frontend architecture powered by Next.js to isolate failures and scale independently.</p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-sm">
+                            <div class="w-1.5 h-1.5 bg-action rounded-full"></div>
+                            <span>Load Balanced Horizontal Scaling</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <div class="w-1.5 h-1.5 bg-action rounded-full"></div>
+                            <span>AI-Driven Content Summarization Pipelines</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <div class="w-1.5 h-1.5 bg-action rounded-full"></div>
+                            <span>Serverless Event-Driven Workflows</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="relative p-6 border border-white/10 rounded-3xl bg-slate-900/50">
+                    
+                    <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                        <span class="text-[12rem] font-syne font-black">HT</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-40 text-center">
+            <div class="inline-block px-4 py-2 border border-action/20 rounded-full text-[10px] text-action uppercase mb-8">Ready for Production?</div>
+            <h2 class="text-4xl md:text-7xl font-syne font-bold text-white uppercase tracking-tighter mb-12">Let's build the <br> <span class="text-action underline underline-offset-8 decoration-white/10">unbreakable.</span></h2>
+            <div class="flex justify-center gap-4">
+                <a href="mailto:suboork100@gmail.com" class="bg-white text-black px-10 py-4 rounded-full font-bold hover:bg-action transition">INITIATE_CONTACT</a>
+            </div>
+        </section>
+
+        <footer class="pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between text-[10px] text-slate-600 uppercase tracking-widest">
+            <p>© 2026 Suboor Khan — Orchestrating 300M+ Data Nodes</p>
+            <div class="flex gap-8 mt-4 md:mt-0">
+                <a href="/resume.html" class="hover:text-white">Resume</a>
+                <a href="/blog.html" class="hover:text-white">Case Studies</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animation for node cards
+        gsap.from(".node-card", {
+            scrollTrigger: {
+                trigger: "#logic",
+                start: "top 80%",
+            },
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+            ease: "expo.out"
+        });
+
+        // Title reveal
+        gsap.from("h1", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out"
+        });
+    </script>
+</body>
+</html>
