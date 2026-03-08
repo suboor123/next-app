@@ -79,26 +79,87 @@
             </p>
         </section>
 
-        <section id="vitals" class="py-20 border-t glass-border">
-            <h2 class="text-[10px] uppercase tracking-[0.5em] mb-16 text-gray-500">Core_Web_Vitals_Specialization</h2>
-            
-            
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="perf-node glass-border p-8 rounded-2xl bg-card transition-all">
-                    <div class="text-xs text-perf mb-4 font-bold tracking-tighter">01 // LCP</div>
-                    <h3 class="text-xl text-white font-bold mb-4 uppercase">Content Loading</h3>
-                    <p class="text-sm leading-relaxed text-gray-500">Optimizing critical rendering paths and resource prefetching to ensure the largest content element appears in under 1.2s.</p>
+        <section id="vitals" class="py-40 px-8 md:px-24 border-t border-white/5 bg-[#050505]">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                    <div class="max-w-xl">
+                        <h2 class="font-mono text-xs text-perf uppercase tracking-[0.5em] mb-6">// Core_Web_Vitals_Audit</h2>
+                        <h3 class="text-4xl md:text-6xl font-syne font-extrabold text-white leading-none uppercase tracking-tighter">
+                            The <span class="text-perf">Golden</span> Metrics.
+                        </h3>
+                    </div>
+                    <div class="text-right font-mono text-[10px] text-gray-600 uppercase">
+                        Data Source: Chrome User Experience Report (CrUX) <br>
+                        Target: 75th Percentile // Field Data
+                    </div>
                 </div>
-                <div class="perf-node glass-border p-8 rounded-2xl bg-card transition-all">
-                    <div class="text-xs text-perf mb-4 font-bold tracking-tighter">02 // INP</div>
-                    <h3 class="text-xl text-white font-bold mb-4 uppercase">Interaction</h3>
-                    <p class="text-sm leading-relaxed text-gray-500">Minimizing long tasks and breaking up hydration blocks to ensure immediate responsiveness to user input.</p>
+        
+                <div class="mb-20 rounded-3xl overflow-hidden border border-white/5 bg-card p-4">
+                    
                 </div>
-                <div class="perf-node glass-border p-8 rounded-2xl bg-card transition-all">
-                    <div class="text-xs text-perf mb-4 font-bold tracking-tighter">03 // CLS</div>
-                    <h3 class="text-xl text-white font-bold mb-4 uppercase">Visual Stability</h3>
-                    <p class="text-sm leading-relaxed text-gray-500">Zero-tolerance for layout shifts. Implementing aspect-ratio containers and skeleton strategies at scale.</p>
+        
+                <div class="grid md:grid-cols-3 gap-1px bg-white/5 border border-white/5 rounded-3xl overflow-hidden">
+                    
+                    <div class="bg-bg p-10 hover:bg-card transition-colors group">
+                        <div class="flex justify-between items-start mb-12">
+                            <span class="font-mono text-[10px] text-perf">[ PASS ]</span>
+                            <div class="w-12 h-12 rounded-full border border-perf/30 flex items-center justify-center text-perf font-bold">LCP</div>
+                        </div>
+                        <h4 class="text-white text-2xl font-bold mb-4 uppercase">Loading Velocity</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-8">
+                            Optimizing <strong>Largest Contentful Paint</strong> by prioritizing critical image payloads and implementing advanced 100% cache-hit CDN strategies.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-[10px] font-mono">
+                                <span>Threshold</span>
+                                <span class="text-perf">< 1.2s</span>
+                            </div>
+                            <div class="w-full h-1 bg-white/5 overflow-hidden">
+                                <div class="h-full bg-perf w-[95%]"></div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="bg-bg p-10 hover:bg-card transition-colors group">
+                        <div class="flex justify-between items-start mb-12">
+                            <span class="font-mono text-[10px] text-perf">[ PASS ]</span>
+                            <div class="w-12 h-12 rounded-full border border-perf/30 flex items-center justify-center text-perf font-bold">INP</div>
+                        </div>
+                        <h4 class="text-white text-2xl font-bold mb-4 uppercase">Input Latency</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-8">
+                            Mastering <strong>Interaction to Next Paint</strong>. Reducing main-thread blocking by offloading heavy logic to Web Workers and optimizing React hydration.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-[10px] font-mono">
+                                <span>Threshold</span>
+                                <span class="text-perf">< 200ms</span>
+                            </div>
+                            <div class="w-full h-1 bg-white/5 overflow-hidden">
+                                <div class="h-full bg-perf w-[88%]"></div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="bg-bg p-10 hover:bg-card transition-colors group">
+                        <div class="flex justify-between items-start mb-12">
+                            <span class="font-mono text-[10px] text-perf">[ PASS ]</span>
+                            <div class="w-12 h-12 rounded-full border border-perf/30 flex items-center justify-center text-perf font-bold">CLS</div>
+                        </div>
+                        <h4 class="text-white text-2xl font-bold mb-4 uppercase">Layout Stability</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-8">
+                            Eliminating <strong>Cumulative Layout Shift</strong> through strict aspect-ratio enforcement and font-display swapping strategies across dynamic ads.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-[10px] font-mono">
+                                <span>Threshold</span>
+                                <span class="text-perf">< 0.1</span>
+                            </div>
+                            <div class="w-full h-1 bg-white/5 overflow-hidden">
+                                <div class="h-full bg-perf w-[98%]"></div>
+                            </div>
+                        </div>
+                    </div>
+        
                 </div>
             </div>
         </section>
