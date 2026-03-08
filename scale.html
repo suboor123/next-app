@@ -1,12 +1,349 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Building Web Platforms for 300M+ Page Views | Suboor Khan</title><meta name="description" content="How Suboor Khan designs scalable React and Next.js platforms capable of serving 300M+ monthly page views using SSR, caching, CDN architecture, and performance optimization."><meta name="keywords" content="High Traffic Websites, Web Scalability, Next.js Architecture, Core Web Vitals, Scalable Frontend Systems, CDN Architecture"><meta name="author" content="Suboor Khan"><meta name="robots" content="index, follow"><link rel="canonical" href="https://www.suboorkhan.com/scale.html"><meta name="theme-color" content="#020617"><meta property="og:title" content="Building Web Platforms for 300M+ Page Views"><meta property="og:description" content="Architecture strategies used to scale large React and Next.js platforms to hundreds of millions of page views."><meta property="og:type" content="article"><meta property="og:url" content="https://www.suboorkhan.com/scale.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Building Web Platforms for 300M+ Page Views"><meta name="twitter:description" content="System design and frontend architecture strategies used to scale modern web platforms."><script src="https://cdn.tailwindcss.com"></script><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"><style>body{font-family:'JetBrains Mono',monospace}</style><script type="application/ld+json">{
-"@context":"https://schema.org",
-"@type":"TechArticle",
-"headline":"Building Web Platforms for 300M+ Monthly Page Views",
-"description":"System design and performance strategies used to build high traffic web platforms.",
-"author":{
-"@type":"Person",
-"name":"Suboor Khan",
-"url":"https://www.suboorkhan.com"
-},
-"mainEntityOfPage":"https://www.suboorkhan.com/scale.html"
-}</script></head><body class="bg-slate-950 text-slate-200"><nav class="bg-[#0b0b0f] border-b border-gray-800 sticky top-0 z-50"><div class="max-w-7xl mx-auto px-6"><div class="flex items-center justify-between h-16"><a href="/" class="text-xl font-bold text-white">SK<span class="text-green-500">.</span></a><div class="hidden md:flex items-center space-x-6 text-sm text-gray-300"><a href="/" class="hover:text-white">Home</a> <a href="/projects" class="hover:text-white">Projects</a> <a href="/blog" class="hover:text-white">Blog</a> <a href="/react-developer" class="hover:text-white">React</a> <a href="/nextjs-developer" class="hover:text-white">Next.js</a> <a href="/performance" class="hover:text-white">Performance</a> <a href="/ai" class="hover:text-white">AI</a> <a href="/threejs" class="hover:text-white">Three.js</a> <a href="/resume" class="hover:text-white">Resume</a> <a href="/contact" class="hover:text-white">Contact</a><a href="/hire-me" class="ml-4 px-4 py-2 bg-green-500 text-black rounded-lg font-semibold hover:opacity-90">Hire Me</a></div><button id="menuBtn" class="md:hidden text-gray-300">☰</button></div></div><div id="mobileMenu" class="hidden md:hidden border-t border-gray-800 bg-[#0b0b0f]"><div class="px-6 py-4 flex flex-col space-y-3 text-gray-300 text-sm"><a href="/">Home</a> <a href="/projects">Projects</a> <a href="/blog">Blog</a> <a href="/react-developer">React Developer</a> <a href="/nextjs-developer">Next.js Developer</a> <a href="/performance">Performance</a> <a href="/ai">AI</a> <a href="/threejs">Three.js</a> <a href="/resume">Resume</a> <a href="/contact">Contact</a> <a href="/hire-me" class="mt-2 px-4 py-2 bg-green-500 text-black rounded-lg text-center font-semibold">Hire Me</a></div></div></nav><script>const btn=document.getElementById("menuBtn"),menu=document.getElementById("mobileMenu");btn.addEventListener("click",()=>{menu.classList.toggle("hidden")})</script><header class="max-w-6xl mx-auto px-6 py-10"><nav class="flex justify-between items-center"><h1 class="text-2xl font-semibold">Web Platforms at Scale</h1><div class="space-x-6 text-sm"><a href="/" class="text-slate-400 hover:text-white">Home</a> <a href="/system-design.html" class="text-slate-400 hover:text-white">System Design</a> <a href="/case-studies.html" class="text-slate-400 hover:text-white">Case Studies</a> <a href="/contact" class="text-slate-400 hover:text-white">Contact</a></div></nav></header><section class="max-w-4xl mx-auto px-6 py-12"><h2 class="text-4xl font-bold leading-tight mb-6">Building Systems That Serve Millions of Users</h2><p class="text-slate-400 text-lg leading-relaxed mb-8">Modern web platforms must handle enormous traffic while maintaining fast performance and reliability. At <strong>Hindustan Times</strong>, the platforms serve hundreds of millions of page views every month, requiring carefully designed frontend systems and infrastructure.</p></section><section class="max-w-4xl mx-auto px-6 py-6 space-y-14"><div><h3 class="text-2xl font-semibold mb-3">Traffic Scale</h3><p class="text-slate-400 leading-relaxed">Large media platforms experience massive spikes in traffic during breaking news events. Systems must be capable of handling sudden traffic surges without performance degradation.</p><ul class="mt-4 space-y-2 text-slate-300"><li>300M+ monthly page views</li><li>Millions of daily active users</li><li>High real-time traffic bursts</li></ul></div><div><h3 class="text-2xl font-semibold mb-3">Edge Delivery</h3><p class="text-slate-400 leading-relaxed">Content is distributed globally using CDNs to ensure minimal latency and fast delivery to users.</p><ul class="mt-4 space-y-2 text-slate-300"><li>Global CDN distribution</li><li>Edge caching</li><li>Stale-while-revalidate strategies</li></ul></div><div><h3 class="text-2xl font-semibold mb-3">Rendering Architecture</h3><p class="text-slate-400 leading-relaxed">Next.js enables flexible rendering strategies for optimal performance.</p><ul class="mt-4 space-y-2 text-slate-300"><li>Server-side rendering (SSR)</li><li>Incremental static regeneration (ISR)</li><li>Static generation for landing pages</li></ul></div><div><h3 class="text-2xl font-semibold mb-3">Performance Optimization</h3><p class="text-slate-400 leading-relaxed">Performance is critical for both user experience and SEO.</p><ul class="mt-4 space-y-2 text-slate-300"><li>Code splitting</li><li>Lazy loading components</li><li>Optimized hydration</li><li>Image optimization</li></ul></div><div><h3 class="text-2xl font-semibold mb-3">Reliability</h3><p class="text-slate-400 leading-relaxed">Systems must remain stable even under heavy traffic.</p><ul class="mt-4 space-y-2 text-slate-300"><li>Load balancing</li><li>Distributed services</li><li>Fault tolerance</li><li>Monitoring and observability</li></ul></div></section><section class="max-w-4xl mx-auto px-6 py-16"><h3 class="text-2xl font-semibold mb-6">Key Principles for Scaling Web Platforms</h3><p class="text-slate-400 leading-relaxed">Scaling web systems requires a balance between performance, reliability, and maintainability. Efficient caching, optimized rendering strategies, and strong infrastructure are essential for delivering fast experiences to millions of users simultaneously.</p></section><footer class="border-t border-slate-800 mt-20"><div class="max-w-6xl mx-auto px-6 py-10 flex justify-between text-sm text-slate-500"><p>© 2026 Suboor Khan</p><div class="space-x-6"><a href="/system-design.html" class="hover:text-white">System Design</a> <a href="/case-studies.html" class="hover:text-white">Case Studies</a> <a href="/contact" class="hover:text-white">Contact</a></div></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Web Platforms for 300M+ Page Views | Suboor Khan</title>
+    <meta name="description" content="How Suboor Khan designs scalable React and Next.js platforms capable of serving 300M+ monthly page views using SSR, caching, CDN architecture, and performance optimization.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif']
+                    },
+                    colors: {
+                        neon: '#00ff66',
+                        darkBg: '#030305',
+                        glass: 'rgba(255, 255, 255, 0.03)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base & Reset */
+        body { background-color: #030305; color: #e2e8f0; cursor: none; overflow-x: hidden; }
+        ::selection { background: #00ff66; color: #000; }
+
+        /* Custom Cursor */
+        .cursor-dot {
+            position: fixed; top: 0; left: 0; width: 6px; height: 6px; 
+            background: #00ff66; border-radius: 50%; z-index: 9999; 
+            pointer-events: none; transform: translate(-50%, -50%);
+        }
+        .cursor-ring {
+            position: fixed; top: 0; left: 0; width: 36px; height: 36px;
+            border: 1px solid rgba(0, 255, 102, 0.5); border-radius: 50%;
+            z-index: 9998; pointer-events: none; transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        .hover-state .cursor-ring {
+            width: 56px; height: 56px; background-color: rgba(0, 255, 102, 0.1); border-color: #00ff66;
+        }
+
+        /* WebGL Background */
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+
+        /* UI Elements */
+        .glass-card {
+            background: rgba(15, 15, 20, 0.4); backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .glass-card:hover { border-color: rgba(0, 255, 102, 0.3); transform: translateY(-5px); }
+
+        .text-stroke {
+            color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Noise Texture */
+        .noise-overlay {
+            position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: 0.03;
+            background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E');
+        }
+
+        /* Animations */
+        .fade-up { opacity: 0; transform: translateY(40px); }
+    </style>
+</head>
+<body class="antialiased selection:bg-neon selection:text-black">
+
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+    <div class="noise-overlay"></div>
+
+    <div id="canvas-container"></div>
+
+    <nav class="fixed top-0 w-full z-40 mix-blend-difference px-6 py-6 md:px-12 flex justify-between items-center">
+        <a href="/" class="font-display font-bold text-2xl tracking-tighter interactive text-white hover:text-neon transition-colors duration-300">
+            SK<span class="text-neon">.</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-8 text-sm font-display uppercase tracking-widest text-gray-400">
+            <a href="/" class="interactive hover:text-white transition-colors">Home</a>
+            <a href="/case-studies.html" class="interactive hover:text-white transition-colors">Case Studies</a>
+            <a href="/contact" class="interactive hover:text-white transition-colors">Contact</a>
+            <a href="/hire-me" class="interactive px-5 py-2 border border-neon text-neon rounded-full hover:bg-neon hover:text-black transition-all duration-300">Hire Me</a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+        
+        <header class="mb-32">
+            <div class="flex flex-col gap-2 mb-8 overflow-hidden">
+                <p class="hero-text text-neon font-display uppercase tracking-[0.3em] text-xs md:text-sm font-semibold">System Architecture & Scale</p>
+                <h1 class="hero-text text-5xl md:text-[7rem] font-display font-bold leading-[0.9] tracking-tighter text-white">
+                    300M+
+                </h1>
+                <h1 class="hero-text text-4xl md:text-[6rem] font-display font-bold leading-[0.9] tracking-tighter text-stroke">
+                    PAGE VIEWS.
+                </h1>
+            </div>
+            
+            <div class="max-w-2xl hero-text">
+                <p class="text-xl md:text-2xl text-gray-400 font-light leading-relaxed">
+                    Modern web platforms must handle enormous traffic while maintaining fast performance and reliability. At <strong class="text-white font-medium">Hindustan Times</strong>, our systems serve hundreds of millions of page views every month, requiring meticulously engineered frontend architecture.
+                </p>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <section class="fade-up glass-card rounded-3xl p-8 md:p-10 md:col-span-12">
+                <h3 class="text-3xl font-display font-bold text-white mb-4">Traffic Scale & Burst Handling</h3>
+                <p class="text-gray-400 leading-relaxed text-lg max-w-3xl mb-8">
+                    Large media platforms experience massive, unpredictable spikes in traffic during breaking news events. The underlying architecture must be highly elastic, capable of scaling instantly without degrading the user experience.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/10 pt-8">
+                    <div>
+                        <div class="text-neon font-display text-4xl font-bold mb-1">300M+</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wider">Monthly Page Views</div>
+                    </div>
+                    <div>
+                        <div class="text-white font-display text-4xl font-bold mb-1">Millions</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wider">Daily Active Users</div>
+                    </div>
+                    <div>
+                        <div class="text-white font-display text-4xl font-bold mb-1">Real-time</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wider">High Traffic Bursts</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="fade-up glass-card rounded-3xl p-8 md:p-10 md:col-span-7 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-full border border-neon/30 flex items-center justify-center mb-6">
+                        <svg class="w-5 h-5 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Edge Delivery Network</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Content is distributed globally using highly optimized CDNs to ensure absolute minimal latency. Delivering static assets and cached HTML directly from the edge significantly reduces load on origin servers.
+                    </p>
+                    
+                    <div class="mb-6">
+                        
+                    </div>
+
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-sm text-gray-300"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-3"></span> Global CDN distribution</li>
+                        <li class="flex items-center text-sm text-gray-300"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-3"></span> Aggressive Edge caching</li>
+                        <li class="flex items-center text-sm text-gray-300"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-3"></span> Stale-while-revalidate strategies</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="fade-up glass-card rounded-3xl p-8 md:p-10 md:col-span-5 bg-gradient-to-br from-glass to-transparent">
+                <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-6">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                </div>
+                <h3 class="text-2xl font-display font-bold text-white mb-4">Next.js Rendering</h3>
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    Next.js enables flexible rendering strategies tailored per route for optimal Time to First Byte (TTFB).
+                </p>
+                
+                <div class="mb-6">
+                    
+                </div>
+
+                <ul class="space-y-3">
+                    <li class="flex items-center text-sm text-gray-300"><span class="w-1.5 h-1.5 bg-white rounded-full mr-3"></span> Server-side rendering (SSR)</li>
+                    <li class="flex items-center text-sm text-gray-300"><span class="w-1.5 h-1.5 bg-white rounded-full mr-3"></span> Incremental Static Regeneration (ISR)</li>
+                    <li class="flex items-center text-sm text-gray-300"><span class="w-1.5 h-1.5 bg-white rounded-full mr-3"></span> Static Generation (SSG)</li>
+                </ul>
+            </section>
+
+            <section class="fade-up glass-card rounded-3xl p-8 md:p-10 md:col-span-12 grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Performance Optimization</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Passing Core Web Vitals is critical for both user retention and SEO ranking.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Code Splitting</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Lazy Loading</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Optimized Hydration</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Image Optimization</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">System Reliability</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Ensuring zero downtime involves robust fallback states and distributed architecture.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Load Balancing</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Distributed Services</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Fault Tolerance</span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Observability</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="fade-up mt-32 max-w-3xl mx-auto text-center border-t border-white/10 pt-20">
+            <h3 class="text-3xl font-display font-bold text-white mb-6">The Bottom Line</h3>
+            <p class="text-xl text-gray-400 leading-relaxed font-light">
+                Scaling web systems requires a perfect balance between performance, reliability, and maintainability. Efficient caching, optimized rendering strategies, and strong infrastructure are the absolute essentials for delivering lightning-fast experiences to millions of users simultaneously.
+            </p>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/5 relative z-10 bg-darkBg/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between text-xs font-display tracking-widest uppercase text-gray-600">
+            <p>© 2026 Suboor Khan</p>
+            <div class="space-x-8 mt-4 md:mt-0">
+                <a href="/system-design.html" class="hover:text-neon transition-colors">System Design</a>
+                <a href="/case-studies.html" class="hover:text-neon transition-colors">Case Studies</a>
+                <a href="/contact" class="hover:text-neon transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // --- Custom Cursor ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        });
+
+        function animateCursor() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effects for cursor
+        const interactives = document.querySelectorAll('.interactive, a, button');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hover-state'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hover-state'));
+        });
+
+        // --- GSAP Animations ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Sequence
+        gsap.from(".hero-text", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        // Scroll Reveals
+        gsap.utils.toArray('.fade-up').forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // --- Three.js "Data Sphere" Background ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 35;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // Create a highly detailed wireframe sphere representing a global network
+        const geometry = new THREE.IcosahedronGeometry(20, 3);
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0x00ff66, 
+            wireframe: true, 
+            transparent: true, 
+            opacity: 0.08 
+        });
+        
+        const dataSphere = new THREE.Mesh(geometry, material);
+        // Position it off-center for an asymmetrical, modern layout
+        dataSphere.position.x = 15;
+        dataSphere.position.y = -5;
+        scene.add(dataSphere);
+
+        // Mouse interaction for the sphere
+        let targetX = 0;
+        let targetY = 0;
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (event) => {
+            targetX = (event.clientX - windowHalfX) * 0.0005;
+            targetY = (event.clientY - windowHalfY) * 0.0005;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Base slow rotation
+            dataSphere.rotation.y += 0.001;
+            dataSphere.rotation.x += 0.0005;
+
+            // Parallax mouse follow
+            dataSphere.rotation.y += 0.05 * (targetX - dataSphere.rotation.y);
+            dataSphere.rotation.x += 0.05 * (targetY - dataSphere.rotation.x);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
