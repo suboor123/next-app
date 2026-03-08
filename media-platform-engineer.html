@@ -1,1 +1,185 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Media Platform Engineer | Suboor Khan</title><meta name="description" content="Engineering high traffic media platforms handling hundreds of millions of page views using modern web technologies."><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-[#0b0b0f] text-gray-200 font-sans"><nav class="bg-[#0b0b0f] border-b border-gray-800 sticky top-0 z-50"><div class="max-w-7xl mx-auto px-6"><div class="flex items-center justify-between h-16"><a href="/" class="text-xl font-bold text-white">SK<span class="text-green-500">.</span></a><div class="hidden md:flex items-center space-x-6 text-sm text-gray-300"><a href="/" class="hover:text-white">Home</a> <a href="/projects" class="hover:text-white">Projects</a> <a href="/blog" class="hover:text-white">Blog</a> <a href="/react-developer" class="hover:text-white">React</a> <a href="/nextjs-developer" class="hover:text-white">Next.js</a> <a href="/performance" class="hover:text-white">Performance</a> <a href="/ai" class="hover:text-white">AI</a> <a href="/threejs" class="hover:text-white">Three.js</a> <a href="/resume" class="hover:text-white">Resume</a> <a href="/contact" class="hover:text-white">Contact</a><a href="/hire-me" class="ml-4 px-4 py-2 bg-green-500 text-black rounded-lg font-semibold hover:opacity-90">Hire Me</a></div><button id="menuBtn" class="md:hidden text-gray-300">☰</button></div></div><div id="mobileMenu" class="hidden md:hidden border-t border-gray-800 bg-[#0b0b0f]"><div class="px-6 py-4 flex flex-col space-y-3 text-gray-300 text-sm"><a href="/">Home</a> <a href="/projects">Projects</a> <a href="/blog">Blog</a> <a href="/react-developer">React Developer</a> <a href="/nextjs-developer">Next.js Developer</a> <a href="/performance">Performance</a> <a href="/ai">AI</a> <a href="/threejs">Three.js</a> <a href="/resume">Resume</a> <a href="/contact">Contact</a> <a href="/hire-me" class="mt-2 px-4 py-2 bg-green-500 text-black rounded-lg text-center font-semibold">Hire Me</a></div></div></nav><script>const btn=document.getElementById("menuBtn"),menu=document.getElementById("mobileMenu");btn.addEventListener("click",()=>{menu.classList.toggle("hidden")})</script><div class="max-w-6xl mx-auto px-6"><section class="min-h-screen flex flex-col justify-center"><h1 class="text-5xl font-bold mb-6">Media Platform Engineer</h1><p class="text-xl text-gray-400 max-w-2xl">Building scalable media platforms serving millions of users with modern frontend architecture and performance optimization.</p></section><section class="py-20 border-t border-gray-800"><h2 class="text-3xl font-semibold mb-10">Platform Scale</h2><div class="grid md:grid-cols-3 gap-8 text-center"><div class="p-6 border border-gray-800 rounded-xl"><h3 class="text-4xl font-bold text-green-400">69M+</h3><p class="text-gray-400">Users</p></div><div class="p-6 border border-gray-800 rounded-xl"><h3 class="text-4xl font-bold text-green-400">300M+</h3><p class="text-gray-400">Monthly Page Views</p></div><div class="p-6 border border-gray-800 rounded-xl"><h3 class="text-4xl font-bold text-green-400">Millions</h3><p class="text-gray-400">Daily Requests</p></div></div></section></div><section class="py-24 border-t border-gray-800 text-center"><h2 class="text-4xl font-bold mb-6">Let's Build Something Great</h2><p class="text-gray-400 max-w-2xl mx-auto mb-10">Interested in working together or building high-performance web applications? I’m always open to discussing new opportunities, innovative projects, and AI-powered platforms.</p><div class="flex justify-center gap-4 flex-wrap"><a href="mailto:suboork100@gmail.com" class="px-6 py-3 bg-green-500 text-black font-semibold rounded-lg hover:opacity-90 transition">Contact Me </a><a href="https://www.suboorkhan.com" class="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-900 transition">Visit Portfolio </a><a href="/contact.html" class="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-900 transition">LinkedIn</a></div></section></body></html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Media Platform Engineer — Suboor Khan | High-Traffic Architecture</title>
+    <meta name="description" content="Suboor Khan specializes in Media Platform Engineering for 300M+ views. Expert in scaling Next.js, multi-tenant architectures, and CDN optimization.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@300;400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: '#22c55e',
+                        deep: '#030303',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #030303; color: #f8fafc; cursor: none; overflow-x: hidden; }
+        .custom-cursor { position: fixed; width: 10px; height: 10px; background: #22c55e; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+        .data-grid { background-image: linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px); background-size: 50px 50px; }
+        .text-outline { -webkit-text-stroke: 1px rgba(255,255,255,0.1); color: transparent; }
+        .glitch-hover:hover { animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite; }
+        @keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) } 40% { transform: translate(-2px, -2px) } 60% { transform: translate(2px, 2px) } 80% { transform: translate(2px, -2px) } 100% { transform: translate(0) } }
+        .stats-card { border-left: 1px solid rgba(34, 197, 94, 0.2); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+        .stats-card:hover { border-left: 1px solid #22c55e; background: rgba(34, 197, 94, 0.02); padding-left: 2rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-neon selection:text-black">
+
+    <div class="custom-cursor" id="cursor"></div>
+
+    <nav class="fixed top-0 w-full z-50 px-8 py-8 flex justify-between items-center mix-blend-difference">
+        <a href="/" class="text-2xl font-syne font-extrabold tracking-tighter">SK<span class="text-neon">.</span></a>
+        <div class="flex gap-8 text-[10px] font-mono uppercase tracking-[0.3em]">
+            <a href="#scale" class="hover:text-neon transition-colors">Platform_Scale</a>
+            <a href="#stack" class="hover:text-neon transition-colors">Infrastructure</a>
+            <a href="mailto:suboork100@gmail.com" class="text-neon border border-neon/30 px-4 py-2 rounded-full hover:bg-neon hover:text-black transition">Deploy_Collab</a>
+        </div>
+    </nav>
+
+    <main class="data-grid">
+        <section class="min-h-screen flex flex-col justify-center px-8 md:px-24 relative">
+            <div class="absolute right-0 top-1/4 opacity-10 pointer-events-none hidden lg:block">
+                <h2 class="text-[20vw] font-syne font-extrabold text-outline leading-none">MEDIA</h2>
+            </div>
+            
+            <div class="mb-6 font-mono text-neon text-xs tracking-[0.5em] uppercase">[ Platform Engineering Node ]</div>
+            <h1 class="font-syne font-extrabold text-[clamp(3.5rem,10vw,12rem)] leading-[0.85] tracking-tighter mb-12 uppercase">
+                Scaling <br> <span class="text-neon">Global</span> <br> Discourse.
+            </h1>
+            <p class="max-w-2xl text-gray-500 text-xl md:text-3xl font-light leading-tight reveal-text">
+                Engineering multi-tenant media architectures for <span class="text-white">Hindustan Times</span>, serving mission-critical content to 300 million readers at edge speed.
+            </p>
+        </section>
+
+        <section id="scale" class="py-40 px-8 md:px-24">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-mono text-xs text-gray-600 uppercase tracking-[0.5em] mb-12">System Load Metrics</h2>
+                    <div class="space-y-12">
+                        <article class="stats-card p-8">
+                            <div class="text-6xl md:text-8xl font-syne font-bold text-white mb-2">300M<span class="text-neon">+</span></div>
+                            <h3 class="font-mono text-sm text-gray-400 uppercase tracking-widest">Monthly Page Views</h3>
+                            <p class="mt-4 text-xs text-gray-600 leading-relaxed max-w-sm">Optimizing Next.js hydration and ISR strategies to handle massive spikes during live news cycles.</p>
+                        </article>
+                        <article class="stats-card p-8">
+                            <div class="text-6xl md:text-8xl font-syne font-bold text-white mb-2">69M<span class="text-neon">+</span></div>
+                            <h3 class="font-mono text-sm text-gray-400 uppercase tracking-widest">Active Unique Users</h3>
+                            <p class="mt-4 text-xs text-gray-600 leading-relaxed max-w-sm">Architecting resilient user-state management and personalized content delivery at the edge.</p>
+                        </article>
+                    </div>
+                </div>
+                
+                <div class="relative glass rounded-[3rem] p-4 bg-white/5 border border-white/10 overflow-hidden">
+                    
+                    <div class="mt-8 p-6 font-mono text-[10px] text-neon/60 bg-black/40 rounded-2xl">
+                        > STACK_REPORT: NEXT.JS_APP_ROUTER // VERCEL_EDGE // CLOUDFLARE_WORKERS <br>
+                        > STATUS: OPTIMIZED_FOR_CORE_WEB_VITALS <br>
+                        > LCP: 850ms // FID: 12ms // CLS: 0.01
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stack" class="py-40 px-8 md:px-24 border-t border-white/5 bg-[#050505]">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-6xl font-syne font-bold mb-10 tracking-tighter">Media Architecture Core</h2>
+                <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed italic mb-20">
+                    "Scaling isn't about more servers. It's about more intelligent code."
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
+                    <div class="p-10 border border-white/5 rounded-3xl hover:border-neon/30 transition">
+                        <h4 class="text-neon font-mono text-xs uppercase mb-4">Multi-Tenant CMS</h4>
+                        <p class="text-gray-500 text-sm">Building flexible frontend systems that support multiple news brands (Hindustan Times, LiveHindustan, Mint) from a single code-base using advanced Next.js routing patterns.</p>
+                    </div>
+                    <div class="p-10 border border-white/5 rounded-3xl hover:border-neon/30 transition">
+                        <h4 class="text-neon font-mono text-xs uppercase mb-4">Edge Intelligence</h4>
+                        <p class="text-gray-500 text-sm">Deploying AI-powered content summarization and smart-recommendation engines at the Edge to reduce latency and increase user engagement by 20%.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="h-screen flex flex-col items-center justify-center text-center">
+            <h2 class="text-xs font-mono text-gray-600 uppercase tracking-[0.8em] mb-12">Connect With The Architect</h2>
+            <a href="mailto:suboork100@gmail.com" class="text-[8vw] font-syne font-extrabold tracking-tighter hover:text-neon transition-colors duration-700 glitch-hover">
+                DEPLOY_TALK.
+            </a>
+            <div class="mt-24 flex gap-8 font-mono text-[10px] text-gray-500 uppercase tracking-widest">
+                <a href="/projects" class="hover:text-white transition">Projects</a>
+                <a href="/performance" class="hover:text-white transition">Performance</a>
+                <a href="/ai" class="hover:text-white transition">AI_Bot</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Custom Cursor Lerp
+        const cursor = document.getElementById('cursor');
+        let mouseX = 0, mouseY = 0;
+        let ballX = 0, ballY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            let distX = mouseX - ballX;
+            let distY = mouseY - ballY;
+            ballX = ballX + (distX * 0.1);
+            ballY = ballY + (distY * 0.1);
+            cursor.style.left = ballX + "px";
+            cursor.style.top = ballY + "px";
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // GSAP Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from(".reveal-text", {
+            opacity: 0,
+            y: 30,
+            duration: 1.5,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: ".reveal-text",
+                start: "top 90%",
+            }
+        });
+
+        gsap.utils.toArray('.stats-card').forEach(card => {
+            gsap.from(card, {
+                opacity: 0,
+                x: -50,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                }
+            });
+        });
+    </script>
+</body>
+</html>
