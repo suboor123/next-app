@@ -9,7 +9,8 @@ const allowMinification = {
     "me.html": true,
     "react-nextjs-developer.html": true,
     "performance.html": false,
-    "react-nextjs-developer": true
+    "react-nextjs-developer": true,
+    "core-web-vitals.html": false,
 }
 
 async function minifyHtmlFiles() {
