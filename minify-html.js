@@ -19,7 +19,7 @@ async function minifyHtmlFiles() {
   for (const file of files) {
     if(false) {}
     else {
-        if (path.extname(file) === ".html" && file) {
+        if (path.extname(file) === ".html" && file == 'index.html') {
 
             const filePath = path.join(directory, file);
       
