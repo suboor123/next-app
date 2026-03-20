@@ -95,13 +95,15 @@
                     "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap",
                     "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=optional"
                   ];
-                  setTimeout(() => {}, 1000)
-                  fonts.forEach(href => {
-                    const link = document.createElement("link");
-                    link.rel = "stylesheet";
-                    link.href = href;
-                    document.head.appendChild(link);
-                  });
+                  setTimeout(() => {
+                    fonts.forEach(href => {
+                      const link = document.createElement("link");
+                      link.rel = "stylesheet";
+                      link.href = href;
+                      document.head.appendChild(link);
+                    });
+                  }, 1000)
+  
                 });
                
                 </script>
