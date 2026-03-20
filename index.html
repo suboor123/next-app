@@ -150,7 +150,7 @@
                 ]
             }
         </script>
-        <link
+        <!-- <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap"
             media="print"
@@ -166,7 +166,7 @@
             ><link
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400&display=swap"
-        /></noscript>
+        /></noscript> -->
         <style>
             *,
             :after,
@@ -11147,5 +11147,20 @@
                 e.forEach((e) => t.observe(e));
             });
         </script>
+        <script>
+          window.addEventListener("load", function () {
+            const fonts = [
+              "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap",
+              "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=optional"
+            ];
+          
+            fonts.forEach(href => {
+              const link = document.createElement("link");
+              link.rel = "stylesheet";
+              link.href = href;
+              document.head.appendChild(link);
+            });
+          });
+          </script>
     </body>
 </html>
