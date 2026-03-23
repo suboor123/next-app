@@ -1,0 +1,334 @@
+<!doctype html>
+<html ⚡ lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Suboor Khan | Curriculum Vitae (AMP)</title>
+  <link rel="canonical" href="https://suboorkhan.com/resume">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <meta name="description" content="Tech Lead with 5+ years building high-performance web applications.">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+  <style amp-custom>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --border: #e2e8f0;
+      --tag-bg: #eff6ff;
+      --tag-text: #1d4ed8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Navigation */
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .nav a:hover { color: var(--primary); }
+
+    /* Header */
+    .hero { margin-bottom: 3rem; text-align: center; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.025em; }
+    .hero p { color: var(--text-muted); font-size: 1.125rem; margin-bottom: 1rem; }
+    .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+    .btn:hover { background-color: var(--primary-hover); }
+
+    /* Sections */
+    section { margin-bottom: 3rem; }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; margin-bottom: 1rem; }
+    .card-title { font-size: 1.25rem; font-weight: 600; }
+    .card-subtitle { color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; }
+    .card-date { font-size: 0.875rem; color: var(--text-muted); font-weight: 500; }
+    
+    .list-items { padding-left: 1.25rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .list-items li { margin-bottom: 0.5rem; }
+
+    /* Tags */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background-color: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+    }
+
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+    
+    .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; }
+    @media (min-width: 640px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+    }
+    .stat-number { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+    .stat-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="nav">
+      <a href="/about">About</a>
+      <a href="/projects">Projects</a>
+      <a href="/blog">Blog</a>
+      <a href="/ai-skills">AI & Skills</a>
+      <a href="/performance">Performance</a>
+      <a href="/resume" style="color: var(--primary); font-weight: 600;">Resume</a>
+      <a href="/contact">Contact</a>
+    </nav>
+
+    <header class="hero">
+      <h2 style="color: var(--primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Curriculum Vitae</h2>
+      <h1>Suboor Khan</h1>
+      <p>5+ years of building production-grade software.</p>
+      
+      <div class="contact-info">
+        <span>📧 suboork100@gmail.com</span>
+        <span>📍 New Delhi, India</span>
+        <span>🌐 suboorkhan.com</span>
+      </div>
+
+      <a href="/resume.pdf" class="btn">Download PDF</a>
+    </header>
+
+    <section id="summary">
+      <h3 class="section-title">👤 Professional Summary</h3>
+      <p style="color: var(--text-muted);">
+        Tech Lead with 5+ years building high-performance web applications at massive scale. Currently leading frontend at Hindustan Times, driving platforms that serve 69M+ unique users and 300M+ monthly page views. Deep expertise in React, Next.js, Angular, TypeScript, and Node.js. Proven track record optimising Core Web Vitals, architecting SSR/ISR pipelines, and integrating AI-powered content features. Passionate about performance, clean architecture, and developer experience.
+      </p>
+    </section>
+
+    <section id="experience">
+      <h3 class="section-title">💼 Work Experience</h3>
+      
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Tech Lead</div>
+            <div class="card-subtitle">Hindustan Times · New Delhi, India</div>
+          </div>
+          <div class="card-date">Feb 2023 – Present</div>
+        </div>
+        <ul class="list-items">
+          <li>Leading frontend engineering for HindustanTimes.com & LiveHindustan.com — 300M+ monthly page views, 69M+ unique users.</li>
+          <li>Architected Next.js SSR/ISR migration improving Core Web Vitals (LCP &lt;1.5s, CLS &lt;0.01) across all major pages.</li>
+          <li>Built hindustantimes.js — internal JS SDK powering ads, analytics, and third-party integrations site-wide.</li>
+          <li>Integrated OpenAI API for AI-driven content summarisation, recommendations, and editorial workflows.</li>
+          <li>Mentoring a team of 6 frontend engineers; driving code-review standards, performance culture, and sprint execution.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Core Web Vitals</span><span class="tag">OpenAI API</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Senior Software Engineer</div>
+            <div class="card-subtitle">Chetu Inc · Noida, India</div>
+          </div>
+          <div class="card-date">Aug 2021 – Feb 2023</div>
+        </div>
+        <ul class="list-items">
+          <li>Built Anelto Dashboard — IoT healthcare platform for real-time elder-care device monitoring using Angular & Firebase.</li>
+          <li>Delivered scalable REST APIs and real-time data pipelines using Node.js and Firebase Cloud Functions.</li>
+          <li>Reduced dashboard load time by 40% through lazy loading, code splitting, and RxJS stream optimisation.</li>
+          <li>Collaborated with client teams across US time zones to ship features on tight release cycles.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Angular</span><span class="tag">Firebase</span><span class="tag">Node.js</span><span class="tag">RxJS</span><span class="tag">IoT</span><span class="tag">REST APIs</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Software Engineer</div>
+            <div class="card-subtitle">Praxiv · Gurugram, India</div>
+          </div>
+          <div class="card-date">Feb 2020 – Aug 2021</div>
+        </div>
+        <ul class="list-items">
+          <li>Developed cross-platform mobile applications using Ionic and Angular for enterprise B2B clients.</li>
+          <li>Built responsive web UIs and REST API integrations with Vue.js and Node.js.</li>
+          <li>Implemented XCode build pipelines for iOS deployments; managed CI/CD with Git and Bitbucket.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Ionic</span><span class="tag">Angular</span><span class="tag">Vue.js</span><span class="tag">Node.js</span><span class="tag">XCode</span><span class="tag">Bitbucket</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h3 class="section-title">🎓 Education</h3>
+      <div class="card">
+        <div class="card-header" style="margin-bottom: 0;">
+          <div>
+            <div class="card-title">Bachelor of Computer Application (BCA)</div>
+            <div class="card-subtitle">Subharti University · Ghaziabad, India</div>
+          </div>
+          <div class="card-date">2017 – 2020</div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 1rem;">
+          Graduated Aug 2020. Core coursework in data structures, algorithms, web technologies, database management, and software engineering principles.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h3 class="section-title">💻 Technical Skills</h3>
+      <div class="grid-2">
+        <div class="card" style="margin-bottom: 0;">
+          <h4 style="margin-bottom: 0.75rem;">Frontend</h4>
+          <div class="tags">
+            <span class="tag">React 19</span><span class="tag">Next.js 15</span><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">jQuery</span>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom: 0;">
+          <h4 style="margin-bottom: 0.75rem;">Backend</h4>
+          <div class="tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Firebase</span><span class="tag">REST APIs</span><span class="tag">SSR/ISR</span>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom: 0;">
+          <h4 style="margin-bottom: 0.75rem;">Performance</h4>
+          <div class="tags">
+            <span class="tag">Core Web Vitals</span><span class="tag">Webpack</span><span class="tag">Vite</span><span class="tag">Lazy Loading</span><span class="tag">Code Splitting</span>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom: 0;">
+          <h4 style="margin-bottom: 0.75rem;">DevOps & AI</h4>
+          <div class="tags">
+            <span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Git/GitHub</span><span class="tag">OpenAI API</span><span class="tag">LLM Integration</span><span class="tag">Prompt Engineering</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h3 class="section-title">🏅 Certifications</h3>
+      <div class="grid-4" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="stat-card">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+          <div style="font-weight: 600; font-size: 0.875rem;">Core Web Vitals</div>
+          <div style="color: var(--text-muted); font-size: 0.75rem;">Google · Ongoing</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
+          <div style="font-weight: 600; font-size: 0.875rem;">AI & LLM Integration</div>
+          <div style="color: var(--text-muted); font-size: 0.75rem;">OpenAI · Practical</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">☁️</div>
+          <div style="font-weight: 600; font-size: 0.875rem;">AWS Cloud</div>
+          <div style="color: var(--text-muted); font-size: 0.75rem;">Amazon Web Services</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats">
+      <div class="grid-4">
+        <div class="stat-card">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Years Exp</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">40+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">300M+</div>
+          <div class="stat-label">Monthly Page Views</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">69M+</div>
+          <div class="stat-label">Unique Users</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.25rem;">Suboor Khan</p>
+      <p>Crafting digital experiences since 2020</p>
+      <p style="margin-top: 1rem; font-size: 0.75rem;">© 2026 Suboor Khan · AMP Template</p>
+    </footer>
+
+  </div>
+</body>
+</html>
