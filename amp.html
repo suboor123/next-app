@@ -1,35 +1,499 @@
 <!doctype html>
 <html amp lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    
-    <title>Suboor Khan | Tech Lead & Senior Frontend Engineer | React & Next.js Expert</title>
-    <meta name="title" content="Suboor Khan | Tech Lead & Senior Frontend Engineer">
-    <meta name="description" content="Suboor Khan is a Tech Lead & Frontend Engineer specializing in Next.js, React, and performance optimization. Currently leading frontend at Hindustan Times, managing 300M+ monthly views.">
-    <meta name="keywords" content="Suboor Khan, Tech Lead, Frontend Engineer, Senior Web Developer, Next.js Expert, React Developer New Delhi, Hindustan Times Tech, Core Web Vitals Specialist, AI Integration Engineer">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="author" content="Suboor Khan">
-  
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://suboorkhan.com/">
-    <meta property="og:title" content="Suboor Khan | Tech Lead & Frontend Engineer">
-    <meta property="og:description" content="5+ years of experience building high-scale web apps. Expert in SSR/ISR, React 19, and Core Web Vitals.">
-    <meta property="og:image" content="https://suboorkhan.com/og-image.jpg"> <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://suboorkhan.com/">
-    <meta property="twitter:title" content="Suboor Khan | Tech Lead & Frontend Engineer">
-    <meta property="twitter:description" content="Currently leading frontend at Hindustan Times. 300M+ monthly page views architect.">
-    <meta property="twitter:image" content="https://suboorkhan.com/og-image.jpg">
-  
-    <link rel="canonical" href="https://suboorkhan.com/">
-    
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
-    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap">
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <title>Suboor Khan — Tech Lead &amp; Frontend Engineer</title>
+  <meta name="description" content="Tech Lead with 5+ years building high-performance web applications. Currently leading frontend at Hindustan Times — 300M+ monthly page views, 69M+ unique users.">
+  <link rel="canonical" href="https://suboorkhan.com/">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+  <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap">
+
+  <style amp-custom>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d0d0d;
+      --paper: #f5f2eb;
+      --cream: #ede9df;
+      --accent: #c8391a;
+      --accent-warm: #e85d2a;
+      --muted: #7a7165;
+      --rule: #d5d0c5;
+      --card: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Mono', monospace;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* -- HEADER -- */
+    .site-header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--accent);
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+    }
+    .header-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      color: var(--paper);
+      text-decoration: none;
+    }
+    .header-logo span { color: var(--accent); }
+    .header-nav {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+    .header-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--paper); }
+
+    /* -- HERO -- */
+    .hero {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 64px 20px 56px;
+      border-bottom: 3px solid var(--accent);
+    }
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(40px, 8vw, 80px);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    .hero-name em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #b0a898;
+      margin-bottom: 28px;
+      letter-spacing: -0.3px;
+    }
+    .hero-summary {
+      max-width: 620px;
+      color: #9e9489;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #6e6860;
+    }
+    .hero-meta-item span { color: var(--accent); }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #1a1a1a;
+      border: 1px solid #1a1a1a;
+      max-width: 600px;
+    }
+    .stat {
+      background: #0d0d0d;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--accent);
+      display: block;
+      letter-spacing: -1px;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: #5a534a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* -- DOWNLOAD BUTTON -- */
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 12px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 2px solid var(--accent);
+      margin-top: 28px;
+    }
+    .dl-btn:hover { background: var(--accent-warm); border-color: var(--accent-warm); }
+
+    /* -- MAIN LAYOUT -- */
+    .main-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* -- SECTION HEADERS -- */
+    .section {
+      margin-top: 56px;
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    /* -- EXPERIENCE CARDS -- */
+    .exp-card {
+      border: 1.5px solid var(--rule);
+      background: var(--card);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .exp-card-head {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .exp-role {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .exp-company {
+      font-weight: 500;
+      color: var(--accent);
+      font-size: 13px;
+    }
+    .exp-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .exp-date {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      display: block;
+    }
+    .exp-location {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .exp-divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
+    .exp-body {
+      padding: 20px 24px;
+    }
+    .exp-bullets {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+    .exp-bullets li {
+      padding: 5px 0 5px 16px;
+      position: relative;
+      font-size: 12.5px;
+      color: #3a3530;
+      line-height: 1.6;
+    }
+    .exp-bullets li::before {
+      content: '->';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      background: var(--cream);
+      color: var(--muted);
+      border: 1px solid var(--rule);
+    }
+
+    /* -- SKILLS GRID -- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .skill-block {
+      border: 1.5px solid var(--rule);
+      background: var(--card);
+      padding: 20px;
+    }
+    .skill-block-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-block-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: var(--cream);
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      font-weight: 500;
+    }
+
+    /* -- EDUCATION -- */
+    .edu-card {
+      border: 1.5px solid var(--rule);
+      background: var(--card);
+      padding: 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .edu-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .edu-degree {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .edu-school {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .edu-detail {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* -- CERTIFICATIONS -- */
+    .cert-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .cert-card {
+      border: 1.5px solid var(--rule);
+      background: var(--card);
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .cert-emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+    .cert-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: -0.2px;
+      margin-bottom: 4px;
+    }
+    .cert-issuer {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* -- CONTACT STRIP -- */
+    .contact-strip {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 40px 20px;
+      margin-top: 64px;
+      border-top: 3px solid var(--accent);
+    }
+    .contact-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .contact-text h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+    .contact-text p { color: #6e6860; font-size: 13px; }
+    .contact-links { display: flex; flex-direction: column; gap: 8px; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #9e9489;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .contact-link span { color: var(--accent); }
+    .contact-link:hover { color: var(--paper); }
+
+    /* -- FOOTER -- */
+    footer {
+      background: #080808;
+      color: #3a3530;
+      text-align: center;
+      padding: 20px;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* -- AMP ACCORDION OVERRIDES -- */
+    amp-accordion section[expanded] > h3 { border-bottom: 1px solid var(--rule); }
+    amp-accordion > section > h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 0;
+      cursor: pointer;
+      color: var(--muted);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      background: none;
+    }
+
+    /* -- RESPONSIVE -- */
+    @media (max-width: 600px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: 1fr; }
+      .cert-row { grid-template-columns: 1fr; }
+      .exp-card-head { flex-direction: column; }
+      .exp-meta { text-align: left; }
+      .header-nav { display: none; }
+      .hero-name { letter-spacing: -1px; }
+    }
+  </style>
+</head>
 <body>
 
   <!-- HEADER -->
