@@ -1,309 +1,1006 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>ST Enterprises | Premium O-General AC Sales & Service by Mohd Shahnawaaz</title>
-    <meta name="description" content="ST Enterprises by Mohd Shahnawaaz: The #1 destination for O-General AC sales, installation, and expert repair in Ghaziabad. Call +91 99972 69996 for premium cooling.">
-    <meta name="keywords" content="O-General AC Service, O-General AC Repair, Mohd Shahnawaaz, ST Enterprises Ghaziabad, AC Installation, Gas Refilling, AMC AC Service">
-    <meta name="author" content="Mohd Shahnawaaz">
-    <link rel="canonical" href="https://stenterprises.in/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ST Enterprises | Premium O-General AC Sales & Service</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Syne', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            red: '#e11d48'
-                        }
-                    }
-                }
-            }
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="ST Enterprises — Authorized O-General AC dealer and service provider. Expert installation, repair, gas refilling, and AMC plans. Fast, reliable, affordable." />
+  <meta name="keywords" content="O-General AC, air conditioner service, AC installation, AC repair, gas refilling, AMC, ST Enterprises" />
+  <meta name="author" content="ST Enterprises" />
+  <meta property="og:title" content="ST Enterprises | Premium O-General AC Services" />
+  <meta property="og:description" content="Expert O-General AC sales, installation, repair & maintenance services." />
+  <meta property="og:type" content="website" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ST Enterprises",
+    "description": "Authorized O-General AC dealer and service provider offering installation, repair, gas refilling, and AMC plans.",
+    "telephone": "+91-98765-43210",
+    "email": "info@stenterprises.in",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Industrial Area, Sector 5",
+      "addressLocality": "Faridabad",
+      "addressRegion": "Haryana",
+      "postalCode": "121001",
+      "addressCountry": "IN"
+    },
+    "openingHours": "Mo-Sa 09:00-19:00",
+    "priceRange": "₹₹",
+    "sameAs": []
+  }
+  </script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            ice: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e' },
+            gold: { 400: '#fbbf24', 500: '#f59e0b' },
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-slow': 'float 9s ease-in-out infinite reverse',
+            'shimmer': 'shimmer 2.5s linear infinite',
+            'fade-up': 'fadeUp 0.7s ease forwards',
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-18px)' } },
+            shimmer: { '0%': { backgroundPosition: '-200% center' }, '100%': { backgroundPosition: '200% center' } },
+            fadeUp: { from: { opacity: 0, transform: 'translateY(30px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
+          },
         }
-    </script>
-
-    <style>
-        :root { --bg-dark: #050505; --bg-light: #ffffff; }
-        body { transition: background-color 0.5s ease; overflow-x: hidden; }
-        
-        /* Modern Text Reveal */
-        .reveal-container { overflow: hidden; }
-        .reveal-text { transform: translateY(100%); transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
-        .reveal-text.active { transform: translateY(0); }
-
-        /* Premium Mesh Gradient Background */
-        .mesh-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 0% 0%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 100% 100%, rgba(225, 29, 72, 0.05) 0%, transparent 50%);
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .dark-only { display: block; }
-        .light-only { display: none; }
-        html:not(.dark) .dark-only { display: none; }
-        html:not(.dark) .light-only { display: block; }
-        html:not(.dark) .glass { background: rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.05); }
-
-        /* Smooth Slider Animation for "Awwwards" feel */
-        .slide-up { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
-        .slide-up.visible { opacity: 1; transform: translateY(0); }
-    </style>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HVACBusiness",
-      "name": "ST Enterprises",
-      "founder": "Mohd Shahnawaaz",
-      "telephone": "+919997269996",
-      "url": "https://stenterprises.in",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Ghaziabad",
-        "addressRegion": "UP",
-        "addressCountry": "IN"
-      },
-      "brand": { "@type": "Brand", "name": "O-General" }
+      }
     }
-    </script>
+  </script>
+
+  <style>
+    :root { scroll-behavior: smooth; }
+
+    body { font-family: 'DM Sans', sans-serif; }
+    h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
+
+    /* Dark theme vars */
+    .dark { --bg: #080d14; --surface: #0d1521; --surface2: #111c2e; --border: rgba(56,189,248,0.12); --text: #e8f4fd; --muted: #7aa0be; --accent: #38bdf8; }
+    /* Light theme vars */
+    :root:not(.dark) { --bg: #f0f7ff; --surface: #ffffff; --surface2: #e8f2fb; --border: rgba(2,132,199,0.15); --text: #0d2137; --muted: #4a7a9b; --accent: #0284c7; }
+
+    body { background: var(--bg); color: var(--text); transition: background 0.4s, color 0.4s; }
+
+    /* Glass card */
+    .glass {
+      background: rgba(13,21,33,0.65);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--border);
+    }
+    :root:not(.dark) .glass {
+      background: rgba(255,255,255,0.72);
+    }
+
+    /* Gradient text */
+    .grad-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #38bdf8 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+    :root:not(.dark) .grad-text {
+      background: linear-gradient(135deg, #0284c7 0%, #4f46e5 50%, #0284c7 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+
+    /* Glow button */
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #6366f1);
+      box-shadow: 0 0 24px rgba(14,165,233,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 0 40px rgba(14,165,233,0.55); }
+
+    /* Noise overlay for hero */
+    .noise::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* Section reveal */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Orb blobs */
+    .orb {
+      border-radius: 50%;
+      filter: blur(80px);
+      position: absolute;
+      pointer-events: none;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* Card hover lift */
+    .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(14,165,233,0.15); }
+
+    /* Nav glass */
+    .nav-glass {
+      background: rgba(8,13,20,0.75);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    :root:not(.dark) .nav-glass {
+      background: rgba(240,247,255,0.85);
+    }
+
+    /* Input styling */
+    .inp {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .inp:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,233,0.15); }
+
+    /* Star rating */
+    .stars { color: #fbbf24; }
+
+    /* Mobile menu */
+    #mobile-menu { transition: max-height 0.35s ease, opacity 0.35s ease; max-height: 0; overflow: hidden; opacity: 0; }
+    #mobile-menu.open { max-height: 400px; opacity: 1; }
+
+    /* Divider gradient */
+    .div-line { height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+
+    /* Light mode surface adjustments */
+    :root:not(.dark) .surface-card { background: var(--surface); border: 1px solid var(--border); }
+    .dark .surface-card { background: var(--surface); border: 1px solid var(--border); }
+  </style>
 </head>
-<body class="bg-[#050505] text-white dark:bg-[#050505] dark:text-white transition-colors duration-500">
+<body class="antialiased">
 
-    <div class="mesh-bg"></div>
-
-    <nav class="fixed w-full z-50 top-0 px-6 py-6 lg:px-12 flex justify-between items-center transition-all duration-500" id="nav">
-        <div class="font-display font-extrabold text-2xl tracking-tighter uppercase">
-            ST<span class="text-brand-500">.</span>Enterprises
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+  <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl btn-primary flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
         </div>
-        
-        <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-widest items-center">
-            <a href="#about" class="hover:text-brand-500 transition-colors">About</a>
-            <a href="#services" class="hover:text-brand-500 transition-colors">Services</a>
-            <a href="#contact" class="hover:text-brand-500 transition-colors">Contact</a>
-            <button id="theme-toggle" class="glass w-10 h-10 rounded-full flex items-center justify-center">
-                <i class="ph ph-moon dark:hidden"></i>
-                <i class="ph ph-sun hidden dark:block"></i>
-            </button>
-        </div>
+        <span class="font-display font-800 text-xl tracking-tight" style="color:var(--text)">ST <span class="grad-text">Enterprises</span></span>
+      </a>
 
-        <a href="tel:+919997269996" class="bg-white text-black dark:bg-brand-500 dark:text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-tighter hover:scale-105 transition-transform">
-            Call Shahnawaaz
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-7 text-sm font-medium" style="color:var(--muted)">
+        <li><a href="#about" class="hover:text-[var(--accent)] transition-colors">About</a></li>
+        <li><a href="#services" class="hover:text-[var(--accent)] transition-colors">Services</a></li>
+        <li><a href="#why-us" class="hover:text-[var(--accent)] transition-colors">Why Us</a></li>
+        <li><a href="#testimonials" class="hover:text-[var(--accent)] transition-colors">Reviews</a></li>
+        <li><a href="#contact" class="hover:text-[var(--accent)] transition-colors">Contact</a></li>
+      </ul>
+
+      <!-- Right controls -->
+      <div class="flex items-center gap-3">
+        <!-- Theme toggle -->
+        <button id="theme-btn" aria-label="Toggle theme"
+          class="w-9 h-9 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform">
+          <!-- Sun (light) -->
+          <svg id="icon-sun" class="w-4.5 h-4.5 hidden" style="color:var(--accent)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+          </svg>
+          <!-- Moon (dark) -->
+          <svg id="icon-moon" class="w-4.5 h-4.5" style="color:var(--accent)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <a href="tel:+919876543210" class="hidden md:flex btn-primary text-white text-sm font-semibold font-display px-5 py-2.5 rounded-full items-center gap-2">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          Call Now
         </a>
-    </nav>
 
-    <section class="min-h-screen flex flex-col justify-center px-6 lg:px-12 pt-20">
-        <div class="max-w-7xl mx-auto w-full">
-            <div class="reveal-container mb-4">
-                <p class="reveal-text text-brand-500 font-bold uppercase tracking-[0.4em] text-sm">Authorized O-General Specialists</p>
-            </div>
-            
-            <h1 class="font-display text-6xl md:text-8xl lg:text-[10rem] font-extrabold leading-[0.85] tracking-tighter uppercase mb-8">
-                <span class="block reveal-container"><span class="reveal-text">Premium</span></span>
-                <span class="block reveal-container text-transparent stroke-text" style="-webkit-text-stroke: 1px #0ea5e9;"><span class="reveal-text">O-General</span></span>
-                <span class="block reveal-container"><span class="reveal-text">Services.</span></span>
-            </h1>
+        <!-- Hamburger -->
+        <button id="menu-btn" class="md:hidden w-9 h-9 glass rounded-lg flex flex-col items-center justify-center gap-1.5 hover:scale-105 transition-transform">
+          <span class="block w-5 h-0.5 rounded-full transition-all" style="background:var(--text)" id="bar1"></span>
+          <span class="block w-5 h-0.5 rounded-full transition-all" style="background:var(--text)" id="bar2"></span>
+          <span class="block w-4 h-0.5 rounded-full transition-all" style="background:var(--text)" id="bar3"></span>
+        </button>
+      </div>
+    </div>
 
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-10 mt-10">
-                <p class="max-w-md text-gray-500 dark:text-gray-400 text-lg font-light slide-up">
-                    Expert HVAC engineering led by <span class="text-white font-semibold">Mohd Shahnawaaz</span>. We deliver the absolute cooling precision that O-General systems demand.
-                </p>
-                <div class="flex gap-4 slide-up">
-                    <a href="#services" class="w-16 h-16 rounded-full border border-gray-800 flex items-center justify-center hover:bg-brand-500 hover:border-brand-500 transition-all group">
-                        <i class="ph ph-arrow-down text-2xl group-hover:translate-y-1 transition-transform"></i>
-                    </a>
-                    <span class="text-xs uppercase tracking-widest font-bold self-center">Explore Services</span>
-                </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="nav-glass md:hidden">
+      <ul class="px-5 py-4 flex flex-col gap-4 text-sm font-medium" style="color:var(--muted)">
+        <li><a href="#about" class="hover:text-[var(--accent)] transition-colors block py-1" onclick="closeMenu()">About</a></li>
+        <li><a href="#services" class="hover:text-[var(--accent)] transition-colors block py-1" onclick="closeMenu()">Services</a></li>
+        <li><a href="#why-us" class="hover:text-[var(--accent)] transition-colors block py-1" onclick="closeMenu()">Why Us</a></li>
+        <li><a href="#testimonials" class="hover:text-[var(--accent)] transition-colors block py-1" onclick="closeMenu()">Reviews</a></li>
+        <li><a href="#contact" class="hover:text-[var(--accent)] transition-colors block py-1" onclick="closeMenu()">Contact</a></li>
+        <li><a href="tel:+919876543210" class="btn-primary text-white rounded-full px-5 py-2.5 text-center font-semibold font-display">📞 Call Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════ HERO ═══════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden noise pt-20">
+    <!-- Background orbs -->
+    <div class="orb w-[520px] h-[520px] opacity-20 dark:opacity-15 top-[-100px] right-[-100px]" style="background: radial-gradient(circle, #0ea5e9, #6366f1)"></div>
+    <div class="orb w-[400px] h-[400px] opacity-10 bottom-[-80px] left-[-80px]" style="background: radial-gradient(circle, #06b6d4, #0ea5e9)"></div>
+
+    <!-- Grid lines overlay -->
+    <div class="absolute inset-0 opacity-[0.04] dark:opacity-[0.06]" style="background-image: linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-20 w-full">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Text -->
+        <div class="space-y-8">
+          <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-xs font-semibold font-display tracking-wider uppercase" style="color:var(--accent)">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span>
+            Authorized O-General Service Partner
+          </div>
+
+          <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight" style="color:var(--text)">
+            Premium<br/>
+            <span class="grad-text">O-General</span><br/>
+            AC Services
+          </h1>
+
+          <p class="text-lg leading-relaxed max-w-lg" style="color:var(--muted)">
+            Expert installation, maintenance & repair for O-General air conditioners. Trusted by thousands of homes and businesses across the region.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="tel:+919876543210" class="btn-primary text-white font-display font-semibold px-8 py-4 rounded-2xl text-base flex items-center gap-2.5">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              Call Now
+            </a>
+            <a href="#services" class="glass font-display font-semibold px-8 py-4 rounded-2xl text-base flex items-center gap-2.5 hover:border-[var(--accent)] transition-colors" style="color:var(--text)">
+              Book a Service
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="flex flex-wrap gap-8 pt-4">
+            <div>
+              <p class="font-display font-bold text-3xl grad-text">2000+</p>
+              <p class="text-xs mt-1 font-medium" style="color:var(--muted)">Happy Customers</p>
             </div>
+            <div class="w-px self-stretch" style="background:var(--border)"></div>
+            <div>
+              <p class="font-display font-bold text-3xl grad-text">10+</p>
+              <p class="text-xs mt-1 font-medium" style="color:var(--muted)">Years Experience</p>
+            </div>
+            <div class="w-px self-stretch" style="background:var(--border)"></div>
+            <div>
+              <p class="font-display font-bold text-3xl grad-text">24/7</p>
+              <p class="text-xs mt-1 font-medium" style="color:var(--muted)">Support Available</p>
+            </div>
+          </div>
         </div>
-    </section>
 
-    <section id="about" class="py-32 px-6 lg:px-12 bg-white/5">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div class="slide-up">
-                <h2 class="font-display text-5xl font-bold mb-8 uppercase leading-tight">Expertise You <br/>Can <span class="text-brand-500">Trust.</span></h2>
-                <div class="space-y-6 text-gray-400 text-lg font-light">
-                    <p>Mohd Shahnawaaz founded ST Enterprises with a single vision: to provide a level of technical expertise that matches the premium engineering of O-General Air Conditioners.</p>
-                    <p>With a decade of hands-on experience in high-end cooling systems, we ensure your environment remains perfectly climate-controlled, regardless of the heat outside.</p>
-                </div>
-                <div class="mt-12 flex gap-10">
-                    <div>
-                        <p class="text-4xl font-bold text-white">10+</p>
-                        <p class="text-xs uppercase text-brand-500 font-bold tracking-widest">Years Experience</p>
-                    </div>
-                    <div>
-                        <p class="text-4xl font-bold text-white">5k+</p>
-                        <p class="text-xs uppercase text-brand-500 font-bold tracking-widest">Happy Clients</p>
-                    </div>
-                </div>
+        <!-- Hero visual -->
+        <div class="relative flex justify-center lg:justify-end">
+          <!-- Glow ring -->
+          <div class="absolute inset-0 m-auto w-72 h-72 rounded-full opacity-20" style="background: radial-gradient(circle, #0ea5e9, transparent); filter: blur(40px);"></div>
+
+          <div class="relative glass rounded-3xl p-8 w-full max-w-md animate-float shadow-2xl">
+            <!-- Mock AC unit card -->
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-widest mb-1" style="color:var(--muted)">O-General</p>
+                <p class="font-display font-bold text-xl" style="color:var(--text)">Split AC · 1.5 Ton</p>
+              </div>
+              <div class="w-12 h-12 rounded-2xl btn-primary flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
             </div>
-            <div class="relative slide-up">
-                <div class="aspect-square bg-gradient-to-tr from-brand-500 to-gray-900 rounded-3xl overflow-hidden glass">
-                    <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=800&q=80" alt="O-General AC Service" class="w-full h-full object-cover opacity-50 mix-blend-overlay">
+
+            <!-- Temp display -->
+            <div class="flex items-end justify-between mb-6">
+              <div>
+                <p class="text-6xl font-display font-extrabold grad-text leading-none">24°</p>
+                <p class="text-xs mt-2" style="color:var(--muted)">Set Temperature</p>
+              </div>
+              <div class="text-right space-y-1">
+                <div class="flex items-center justify-end gap-2 text-sm" style="color:var(--muted)">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+                  Running
                 </div>
-                <div class="absolute -bottom-10 -left-10 glass p-8 rounded-2xl hidden md:block">
-                    <i class="ph-fill ph-shield-check text-5xl text-brand-500"></i>
-                    <p class="mt-4 font-bold uppercase tracking-widest text-xs">Certified<br/>Master Tech</p>
-                </div>
+                <p class="text-xs" style="color:var(--muted)">Cool Mode</p>
+                <p class="text-xs" style="color:var(--muted)">Fan: Auto</p>
+              </div>
             </div>
+
+            <!-- Mini bars -->
+            <div class="flex gap-1.5 mb-6">
+              <div class="flex-1 h-2 rounded-full" style="background:var(--accent); opacity:.9"></div>
+              <div class="flex-1 h-2 rounded-full" style="background:var(--accent); opacity:.7"></div>
+              <div class="flex-1 h-2 rounded-full" style="background:var(--accent); opacity:.5"></div>
+              <div class="flex-1 h-2 rounded-full" style="background:var(--accent); opacity:.3"></div>
+              <div class="flex-1 h-2 rounded-full" style="background:var(--border)"></div>
+            </div>
+
+            <!-- Status pills -->
+            <div class="grid grid-cols-3 gap-3">
+              <div class="surface-card rounded-xl p-3 text-center">
+                <p class="text-lg font-display font-bold" style="color:var(--accent)">3★</p>
+                <p class="text-xs" style="color:var(--muted)">Rating</p>
+              </div>
+              <div class="surface-card rounded-xl p-3 text-center">
+                <p class="text-lg font-display font-bold" style="color:var(--accent)">5yr</p>
+                <p class="text-xs" style="color:var(--muted)">Warranty</p>
+              </div>
+              <div class="surface-card rounded-xl p-3 text-center">
+                <p class="text-lg font-display font-bold" style="color:var(--accent)">INV</p>
+                <p class="text-xs" style="color:var(--muted)">Type</p>
+              </div>
+            </div>
+
+            <!-- Service badge -->
+            <div class="mt-5 flex items-center gap-3 glass rounded-2xl p-3">
+              <div class="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold" style="color:var(--text)">Last Service: 2 months ago</p>
+                <p class="text-xs" style="color:var(--muted)">Next due in 4 months</p>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section id="services" class="py-32 px-6 lg:px-12">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20 slide-up">
-                <h2 class="font-display text-5xl font-bold uppercase">Our Solutions</h2>
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-40">
+      <p class="text-xs tracking-widest uppercase font-semibold" style="color:var(--muted)">Scroll</p>
+      <div class="w-5 h-8 rounded-full border" style="border-color:var(--muted); padding:2px">
+        <div class="w-1.5 h-2 rounded-full mx-auto mt-1" style="background:var(--accent)" id="scroll-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+  <section id="about" class="py-28 relative overflow-hidden">
+    <div class="orb w-96 h-96 opacity-10 top-0 right-0" style="background: radial-gradient(circle, #6366f1, transparent)"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Visual side -->
+        <div class="reveal space-y-5">
+          <div class="relative">
+            <div class="glass rounded-3xl p-8 card-lift surface-card">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-2xl btn-primary flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-display font-bold text-xl" style="color:var(--text)">ST Enterprises</p>
+                  <p class="text-sm" style="color:var(--muted)">Est. 2013 · Faridabad, Haryana</p>
+                </div>
+              </div>
+              <p class="leading-relaxed mb-6" style="color:var(--muted)">
+                A trusted name in the AC industry, delivering excellence through certified technicians, genuine parts, and unmatched customer care.
+              </p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-2xl p-4" style="background:var(--surface2)">
+                  <p class="font-display font-bold text-2xl grad-text">10+</p>
+                  <p class="text-xs mt-1" style="color:var(--muted)">Years in Business</p>
+                </div>
+                <div class="rounded-2xl p-4" style="background:var(--surface2)">
+                  <p class="font-display font-bold text-2xl grad-text">2000+</p>
+                  <p class="text-xs mt-1" style="color:var(--muted)">Units Serviced</p>
+                </div>
+                <div class="rounded-2xl p-4" style="background:var(--surface2)">
+                  <p class="font-display font-bold text-2xl grad-text">50+</p>
+                  <p class="text-xs mt-1" style="color:var(--muted)">Corporate Clients</p>
+                </div>
+                <div class="rounded-2xl p-4" style="background:var(--surface2)">
+                  <p class="font-display font-bold text-2xl grad-text">4.9★</p>
+                  <p class="text-xs mt-1" style="color:var(--muted)">Average Rating</p>
+                </div>
+              </div>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="glass p-10 rounded-[2rem] hover:bg-brand-500 transition-all group cursor-pointer slide-up">
-                    <i class="ph ph-wind text-4xl mb-6 group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold mb-4 uppercase">Installation</h3>
-                    <p class="text-gray-500 group-hover:text-white/80 transition-colors text-sm leading-relaxed">Precision mounting and commissioning of new O-General units for max efficiency.</p>
-                </div>
-                <div class="glass p-10 rounded-[2rem] hover:bg-brand-500 transition-all group cursor-pointer slide-up">
-                    <i class="ph ph-wrench text-4xl mb-6 group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold mb-4 uppercase">Repair</h3>
-                    <p class="text-gray-500 group-hover:text-white/80 transition-colors text-sm leading-relaxed">Advanced diagnostics and circuit repair by expert technicians.</p>
-                </div>
-                <div class="glass p-10 rounded-[2rem] hover:bg-brand-500 transition-all group cursor-pointer slide-up">
-                    <i class="ph ph-drop text-4xl mb-6 group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold mb-4 uppercase">Gas Fill</h3>
-                    <p class="text-gray-500 group-hover:text-white/80 transition-colors text-sm leading-relaxed">Top-grade refrigerant charging to restore icy-cool performance.</p>
-                </div>
-                <div class="glass p-10 rounded-[2rem] hover:bg-brand-500 transition-all group cursor-pointer slide-up">
-                    <i class="ph ph-calendar-check text-4xl mb-6 group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold mb-4 uppercase">AMC</h3>
-                    <p class="text-gray-500 group-hover:text-white/80 transition-colors text-sm leading-relaxed">Annual contracts for stress-free, year-round maintenance.</p>
-                </div>
+
+            <!-- Floating badge -->
+            <div class="absolute -top-4 -right-4 glass rounded-2xl px-4 py-3 animate-float-slow">
+              <p class="text-xs font-semibold" style="color:var(--accent)">✓ Authorized Dealer</p>
             </div>
+          </div>
         </div>
-    </section>
 
-    <section id="contact" class="py-32 px-6 lg:px-12 bg-white text-black dark:bg-black dark:text-white">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
-            <div class="slide-up">
-                <h2 class="font-display text-6xl font-bold uppercase mb-8">Let's Get <br/><span class="text-brand-500">Started.</span></h2>
-                <p class="text-gray-500 text-lg mb-12">Book a slot with Mohd Shahnawaaz today.</p>
-                
-                <div class="space-y-10">
-                    <a href="tel:+919997269996" class="flex items-center gap-6 group">
-                        <div class="w-16 h-16 rounded-full glass flex items-center justify-center text-3xl group-hover:bg-brand-500 group-hover:text-white transition-all">
-                            <i class="ph ph-phone"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs uppercase font-bold tracking-widest text-brand-500">Call Now</p>
-                            <p class="text-2xl font-bold">+91 99972 69996</p>
-                        </div>
-                    </a>
-                    <div class="flex items-center gap-6 group">
-                        <div class="w-16 h-16 rounded-full glass flex items-center justify-center text-3xl">
-                            <i class="ph ph-map-pin"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs uppercase font-bold tracking-widest text-brand-500">Location</p>
-                            <p class="text-2xl font-bold">Ghaziabad, Uttar Pradesh</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Text side -->
+        <div class="reveal space-y-6">
+          <div class="inline-block glass px-4 py-2 rounded-full text-xs font-semibold font-display tracking-widest uppercase" style="color:var(--accent)">About Us</div>
+
+          <h2 class="font-display font-extrabold text-4xl lg:text-5xl leading-tight" style="color:var(--text)">
+            A Decade of<br/><span class="grad-text">Cooling Excellence</span>
+          </h2>
+
+          <p class="text-base leading-relaxed" style="color:var(--muted)">
+            ST Enterprises has been the go-to O-General AC specialist in Haryana for over a decade. From day one, our mission has been simple: deliver world-class air conditioning solutions with honesty, skill, and speed.
+          </p>
+          <p class="text-base leading-relaxed" style="color:var(--muted)">
+            We are proud authorized dealers and service partners for O-General, India's most trusted premium AC brand. Every technician on our team is factory-trained and certified — ensuring your unit gets the care it deserves.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(14,165,233,0.15)">
+                <svg class="w-5 h-5" style="color:var(--accent)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold font-display" style="color:var(--text)">Reliability You Can Count On</p>
+                <p class="text-sm mt-0.5" style="color:var(--muted)">We show up on time, every time. Our 98% on-time service rate speaks for itself.</p>
+              </div>
             </div>
 
-            <div class="glass p-8 md:p-12 rounded-3xl slide-up">
-                <form onsubmit="event.preventDefault();" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <input type="text" placeholder="Name" class="w-full bg-transparent border-b border-gray-700 py-4 focus:outline-none focus:border-brand-500 transition-colors">
-                        <input type="tel" placeholder="Phone" class="w-full bg-transparent border-b border-gray-700 py-4 focus:outline-none focus:border-brand-500 transition-colors">
-                    </div>
-                    <select class="w-full bg-transparent border-b border-gray-700 py-4 focus:outline-none focus:border-brand-500 transition-colors appearance-none">
-                        <option class="text-black">New Installation</option>
-                        <option class="text-black">Repair & Service</option>
-                        <option class="text-black">Gas Refilling</option>
-                    </select>
-                    <textarea rows="4" placeholder="How can we help?" class="w-full bg-transparent border-b border-gray-700 py-4 focus:outline-none focus:border-brand-500 transition-colors"></textarea>
-                    <button class="w-full py-5 bg-brand-500 text-white font-bold uppercase tracking-widest hover:bg-brand-600 transition-all rounded-xl">Send Inquiry</button>
-                </form>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(99,102,241,0.15)">
+                <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold font-display" style="color:var(--text)">Expert Technicians</p>
+                <p class="text-sm mt-0.5" style="color:var(--muted)">Factory-certified engineers with hands-on expertise across all O-General models.</p>
+              </div>
             </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(16,185,129,0.15)">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold font-display" style="color:var(--text)">Customer-First Culture</p>
+                <p class="text-sm mt-0.5" style="color:var(--muted)">We treat every home and business like our own. Your comfort is our priority.</p>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <footer class="py-12 px-6 lg:px-12 border-t border-gray-800 text-center md:text-left">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="font-display font-extrabold text-xl uppercase">ST<span class="text-brand-500">.</span>Enterprises</div>
-            <p class="text-gray-500 text-sm italic">Designed for Awwwards standards. Led by Mohd Shahnawaaz.</p>
-            <div class="flex gap-6 text-2xl">
-                <i class="ph ph-instagram-logo hover:text-brand-500 cursor-pointer"></i>
-                <i class="ph ph-whatsapp-logo hover:text-brand-500 cursor-pointer"></i>
-            </div>
+  <div class="div-line max-w-5xl mx-auto opacity-30"></div>
+
+  <!-- ═══════════════════════ SERVICES ═══════════════════════ -->
+  <section id="services" class="py-28">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block glass px-4 py-2 rounded-full text-xs font-semibold font-display tracking-widest uppercase mb-5" style="color:var(--accent)">Our Services</div>
+        <h2 class="font-display font-extrabold text-4xl lg:text-5xl leading-tight" style="color:var(--text)">
+          Everything Your<br/><span class="grad-text">AC Needs</span>
+        </h2>
+        <p class="mt-4 text-base max-w-2xl mx-auto" style="color:var(--muted)">From new installations to annual care plans — we've got complete O-General AC solutions under one roof.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Service cards -->
+        <div class="reveal surface-card glass rounded-3xl p-7 card-lift group">
+          <div class="w-14 h-14 rounded-2xl btn-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3" style="color:var(--text)">AC Installation</h3>
+          <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Precision installation of O-General split, window, and cassette ACs — done right the first time, backed by warranty.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:var(--accent)"></span>Split & Window ACs</div>
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:var(--accent)"></span>Cassette & Duct ACs</div>
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:var(--accent)"></span>Post-install testing</div>
+          </div>
         </div>
-    </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <div class="reveal surface-card glass rounded-3xl p-7 card-lift group" style="transition-delay: 0.1s">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3" style="color:var(--text)">Repair & Maintenance</h3>
+          <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Swift diagnosis and repair for all AC faults — cooling issues, noise, leaks, electrical problems, and more.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-indigo-400"></span>Deep cleaning & servicing</div>
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-indigo-400"></span>PCB & motor repair</div>
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-indigo-400"></span>Compressor service</div>
+          </div>
+        </div>
 
-    <script>
-        // Hero Reveal
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.reveal-text').forEach(el => el.classList.add('active'));
-        });
+        <div class="reveal surface-card glass rounded-3xl p-7 card-lift group" style="transition-delay: 0.2s">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform" style="background:linear-gradient(135deg,#06b6d4,#0ea5e9)">
+            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3" style="color:var(--text)">Gas Refilling</h3>
+          <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Professional refrigerant refilling using only manufacturer-approved gases — restoring full cooling power efficiently.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-cyan-400"></span>R-32 & R-410A refills</div>
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-cyan-400"></span>Leak detection</div>
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-cyan-400"></span>Pressure testing</div>
+          </div>
+        </div>
 
-        // Theme Toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        themeBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-        });
+        <div class="reveal surface-card glass rounded-3xl p-7 card-lift group" style="transition-delay: 0.3s">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform" style="background:linear-gradient(135deg,#10b981,#059669)">
+            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3" style="color:var(--text)">AMC Plans</h3>
+          <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Annual Maintenance Contracts for worry-free AC performance year-round — at the most competitive rates.</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-emerald-400"></span>2 services/year</div>
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-emerald-400"></span>Priority response</div>
+            <div class="flex items-center gap-2 text-xs" style="color:var(--muted)"><span class="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-emerald-400"></span>Parts discount</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Sliding Animations on Scroll
-        gsap.registerPlugin(ScrollTrigger);
-        
-        const slideUps = document.querySelectorAll('.slide-up');
-        slideUps.forEach((el) => {
-            gsap.fromTo(el, 
-                { opacity: 0, y: 50 }, 
-                { 
-                    opacity: 1, 
-                    y: 0, 
-                    duration: 1, 
-                    ease: "power3.out", 
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 85%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        });
+  <div class="div-line max-w-5xl mx-auto opacity-30"></div>
 
-        // Navbar blur on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('glass', 'py-4');
-                nav.classList.remove('py-6');
-            } else {
-                nav.classList.remove('glass', 'py-4');
-                nav.classList.add('py-6');
-            }
-        });
-    </script>
+  <!-- ═══════════════════════ WHY CHOOSE US ═══════════════════════ -->
+  <section id="why-us" class="py-28 relative overflow-hidden">
+    <div class="orb w-96 h-96 opacity-10 bottom-0 left-0" style="background: radial-gradient(circle, #0ea5e9, transparent)"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block glass px-4 py-2 rounded-full text-xs font-semibold font-display tracking-widest uppercase mb-5" style="color:var(--accent)">Why Choose Us</div>
+        <h2 class="font-display font-extrabold text-4xl lg:text-5xl leading-tight" style="color:var(--text)">
+          The <span class="grad-text">ST Difference</span>
+        </h2>
+        <p class="mt-4 max-w-2xl mx-auto" style="color:var(--muted)">We don't just service ACs — we build long-term relationships based on trust, skill, and transparency.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Feature cards -->
+        <div class="reveal text-center surface-card glass rounded-3xl p-8 card-lift group">
+          <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center group-hover:scale-110 transition-transform" style="background:linear-gradient(135deg,rgba(14,165,233,0.2),rgba(99,102,241,0.2)); border:1px solid rgba(14,165,233,0.3)">
+            <svg class="w-8 h-8" style="color:var(--accent)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg mb-2" style="color:var(--text)">Certified Technicians</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Every engineer is O-General factory-certified with ongoing training for latest models.</p>
+        </div>
+
+        <div class="reveal text-center surface-card glass rounded-3xl p-8 card-lift group" style="transition-delay:.1s">
+          <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center group-hover:scale-110 transition-transform" style="background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(249,115,22,0.2)); border:1px solid rgba(251,191,36,0.3)">
+            <svg class="w-8 h-8 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg mb-2" style="color:var(--text)">Fast Response</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Same-day service for most repairs. Emergency slots available within 2 hours.</p>
+        </div>
+
+        <div class="reveal text-center surface-card glass rounded-3xl p-8 card-lift group" style="transition-delay:.2s">
+          <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center group-hover:scale-110 transition-transform" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(6,182,212,0.2)); border:1px solid rgba(16,185,129,0.3)">
+            <svg class="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg mb-2" style="color:var(--text)">Genuine Parts</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">We use only OEM O-General spare parts — no shortcuts, no counterfeits, ever.</p>
+        </div>
+
+        <div class="reveal text-center surface-card glass rounded-3xl p-8 card-lift group" style="transition-delay:.3s">
+          <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center group-hover:scale-110 transition-transform" style="background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(236,72,153,0.2)); border:1px solid rgba(139,92,246,0.3)">
+            <svg class="w-8 h-8 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg mb-2" style="color:var(--text)">Affordable Pricing</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Transparent pricing with no hidden charges. Best value without compromising quality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ BRAND SPOTLIGHT ═══════════════════════ -->
+  <section id="brand" class="py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="reveal glass rounded-3xl overflow-hidden relative">
+        <!-- BG gradient -->
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(14,165,233,0.12) 0%, rgba(99,102,241,0.1) 50%, rgba(6,182,212,0.08) 100%)"></div>
+        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+        <div class="relative z-10 p-10 lg:p-16 flex flex-col lg:flex-row items-center gap-12">
+          <!-- Brand logo representation -->
+          <div class="flex-shrink-0">
+            <div class="w-36 h-36 rounded-3xl btn-primary flex flex-col items-center justify-center shadow-2xl animate-float">
+              <p class="font-display font-extrabold text-white text-3xl leading-none">O</p>
+              <p class="font-display font-bold text-white text-xs tracking-widest mt-1">GENERAL</p>
+              <div class="w-8 h-0.5 bg-white/50 my-1.5 rounded-full"></div>
+              <p class="font-body text-white/70 text-[10px] tracking-wider">FUJITSU</p>
+            </div>
+          </div>
+
+          <div class="flex-1 text-center lg:text-left">
+            <div class="inline-block glass px-4 py-2 rounded-full text-xs font-semibold font-display tracking-widest uppercase mb-5" style="color:var(--accent)">Brand Expertise</div>
+            <h2 class="font-display font-extrabold text-3xl lg:text-5xl mb-5" style="color:var(--text)">
+              Specialists in <span class="grad-text">O-General</span><br class="hidden lg:block"/> Air Conditioners
+            </h2>
+            <p class="text-base leading-relaxed max-w-2xl" style="color:var(--muted)">
+              O-General (by Fujitsu General) is renowned for superior cooling performance, energy efficiency, and reliability in extreme climates. As dedicated specialists, we carry deep expertise across the entire O-General lineup — from inverter splits to heavy-duty commercial units.
+            </p>
+
+            <div class="flex flex-wrap gap-3 mt-8 justify-center lg:justify-start">
+              <span class="glass px-4 py-2 rounded-full text-sm font-semibold" style="color:var(--text)">Split ACs</span>
+              <span class="glass px-4 py-2 rounded-full text-sm font-semibold" style="color:var(--text)">Inverter Models</span>
+              <span class="glass px-4 py-2 rounded-full text-sm font-semibold" style="color:var(--text)">Cassette ACs</span>
+              <span class="glass px-4 py-2 rounded-full text-sm font-semibold" style="color:var(--text)">Duct Systems</span>
+              <span class="glass px-4 py-2 rounded-full text-sm font-semibold" style="color:var(--text)">VRF Units</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="div-line max-w-5xl mx-auto opacity-30"></div>
+
+  <!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
+  <section id="testimonials" class="py-28 relative overflow-hidden">
+    <div class="orb w-80 h-80 opacity-10 top-1/2 right-0 -translate-y-1/2" style="background: radial-gradient(circle, #8b5cf6, transparent)"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block glass px-4 py-2 rounded-full text-xs font-semibold font-display tracking-widest uppercase mb-5" style="color:var(--accent)">Testimonials</div>
+        <h2 class="font-display font-extrabold text-4xl lg:text-5xl" style="color:var(--text)">
+          What Our <span class="grad-text">Customers Say</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-7">
+        <!-- Review 1 -->
+        <div class="reveal surface-card glass rounded-3xl p-8 card-lift flex flex-col">
+          <div class="flex gap-1 mb-5 stars text-lg">★★★★★</div>
+          <p class="text-base leading-relaxed flex-1 mb-6 italic" style="color:var(--muted)">
+            "ST Enterprises installed two O-General inverter ACs in our home. The team was punctual, professional, and the setup was flawless. Best AC service in Faridabad!"
+          </p>
+          <div class="flex items-center gap-4 pt-5" style="border-top:1px solid var(--border)">
+            <div class="w-11 h-11 rounded-full btn-primary flex items-center justify-center flex-shrink-0">
+              <span class="font-display font-bold text-white text-sm">RK</span>
+            </div>
+            <div>
+              <p class="font-semibold font-display" style="color:var(--text)">Rajesh Kumar</p>
+              <p class="text-xs" style="color:var(--muted)">Homeowner · Sector 15, Faridabad</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="reveal surface-card glass rounded-3xl p-8 card-lift flex flex-col" style="transition-delay:.15s">
+          <div class="flex gap-1 mb-5 stars text-lg">★★★★★</div>
+          <p class="text-base leading-relaxed flex-1 mb-6 italic" style="color:var(--muted)">
+            "We have an AMC with ST Enterprises for our 10 office ACs. They are always responsive, and service quality is consistently excellent. Highly recommend for businesses."
+          </p>
+          <div class="flex items-center gap-4 pt-5" style="border-top:1px solid var(--border)">
+            <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+              <span class="font-display font-bold text-white text-sm">PS</span>
+            </div>
+            <div>
+              <p class="font-semibold font-display" style="color:var(--text)">Priya Sharma</p>
+              <p class="text-xs" style="color:var(--muted)">Office Manager · NIT, Faridabad</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="reveal surface-card glass rounded-3xl p-8 card-lift flex flex-col" style="transition-delay:.3s">
+          <div class="flex gap-1 mb-5 stars text-lg">★★★★★</div>
+          <p class="text-base leading-relaxed flex-1 mb-6 italic" style="color:var(--muted)">
+            "Gas refilling was done quickly and professionally. My AC cools like new! Very fair pricing and the technician explained everything clearly. Will call them again."
+          </p>
+          <div class="flex items-center gap-4 pt-5" style="border-top:1px solid var(--border)">
+            <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#10b981,#06b6d4)">
+              <span class="font-display font-bold text-white text-sm">AM</span>
+            </div>
+            <div>
+              <p class="font-semibold font-display" style="color:var(--text)">Anil Mehta</p>
+              <p class="text-xs" style="color:var(--muted)">Resident · Ballabhgarh</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="div-line max-w-5xl mx-auto opacity-30"></div>
+
+  <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+  <section id="contact" class="py-28 relative overflow-hidden">
+    <div class="orb w-[500px] h-[500px] opacity-10 bottom-0 right-0" style="background: radial-gradient(circle, #0ea5e9, transparent)"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block glass px-4 py-2 rounded-full text-xs font-semibold font-display tracking-widest uppercase mb-5" style="color:var(--accent)">Get In Touch</div>
+        <h2 class="font-display font-extrabold text-4xl lg:text-5xl" style="color:var(--text)">
+          Book a Service<br/><span class="grad-text">Today</span>
+        </h2>
+        <p class="mt-4 max-w-xl mx-auto" style="color:var(--muted)">Reach out via call, email, or the form below — we'll get back to you within the hour.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-10">
+        <!-- Contact info -->
+        <div class="lg:col-span-2 reveal space-y-5">
+          <div class="surface-card glass rounded-3xl p-7 card-lift flex items-start gap-5">
+            <div class="w-12 h-12 btn-primary rounded-2xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-display font-bold" style="color:var(--text)">Call Us</p>
+              <a href="tel:+919876543210" class="text-sm mt-1 block hover:text-[var(--accent)] transition-colors font-semibold" style="color:var(--accent)">+91 98765 43210</a>
+              <p class="text-xs mt-1" style="color:var(--muted)">Mon – Sat, 9 AM – 7 PM</p>
+            </div>
+          </div>
+
+          <div class="surface-card glass rounded-3xl p-7 card-lift flex items-start gap-5">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-display font-bold" style="color:var(--text)">Email Us</p>
+              <a href="mailto:info@stenterprises.in" class="text-sm mt-1 block hover:text-[var(--accent)] transition-colors" style="color:var(--muted)">info@stenterprises.in</a>
+              <p class="text-xs mt-1" style="color:var(--muted)">Reply within 2 hours</p>
+            </div>
+          </div>
+
+          <div class="surface-card glass rounded-3xl p-7 card-lift flex items-start gap-5">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#10b981,#059669)">
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-display font-bold" style="color:var(--text)">Visit Us</p>
+              <p class="text-sm mt-1" style="color:var(--muted)">123 Industrial Area, Sector 5</p>
+              <p class="text-sm" style="color:var(--muted)">Faridabad, Haryana 121001</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact form -->
+        <div class="lg:col-span-3 reveal surface-card glass rounded-3xl p-8 lg:p-10">
+          <h3 class="font-display font-bold text-2xl mb-7" style="color:var(--text)">Send Us a Message</h3>
+          <div class="space-y-5" id="contact-form">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--muted)">Full Name</label>
+                <input type="text" placeholder="Your name" class="inp w-full rounded-xl px-4 py-3.5 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--muted)">Phone</label>
+                <input type="tel" placeholder="+91 XXXXX XXXXX" class="inp w-full rounded-xl px-4 py-3.5 text-sm" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--muted)">Email</label>
+              <input type="email" placeholder="your@email.com" class="inp w-full rounded-xl px-4 py-3.5 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--muted)">Service Required</label>
+              <select class="inp w-full rounded-xl px-4 py-3.5 text-sm">
+                <option value="">Select a service...</option>
+                <option>AC Installation</option>
+                <option>AC Repair & Maintenance</option>
+                <option>Gas Refilling</option>
+                <option>Annual Maintenance Contract</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold mb-2 uppercase tracking-wider" style="color:var(--muted)">Message</label>
+              <textarea rows="4" placeholder="Describe your issue or requirement..." class="inp w-full rounded-xl px-4 py-3.5 text-sm resize-none"></textarea>
+            </div>
+            <button onclick="submitForm()" class="btn-primary w-full text-white font-display font-semibold py-4 rounded-xl text-base flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+              </svg>
+              Send Message
+            </button>
+            <p id="form-success" class="hidden text-center text-sm text-emerald-400 font-semibold pt-2">✓ Message sent! We'll contact you shortly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer style="background:var(--surface); border-top:1px solid var(--border)">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-2.5 mb-5">
+            <div class="w-9 h-9 rounded-xl btn-primary flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <span class="font-display font-800 text-xl" style="color:var(--text)">ST <span class="grad-text">Enterprises</span></span>
+          </div>
+          <p class="text-sm leading-relaxed max-w-xs mb-6" style="color:var(--muted)">Your trusted O-General AC sales and service partner in Haryana. Quality service, genuine parts, honest pricing.</p>
+          <!-- Social icons -->
+          <div class="flex gap-3">
+            <a href="#" aria-label="Facebook" class="w-9 h-9 glass rounded-xl flex items-center justify-center hover:scale-110 transition-transform" style="color:var(--muted)">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="w-9 h-9 glass rounded-xl flex items-center justify-center hover:scale-110 transition-transform" style="color:var(--muted)">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://wa.me/919876543210" aria-label="WhatsApp" class="w-9 h-9 glass rounded-xl flex items-center justify-center hover:scale-110 transition-transform" style="color:var(--muted)">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <p class="font-display font-bold text-sm uppercase tracking-wider mb-5" style="color:var(--text)">Quick Links</p>
+          <ul class="space-y-3 text-sm" style="color:var(--muted)">
+            <li><a href="#about" class="hover:text-[var(--accent)] transition-colors">About Us</a></li>
+            <li><a href="#services" class="hover:text-[var(--accent)] transition-colors">Services</a></li>
+            <li><a href="#why-us" class="hover:text-[var(--accent)] transition-colors">Why Choose Us</a></li>
+            <li><a href="#testimonials" class="hover:text-[var(--accent)] transition-colors">Testimonials</a></li>
+            <li><a href="#contact" class="hover:text-[var(--accent)] transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <p class="font-display font-bold text-sm uppercase tracking-wider mb-5" style="color:var(--text)">Services</p>
+          <ul class="space-y-3 text-sm" style="color:var(--muted)">
+            <li><a href="#services" class="hover:text-[var(--accent)] transition-colors">AC Installation</a></li>
+            <li><a href="#services" class="hover:text-[var(--accent)] transition-colors">Repair & Maintenance</a></li>
+            <li><a href="#services" class="hover:text-[var(--accent)] transition-colors">Gas Refilling</a></li>
+            <li><a href="#services" class="hover:text-[var(--accent)] transition-colors">AMC Plans</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="div-line opacity-30 mb-8"></div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm" style="color:var(--muted)">
+        <p>© 2024 ST Enterprises. All rights reserved.</p>
+        <p>Built with ❤️ for the coolest service in town.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script>
+    // Theme toggle
+    const html = document.documentElement;
+    const btn = document.getElementById('theme-btn');
+    const sunIcon = document.getElementById('icon-sun');
+    const moonIcon = document.getElementById('icon-moon');
+
+    function setTheme(dark) {
+      if (dark) {
+        html.classList.add('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      } else {
+        html.classList.remove('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      const isDark = html.classList.contains('dark');
+      setTheme(!isDark);
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('open', menuOpen);
+    });
+
+    function closeMenu() {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Scroll dot animation
+    const dot = document.getElementById('scroll-dot');
+    if (dot) {
+      let dir = 1, pos = 0;
+      setInterval(() => {
+        pos += dir * 1.5;
+        if (pos > 14) dir = -1;
+        if (pos < 0) dir = 1;
+        dot.style.transform = `translateY(${pos}px)`;
+      }, 40);
+    }
+
+    // Form submit
+    function submitForm() {
+      const success = document.getElementById('form-success');
+      success.classList.remove('hidden');
+      setTimeout(() => success.classList.add('hidden'), 5000);
+    }
+
+    // Stagger reveal delays
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      if (!el.style.transitionDelay) el.style.transitionDelay = `${(i % 4) * 0.08}s`;
+    });
+  </script>
 </body>
 </html>
