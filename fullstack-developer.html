@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suboor Khan | Tech Lead | Next.js & React Developer</title>
+<meta name="description" content="Suboor Khan is a Tech Lead at Hindustan Times specializing in Next.js, React, Core Web Vitals optimization, and high-traffic scalable frontend architecture serving millions of users.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: rgba(255,255,255,0.07);
+    --accent: #e8ff47;
+    --accent2: #ff6b35;
+    --text: #f0f0f0;
+    --muted: #666;
+    --muted2: #444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(232,255,71,0.4);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease-out;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9000;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 2px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+  /* Typography */
+  .display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em; line-height: 0.9; }
+  .mono { font-family: 'DM Mono', monospace; }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideRight {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  @keyframes scanline {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100vh); }
+  }
+
+  .animate-fade-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .animate-fade-in { animation: fadeIn 1s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .delay-3 { animation-delay: 0.3s; opacity: 0; }
+  .delay-4 { animation-delay: 0.4s; opacity: 0; }
+  .delay-5 { animation-delay: 0.5s; opacity: 0; }
+  .delay-6 { animation-delay: 0.6s; opacity: 0; }
+  .delay-7 { animation-delay: 0.7s; opacity: 0; }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 32px;
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-number {
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(300px, 45vw, 600px);
+    line-height: 1;
+    color: rgba(255,255,255,0.02);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 12vw, 180px);
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .hero-name span { color: var(--accent); }
+
+  .hero-subtitle {
+    margin-top: 32px;
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: var(--muted);
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  .hero-meta {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--border);
+  }
+
+  .availability-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    background: var(--surface);
+  }
+  .availability-dot {
+    width: 6px; height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  /* Marquee strip */
+  .marquee-strip {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    background: var(--surface);
+  }
+  .marquee-inner {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: var(--muted2);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .marquee-item span { color: var(--accent); font-size: 16px; }
+
+  /* Sections */
+  .section { padding: 120px 48px; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 200px;
+  }
+
+  /* Experience */
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+  }
+  .exp-sidebar {
+    border-right: 1px solid var(--border);
+    padding-right: 48px;
+  }
+  .exp-timeline { padding-left: 48px; }
+
+  .exp-item {
+    position: relative;
+    padding-bottom: 64px;
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-left: none; padding-bottom: 0; }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .exp-item:last-child::before { background: var(--muted2); }
+
+  .exp-company {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .exp-role {
+    font-size: 12px;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+  .exp-date {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    margin-top: 8px;
+  }
+  .exp-bullets {
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+    font-size: 12px;
+  }
+
+  .exp-sidebar-stat {
+    margin-bottom: 40px;
+  }
+  .exp-sidebar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--text);
+    line-height: 1;
+    opacity: 0.15;
+  }
+  .exp-sidebar-text {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    margin-top: 4px;
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .skill-card {
+    border: 1px solid var(--border);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    background: var(--surface);
+  }
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .skill-card:hover .skill-bg {
+    opacity: 1;
+  }
+  .skill-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(232,255,71,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .skill-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+  }
+  .skill-type {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+  }
+  .project-card {
+    background: var(--bg);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+  .project-card:hover { background: var(--surface); }
+  .project-card:hover .project-arrow { transform: translate(4px, -4px); }
+  .project-card:hover .project-line { width: 100%; }
+
+  .project-line {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: var(--accent);
+    width: 0;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-index {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted2);
+    margin-bottom: 24px;
+  }
+  .project-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 16px;
+    max-width: 340px;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .project-tag {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    border: 1px solid rgba(232,255,71,0.2);
+    padding: 4px 10px;
+    letter-spacing: 0.08em;
+  }
+  .project-arrow {
+    position: absolute;
+    top: 48px; right: 48px;
+    font-size: 20px;
+    color: var(--muted2);
+    transition: transform 0.3s;
+  }
+
+  /* Contact */
+  .contact-section {
+    padding: 120px 48px;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .contact-big-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 8vw, 120px);
+    line-height: 0.9;
+    color: var(--text);
+  }
+  .contact-big-text em {
+    font-style: normal;
+    color: var(--accent);
+    -webkit-text-stroke: 0;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 24px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-link:hover {
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .contact-link:hover .contact-link-bg { transform: scaleX(1); }
+  .contact-link-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .contact-link-label {
+    position: relative;
+    z-index: 1;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .contact-link:hover .contact-link-label { color: var(--bg); }
+  .contact-link-value {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s;
+  }
+  .contact-link:hover .contact-link-value { color: var(--bg); }
+  .contact-link-icon {
+    position: relative;
+    z-index: 1;
+    margin-left: auto;
+    font-size: 18px;
+    transition: color 0.3s, transform 0.3s;
+  }
+  .contact-link:hover .contact-link-icon {
+    color: var(--bg);
+    transform: translate(4px, -4px);
+  }
+
+  /* Education */
+  .edu-card {
+    border: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+
+  /* Footer */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-size: 11px;
+    color: var(--muted2);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* Hover effects on links */
+  a { cursor: none; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 24px 60px; }
+    .section { padding: 80px 24px; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .exp-sidebar { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 40px; margin-bottom: 40px; }
+    .exp-timeline { padding-left: 0; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .contact-section { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+    footer { flex-direction: column; gap: 16px; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo">SK</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="about">
+  <div class="hero-bg-number">05</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow animate-fade-up delay-1">Based in New Delhi, India</p>
+    <h1 class="hero-name animate-fade-up delay-2">
+      SUBOOR<br><span>KHAN</span>
+    </h1>
+    <p class="hero-subtitle animate-fade-up delay-3">
+      Tech Lead at Hindustan Times. Architecting high-performance web platforms that serve millions of users daily through Next.js, React, and obsessive performance engineering.
+    </p>
+    <div class="hero-meta animate-fade-up delay-4">
+      <div class="hero-stat">
+        <span class="hero-stat-value">5+</span>
+        <span class="hero-stat-label">Years Exp</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">69M</span>
+        <span class="hero-stat-label">Users Served</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">300M</span>
+        <span class="hero-stat-label">Monthly Views</span>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="availability-badge">
+        <div class="availability-dot"></div>
+        Available for opportunities
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <div class="marquee-item">NEXT.JS <span>✦</span> REACT <span>✦</span> TYPESCRIPT <span>✦</span> CORE WEB VITALS <span>✦</span> PERFORMANCE <span>✦</span> AWS <span>✦</span> DOCKER <span>✦</span> AI INTEGRATION <span>✦</span> SSR / ISR <span>✦</span> FRONTEND ARCHITECTURE <span>✦</span></div>
+    <div class="marquee-item">NEXT.JS <span>✦</span> REACT <span>✦</span> TYPESCRIPT <span>✦</span> CORE WEB VITALS <span>✦</span> PERFORMANCE <span>✦</span> AWS <span>✦</span> DOCKER <span>✦</span> AI INTEGRATION <span>✦</span> SSR / ISR <span>✦</span> FRONTEND ARCHITECTURE <span>✦</span></div>
+  </div>
+</div>
+
+<!-- Experience -->
+<section class="section" id="experience">
+  <p class="section-label reveal">Work History</p>
+  <div class="exp-grid">
+    <div class="exp-sidebar reveal">
+      <div class="exp-sidebar-stat">
+        <div class="exp-sidebar-num">03</div>
+        <div class="exp-sidebar-text">Companies</div>
+      </div>
+      <div class="exp-sidebar-stat">
+        <div class="exp-sidebar-num">5+</div>
+        <div class="exp-sidebar-text">Years Total</div>
+      </div>
+      <div class="exp-sidebar-stat">
+        <div class="exp-sidebar-num">∞</div>
+        <div class="exp-sidebar-text">Lines of Code</div>
+      </div>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item reveal">
+        <div class="exp-company">Hindustan Times</div>
+        <div class="exp-role">— Tech Lead</div>
+        <div class="exp-date">FEB 2023 → PRESENT · NEW DELHI</div>
+        <ul class="exp-bullets">
+          <li>Led migration of LiveHindustan.com (69M+ users, 300M+ monthly page views) to Next.js</li>
+          <li>Built HindustanTimes.js SDK enabling third-party platforms to embed real-time news feeds</li>
+          <li>Architected scalable frontend infrastructure for millions of concurrent users</li>
+          <li>Improved Lighthouse scores via hydration optimization, lazy loading, and code splitting</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-company">Chetu Inc</div>
+        <div class="exp-role">— Senior Software Engineer</div>
+        <div class="exp-date">AUG 2021 → FEB 2023 · NOIDA</div>
+        <ul class="exp-bullets">
+          <li>Developed scalable web applications using React, TypeScript, Node.js, and Vue</li>
+          <li>Built dynamic dashboards for healthcare and IoT systems handling real-time records</li>
+          <li>Integrated REST APIs and optimized frontend rendering performance</li>
+        </ul>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-company">Praxiv</div>
+        <div class="exp-role">— Software Engineer</div>
+        <div class="exp-date">FEB 2020 → AUG 2021 · GURUGRAM</div>
+        <ul class="exp-bullets">
+          <li>Engineered modules for Whats42Nite using Angular, React, Backbone, and modern ES6 stack</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="section" style="padding-top: 0;" id="skills">
+  <p class="section-label reveal">Technical Arsenal</p>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">React</div>
+      <div class="skill-type">Core Framework</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">Next.js</div>
+      <div class="skill-type">Full-Stack</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">TypeScript</div>
+      <div class="skill-type">Language</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">Node.js</div>
+      <div class="skill-type">Runtime</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">Vue</div>
+      <div class="skill-type">Framework</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">Angular</div>
+      <div class="skill-type">Framework</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">AWS</div>
+      <div class="skill-type">Cloud</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">Docker</div>
+      <div class="skill-type">DevOps</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">CWV</div>
+      <div class="skill-type">Performance</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">SSR/ISR</div>
+      <div class="skill-type">Architecture</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">AI/ML</div>
+      <div class="skill-type">Integration</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-bg"></div>
+      <div class="skill-name">REST APIs</div>
+      <div class="skill-type">Integration</div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="section" style="padding-top: 0;" id="projects">
+  <p class="section-label reveal">Selected Work</p>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-line"></div>
+      <div class="project-index">01 / ENTERPRISE PLATFORM</div>
+      <div class="project-name">Hindustan<br>Times.com</div>
+      <p class="project-desc">Enhanced enterprise news platform serving millions of daily active users. Integrated AI-powered content modules and intelligent recommendations. Maintained performance and scalability under extreme high-traffic conditions.</p>
+      <div class="project-tags">
+        <span class="project-tag">Next.js</span>
+        <span class="project-tag">React</span>
+        <span class="project-tag">AI Modules</span>
+        <span class="project-tag">Performance</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+    <div class="project-card">
+      <div class="project-line"></div>
+      <div class="project-index">02 / MIGRATION & ARCHITECTURE</div>
+      <div class="project-name">Live<br>Hindustan</div>
+      <p class="project-desc">Full platform migration to Next.js using SSR and ISR architecture for 69M+ users. Dramatically improved Core Web Vitals scores and page load performance through deep hydration optimization.</p>
+      <div class="project-tags">
+        <span class="project-tag">Next.js</span>
+        <span class="project-tag">SSR</span>
+        <span class="project-tag">ISR</span>
+        <span class="project-tag">Core Web Vitals</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+    <div class="project-card">
+      <div class="project-line"></div>
+      <div class="project-index">03 / IOT DASHBOARD</div>
+      <div class="project-name">Anelto<br>Dashboard</div>
+      <p class="project-desc">Built IoT patient monitoring dashboard with real-time data prioritization for healthcare systems. Critical infrastructure requiring high reliability and near-zero latency data rendering.</p>
+      <div class="project-tags">
+        <span class="project-tag">React</span>
+        <span class="project-tag">IoT</span>
+        <span class="project-tag">Real-time</span>
+        <span class="project-tag">Healthcare</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+    <div class="project-card">
+      <div class="project-line"></div>
+      <div class="project-index">04 / SDK DEVELOPMENT</div>
+      <div class="project-name">HT.js<br>SDK</div>
+      <p class="project-desc">Designed and built a JavaScript SDK enabling third-party platforms to embed real-time HindustanTimes.com news feeds with custom configuration and minimal bundle overhead.</p>
+      <div class="project-tags">
+        <span class="project-tag">SDK</span>
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">API</span>
+        <span class="project-tag">Embeds</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- Education -->
+<section class="section" style="padding-top: 0;" id="education">
+  <p class="section-label reveal">Education</p>
+  <div class="edu-card reveal">
+    <div>
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 0.05em; color: var(--text);">Subharti University</div>
+      <div style="font-size: 13px; color: var(--muted); margin-top: 6px; font-family: 'DM Mono', monospace;">Bachelor's in Computer Application · Ghaziabad</div>
+    </div>
+    <div style="text-align: right;">
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--accent); opacity: 0.4; line-height: 1;">2020</div>
+      <div style="font-size: 10px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; font-family: 'DM Mono', monospace;">Graduated</div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<div class="contact-section" id="contact">
+  <div>
+    <p class="section-label reveal" style="margin-bottom: 32px;">Get In Touch</p>
+    <div class="contact-big-text reveal">
+      LET'S<br>BUILD<br><em>SOMETHING</em><br>GREAT
+    </div>
+  </div>
+  <div class="contact-links reveal">
+    <a href="mailto:suboork100@gmail.com" class="contact-link">
+      <div class="contact-link-bg"></div>
+      <div>
+        <div class="contact-link-label">Email</div>
+        <div class="contact-link-value">suboork100@gmail.com</div>
+      </div>
+      <div class="contact-link-icon">↗</div>
+    </a>
+    <a href="tel:+917011879824" class="contact-link">
+      <div class="contact-link-bg"></div>
+      <div>
+        <div class="contact-link-label">Phone</div>
+        <div class="contact-link-value">+91 70118 79824</div>
+      </div>
+      <div class="contact-link-icon">↗</div>
+    </a>
+    <a href="https://www.suboorkhan.com" target="_blank" class="contact-link">
+      <div class="contact-link-bg"></div>
+      <div>
+        <div class="contact-link-label">Website</div>
+        <div class="contact-link-value">suboorkhan.com</div>
+      </div>
+      <div class="contact-link-icon">↗</div>
+    </a>
+    <a href="https://linkedin.com" target="_blank" class="contact-link">
+      <div class="contact-link-bg"></div>
+      <div>
+        <div class="contact-link-label">LinkedIn</div>
+        <div class="contact-link-value">Connect with me</div>
+      </div>
+      <div class="contact-link-icon">↗</div>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 SUBOOR KHAN</p>
+  <p style="color: var(--accent);">TECH LEAD · NEXT.JS · REACT · PERFORMANCE</p>
+  <p>BUILT WITH PRECISION</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Hover effects on interactive elements
+  document.querySelectorAll('a, button, .skill-card, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px';
+      cursor.style.height = '20px';
+      cursorRing.style.width = '60px';
+      cursorRing.style.height = '60px';
+      cursorRing.style.borderColor = 'rgba(232,255,71,0.8)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px';
+      cursor.style.height = '12px';
+      cursorRing.style.width = '40px';
+      cursorRing.style.height = '40px';
+      cursorRing.style.borderColor = 'rgba(232,255,71,0.4)';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = (i * 0.05) + 's';
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
