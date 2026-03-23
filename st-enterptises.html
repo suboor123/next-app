@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>ST Enterprises | Premium O-General AC Services by Mohd Shahnawaaz</title>
-    <meta name="description" content="ST Enterprises offers high-end O-General AC sales, installation, repair, and AMC services. Expert cooling solutions by Mohd Shahnawaaz. Call +919997269996.">
-    <meta name="keywords" content="O-General AC, AC Service, AC Repair, AC Installation Ghaziabad, ST Enterprises, Mohd Shahnawaaz, Premium AC Maintenance, Gas Refilling, AMC">
+    <title>ST Enterprises | Premium O-General AC Sales & Service by Mohd Shahnawaaz</title>
+    <meta name="description" content="ST Enterprises by Mohd Shahnawaaz: The #1 destination for O-General AC sales, installation, and expert repair in Ghaziabad. Call +91 99972 69996 for premium cooling.">
+    <meta name="keywords" content="O-General AC Service, O-General AC Repair, Mohd Shahnawaaz, ST Enterprises Ghaziabad, AC Installation, Gas Refilling, AMC AC Service">
     <meta name="author" content="Mohd Shahnawaaz">
-    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://stenterprises.in/" />
-    
-    <meta property="og:title" content="ST Enterprises | Premium O-General AC Services">
-    <meta property="og:description" content="Expert cooling solutions by Mohd Shahnawaaz. Call +919997269996.">
-    <meta property="og:type" content="website">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -28,14 +22,14 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                         display: ['Syne', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            400: '#38bdf8',
                             500: '#0ea5e9',
                             600: '#0284c7',
+                            red: '#e11d48'
                         }
                     }
                 }
@@ -44,494 +38,272 @@
     </script>
 
     <style>
-        body { margin: 0; overflow-x: hidden; }
+        :root { --bg-dark: #050505; --bg-light: #ffffff; }
+        body { transition: background-color 0.5s ease; overflow-x: hidden; }
         
-        /* Lenis Smooth Scroll requires html/body to auto */
-        html.lenis, html.lenis body { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        /* Modern Text Reveal */
+        .reveal-container { overflow: hidden; }
+        .reveal-text { transform: translateY(100%); transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .reveal-text.active { transform: translateY(0); }
 
-        /* ThreeJS Canvas Background */
-        #webgl-container {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -2; pointer-events: none;
+        /* Premium Mesh Gradient Background */
+        .mesh-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at 0% 0%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(225, 29, 72, 0.05) 0%, transparent 50%);
         }
 
-        /* Glassmorphism overlays */
-        .glass-panel {
+        .glass {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        html:not(.dark) .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        /* GSAP Animation initial states */
-        .gsap-slide-up, .gsap-slide-left, .gsap-slide-right, .gsap-fade {
-            visibility: hidden;
-        }
-
-        /* Text Masking for ultra-smooth reveals */
-        .text-mask { overflow: hidden; display: block; }
-        .text-mask-inner { display: block; }
         
-        /* Ambient Overlay to ensure text readability over 3D background */
-        .bg-overlay {
-            position: fixed; inset: 0; z-index: -1; pointer-events: none;
-            background: radial-gradient(circle at center, transparent 0%, rgba(10,10,10,0.8) 100%);
-            transition: background 0.5s ease;
-        }
-        html:not(.dark) .bg-overlay {
-            background: radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(240,245,255,0.9) 100%);
-        }
+        .dark-only { display: block; }
+        .light-only { display: none; }
+        html:not(.dark) .dark-only { display: none; }
+        html:not(.dark) .light-only { display: block; }
+        html:not(.dark) .glass { background: rgba(0, 0, 0, 0.02); border: 1px solid rgba(0, 0, 0, 0.05); }
+
+        /* Smooth Slider Animation for "Awwwards" feel */
+        .slide-up { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .slide-up.visible { opacity: 1; transform: translateY(0); }
     </style>
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "HVACBusiness",
-          "@id": "https://stenterprises.in/#organization",
-          "name": "ST Enterprises",
-          "url": "https://stenterprises.in/",
-          "telephone": "+919997269996",
-          "description": "Premium O-General AC sales, installation, repair, and AMC services.",
-          "founder": {
-            "@id": "https://stenterprises.in/#founder"
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Ghaziabad",
-            "addressRegion": "Uttar Pradesh",
-            "addressCountry": "IN"
-          },
-          "priceRange": "$$",
-          "areaServed": ["Ghaziabad", "Delhi NCR"]
-        },
-        {
-          "@type": "Person",
-          "@id": "https://stenterprises.in/#founder",
-          "name": "Mohd Shahnawaaz",
-          "jobTitle": "Founder & Lead Technician",
-          "worksFor": {
-            "@id": "https://stenterprises.in/#organization"
-          }
-        }
-      ]
+      "@type": "HVACBusiness",
+      "name": "ST Enterprises",
+      "founder": "Mohd Shahnawaaz",
+      "telephone": "+919997269996",
+      "url": "https://stenterprises.in",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ghaziabad",
+        "addressRegion": "UP",
+        "addressCountry": "IN"
+      },
+      "brand": { "@type": "Brand", "name": "O-General" }
     }
     </script>
 </head>
-<body class="bg-[#050505] text-gray-100 dark:bg-[#050505] dark:text-gray-100 transition-colors duration-700 selection:bg-brand-500 selection:text-white font-sans">
+<body class="bg-[#050505] text-white dark:bg-[#050505] dark:text-white transition-colors duration-500">
 
-    <div id="webgl-container"></div>
-    <div class="bg-overlay"></div>
+    <div class="mesh-bg"></div>
 
-    <nav class="fixed w-full z-50 transition-all duration-300 top-0 py-6 px-6 lg:px-12 flex justify-between items-center" id="navbar">
-        <a href="#" class="font-display font-bold text-2xl tracking-tighter flex items-center gap-2 z-50">
-            <i class="ph-fill ph-wind text-brand-500"></i>
-            ST Enterprises.
-        </a>
+    <nav class="fixed w-full z-50 top-0 px-6 py-6 lg:px-12 flex justify-between items-center transition-all duration-500" id="nav">
+        <div class="font-display font-extrabold text-2xl tracking-tighter uppercase">
+            ST<span class="text-brand-500">.</span>Enterprises
+        </div>
         
-        <div class="hidden md:flex items-center gap-10 text-sm font-medium glass-panel px-8 py-3 rounded-full">
-            <a href="#about" class="hover:text-brand-400 transition-colors">About</a>
-            <a href="#services" class="hover:text-brand-400 transition-colors">Services</a>
-            <a href="#brands" class="hover:text-brand-400 transition-colors">Expertise</a>
-            <a href="#contact" class="hover:text-brand-400 transition-colors">Contact</a>
+        <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-widest items-center">
+            <a href="#about" class="hover:text-brand-500 transition-colors">About</a>
+            <a href="#services" class="hover:text-brand-500 transition-colors">Services</a>
+            <a href="#contact" class="hover:text-brand-500 transition-colors">Contact</a>
+            <button id="theme-toggle" class="glass w-10 h-10 rounded-full flex items-center justify-center">
+                <i class="ph ph-moon dark:hidden"></i>
+                <i class="ph ph-sun hidden dark:block"></i>
+            </button>
         </div>
 
-        <div class="flex items-center gap-4 z-50">
-            <button id="theme-toggle" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:scale-110 transition-transform">
-                <i class="ph ph-moon text-lg dark:hidden"></i>
-                <i class="ph ph-sun text-lg hidden dark:block"></i>
-            </button>
-            <a href="tel:+919997269996" class="hidden md:flex bg-white text-black dark:bg-brand-500 dark:text-white px-6 py-2.5 rounded-full font-medium transition-transform hover:scale-105 items-center gap-2">
-                <i class="ph-fill ph-phone-call"></i> Call Now
-            </a>
-            <button class="md:hidden text-2xl" id="mobile-menu-btn">
-                <i class="ph ph-list"></i>
-            </button>
-        </div>
+        <a href="tel:+919997269996" class="bg-white text-black dark:bg-brand-500 dark:text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-tighter hover:scale-105 transition-transform">
+            Call Shahnawaaz
+        </a>
     </nav>
 
-    <section class="relative h-screen flex items-center justify-center px-6 lg:px-12 pt-20">
-        <div class="w-full max-w-7xl mx-auto flex flex-col items-start justify-center">
-            <div class="overflow-hidden mb-4">
-                <div class="hero-text text-sm md:text-base font-medium tracking-[0.2em] uppercase text-brand-500 border border-brand-500/30 rounded-full px-4 py-1.5 inline-block glass-panel">
-                    By Mohd Shahnawaaz
-                </div>
+    <section class="min-h-screen flex flex-col justify-center px-6 lg:px-12 pt-20">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="reveal-container mb-4">
+                <p class="reveal-text text-brand-500 font-bold uppercase tracking-[0.4em] text-sm">Authorized O-General Specialists</p>
             </div>
             
-            <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-6 uppercase">
-                <span class="text-mask"><span class="text-mask-inner hero-title">Premium</span></span>
-                <span class="text-mask text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-600"><span class="text-mask-inner hero-title">O-General</span></span>
-                <span class="text-mask"><span class="text-mask-inner hero-title">Services.</span></span>
+            <h1 class="font-display text-6xl md:text-8xl lg:text-[10rem] font-extrabold leading-[0.85] tracking-tighter uppercase mb-8">
+                <span class="block reveal-container"><span class="reveal-text">Premium</span></span>
+                <span class="block reveal-container text-transparent stroke-text" style="-webkit-text-stroke: 1px #0ea5e9;"><span class="reveal-text">O-General</span></span>
+                <span class="block reveal-container"><span class="reveal-text">Services.</span></span>
             </h1>
-            
-            <div class="overflow-hidden max-w-2xl mb-10">
-                <p class="hero-desc text-lg md:text-2xl text-gray-400 font-light leading-relaxed dark:text-gray-300 text-gray-700">
-                    Mastering absolute climate control. We engineer unparalleled cooling environments through expert installation, repair, and genuine servicing.
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-10 mt-10">
+                <p class="max-w-md text-gray-500 dark:text-gray-400 text-lg font-light slide-up">
+                    Expert HVAC engineering led by <span class="text-white font-semibold">Mohd Shahnawaaz</span>. We deliver the absolute cooling precision that O-General systems demand.
                 </p>
-            </div>
-            
-            <div class="hero-cta flex flex-wrap gap-4">
-                <a href="#contact" class="px-8 py-4 bg-brand-500 text-white rounded-full font-medium hover:bg-brand-400 transition-colors flex items-center gap-2">
-                    Book Service <i class="ph-bold ph-arrow-up-right"></i>
-                </a>
-                <a href="tel:+919997269996" class="px-8 py-4 glass-panel rounded-full font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
-                    +91 99972 69996
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-32 px-6 lg:px-12 relative z-10">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 items-center">
-            <div class="lg:col-span-5 gsap-slide-right">
-                <div class="aspect-[4/5] rounded-3xl overflow-hidden relative glass-panel p-2">
-                    <img src="https://images.unsplash.com/photo-1581092921461-7031e4bf0e5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AC Technician" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-700">
-                    <div class="absolute bottom-6 left-6 right-6 glass-panel p-6 rounded-xl backdrop-blur-md">
-                        <p class="font-display font-bold text-xl mb-1">Mohd Shahnawaaz</p>
-                        <p class="text-sm text-brand-400">Founder & Lead Engineer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="lg:col-span-7">
-                <h2 class="font-display text-4xl md:text-6xl font-bold mb-8 gsap-slide-up">
-                    Redefining <br/><span class="text-brand-500">Cooling Standards.</span>
-                </h2>
-                <div class="space-y-6 text-lg text-gray-600 dark:text-gray-300 font-light gsap-slide-up">
-                    <p>At ST Enterprises, we don't just repair machines; we restore comfort and engineer perfection. Led by industry expert Mohd Shahnawaaz, our team is trained in the rigorous intricacies of high-end HVAC systems.</p>
-                    <p>We pride ourselves on transparency, technical supremacy, and using exclusively genuine parts. Your luxury AC deserves luxury treatment.</p>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-gray-800 dark:border-gray-800 border-gray-200 gsap-slide-up">
-                    <div>
-                        <div class="font-display text-4xl font-bold text-brand-500 mb-2">100%</div>
-                        <div class="text-sm uppercase tracking-widest text-gray-500">Satisfaction</div>
-                    </div>
-                    <div>
-                        <div class="font-display text-4xl font-bold text-brand-500 mb-2">24/7</div>
-                        <div class="text-sm uppercase tracking-widest text-gray-500">Support</div>
-                    </div>
-                    <div>
-                        <div class="font-display text-4xl font-bold text-brand-500 mb-2">OEM</div>
-                        <div class="text-sm uppercase tracking-widest text-gray-500">Genuine Parts</div>
-                    </div>
+                <div class="flex gap-4 slide-up">
+                    <a href="#services" class="w-16 h-16 rounded-full border border-gray-800 flex items-center justify-center hover:bg-brand-500 hover:border-brand-500 transition-all group">
+                        <i class="ph ph-arrow-down text-2xl group-hover:translate-y-1 transition-transform"></i>
+                    </a>
+                    <span class="text-xs uppercase tracking-widest font-bold self-center">Explore Services</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-32 px-6 lg:px-12 bg-white/5 dark:bg-white/[0.02] relative z-10">
+    <section id="about" class="py-32 px-6 lg:px-12 bg-white/5">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="slide-up">
+                <h2 class="font-display text-5xl font-bold mb-8 uppercase leading-tight">Expertise You <br/>Can <span class="text-brand-500">Trust.</span></h2>
+                <div class="space-y-6 text-gray-400 text-lg font-light">
+                    <p>Mohd Shahnawaaz founded ST Enterprises with a single vision: to provide a level of technical expertise that matches the premium engineering of O-General Air Conditioners.</p>
+                    <p>With a decade of hands-on experience in high-end cooling systems, we ensure your environment remains perfectly climate-controlled, regardless of the heat outside.</p>
+                </div>
+                <div class="mt-12 flex gap-10">
+                    <div>
+                        <p class="text-4xl font-bold text-white">10+</p>
+                        <p class="text-xs uppercase text-brand-500 font-bold tracking-widest">Years Experience</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-bold text-white">5k+</p>
+                        <p class="text-xs uppercase text-brand-500 font-bold tracking-widest">Happy Clients</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative slide-up">
+                <div class="aspect-square bg-gradient-to-tr from-brand-500 to-gray-900 rounded-3xl overflow-hidden glass">
+                    <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=800&q=80" alt="O-General AC Service" class="w-full h-full object-cover opacity-50 mix-blend-overlay">
+                </div>
+                <div class="absolute -bottom-10 -left-10 glass p-8 rounded-2xl hidden md:block">
+                    <i class="ph-fill ph-shield-check text-5xl text-brand-500"></i>
+                    <p class="mt-4 font-bold uppercase tracking-widest text-xs">Certified<br/>Master Tech</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gsap-slide-up">
-                <div>
-                    <h2 class="font-display text-5xl md:text-6xl font-bold mb-4">Core <span class="text-brand-500">Services</span></h2>
-                    <p class="text-gray-500 text-lg font-light max-w-md">Precision engineering tailored for premium O-General systems.</p>
-                </div>
-                <a href="#contact" class="hidden md:inline-flex items-center gap-2 border-b border-brand-500 text-brand-500 pb-1 hover:pr-4 transition-all">
-                    Request Service <i class="ph-bold ph-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-panel p-8 rounded-3xl hover:bg-white/10 transition-colors group gsap-slide-up">
-                    <div class="w-14 h-14 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-500 text-2xl mb-6 group-hover:scale-110 transition-transform">
-                        <i class="ph-fill ph-wrench"></i>
-                    </div>
-                    <h3 class="font-display text-2xl font-bold mb-3">Installation</h3>
-                    <p class="text-gray-500 dark:text-gray-400 font-light text-sm">Flawless mounting, wiring, and calibration for optimal factory-level performance.</p>
-                </div>
-                <div class="glass-panel p-8 rounded-3xl hover:bg-white/10 transition-colors group gsap-slide-up" style="transition-delay: 100ms;">
-                    <div class="w-14 h-14 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-500 text-2xl mb-6 group-hover:scale-110 transition-transform">
-                        <i class="ph-fill ph-thermometer"></i>
-                    </div>
-                    <h3 class="font-display text-2xl font-bold mb-3">Repair</h3>
-                    <p class="text-gray-500 dark:text-gray-400 font-light text-sm">Advanced diagnostics and swift component repair to restore your cooling instantly.</p>
-                </div>
-                <div class="glass-panel p-8 rounded-3xl hover:bg-white/10 transition-colors group gsap-slide-up" style="transition-delay: 200ms;">
-                    <div class="w-14 h-14 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-500 text-2xl mb-6 group-hover:scale-110 transition-transform">
-                        <i class="ph-fill ph-drop"></i>
-                    </div>
-                    <h3 class="font-display text-2xl font-bold mb-3">Gas Refilling</h3>
-                    <p class="text-gray-500 dark:text-gray-400 font-light text-sm">Eco-friendly and precision-measured refrigerant top-ups for maximum efficiency.</p>
-                </div>
-                <div class="glass-panel p-8 rounded-3xl hover:bg-white/10 transition-colors group gsap-slide-up" style="transition-delay: 300ms;">
-                    <div class="w-14 h-14 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-500 text-2xl mb-6 group-hover:scale-110 transition-transform">
-                        <i class="ph-fill ph-file-text"></i>
-                    </div>
-                    <h3 class="font-display text-2xl font-bold mb-3">AMC Contracts</h3>
-                    <p class="text-gray-500 dark:text-gray-400 font-light text-sm">Comprehensive annual maintenance guaranteeing year-round uninterrupted cooling.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="brands" class="py-32 relative z-10 overflow-hidden">
-        <div class="flex whitespace-nowrap opacity-10 dark:opacity-5 pointer-events-none select-none mb-10">
-            <h2 class="font-display text-9xl font-bold uppercase marquee-text">O-General Specialists • Master Technicians • Absolute Cooling • </h2>
-            <h2 class="font-display text-9xl font-bold uppercase marquee-text">O-General Specialists • Master Technicians • Absolute Cooling • </h2>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-2 gap-16">
-            <div class="gsap-slide-right">
-                <h3 class="font-display text-4xl font-bold mb-6">Why O-General?</h3>
-                <p class="text-gray-500 font-light text-lg mb-6">O-General air conditioners are the pinnacle of cooling technology, built for extreme environments. They require hands that understand their robust compressors and complex electronics.</p>
-                <ul class="space-y-4">
-                    <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-brand-500"></i> Specialized Diagnostic Tools</li>
-                    <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-brand-500"></i> Direct OEM Spare Parts Access</li>
-                    <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-brand-500"></i> Extended Lifespan Guarantee</li>
-                </ul>
+            <div class="mb-20 slide-up">
+                <h2 class="font-display text-5xl font-bold uppercase">Our Solutions</h2>
             </div>
             
-            <div class="space-y-6 gsap-slide-left">
-                <div class="glass-panel p-6 rounded-2xl">
-                    <div class="flex text-brand-400 mb-3"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                    <p class="font-light italic mb-4">"Mohd Shahnawaaz and his team are phenomenal. They serviced my 2-ton O-General split AC, and the cooling is better than when it was brand new."</p>
-                    <p class="font-bold text-sm">— Rajesh Kumar, Ghaziabad</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass p-10 rounded-[2rem] hover:bg-brand-500 transition-all group cursor-pointer slide-up">
+                    <i class="ph ph-wind text-4xl mb-6 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase">Installation</h3>
+                    <p class="text-gray-500 group-hover:text-white/80 transition-colors text-sm leading-relaxed">Precision mounting and commissioning of new O-General units for max efficiency.</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl ml-0 md:ml-12">
-                    <div class="flex text-brand-400 mb-3"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-                    <p class="font-light italic mb-4">"Signed an AMC for our entire office floor. Prompt, professional, and entirely transparent pricing. ST Enterprises is highly recommended."</p>
-                    <p class="font-bold text-sm">— Anita Sharma, Corporate Director</p>
+                <div class="glass p-10 rounded-[2rem] hover:bg-brand-500 transition-all group cursor-pointer slide-up">
+                    <i class="ph ph-wrench text-4xl mb-6 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase">Repair</h3>
+                    <p class="text-gray-500 group-hover:text-white/80 transition-colors text-sm leading-relaxed">Advanced diagnostics and circuit repair by expert technicians.</p>
+                </div>
+                <div class="glass p-10 rounded-[2rem] hover:bg-brand-500 transition-all group cursor-pointer slide-up">
+                    <i class="ph ph-drop text-4xl mb-6 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase">Gas Fill</h3>
+                    <p class="text-gray-500 group-hover:text-white/80 transition-colors text-sm leading-relaxed">Top-grade refrigerant charging to restore icy-cool performance.</p>
+                </div>
+                <div class="glass p-10 rounded-[2rem] hover:bg-brand-500 transition-all group cursor-pointer slide-up">
+                    <i class="ph ph-calendar-check text-4xl mb-6 group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase">AMC</h3>
+                    <p class="text-gray-500 group-hover:text-white/80 transition-colors text-sm leading-relaxed">Annual contracts for stress-free, year-round maintenance.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-32 px-6 lg:px-12 relative z-10 bg-black dark:bg-[#020202]">
-        <div class="max-w-7xl mx-auto glass-panel rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500/20 rounded-full blur-[100px] pointer-events-none"></div>
-
-            <div class="grid lg:grid-cols-2 gap-16 relative z-10">
-                <div class="gsap-slide-up">
-                    <h2 class="font-display text-5xl md:text-7xl font-bold mb-6 text-white">Let's Talk <br/> <span class="text-brand-500">Cooling.</span></h2>
-                    <p class="text-gray-400 text-lg font-light mb-12">Experience seamless service. Reach out directly to Mohd Shahnawaaz or fill out the form, and our expert team will be at your doorstep.</p>
-                    
-                    <div class="space-y-8">
-                        <a href="tel:+919997269996" class="flex items-center gap-6 group">
-                            <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-2xl text-white group-hover:bg-brand-500 group-hover:border-brand-500 transition-all">
-                                <i class="ph-fill ph-phone-call"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">Direct Line</p>
-                                <p class="text-2xl font-display font-bold text-white">+91 99972 69996</p>
-                            </div>
-                        </a>
-                        <div class="flex items-center gap-6">
-                            <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-2xl text-white">
-                                <i class="ph-fill ph-map-pin"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">Location</p>
-                                <p class="text-xl font-display font-medium text-white">Ghaziabad, Uttar Pradesh</p>
-                            </div>
+    <section id="contact" class="py-32 px-6 lg:px-12 bg-white text-black dark:bg-black dark:text-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+            <div class="slide-up">
+                <h2 class="font-display text-6xl font-bold uppercase mb-8">Let's Get <br/><span class="text-brand-500">Started.</span></h2>
+                <p class="text-gray-500 text-lg mb-12">Book a slot with Mohd Shahnawaaz today.</p>
+                
+                <div class="space-y-10">
+                    <a href="tel:+919997269996" class="flex items-center gap-6 group">
+                        <div class="w-16 h-16 rounded-full glass flex items-center justify-center text-3xl group-hover:bg-brand-500 group-hover:text-white transition-all">
+                            <i class="ph ph-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase font-bold tracking-widest text-brand-500">Call Now</p>
+                            <p class="text-2xl font-bold">+91 99972 69996</p>
+                        </div>
+                    </a>
+                    <div class="flex items-center gap-6 group">
+                        <div class="w-16 h-16 rounded-full glass flex items-center justify-center text-3xl">
+                            <i class="ph ph-map-pin"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase font-bold tracking-widest text-brand-500">Location</p>
+                            <p class="text-2xl font-bold">Ghaziabad, Uttar Pradesh</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="gsap-slide-up" style="transition-delay: 200ms;">
-                    <form onsubmit="event.preventDefault();" class="space-y-8">
-                        <div class="border-b border-white/20 pb-2">
-                            <input type="text" placeholder="Your Name" class="w-full bg-transparent text-white text-xl font-light placeholder-gray-600 focus:outline-none focus:border-brand-500 transition-colors">
-                        </div>
-                        <div class="border-b border-white/20 pb-2">
-                            <input type="tel" placeholder="Phone Number" class="w-full bg-transparent text-white text-xl font-light placeholder-gray-600 focus:outline-none focus:border-brand-500 transition-colors">
-                        </div>
-                        <div class="border-b border-white/20 pb-2">
-                            <select class="w-full bg-transparent text-gray-400 text-xl font-light focus:outline-none appearance-none">
-                                <option value="" disabled selected>Select Service Required</option>
-                                <option class="text-black">AC Installation</option>
-                                <option class="text-black">Repair & Maintenance</option>
-                                <option class="text-black">Gas Refilling</option>
-                                <option class="text-black">AMC Inquiry</option>
-                            </select>
-                        </div>
-                        <button class="w-full py-5 bg-white text-black text-lg font-bold rounded-full hover:bg-brand-500 hover:text-white transition-all duration-300 transform hover:-translate-y-1">
-                            Submit Request
-                        </button>
-                    </form>
-                </div>
+            <div class="glass p-8 md:p-12 rounded-3xl slide-up">
+                <form onsubmit="event.preventDefault();" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Name" class="w-full bg-transparent border-b border-gray-700 py-4 focus:outline-none focus:border-brand-500 transition-colors">
+                        <input type="tel" placeholder="Phone" class="w-full bg-transparent border-b border-gray-700 py-4 focus:outline-none focus:border-brand-500 transition-colors">
+                    </div>
+                    <select class="w-full bg-transparent border-b border-gray-700 py-4 focus:outline-none focus:border-brand-500 transition-colors appearance-none">
+                        <option class="text-black">New Installation</option>
+                        <option class="text-black">Repair & Service</option>
+                        <option class="text-black">Gas Refilling</option>
+                    </select>
+                    <textarea rows="4" placeholder="How can we help?" class="w-full bg-transparent border-b border-gray-700 py-4 focus:outline-none focus:border-brand-500 transition-colors"></textarea>
+                    <button class="w-full py-5 bg-brand-500 text-white font-bold uppercase tracking-widest hover:bg-brand-600 transition-all rounded-xl">Send Inquiry</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-10 px-6 lg:px-12 border-t border-white/10 relative z-10 text-center md:text-left">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="font-display font-bold text-2xl">ST Enterprises.</div>
-            <div class="text-gray-500 text-sm font-light">
-                &copy; 2026 ST Enterprises. Owned by Mohd Shahnawaaz. All Rights Reserved.
-            </div>
-            <div class="flex gap-4 text-xl text-gray-400">
-                <a href="#" class="hover:text-brand-500 transition-colors"><i class="ph-fill ph-whatsapp-logo"></i></a>
-                <a href="#" class="hover:text-brand-500 transition-colors"><i class="ph-fill ph-facebook-logo"></i></a>
-                <a href="#" class="hover:text-brand-500 transition-colors"><i class="ph-fill ph-instagram-logo"></i></a>
+    <footer class="py-12 px-6 lg:px-12 border-t border-gray-800 text-center md:text-left">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="font-display font-extrabold text-xl uppercase">ST<span class="text-brand-500">.</span>Enterprises</div>
+            <p class="text-gray-500 text-sm italic">Designed for Awwwards standards. Led by Mohd Shahnawaaz.</p>
+            <div class="flex gap-6 text-2xl">
+                <i class="ph ph-instagram-logo hover:text-brand-500 cursor-pointer"></i>
+                <i class="ph ph-whatsapp-logo hover:text-brand-500 cursor-pointer"></i>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
-        // --- 1. Dark/Light Theme Toggle ---
-        const html = document.documentElement;
+        // Hero Reveal
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.reveal-text').forEach(el => el.classList.add('active'));
+        });
+
+        // Theme Toggle
         const themeBtn = document.getElementById('theme-toggle');
-        let isDarkMode = true;
-
         themeBtn.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            isDarkMode = html.classList.contains('dark');
-            updateThreeJSColor(); // Update 3D background color
+            document.documentElement.classList.toggle('dark');
         });
 
-        // --- 2. Lenis Smooth Scroll Setup ---
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // --- 3. GSAP & ScrollTrigger Animations ---
+        // Sliding Animations on Scroll
         gsap.registerPlugin(ScrollTrigger);
-
-        // Hero Load Animation
-        const heroTl = gsap.timeline();
-        heroTl.from(".hero-text", { y: 20, opacity: 0, duration: 1, ease: "power4.out", delay: 0.2 })
-              .from(".hero-title", { y: "100%", duration: 1.2, ease: "power4.out", stagger: 0.1 }, "-=0.8")
-              .from(".hero-desc", { y: 20, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.8")
-              .from(".hero-cta", { y: 20, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.8");
-
-        // Scroll Reveal Animations
-        gsap.utils.toArray('.gsap-slide-up').forEach(element => {
-            gsap.fromTo(element, 
-                { y: 50, autoAlpha: 0 },
-                { y: 0, autoAlpha: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" }}
-            );
-        });
-
-        gsap.utils.toArray('.gsap-slide-right').forEach(element => {
-            gsap.fromTo(element, 
-                { x: -50, autoAlpha: 0 },
-                { x: 0, autoAlpha: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" }}
-            );
-        });
-
-        gsap.utils.toArray('.gsap-slide-left').forEach(element => {
-            gsap.fromTo(element, 
-                { x: 50, autoAlpha: 0 },
-                { x: 0, autoAlpha: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: element, start: "top 85%" }}
-            );
-        });
-
-        // Marquee Animation
-        gsap.to('.marquee-text', {
-            xPercent: -50, ease: "none", duration: 20, repeat: -1
-        });
-
-        // --- 4. Three.js "Cool Air" Particle Background ---
-        const container = document.getElementById('webgl-container');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
-
-        // Create Particles
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 1500; // Optimize count for performance
-        const posArray = new Float32Array(particlesCount * 3);
-
-        for(let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 15;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-        // Material (Cyan/Blue for AC cooling vibe)
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.02,
-            color: 0x0ea5e9, // Tailwind brand-500
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
+        const slideUps = document.querySelectorAll('.slide-up');
+        slideUps.forEach((el) => {
+            gsap.fromTo(el, 
+                { opacity: 0, y: 50 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 1, 
+                    ease: "power3.out", 
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
         });
 
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-        camera.position.z = 3;
-
-        // Theme Toggle Color Update
-        function updateThreeJSColor() {
-            gsap.to(particlesMaterial.color, {
-                r: isDarkMode ? 0x0e/255 : 0x02/255,
-                g: isDarkMode ? 0xa5/255 : 0x84/255,
-                b: isDarkMode ? 0xe9/255 : 0xc7/255,
-                duration: 1
-            });
-        }
-
-        // Mouse Interactivity
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
-        const windowHalfX = window.innerWidth / 2;
-        const windowHalfY = window.innerHeight / 2;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX - windowHalfX);
-            mouseY = (event.clientY - windowHalfY);
-        });
-
-        // Animation Loop
-        const clock = new THREE.Clock();
-        function animateWebGL() {
-            requestAnimationFrame(animateWebGL);
-            const elapsedTime = clock.getElapsedTime();
-
-            targetX = mouseX * 0.001;
-            targetY = mouseY * 0.001;
-
-            particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
-            particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
-            particlesMesh.rotation.z = elapsedTime * 0.05; // Slow drift
-
-            // Drift effect simulating cold wind
-            const positions = particlesMesh.geometry.attributes.position.array;
-            for(let i = 0; i < particlesCount; i++) {
-                const i3 = i * 3;
-                positions[i3 + 1] += Math.sin(elapsedTime + positions[i3]) * 0.002; // Vertical wave
+        // Navbar blur on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('glass', 'py-4');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.remove('glass', 'py-4');
+                nav.classList.add('py-6');
             }
-            particlesMesh.geometry.attributes.position.needsUpdate = true;
-
-            renderer.render(scene, camera);
-        }
-        animateWebGL();
-
-        // Handle Resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
         });
-
     </script>
 </body>
 </html>
