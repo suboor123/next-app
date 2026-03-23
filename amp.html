@@ -1,5 +1,5 @@
 <!doctype html>
-<html ⚡ lang="en">
+<html amp lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -38,7 +38,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── HEADER ── */
+    /* -- HEADER -- */
     .site-header {
       background: var(--ink);
       color: var(--paper);
@@ -81,7 +81,7 @@
     }
     .header-nav a:hover { color: var(--paper); }
 
-    /* ── HERO ── */
+    /* -- HERO -- */
     .hero {
       background: var(--ink);
       color: var(--paper);
@@ -171,7 +171,7 @@
       display: block;
     }
 
-    /* ── DOWNLOAD BUTTON ── */
+    /* -- DOWNLOAD BUTTON -- */
     .dl-btn {
       display: inline-flex;
       align-items: center;
@@ -190,14 +190,14 @@
     }
     .dl-btn:hover { background: var(--accent-warm); border-color: var(--accent-warm); }
 
-    /* ── MAIN LAYOUT ── */
+    /* -- MAIN LAYOUT -- */
     .main-wrap {
       max-width: 900px;
       margin: 0 auto;
       padding: 0 20px 80px;
     }
 
-    /* ── SECTION HEADERS ── */
+    /* -- SECTION HEADERS -- */
     .section {
       margin-top: 56px;
     }
@@ -229,7 +229,7 @@
       color: var(--ink);
     }
 
-    /* ── EXPERIENCE CARDS ── */
+    /* -- EXPERIENCE CARDS -- */
     .exp-card {
       border: 1.5px solid var(--rule);
       background: var(--card);
@@ -286,7 +286,7 @@
       line-height: 1.6;
     }
     .exp-bullets li::before {
-      content: '→';
+      content: '->';
       position: absolute;
       left: 0;
       color: var(--accent);
@@ -307,7 +307,7 @@
       border: 1px solid var(--rule);
     }
 
-    /* ── SKILLS GRID ── */
+    /* -- SKILLS GRID -- */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -350,7 +350,7 @@
       font-weight: 500;
     }
 
-    /* ── EDUCATION ── */
+    /* -- EDUCATION -- */
     .edu-card {
       border: 1.5px solid var(--rule);
       background: var(--card);
@@ -388,7 +388,7 @@
       color: var(--muted);
     }
 
-    /* ── CERTIFICATIONS ── */
+    /* -- CERTIFICATIONS -- */
     .cert-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -415,7 +415,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* ── CONTACT STRIP ── */
+    /* -- CONTACT STRIP -- */
     .contact-strip {
       background: var(--ink);
       color: var(--paper);
@@ -452,7 +452,7 @@
     .contact-link span { color: var(--accent); }
     .contact-link:hover { color: var(--paper); }
 
-    /* ── FOOTER ── */
+    /* -- FOOTER -- */
     footer {
       background: #080808;
       color: #3a3530;
@@ -463,7 +463,7 @@
     }
     footer a { color: var(--accent); text-decoration: none; }
 
-    /* ── AMP ACCORDION OVERRIDES ── */
+    /* -- AMP ACCORDION OVERRIDES -- */
     amp-accordion section[expanded] > h3 { border-bottom: 1px solid var(--rule); }
     amp-accordion > section > h3 {
       font-family: 'Syne', sans-serif;
@@ -482,7 +482,7 @@
       background: none;
     }
 
-    /* ── RESPONSIVE ── */
+    /* -- RESPONSIVE -- */
     @media (max-width: 600px) {
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
       .skills-grid { grid-template-columns: 1fr; }
