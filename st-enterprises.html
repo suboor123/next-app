@@ -1002,7 +1002,25 @@
       if (!el.style.transitionDelay) el.style.transitionDelay = `${(i % 4) * 0.08}s`;
     });
   </script>
-  <div class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+  <div class="fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+    <a href="tel:+919997269996" class="pointer-events-auto flex items-center gap-2.5 bg-zinc-900 hover:bg-black text-white px-4 py-2 rounded-full shadow-lg transition-all duration-200 active:scale-95 border border-white/10">
+      
+      <div class="relative flex h-3.5 w-3.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-green-500"></span>
+      </div>
+  
+      <div class="flex items-center gap-1.5">
+        <span class="text-xs font-medium text-zinc-300">Call:</span>
+        <span class="text-sm font-bold tracking-tight">+91 99972 69996</span>
+      </div>
+  
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-zinc-400">
+        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+  <!-- <div class="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
     <a href="tel:+919997269996" class="pointer-events-auto group flex items-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 border border-white/10">
       
       <div class="relative flex h-5 w-5">
@@ -1021,6 +1039,8 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
       </svg>
     </a>
-  </div>
+  </div> -->
+
+
 </body>
 </html>
