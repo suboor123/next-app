@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Forever | A Love Letter</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --rose-light: #fff5f5;
+            --rose-md: #ffe4e6;
+            --rose-dark: #fecdd3;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe4e6 50%, #fed7e2 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-romantic { font-family: 'Great Vibes', cursive; }
+        .font-serif-elegant { font-family: 'Playfair Display', serif; }
+        .font-script { font-family: 'Dancing Script', cursive; }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(251, 113, 133, 0.1);
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #e11d48, #fb7185);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff5f5; }
+        ::-webkit-scrollbar-thumb { background: #fecdd3; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-rose-900">
+
+    <div class="heart-bg" id="particles"></div>
+
+    <section class="min-h-screen flex flex-col items-center justify-center relative px-4 text-center">
+        <div class="animate__animated animate__fadeInDown">
+            <h2 class="font-script text-3xl md:text-4xl text-rose-500 mb-2">My Dearest Wife,</h2>
+            <h1 class="font-romantic text-7xl md:text-9xl gradient-text mb-6">To My Love...</h1>
+            <p class="max-w-md mx-auto text-rose-700 font-light italic text-lg leading-relaxed">
+                Every heartbeat of mine belongs to you. This is a small piece of my soul, written just for you.
+            </p>
+        </div>
+
+        <div class="mt-12 animate__animated animate__fadeInUp animate__delay-1s">
+            <a href="#letter" class="glass px-8 py-4 rounded-full text-rose-600 font-medium tracking-widest uppercase text-xs hover:bg-rose-500 hover:text-white transition-all duration-500 flex items-center gap-2">
+                Read My Heart <span class="text-lg">↓</span>
+            </a>
+        </div>
+
+        <div class="absolute top-20 left-10 text-rose-200 text-6xl floating opacity-40 hidden md:block">❤</div>
+        <div class="absolute bottom-20 right-10 text-rose-200 text-8xl floating opacity-40 hidden md:block" style="animation-delay: 2s;">❤</div>
+    </section>
+
+    <section id="letter" class="py-24 px-4 max-w-4xl mx-auto">
+        <div class="glass p-8 md:p-16 rounded-[2rem] relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-2 h-full bg-rose-300"></div>
+            
+            <h3 class="font-serif-elegant italic text-4xl mb-8 text-rose-800">Everything I feel...</h3>
+            
+            <div class="font-serif-elegant text-xl md:text-2xl leading-relaxed text-rose-900 space-y-6">
+                <p>
+                    I find myself looking at you and wondering how I got so lucky. Your strength, your patience, and the way you care for our world leave me in awe every single day.
+                </p>
+                <p>
+                    Lately, I know things haven't been easy. The weight of the world has felt heavy, and I am deeply sorry that I let that weight turn into frustration directed at you. Getting angry or being rude is the last thing you deserve.
+                </p>
+                <p class="font-script text-4xl text-rose-500 py-4">
+                    "You are my peace, yet I brought you noise."
+                </p>
+                <p>
+                    Please know that even in my darkest moods, my love for you never wavers. You are the most important person in my life—more than anyone else in this world.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="glass p-8 rounded-3xl text-center transform hover:-translate-y-2 transition-transform duration-500">
+                <div class="text-4xl mb-4">✨</div>
+                <h4 class="font-serif-elegant font-bold text-xl mb-2 text-rose-700">The Connection</h4>
+                <p class="text-sm italic">The way we understand each other without saying a single word.</p>
+            </div>
+            <div class="glass p-8 rounded-3xl text-center transform hover:-translate-y-2 transition-transform duration-500 md:mt-12">
+                <div class="text-4xl mb-4">🌙</div>
+                <h4 class="font-serif-elegant font-bold text-xl mb-2 text-rose-700">The Comfort</h4>
+                <p class="text-sm italic">How your presence makes the hardest days feel manageable.</p>
+            </div>
+            <div class="glass p-8 rounded-3xl text-center transform hover:-translate-y-2 transition-transform duration-500">
+                <div class="text-4xl mb-4">💍</div>
+                <h4 class="font-serif-elegant font-bold text-xl mb-2 text-rose-700">The Promise</h4>
+                <p class="text-sm italic">A lifetime of trying to be the man you truly deserve.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white/30 backdrop-blur-sm">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="font-serif-elegant text-4xl md:text-5xl mb-8">My Promise to You</h2>
+            <div class="space-y-6 text-lg text-rose-800">
+                <p>I promise to be more mindful of your heart. I promise to communicate with kindness, even when I'm stressed. And most importantly...</p>
+                <p class="font-bold text-2xl text-rose-600">I promise to love you better every day.</p>
+                <p>You are my home. You are my soulmate. You are my everything.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-32 px-4 text-center">
+        <div class="animate__animated animate__pulse animate__infinite">
+            <h2 class="font-romantic text-6xl md:text-8xl text-rose-500">Forever Yours</h2>
+        </div>
+        <p class="mt-8 font-serif-elegant italic text-xl">With all the love I possess,</p>
+        <p class="font-script text-3xl mt-2 text-rose-700">Your Loving Husband</p>
+        
+        <div class="mt-16">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-rose-400 hover:text-rose-600 transition-colors uppercase tracking-[0.3em] text-[10px] font-bold">
+                Back to the beginning ❤️
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to create floating heart particles
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '110vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.color = '#fecdd3';
+            heart.style.opacity = Math.random();
+            heart.style.transition = `transform ${Math.random() * 5 + 5}s linear, opacity ${Math.random() * 5 + 5}s linear`;
+            heart.style.zIndex = '-1';
+            
+            document.getElementById('particles').appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.transform = `translateY(-120vh) rotate(${Math.random() * 360}deg)`;
+                heart.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        setInterval(createHeart, 500);
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
