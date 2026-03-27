@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To My Love</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'great-vibes': ['"Great Vibes"', 'cursive'],
+            'playfair': ['"Playfair Display"', 'serif'],
+            'cormorant': ['"Cormorant Garamond"', 'serif'],
+            'dancing': ['"Dancing Script"', 'cursive'],
+          },
+          colors: {
+            rose: {
+              25: '#fff9f9',
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+            },
+            blush: {
+              50: '#fdf2f8',
+              100: '#fce7f3',
+              200: '#fbcfe8',
+              300: '#f9a8d4',
+            },
+            petal: '#fff0f3',
+            warm: '#fff8f0',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --rose-soft: #fce4ec;
+      --rose-glow: rgba(244, 63, 94, 0.15);
+      --gold: #d4a574;
+      --gold-light: #f0d5b0;
+    }
+
+    * { scroll-behavior: smooth; }
+
+    body {
+      background: #fff8f9;
+      overflow-x: hidden;
+    }
+
+    /* ── Floating hearts canvas ── */
+    #heart-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(.22,1,.36,1), transform 0.9s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+    .reveal-delay-4 { transition-delay: 0.6s; }
+
+    /* ── Hero background ── */
+    .hero-bg {
+      background: linear-gradient(135deg,
+        #fff0f5 0%,
+        #fce4ec 30%,
+        #f8d7e3 55%,
+        #fde8f0 80%,
+        #fff6f8 100%);
+    }
+
+    /* ── Petal orbs ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, #f9a8d4, transparent); top: -120px; left: -150px; animation: drift1 12s ease-in-out infinite; }
+    .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, #fda4af, transparent); top: 200px; right: -100px; animation: drift2 15s ease-in-out infinite; }
+    .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, #fbcfe8, transparent); bottom: 0; left: 30%; animation: drift3 10s ease-in-out infinite; }
+
+    @keyframes drift1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,20px) scale(1.05)} }
+    @keyframes drift2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-25px,30px) scale(1.08)} }
+    @keyframes drift3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-20px) scale(1.03)} }
+
+    /* ── Hero title glow ── */
+    .hero-title {
+      text-shadow: 0 0 40px rgba(244, 63, 94, 0.25), 0 2px 8px rgba(244, 63, 94, 0.1);
+    }
+
+    /* ── Divider flourish ── */
+    .flourish {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+    .flourish::before, .flourish::after {
+      content: '';
+      flex: 1;
+      max-width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #f9a8d4, transparent);
+    }
+
+    /* ── Glassmorphism card ── */
+    .glass {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(249, 168, 212, 0.35);
+      box-shadow: 0 8px 40px rgba(244, 63, 94, 0.08), 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    /* ── Letter paper ── */
+    .letter-paper {
+      background: linear-gradient(160deg, #fff9fb 0%, #fff0f5 100%);
+      border: 1px solid rgba(253, 164, 175, 0.3);
+      box-shadow:
+        0 20px 80px rgba(244, 63, 94, 0.1),
+        0 4px 20px rgba(0,0,0,0.04),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+      position: relative;
+    }
+    .letter-paper::before {
+      content: '';
+      position: absolute;
+      left: 56px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(253, 164, 175, 0.4), transparent);
+    }
+
+    /* ── Memory cards ── */
+    .memory-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(249, 168, 212, 0.4);
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s;
+    }
+    .memory-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 24px 60px rgba(244, 63, 94, 0.14), 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    /* ── Promise section ── */
+    .promise-bg {
+      background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 50%, #fde8f0 100%);
+    }
+
+    /* ── CTA button ── */
+    .cta-btn {
+      background: linear-gradient(135deg, #f43f5e, #e879a0, #f43f5e);
+      background-size: 200% 200%;
+      border: none;
+      color: white;
+      transition: all 0.4s;
+      animation: gradShift 4s ease infinite;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 16px 48px rgba(244, 63, 94, 0.4), 0 4px 16px rgba(244, 63, 94, 0.2);
+    }
+    @keyframes gradShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+
+    /* ── Sparkle ── */
+    .sparkle {
+      display: inline-block;
+      animation: sparklePop 2s ease-in-out infinite;
+    }
+    @keyframes sparklePop {
+      0%,100%{transform: scale(1) rotate(0deg); opacity:1}
+      50%{transform: scale(1.3) rotate(15deg); opacity:0.7}
+    }
+
+    /* ── Pulse heart ── */
+    .pulse-heart {
+      display: inline-block;
+      animation: heartbeat 1.4s ease-in-out infinite;
+    }
+    @keyframes heartbeat {
+      0%,100%{transform:scale(1)}
+      14%{transform:scale(1.2)}
+      28%{transform:scale(1)}
+      42%{transform:scale(1.15)}
+      56%{transform:scale(1)}
+    }
+
+    /* ── Section backgrounds ── */
+    .section-memories {
+      background: linear-gradient(180deg, #fff8f9 0%, #fce4ec 50%, #fff0f5 100%);
+    }
+
+    /* ── Final section ── */
+    .final-bg {
+      background: linear-gradient(135deg, #fce4ec 0%, #f8d7e3 40%, #fde8f0 100%);
+    }
+
+    /* ── Scroll indicator ── */
+    .scroll-indicator {
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+    /* ── Wax seal ── */
+    .wax-seal {
+      width: 64px; height: 64px;
+      background: radial-gradient(circle at 35% 35%, #f87171, #e11d48);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 20px rgba(225, 29, 72, 0.4), inset 0 -3px 6px rgba(0,0,0,0.15);
+      font-size: 26px;
+    }
+
+    /* ── Line rule ── */
+    .letter-body p + p { margin-top: 1.4em; }
+
+    /* ── Ink stroke underline ── */
+    .ink-underline {
+      position: relative;
+      display: inline-block;
+    }
+    .ink-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #f43f5e, #fb7185, transparent);
+      border-radius: 2px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 640px) {
+      .letter-paper::before { left: 28px; }
+    }
+  </style>
+</head>
+<body class="font-cormorant text-rose-900">
+
+  <!-- Floating hearts canvas -->
+  <canvas id="heart-canvas"></canvas>
+
+  <!-- ════════════════════════════════════
+       HERO SECTION
+  ════════════════════════════════════ -->
+  <section class="hero-bg relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-24">
+    <!-- Ambient orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Decorative top flourish -->
+    <div class="absolute top-10 left-0 right-0 flex justify-center opacity-30">
+      <svg width="300" height="30" viewBox="0 0 300 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 15 Q75 0 150 15 Q225 30 300 15" stroke="#f9a8d4" stroke-width="1.5" fill="none"/>
+        <path d="M0 20 Q75 5 150 20 Q225 35 300 20" stroke="#fda4af" stroke-width="0.8" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+      <p class="font-dancing text-rose-400 text-xl md:text-2xl tracking-widest mb-4 reveal">— a love letter —</p>
+
+      <h1 class="font-great-vibes hero-title text-7xl md:text-9xl lg:text-[10rem] text-rose-500 leading-none mb-6 reveal reveal-delay-1">
+        To My Love…
+      </h1>
+
+      <div class="flourish my-8 reveal reveal-delay-2">
+        <span class="pulse-heart text-rose-400 text-2xl">♥</span>
+      </div>
+
+      <p class="font-playfair italic text-rose-700 text-xl md:text-2xl leading-relaxed max-w-xl mx-auto mb-12 reveal reveal-delay-3" style="font-weight:300;">
+        There are words I've been carrying in my heart, waiting for the right way to reach you. This is me trying.
+      </p>
+
+      <a href="#letter" class="cta-btn inline-block font-dancing text-xl px-12 py-4 rounded-full cursor-pointer shadow-lg reveal reveal-delay-4">
+        Read My Heart ♥
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 flex flex-col items-center gap-2 opacity-50 scroll-indicator">
+      <span class="font-dancing text-rose-400 text-sm tracking-widest">scroll</span>
+      <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M8 0v20M1 13l7 7 7-7" stroke="#f9a8d4" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       LOVE LETTER SECTION
+  ════════════════════════════════════ -->
+  <section id="letter" class="relative py-24 px-6 bg-white">
+    <!-- Subtle bg -->
+    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, #fce4ec 0%, transparent 60%), radial-gradient(circle at 80% 70%, #fbcfe8 0%, transparent 60%);"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <p class="font-dancing text-rose-400 text-lg tracking-widest mb-3 reveal">written from the deepest part of me</p>
+        <h2 class="font-great-vibes text-5xl md:text-7xl text-rose-500 reveal reveal-delay-1">My Dearest Wife</h2>
+        <div class="flourish mt-6 reveal reveal-delay-2">
+          <span class="sparkle text-rose-300 text-lg">✦</span>
+        </div>
+      </div>
+
+      <!-- Letter paper -->
+      <div class="letter-paper rounded-3xl p-10 md:p-16 reveal">
+        <div class="letter-body font-cormorant text-rose-900 text-lg md:text-xl leading-[1.9] pl-6 md:pl-10" style="font-weight:300;">
+
+          <p class="font-playfair italic text-rose-500 text-2xl mb-8" style="font-weight:400;">My love, my heart, my everything —</p>
+
+          <p>
+            I sit here searching for the perfect words, but I know that no words could ever fully capture the depth of what I feel for you. You are the most precious person in my world — more than you may realise, more than I sometimes show.
+          </p>
+
+          <p>
+            These past months have been hard. Life pressed in from every side — stress, exhaustion, worry — and somewhere in all of that, I let it spill over onto you. I was short with you. I raised my voice when you deserved patience. I pulled away when you needed warmth.
+          </p>
+
+          <p>
+            And I am so <span class="ink-underline text-rose-600 font-playfair italic">deeply, genuinely sorry</span> for that. You never deserved any of it. Not a single sharp word, not a single cold silence. You deserved tenderness every single day — and I failed you in those moments.
+          </p>
+
+          <p>
+            But I need you to know something, with every fibre of my being: <em>I love you more than anyone on this earth.</em> You are not just my wife — you are my safe place, my favourite person, the one my soul chose. That has never changed. Not for a single second.
+          </p>
+
+          <p>
+            You are so strong, so beautiful, so full of grace. Watching you move through life fills me with a quiet awe that I don't say nearly enough. You make ordinary days feel like something worth treasuring.
+          </p>
+
+          <p class="font-playfair italic text-rose-500 text-xl mt-8" style="font-weight:400;">
+            Please keep holding my hand — I am still learning to be the partner you deserve. ♥
+          </p>
+
+        </div>
+
+        <!-- Wax seal -->
+        <div class="flex justify-end mt-12 pr-4">
+          <div class="wax-seal">♥</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       MEMORIES / FEELINGS SECTION
+  ════════════════════════════════════ -->
+  <section class="section-memories relative py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <p class="font-dancing text-rose-400 text-lg tracking-widest mb-3 reveal">moments I carry in my heart</p>
+        <h2 class="font-great-vibes text-5xl md:text-7xl text-rose-500 reveal reveal-delay-1">What You Mean To Me</h2>
+        <div class="flourish mt-6 reveal reveal-delay-2">
+          <span class="sparkle text-rose-300 text-lg">✦</span>
+        </div>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+
+        <div class="memory-card glass rounded-3xl p-8 text-center reveal">
+          <div class="text-4xl mb-5">🌸</div>
+          <h3 class="font-dancing text-rose-500 text-2xl mb-3">The way you laugh</h3>
+          <p class="font-cormorant text-rose-800 text-lg leading-relaxed" style="font-weight:300;">
+            There is no sound in the world more beautiful to me than your laughter. It fills every room and rewrites every bad day.
+          </p>
+        </div>
+
+        <div class="memory-card glass rounded-3xl p-8 text-center reveal reveal-delay-1">
+          <div class="text-4xl mb-5">✨</div>
+          <h3 class="font-dancing text-rose-500 text-2xl mb-3">The way you care</h3>
+          <p class="font-cormorant text-rose-800 text-lg leading-relaxed" style="font-weight:300;">
+            You love quietly and completely. In the small acts — the tea you make, the look you give — I see a love that most people only dream of.
+          </p>
+        </div>
+
+        <div class="memory-card glass rounded-3xl p-8 text-center reveal reveal-delay-2">
+          <div class="text-4xl mb-5">🌙</div>
+          <h3 class="font-dancing text-rose-500 text-2xl mb-3">The quiet evenings</h3>
+          <p class="font-cormorant text-rose-800 text-lg leading-relaxed" style="font-weight:300;">
+            Just sitting beside you, saying nothing — those moments are the ones I will hold onto for the rest of my life.
+          </p>
+        </div>
+
+        <div class="memory-card glass rounded-3xl p-8 text-center reveal reveal-delay-1">
+          <div class="text-4xl mb-5">💫</div>
+          <h3 class="font-dancing text-rose-500 text-2xl mb-3">Your strength</h3>
+          <p class="font-cormorant text-rose-800 text-lg leading-relaxed" style="font-weight:300;">
+            You carry so much, and still you stand tall. You are the most quietly courageous person I have ever known.
+          </p>
+        </div>
+
+        <div class="memory-card glass rounded-3xl p-8 text-center reveal reveal-delay-2">
+          <div class="text-4xl mb-5">🌹</div>
+          <h3 class="font-dancing text-rose-500 text-2xl mb-3">How you make me feel</h3>
+          <p class="font-cormorant text-rose-800 text-lg leading-relaxed" style="font-weight:300;">
+            With you, I feel like I am exactly where I am meant to be. You are home — in every sense of the word.
+          </p>
+        </div>
+
+        <div class="memory-card glass rounded-3xl p-8 text-center reveal reveal-delay-3">
+          <div class="text-4xl mb-5">💝</div>
+          <h3 class="font-dancing text-rose-500 text-2xl mb-3">Every ordinary day</h3>
+          <p class="font-cormorant text-rose-800 text-lg leading-relaxed" style="font-weight:300;">
+            You make ordinary life extraordinary. The everyday magic of waking up beside you is the greatest gift I have ever received.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       APOLOGY & PROMISE SECTION
+  ════════════════════════════════════ -->
+  <section class="promise-bg relative py-24 px-6">
+    <!-- Decorative elements -->
+    <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, #fda4af, transparent);"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, #fda4af, transparent);"></div>
+
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="font-dancing text-rose-400 text-lg tracking-widest mb-3 reveal">from the bottom of my heart</p>
+        <h2 class="font-great-vibes text-5xl md:text-7xl text-rose-500 reveal reveal-delay-1">My Apology & Promise</h2>
+        <div class="flourish mt-6 reveal reveal-delay-2">
+          <span class="pulse-heart text-rose-400 text-2xl">♥</span>
+        </div>
+      </div>
+
+      <!-- Two columns -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Apology -->
+        <div class="glass rounded-3xl p-10 reveal">
+          <div class="text-center mb-6">
+            <span class="text-5xl">🙏</span>
+            <h3 class="font-great-vibes text-4xl text-rose-500 mt-4">I Am Sorry</h3>
+          </div>
+          <div class="font-cormorant text-rose-800 text-lg leading-[1.9] space-y-4" style="font-weight:300;">
+            <p>I am sorry for the moments I let frustration turn into anger.</p>
+            <p>I am sorry for the times I was cold when you needed warmth, or distant when you needed closeness.</p>
+            <p>I am sorry for not always being the calm, steady presence you deserve. You have never done anything but love me — and you deserved better from me.</p>
+            <p class="font-playfair italic text-rose-500">Please forgive me. ♥</p>
+          </div>
+        </div>
+
+        <!-- Promise -->
+        <div class="glass rounded-3xl p-10 reveal reveal-delay-1">
+          <div class="text-center mb-6">
+            <span class="text-5xl">💌</span>
+            <h3 class="font-great-vibes text-4xl text-rose-500 mt-4">I Promise You</h3>
+          </div>
+          <div class="font-cormorant text-rose-800 text-lg leading-[1.9] space-y-4" style="font-weight:300;">
+            <p>I promise to be more patient, more present, more tender with you.</p>
+            <p>I promise to choose kindness even on the hardest days — and to always, always choose you.</p>
+            <p>I promise to keep growing — for myself, and for us. Our love deserves the best version of me.</p>
+            <p class="font-playfair italic text-rose-500">This is my solemn vow. ♥</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quote block -->
+      <div class="mt-12 text-center reveal">
+        <blockquote class="glass rounded-3xl px-10 py-8 mx-auto max-w-2xl">
+          <p class="font-great-vibes text-3xl md:text-4xl text-rose-500 leading-relaxed">
+            "You are not just someone I fell in love with — you are the person I choose, every single day, for the rest of my life."
+          </p>
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       FINAL CTA SECTION
+  ════════════════════════════════════ -->
+  <section class="final-bg relative py-32 px-6 overflow-hidden">
+    <!-- Orbs -->
+    <div class="orb" style="width:450px;height:450px;background:radial-gradient(circle,#f9a8d4,transparent);top:-100px;right:-100px;animation:drift2 14s ease-in-out infinite;"></div>
+    <div class="orb" style="width:350px;height:350px;background:radial-gradient(circle,#fda4af,transparent);bottom:-80px;left:-80px;animation:drift1 11s ease-in-out infinite;"></div>
+
+    <div class="relative z-10 max-w-2xl mx-auto text-center">
+
+      <p class="font-dancing text-rose-400 text-xl tracking-widest mb-6 reveal">always & forever</p>
+
+      <h2 class="font-great-vibes text-6xl md:text-8xl lg:text-9xl text-rose-500 leading-tight mb-6 reveal reveal-delay-1" style="text-shadow: 0 0 60px rgba(244,63,94,0.2);">
+        I Love You
+      </h2>
+
+      <div class="flourish my-8 reveal reveal-delay-2">
+        <span class="pulse-heart text-rose-400 text-3xl">♥</span>
+      </div>
+
+      <p class="font-playfair italic text-rose-700 text-xl md:text-2xl leading-relaxed mb-6 reveal reveal-delay-3" style="font-weight:300;">
+        More than words can say. More than time can measure. More than yesterday, and always more tomorrow.
+      </p>
+
+      <p class="font-cormorant text-rose-600 text-lg mb-14 reveal reveal-delay-4" style="font-weight:300;">
+        You are my greatest blessing, my safest place, and the love of my life. <br/>
+        Thank you for being you. Thank you for being mine.
+      </p>
+
+      <div class="reveal">
+        <button onclick="showLoveMessage()" class="cta-btn font-dancing text-xl px-14 py-5 rounded-full shadow-xl">
+          Forever Yours ❤️
+        </button>
+      </div>
+
+      <!-- Signature -->
+      <div class="mt-20 reveal">
+        <p class="font-cormorant text-rose-500 text-lg italic mb-3" style="font-weight:300;">With all my love, all my heart —</p>
+        <p class="font-great-vibes text-5xl text-rose-500">Your Husband ♥</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       LOVE MESSAGE MODAL
+  ════════════════════════════════════ -->
+  <div id="love-modal" class="fixed inset-0 z-50 flex items-center justify-center px-6 pointer-events-none opacity-0 transition-all duration-700">
+    <div class="absolute inset-0 bg-rose-900/20 backdrop-blur-sm pointer-events-auto" onclick="hideLoveMessage()"></div>
+    <div class="glass rounded-3xl p-12 max-w-lg w-full text-center relative pointer-events-auto transform scale-90 transition-transform duration-700 ease-out" id="modal-card">
+      <div class="text-6xl mb-6">💖</div>
+      <h3 class="font-great-vibes text-5xl text-rose-500 mb-6">You Are My Everything</h3>
+      <p class="font-cormorant text-rose-800 text-xl leading-relaxed mb-8" style="font-weight:300;">
+        No matter what life brings, no matter how hard the days get — I will always find my way back to you. You are home. You are love. You are mine.
+      </p>
+      <p class="font-dancing text-rose-400 text-2xl">♥ Always & forever ♥</p>
+      <button onclick="hideLoveMessage()" class="mt-8 font-dancing text-rose-400 text-lg underline cursor-pointer bg-transparent border-none">close</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════ -->
+  <script>
+    /* ── Scroll reveal ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    /* ── Floating hearts canvas ── */
+    const canvas = document.getElementById('heart-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, hearts = [];
+
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function heartPath(ctx, x, y, size) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size, size);
+      ctx.beginPath();
+      ctx.moveTo(0, -0.4);
+      ctx.bezierCurveTo(0, -1, -1.4, -1, -1.4, 0.1);
+      ctx.bezierCurveTo(-1.4, 0.8, 0, 1.4, 0, 1.4);
+      ctx.bezierCurveTo(0, 1.4, 1.4, 0.8, 1.4, 0.1);
+      ctx.bezierCurveTo(1.4, -1, 0, -1, 0, -0.4);
+      ctx.closePath();
+      ctx.restore();
+    }
+
+    function spawnHeart() {
+      return {
+        x: Math.random() * W,
+        y: H + 20,
+        size: 4 + Math.random() * 10,
+        speedY: 0.4 + Math.random() * 0.7,
+        speedX: (Math.random() - 0.5) * 0.5,
+        alpha: 0.06 + Math.random() * 0.1,
+        rot: (Math.random() - 0.5) * 0.05,
+        angle: 0,
+      };
+    }
+
+    for (let i = 0; i < 18; i++) { let h = spawnHeart(); h.y = Math.random() * H; hearts.push(h); }
+
+    function animHearts() {
+      ctx.clearRect(0, 0, W, H);
+      hearts.forEach((h, i) => {
+        h.y -= h.speedY;
+        h.x += h.speedX;
+        h.angle += h.rot;
+        if (h.y < -30) { hearts[i] = spawnHeart(); }
+        ctx.save();
+        ctx.globalAlpha = h.alpha;
+        ctx.translate(h.x, h.y);
+        ctx.rotate(h.angle);
+        heartPath(ctx, 0, 0, h.size);
+        ctx.fillStyle = '#f43f5e';
+        ctx.fill();
+        ctx.restore();
+      });
+      requestAnimationFrame(animHearts);
+    }
+    animHearts();
+
+    /* ── Spawn a heart occasionally ── */
+    setInterval(() => { if (hearts.length < 30) hearts.push(spawnHeart()); }, 1200);
+
+    /* ── Modal ── */
+    function showLoveMessage() {
+      const modal = document.getElementById('love-modal');
+      const card = document.getElementById('modal-card');
+      modal.style.opacity = '1';
+      modal.style.pointerEvents = 'auto';
+      setTimeout(() => card.style.transform = 'scale(1)', 20);
+    }
+    function hideLoveMessage() {
+      const modal = document.getElementById('love-modal');
+      const card = document.getElementById('modal-card');
+      card.style.transform = 'scale(0.9)';
+      modal.style.opacity = '0';
+      setTimeout(() => modal.style.pointerEvents = 'none', 700);
+    }
+  </script>
+
+</body>
+</html>
