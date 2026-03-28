@@ -2,8 +2,8 @@ const CACHE_NAME = 'site-assets-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/performance'
-  '/'
+  '/performance',
+  '/about'
 ];
 
 // 1. Install Event: Cache core assets
