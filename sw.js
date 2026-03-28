@@ -1,57 +1,144 @@
-const CACHE_NAME = 'site-assets-v1';
-const ASSETS_TO_CACHE = [
+// --- Configuration ---
+const CACHE_VERSION = 'v1';
+const CORE_CACHE = `core-cache-${CACHE_VERSION}`;
+const DYNAMIC_CACHE = `dynamic-cache-${CACHE_VERSION}`;
+const IMAGE_CACHE = `image-cache-${CACHE_VERSION}`;
+
+// The URLs you provided, plus an offline fallback page if you create one
+const PRECACHE_URLS = [
   '/',
-  '/index.html',
+  '/about',
+  '/projects',
+  '/blogs',
   '/performance',
-  '/about'
+  '/resume',
+  '/contact',
 ];
 
-// 1. Install Event: Cache core assets
+// Limit the number of items in a cache (to avoid eating up user storage)
+const limitCacheSize = (cacheName, maxItems) => {
+  caches.open(cacheName).then(cache => {
+    cache.keys().then(keys => {
+      if (keys.length > maxItems) {
+        cache.delete(keys[0]).then(() => limitCacheSize(cacheName, maxItems));
+      }
+    });
+  });
+};
+
+// --- Lifecycle Events ---
+
+// 1. Install Event: Precache core assets
 self.addEventListener('install', (event) => {
+  console.log('[Service Worker] Installing...');
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened cache');
-      return cache.addAll(ASSETS_TO_CACHE);
-    })
+    caches.open(CORE_CACHE)
+      .then((cache) => {
+        console.log('[Service Worker] Precaching App Shell');
+        return cache.addAll(PRECACHE_URLS);
+      })
+      .then(() => self.skipWaiting()) // Force the waiting service worker to become the active service worker
   );
-  self.skipWaiting(); // Force the waiting service worker to become active
 });
 
 // 2. Activate Event: Clean up old caches
 self.addEventListener('activate', (event) => {
+  console.log('[Service Worker] Activating...');
+  const activeCaches = [CORE_CACHE, DYNAMIC_CACHE, IMAGE_CACHE];
+  
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            console.log('Deleting old cache:', cache);
-            return caches.delete(cache);
+        cacheNames.map((cacheName) => {
+          if (!activeCaches.includes(cacheName)) {
+            console.log('[Service Worker] Deleting old cache:', cacheName);
+            return caches.delete(cacheName);
           }
         })
       );
     })
+    .then(() => self.clients.claim()) // Claim control of all open clients immediately
   );
-  self.clients.claim(); // Take control of pages immediately
 });
 
-// 3. Fetch Event: Network-First (for HTML) / Cache-First (for Assets)
+// --- Fetch Event & Caching Strategies ---
+
 self.addEventListener('fetch', (event) => {
-  // Logic: Check cache first, then network. 
-  // Good for performance but requires versioning CACHE_NAME to update assets.
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request).then((networkResponse) => {
-        // Optional: Dynamically cache new requests
-        return caches.open(CACHE_NAME).then((cache) => {
-          if (event.request.url.startsWith('http')) { 
-             // Only cache http/https requests (prevents chrome-extension errors)
-             cache.put(event.request, networkResponse.clone());
-          }
+  // Ignore non-GET requests and external API calls (modify as needed)
+  if (event.request.method !== 'GET') return;
+
+  const url = new URL(event.request.url);
+
+  // Strategy 1: Network First, falling back to Cache
+  // Best for HTML documents/pages to ensure the user gets the freshest content.
+  if (event.request.mode === 'navigate' || event.request.headers.get('accept').includes('text/html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          // Put a copy of the new network response in the dynamic cache
+          return caches.open(DYNAMIC_CACHE).then((cache) => {
+            cache.put(event.request, networkResponse.clone());
+            limitCacheSize(DYNAMIC_CACHE, 50);
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          // If network fails, try the cache
+          return caches.match(event.request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            // Optional: return an offline fallback page here if cache also fails
+            // return caches.match('/offline.html');
+          });
+        })
+    );
+    return;
+  }
+
+  // Strategy 2: Cache First, falling back to Network
+  // Best for Images, Fonts, and static assets that rarely change.
+  if (event.request.destination === 'image' || event.request.destination === 'font') {
+    const targetCache = event.request.destination === 'image' ? IMAGE_CACHE : DYNAMIC_CACHE;
+    
+    event.respondWith(
+      caches.match(event.request).then((cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse; // Return from cache immediately
+        }
+        
+        // If not in cache, fetch from network
+        return fetch(event.request).then((networkResponse) => {
+          return caches.open(targetCache).then((cache) => {
+            cache.put(event.request, networkResponse.clone());
+            if (event.request.destination === 'image') {
+              limitCacheSize(IMAGE_CACHE, 60); // Keep max 60 images cached
+            }
+            return networkResponse;
+          });
+        });
+      })
+    );
+    return;
+  }
+
+  // Strategy 3: Stale-While-Revalidate
+  // Best for CSS and JS files. Serves the cached version instantly, but fetches a fresh copy in the background to use next time.
+  if (event.request.destination === 'style' || event.request.destination === 'script') {
+    event.respondWith(
+      caches.match(event.request).then((cachedResponse) => {
+        const fetchPromise = fetch(event.request).then((networkResponse) => {
+          caches.open(DYNAMIC_CACHE).then((cache) => {
+            cache.put(event.request, networkResponse.clone());
+            limitCacheSize(DYNAMIC_CACHE, 50);
+          });
           return networkResponse;
         });
-      });
-    }).catch(() => {
-        // Fallback for offline (e.g., return an offline page)
-    })
-  );
+        
+        // Return cached response immediately if available, otherwise wait for network
+        return cachedResponse || fetchPromise; 
+      })
+    );
+    return;
+  }
 });
