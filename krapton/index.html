@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO: Title & Meta -->
+  <title>Krapton — Gen AI & Digital Transformation Services | Build Smarter, Scale Faster</title>
+  <meta name="description" content="Krapton delivers Gen AI-powered digital transformation — from AI development and machine learning to web, app, and DevOps solutions. Partner with us to turn complexity into competitive advantage." />
+  <meta name="keywords" content="AI development, machine learning, digital transformation, web development, app development, DevOps, UI/UX design, blockchain, API development, QA testing, IT services, generative AI, custom software" />
+  <link rel="canonical" href="https://www.krapton.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.krapton.com/" />
+  <meta property="og:title" content="Krapton — Gen AI & Digital Transformation Services" />
+  <meta property="og:description" content="We engineer intelligent software that moves faster than the market. AI, Web, App, DevOps — built to scale." />
+  <meta property="og:image" content="https://www.krapton.com/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@krapton" />
+  <meta name="twitter:title" content="Krapton — Gen AI & Digital Transformation" />
+  <meta name="twitter:description" content="We engineer intelligent software that moves faster than the market." />
+  <meta name="twitter:image" content="https://www.krapton.com/og-image.jpg" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.krapton.com/#organization",
+        "name": "Krapton",
+        "url": "https://www.krapton.com/",
+        "logo": "https://www.krapton.com/logo.png",
+        "sameAs": [
+          "https://twitter.com/krapton",
+          "https://linkedin.com/company/krapton",
+          "https://github.com/krapton"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Sales",
+          "email": "hello@krapton.com"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.krapton.com/#website",
+        "url": "https://www.krapton.com/",
+        "name": "Krapton",
+        "publisher": { "@id": "https://www.krapton.com/#organization" }
+      },
+      {
+        "@type": "Service",
+        "name": "AI Development & Machine Learning",
+        "provider": { "@id": "https://www.krapton.com/#organization" },
+        "description": "Custom AI models, LLM integration, and machine learning pipelines for enterprise-grade intelligence."
+      },
+      {
+        "@type": "Service",
+        "name": "Web & App Development",
+        "provider": { "@id": "https://www.krapton.com/#organization" },
+        "description": "High-performance web and mobile applications built with modern frameworks."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts: Syne (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0a0a0a',
+            paper: '#f5f4f0',
+            ash: '#888',
+            bone: '#e8e6e0',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0a0a;
+      --paper: #f5f4f0;
+      --ash: #888888;
+      --bone: #e8e6e0;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ink);
+      color: var(--white);
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* ── Custom Cursor ── */
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #fff; pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: transform .1s ease, background .2s;
+    }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 9998;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.4);
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: transform .18s ease, width .25s ease, height .25s ease, border-color .25s;
+    }
+    body:hover #cursor-ring { opacity: 1; }
+    a:hover ~ #cursor-ring, button:hover ~ #cursor-ring { width: 56px; height: 56px; }
+
+    /* ── Grain texture ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9997;
+      pointer-events: none;
+      opacity: .025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ── Navbar ── */
+    nav { transition: background .3s, backdrop-filter .3s, border-color .3s; }
+    nav.scrolled {
+      background: rgba(10,10,10,.85) !important;
+      backdrop-filter: blur(20px);
+      border-bottom-color: rgba(255,255,255,.08) !important;
+    }
+
+    /* ── Hero headline ── */
+    .hero-line {
+      display: block;
+      overflow: hidden;
+    }
+    .hero-line span {
+      display: block;
+      transform: translateY(110%);
+      animation: slideUp .9s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    .hero-line:nth-child(1) span { animation-delay: .1s; }
+    .hero-line:nth-child(2) span { animation-delay: .22s; }
+    .hero-line:nth-child(3) span { animation-delay: .34s; }
+
+    @keyframes slideUp {
+      to { transform: translateY(0); }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeUp .8s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+    /* ── Magnetic button ── */
+    .mag-btn { transition: transform .3s cubic-bezier(.16,1,.3,1), background .2s, color .2s; }
+
+    /* ── Marquee ── */
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
+
+    /* ── Service card ── */
+    .svc-card {
+      border: 1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,.02);
+      transition: background .3s, border-color .3s, transform .35s cubic-bezier(.16,1,.3,1);
+    }
+    .svc-card:hover {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-4px);
+    }
+
+    /* ── AI Card highlight ── */
+    .ai-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      transition: all .35s cubic-bezier(.16,1,.3,1);
+      position: relative; overflow: hidden;
+    }
+    .ai-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(255,255,255,.06) 0%, transparent 65%);
+      opacity: 0; transition: opacity .35s;
+    }
+    .ai-card:hover::before { opacity: 1; }
+    .ai-card:hover { border-color: rgba(255,255,255,.22); transform: translateY(-5px); }
+
+    /* ── Testimonial card ── */
+    .testi-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      transition: border-color .3s, background .3s;
+    }
+    .testi-card:hover { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.18); }
+
+    /* ── Tech pill ── */
+    .tech-pill {
+      border: 1px solid rgba(255,255,255,.1);
+      transition: background .25s, border-color .25s;
+    }
+    .tech-pill:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.3); }
+
+    /* ── Horizontal rule separator ── */
+    .hr-line { border-color: rgba(255,255,255,.08); }
+
+    /* ── Footer link ── */
+    .foot-link { transition: color .2s; }
+    .foot-link:hover { color: #fff; }
+
+    /* ── Stats counter ── */
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    /* ── CTA Banner glow ── */
+    .cta-glow {
+      background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(255,255,255,.07) 0%, transparent 70%);
+    }
+
+    /* ── Number on service grid ── */
+    .grid-num {
+      font-family: 'Syne', sans-serif;
+      font-size: .7rem;
+      letter-spacing: .12em;
+      opacity: .25;
+    }
+
+    /* ── Mobile menu ── */
+    #mobile-menu { transition: transform .4s cubic-bezier(.16,1,.3,1), opacity .4s; }
+    #mobile-menu.hidden-menu { transform: translateY(-20px); opacity: 0; pointer-events: none; }
+    #mobile-menu.visible-menu { transform: none; opacity: 1; pointer-events: all; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 99px; }
+
+    /* ── Selection ── */
+    ::selection { background: #fff; color: #000; }
+  </style>
+</head>
+
+<body>
+  <!-- Custom cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ══════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 border-b border-transparent px-6 lg:px-12 py-5 flex items-center justify-between" aria-label="Main navigation">
+    <!-- Logo -->
+    <a href="/" class="font-display font-800 text-xl tracking-tight text-white" style="font-weight:800;letter-spacing:-.02em;">
+      Krapton<span style="color:rgba(255,255,255,.3);">.</span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="hidden lg:flex items-center gap-8 text-sm" style="color:rgba(255,255,255,.55);">
+      <li><a href="#about" class="hover:text-white transition-colors foot-link">About</a></li>
+      <li><a href="#services" class="hover:text-white transition-colors foot-link">Services</a></li>
+      <li><a href="#technologies" class="hover:text-white transition-colors foot-link">Technologies</a></li>
+      <li><a href="#case-studies" class="hover:text-white transition-colors foot-link">Case Studies</a></li>
+      <li><a href="#blog" class="hover:text-white transition-colors foot-link">Blogs</a></li>
+      <li><a href="#careers" class="hover:text-white transition-colors foot-link">Careers</a></li>
+    </ul>
+
+    <!-- CTA -->
+    <div class="flex items-center gap-4">
+      <a href="#contact" class="mag-btn hidden lg:inline-flex items-center gap-2 bg-white text-ink text-sm font-medium px-5 py-2.5 rounded-full hover:bg-paper" style="font-weight:500;">
+        Hire Us
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <!-- Hamburger -->
+      <button id="menu-toggle" class="lg:hidden text-white p-1" aria-label="Toggle menu">
+        <svg id="menu-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg id="menu-icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed top-0 left-0 right-0 z-40 pt-20 pb-8 px-6 hidden-menu lg:hidden" style="background:rgba(10,10,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.08);">
+    <ul class="flex flex-col gap-5 text-lg mb-8" style="color:rgba(255,255,255,.7);">
+      <li><a href="#about" class="hover:text-white transition-colors" onclick="closeMenu()">About</a></li>
+      <li><a href="#services" class="hover:text-white transition-colors" onclick="closeMenu()">Services</a></li>
+      <li><a href="#technologies" class="hover:text-white transition-colors" onclick="closeMenu()">Technologies</a></li>
+      <li><a href="#case-studies" class="hover:text-white transition-colors" onclick="closeMenu()">Case Studies</a></li>
+      <li><a href="#blog" class="hover:text-white transition-colors" onclick="closeMenu()">Blogs</a></li>
+      <li><a href="#careers" class="hover:text-white transition-colors" onclick="closeMenu()">Careers</a></li>
+    </ul>
+    <a href="#contact" class="inline-flex items-center gap-2 bg-white text-ink font-medium px-6 py-3 rounded-full" onclick="closeMenu()">
+      Hire Us <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section id="home" class="relative min-h-screen flex flex-col justify-center pt-24 pb-20 px-6 lg:px-12 overflow-hidden">
+
+    <!-- Background grid -->
+    <div class="absolute inset-0" style="background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px, transparent 1px);background-size:64px 64px;"></div>
+
+    <!-- Radial glow -->
+    <div class="absolute" style="width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-60%);background:radial-gradient(circle,rgba(255,255,255,.04) 0%,transparent 65%);pointer-events:none;"></div>
+
+    <div class="relative max-w-7xl mx-auto w-full">
+      <!-- Eyebrow -->
+      <div class="fade-up mb-8" style="animation-delay:.05s;">
+        <span class="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.5);">
+          <span class="w-1.5 h-1.5 rounded-full bg-white/60 inline-block animate-pulse"></span>
+          Gen AI-Powered Innovation
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-display font-800 leading-none mb-8" style="font-size:clamp(2.8rem,8vw,7.5rem);font-weight:800;letter-spacing:-.04em;line-height:.95;">
+        <span class="hero-line"><span>Digital</span></span>
+        <span class="hero-line" style="color:rgba(255,255,255,.28);"><span>Transformation</span></span>
+        <span class="hero-line"><span>Engineered.</span></span>
+      </h1>
+
+      <!-- Subtext + CTAs side-by-side on desktop -->
+      <div class="grid lg:grid-cols-2 gap-10 items-end">
+        <p class="fade-up text-base lg:text-lg leading-relaxed max-w-xl" style="animation-delay:.55s;color:rgba(255,255,255,.45);">
+          We craft AI-powered products that accelerate businesses from zero to scale. Strategy, engineering, and intelligence — unified under one roof.
+        </p>
+        <div class="fade-up flex flex-wrap gap-3 lg:justify-end" style="animation-delay:.7s;">
+          <a href="#contact" class="mag-btn inline-flex items-center gap-2 bg-white text-ink font-medium px-7 py-3.5 rounded-full text-sm hover:bg-paper" style="font-weight:500;">
+            Start a Project
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2 7.5h11M9 3l4.5 4.5L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#services" class="mag-btn inline-flex items-center gap-2 border border-white/15 text-white font-medium px-7 py-3.5 rounded-full text-sm hover:border-white/40 hover:bg-white/5">
+            Explore Services
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="mt-20 pt-10 border-t hr-line grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-white/8">
+        <div class="reveal reveal-delay-1 lg:px-8 first:pl-0">
+          <div class="stat-num text-4xl lg:text-5xl text-white">150<span style="color:rgba(255,255,255,.3);">+</span></div>
+          <div class="text-xs mt-2 tracking-wide" style="color:rgba(255,255,255,.35);">Projects Delivered</div>
+        </div>
+        <div class="reveal reveal-delay-2 lg:px-8">
+          <div class="stat-num text-4xl lg:text-5xl text-white">98<span style="color:rgba(255,255,255,.3);">%</span></div>
+          <div class="text-xs mt-2 tracking-wide" style="color:rgba(255,255,255,.35);">Client Retention</div>
+        </div>
+        <div class="reveal reveal-delay-3 lg:px-8">
+          <div class="stat-num text-4xl lg:text-5xl text-white">40<span style="color:rgba(255,255,255,.3);">+</span></div>
+          <div class="text-xs mt-2 tracking-wide" style="color:rgba(255,255,255,.35);">Engineers & Designers</div>
+        </div>
+        <div class="reveal reveal-delay-4 lg:px-8">
+          <div class="stat-num text-4xl lg:text-5xl text-white">12<span style="color:rgba(255,255,255,.3);">+</span></div>
+          <div class="text-xs mt-2 tracking-wide" style="color:rgba(255,255,255,.35);">Industries Served</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       ABOUT / VALUE PROPOSITION
+  ══════════════════════════════════════════ -->
+  <section id="about" class="py-28 px-6 lg:px-12 border-t hr-line">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: label + heading -->
+      <div>
+        <div class="reveal">
+          <span class="text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.3);">Our Ethos</span>
+        </div>
+        <h2 class="reveal reveal-delay-1 font-display mt-4 leading-tight" style="font-size:clamp(2rem,5vw,3.8rem);font-weight:700;letter-spacing:-.03em;">
+          Transforming Challenges<br/>
+          <span style="color:rgba(255,255,255,.28);">into Revolutionary</span><br/>
+          Innovations.
+        </h2>
+      </div>
+      <!-- Right: copy + differentiators -->
+      <div class="reveal reveal-delay-2 space-y-6">
+        <p class="text-base lg:text-lg leading-relaxed" style="color:rgba(255,255,255,.5);">
+          At Krapton, we don't just build software — we engineer momentum. Every product we ship is designed to generate measurable impact: faster workflows, smarter decisions, and sustainable growth.
+        </p>
+        <p class="text-base leading-relaxed" style="color:rgba(255,255,255,.35);">
+          From AI-first startups to Fortune-class enterprises, our multidisciplinary team brings together engineering rigor, design craft, and strategic intelligence to deliver technology that lasts.
+        </p>
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          {['AI-First Thinking','End-to-End Ownership','Zero-Compromise Quality','Scalable Architecture'].map((t,i) =>
+            `<div class="flex items-center gap-2.5">
+              <span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:.8rem;color:rgba(255,255,255,.45);">${t}</span>
+            </div>`
+          ).join('')}
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex items-center gap-2.5">
+            <span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0;display:inline-block;"></span>
+            <span style="font-size:.8rem;color:rgba(255,255,255,.45);">AI-First Thinking</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0;display:inline-block;"></span>
+            <span style="font-size:.8rem;color:rgba(255,255,255,.45);">End-to-End Ownership</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0;display:inline-block;"></span>
+            <span style="font-size:.8rem;color:rgba(255,255,255,.45);">Zero-Compromise Quality</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0;display:inline-block;"></span>
+            <span style="font-size:.8rem;color:rgba(255,255,255,.45);">Scalable Architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       AI SERVICES HIGHLIGHT
+  ══════════════════════════════════════════ -->
+  <section class="py-28 px-6 lg:px-12 border-t hr-line">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <span class="reveal text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.3);">Intelligence, Built In</span>
+          <h2 class="reveal reveal-delay-1 font-display mt-4" style="font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;">
+            AI Capabilities<br/>
+            <span style="color:rgba(255,255,255,.28);">At the Core</span>
+          </h2>
+        </div>
+        <p class="reveal reveal-delay-2 text-sm leading-relaxed max-w-sm" style="color:rgba(255,255,255,.35);">
+          We design AI systems that are not bolt-ons — they are deeply integrated, continuously learning, and built for production from day one.
+        </p>
+      </div>
+
+      <!-- AI Cards grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Large card -->
+        <div class="ai-card reveal rounded-2xl p-8 md:col-span-2 lg:col-span-1 lg:row-span-2">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6" style="background:rgba(255,255,255,.07);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4a2 2 0 110 4 2 2 0 010-4zm0 14c-2.67 0-8-1.34-8-4v-1c0-2.66 5.33-4 8-4s8 1.34 8 4v1c0 2.66-5.33 4-8 4z" fill="rgba(255,255,255,.6)"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-xl mb-3" style="letter-spacing:-.02em;">AI Development</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,.4);">
+            From large language models to custom neural architectures — we design, train, and deploy AI systems tailored precisely to your domain, data, and scale requirements.
+          </p>
+          <ul class="space-y-2 text-xs" style="color:rgba(255,255,255,.35);">
+            <li class="flex items-center gap-2"><span style="width:4px;height:4px;background:rgba(255,255,255,.3);border-radius:50%;display:inline-block;"></span>LLM Integration & Fine-tuning</li>
+            <li class="flex items-center gap-2"><span style="width:4px;height:4px;background:rgba(255,255,255,.3);border-radius:50%;display:inline-block;"></span>RAG Pipeline Architecture</li>
+            <li class="flex items-center gap-2"><span style="width:4px;height:4px;background:rgba(255,255,255,.3);border-radius:50%;display:inline-block;"></span>Agentic Workflow Design</li>
+            <li class="flex items-center gap-2"><span style="width:4px;height:4px;background:rgba(255,255,255,.3);border-radius:50%;display:inline-block;"></span>Multi-modal AI Systems</li>
+          </ul>
+        </div>
+
+        <div class="ai-card reveal reveal-delay-1 rounded-2xl p-8">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6" style="background:rgba(255,255,255,.07);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-lg mb-2" style="letter-spacing:-.02em;">Machine Learning</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.4);">Predictive models, recommendation engines, and classification systems that turn raw data into competitive intelligence.</p>
+        </div>
+
+        <div class="ai-card reveal reveal-delay-2 rounded-2xl p-8">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6" style="background:rgba(255,255,255,.07);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-lg mb-2" style="letter-spacing:-.02em;">AI Integration</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.4);">We wire intelligence directly into your existing systems — no friction, no rewrites, just smarter operations from day one.</p>
+        </div>
+
+        <div class="ai-card reveal reveal-delay-1 rounded-2xl p-8">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6" style="background:rgba(255,255,255,.07);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-lg mb-2" style="letter-spacing:-.02em;">Data Processing</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.4);">Pipelines, ETL workflows, and data lakes that transform unstructured chaos into structured, actionable intelligence.</p>
+        </div>
+
+        <div class="ai-card reveal reveal-delay-2 rounded-2xl p-8">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6" style="background:rgba(255,255,255,.07);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-lg mb-2" style="letter-spacing:-.02em;">Security First</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.4);">Every model, every API, every pipeline — hardened against adversarial attacks, data leakage, and compliance risk.</p>
+        </div>
+
+        <div class="ai-card reveal reveal-delay-3 rounded-2xl p-8">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-6" style="background:rgba(255,255,255,.07);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="rgba(255,255,255,.6)" stroke-width="1.5"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-lg mb-2" style="letter-spacing:-.02em;">Custom Solutions</h3>
+          <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.4);">No templates. No off-the-shelf compromises. Every engagement starts with your unique problem and ends with a purpose-built solution.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FULL SERVICES GRID
+  ══════════════════════════════════════════ -->
+  <section id="services" class="py-28 px-6 lg:px-12 border-t hr-line">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-16">
+        <span class="reveal text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.3);">What We Build</span>
+        <h2 class="reveal reveal-delay-1 font-display mt-4" style="font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;">
+          Full-Spectrum<br/>
+          <span style="color:rgba(255,255,255,.28);">Engineering Services</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px" style="border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.07);">
+
+        <!-- Each service cell -->
+        <div class="svc-card reveal p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">01</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">AI & ML</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Intelligent systems that learn, adapt, and deliver measurable outcomes.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-1 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">02</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">API Development</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">RESTful & GraphQL APIs engineered for scale, reliability, and speed.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-2 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">03</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">Web Development</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Performance-first web apps with modern frameworks and stellar UX.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-3 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">04</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">App Development</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Native and cross-platform mobile experiences users actually love.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-1 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">05</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">DevOps & Cloud</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">CI/CD, infrastructure-as-code, and cloud-native architecture that ships fast and fails rarely.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-2 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">06</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">UI/UX Design</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Research-backed design systems that convert visitors into loyal users.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-3 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">07</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">Blockchain</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Smart contracts, DeFi protocols, and Web3 infrastructure for the decentralized era.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-4 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">08</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">QA & Testing</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Automated test suites and performance audits so nothing breaks in production.</p>
+        </div>
+
+        <div class="svc-card reveal p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">09</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">Product Strategy</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Roadmapping, technical due diligence, and GTM strategy for ambitious founders.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-1 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">10</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">Data Engineering</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Warehouses, lakes, and real-time streaming pipelines for data-driven organizations.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-2 p-8" style="background:var(--ink);">
+          <div class="grid-num mb-4">11</div>
+          <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">Cybersecurity</h3>
+          <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Penetration testing, VAPT, and security architecture to protect what matters most.</p>
+        </div>
+
+        <div class="svc-card reveal reveal-delay-3 p-8 flex flex-col justify-between" style="background:rgba(255,255,255,.03);">
+          <div>
+            <div class="grid-num mb-4">12</div>
+            <h3 class="font-display font-600 text-base mb-2" style="letter-spacing:-.01em;">Have a Project?</h3>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.35);">Tell us about your challenges. We'll come back with a plan.</p>
+          </div>
+          <a href="#contact" class="mt-6 inline-flex items-center gap-2 text-white text-xs font-medium border-b pb-0.5 w-fit" style="border-color:rgba(255,255,255,.25);">
+            Get in touch
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1.5 6h9M7 2.5L10.5 6 7 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       TECHNOLOGIES — MARQUEE
+  ══════════════════════════════════════════ -->
+  <section id="technologies" class="py-28 border-t hr-line overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 mb-14">
+      <span class="reveal text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.3);">Our Stack</span>
+      <h2 class="reveal reveal-delay-1 font-display mt-4" style="font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;">
+        Technologies We<br/>
+        <span style="color:rgba(255,255,255,.28);">Master Daily</span>
+      </h2>
+    </div>
+
+    <!-- Row 1 -->
+    <div class="overflow-hidden mb-4" style="mask-image:linear-gradient(90deg,transparent 0%,black 10%,black 90%,transparent 100%);">
+      <div class="marquee-track gap-4 py-1">
+        <div class="flex gap-4">
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Next.js</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">React</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Node.js</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Python</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">TypeScript</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">GraphQL</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">TensorFlow</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">PyTorch</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Kubernetes</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">AWS</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Docker</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Solidity</span>
+        </div>
+        <!-- Duplicate for seamless loop -->
+        <div class="flex gap-4">
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Next.js</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">React</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Node.js</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Python</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">TypeScript</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">GraphQL</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">TensorFlow</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">PyTorch</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Kubernetes</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">AWS</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Docker</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.6);">Solidity</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 (reverse) -->
+    <div class="overflow-hidden" style="mask-image:linear-gradient(90deg,transparent 0%,black 10%,black 90%,transparent 100%);">
+      <div class="marquee-track gap-4 py-1" style="animation-direction:reverse;animation-duration:22s;">
+        <div class="flex gap-4">
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">PostgreSQL</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">MongoDB</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Redis</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Flutter</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">React Native</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Swift</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Kotlin</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Terraform</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">GCP</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Azure</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">OpenAI API</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">LangChain</span>
+        </div>
+        <div class="flex gap-4">
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">PostgreSQL</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">MongoDB</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Redis</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Flutter</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">React Native</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Swift</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Kotlin</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Terraform</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">GCP</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">Azure</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">OpenAI API</span>
+          <span class="tech-pill px-5 py-2.5 rounded-full text-sm whitespace-nowrap" style="color:rgba(255,255,255,.4);">LangChain</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CASE STUDIES (placeholder)
+  ══════════════════════════════════════════ -->
+  <section id="case-studies" class="py-28 px-6 lg:px-12 border-t hr-line">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <span class="reveal text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.3);">Impact Stories</span>
+          <h2 class="reveal reveal-delay-1 font-display mt-4" style="font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.03em;">Selected Work</h2>
+        </div>
+        <a href="#" class="reveal reveal-delay-2 text-sm border-b pb-0.5 w-fit" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.2);">View all case studies →</a>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-px" style="border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.07);">
+        <!-- Case 1 -->
+        <div class="svc-card reveal group p-10 cursor-pointer" style="background:var(--ink);">
+          <div class="flex items-start justify-between mb-10">
+            <span class="text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.25);">Fintech · AI</span>
+            <svg class="opacity-30 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-2xl mb-3" style="letter-spacing:-.02em;">AI-Driven Risk Engine</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,.4);">Reduced credit risk assessment time by 87% for a Southeast Asian lending platform — deploying a real-time ML scoring model serving 2M+ users.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">Python</span>
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">AWS SageMaker</span>
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">FastAPI</span>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="svc-card reveal reveal-delay-1 group p-10 cursor-pointer" style="background:var(--ink);">
+          <div class="flex items-start justify-between mb-10">
+            <span class="text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.25);">E-Commerce · Mobile</span>
+            <svg class="opacity-30 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-2xl mb-3" style="letter-spacing:-.02em;">Next-Gen Commerce App</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,.4);">Built a cross-platform shopping experience from zero to 500K installs in 6 months, with AI-powered personalization lifting AOV by 34%.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">Flutter</span>
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">Node.js</span>
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">OpenAI</span>
+          </div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="svc-card reveal reveal-delay-2 group p-10 cursor-pointer" style="background:var(--ink);">
+          <div class="flex items-start justify-between mb-10">
+            <span class="text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.25);">Healthcare · DevOps</span>
+            <svg class="opacity-30 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-2xl mb-3" style="letter-spacing:-.02em;">HIPAA-Compliant Platform</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,.4);">Architected a zero-downtime cloud infrastructure for a telehealth provider, achieving 99.99% uptime and passing SOC 2 Type II audit in 90 days.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">Kubernetes</span>
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">Terraform</span>
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">GCP</span>
+          </div>
+        </div>
+
+        <!-- Case 4 -->
+        <div class="svc-card reveal reveal-delay-3 group p-10 cursor-pointer" style="background:var(--ink);">
+          <div class="flex items-start justify-between mb-10">
+            <span class="text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.25);">Web3 · Blockchain</span>
+            <svg class="opacity-30 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3v8" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-display font-700 text-2xl mb-3" style="letter-spacing:-.02em;">DeFi Protocol & Dashboard</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,.4);">Delivered a fully audited DeFi staking protocol with $12M TVL on mainnet within four months — from concept through smart contract deployment.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">Solidity</span>
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">Next.js</span>
+            <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);">Ethers.js</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       TESTIMONIALS
+  ══════════════════════════════════════════ -->
+  <section class="py-28 px-6 lg:px-12 border-t hr-line">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-14">
+        <span class="reveal text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.3);">Social Proof</span>
+        <h2 class="reveal reveal-delay-1 font-display mt-4" style="font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.03em;">
+          What Our<br/>
+          <span style="color:rgba(255,255,255,.28);">Partners Say</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+
+        <div class="testi-card reveal rounded-2xl p-8">
+          <div class="flex mb-6">
+            <div class="flex gap-0.5">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-8" style="color:rgba(255,255,255,.5);">
+            "Krapton didn't just build our AI platform — they thought through the entire product with us. The team's attention to both engineering depth and business outcomes is rare. We launched 3 weeks ahead of schedule."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium" style="background:rgba(255,255,255,.1);">SC</div>
+            <div>
+              <div class="text-sm font-medium">Sarah Chen</div>
+              <div class="text-xs" style="color:rgba(255,255,255,.3);">CTO, LendFlow Asia</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal reveal-delay-1 rounded-2xl p-8">
+          <div class="flex mb-6">
+            <div class="flex gap-0.5">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-8" style="color:rgba(255,255,255,.5);">
+            "From day one, Krapton operated like a true co-founder. Their DevOps team transformed our deployment process from a monthly nightmare into daily confident releases. Couldn't recommend them more highly."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium" style="background:rgba(255,255,255,.1);">MR</div>
+            <div>
+              <div class="text-sm font-medium">Marcus Reid</div>
+              <div class="text-xs" style="color:rgba(255,255,255,.3);">VP Engineering, Healthbridge</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal reveal-delay-2 rounded-2xl p-8">
+          <div class="flex mb-6">
+            <div class="flex gap-0.5">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L7 1z"/></svg>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-8" style="color:rgba(255,255,255,.5);">
+            "The blockchain protocol Krapton shipped was security-audited, gas-optimized, and live on mainnet in 4 months. They knew the space deeply — not just the code, but the economics and UX tradeoffs too."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium" style="background:rgba(255,255,255,.1);">AK</div>
+            <div>
+              <div class="text-sm font-medium">Arjun Kapoor</div>
+              <div class="text-xs" style="color:rgba(255,255,255,.3);">Founder, ChainVault</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       BLOG TEASER
+  ══════════════════════════════════════════ -->
+  <section id="blog" class="py-28 px-6 lg:px-12 border-t hr-line">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <span class="reveal text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.3);">Insights</span>
+          <h2 class="reveal reveal-delay-1 font-display mt-4" style="font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.03em;">From the Lab</h2>
+        </div>
+        <a href="#" class="reveal reveal-delay-2 text-sm border-b pb-0.5 w-fit" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.2);">Read all articles →</a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <article class="svc-card reveal rounded-2xl p-7 group cursor-pointer">
+          <div class="text-xs mb-5 tracking-wide" style="color:rgba(255,255,255,.3);">March 2025 · AI</div>
+          <h3 class="font-display font-700 text-lg mb-3 group-hover:text-white transition-colors" style="letter-spacing:-.02em;color:rgba(255,255,255,.85);">RAG vs Fine-Tuning: When to Choose Which</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,.35);">A practical breakdown of two dominant AI customization strategies — and how to pick the right one for your product.</p>
+          <div class="flex items-center gap-1 text-xs" style="color:rgba(255,255,255,.3);">Read more <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="group-hover:translate-x-1 transition-transform"><path d="M1.5 5h7M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </article>
+        <article class="svc-card reveal reveal-delay-1 rounded-2xl p-7 group cursor-pointer">
+          <div class="text-xs mb-5 tracking-wide" style="color:rgba(255,255,255,.3);">February 2025 · DevOps</div>
+          <h3 class="font-display font-700 text-lg mb-3 group-hover:text-white transition-colors" style="letter-spacing:-.02em;color:rgba(255,255,255,.85);">The Zero-Downtime Deployment Playbook</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,.35);">How we architect blue-green and canary deployments that let teams ship fearlessly — even on Fridays.</p>
+          <div class="flex items-center gap-1 text-xs" style="color:rgba(255,255,255,.3);">Read more <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="group-hover:translate-x-1 transition-transform"><path d="M1.5 5h7M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </article>
+        <article class="svc-card reveal reveal-delay-2 rounded-2xl p-7 group cursor-pointer">
+          <div class="text-xs mb-5 tracking-wide" style="color:rgba(255,255,255,.3);">January 2025 · Product</div>
+          <h3 class="font-display font-700 text-lg mb-3 group-hover:text-white transition-colors" style="letter-spacing:-.02em;color:rgba(255,255,255,.85);">5 Metrics Every AI Product Should Track</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,.35);">Beyond accuracy and latency — the business-layer metrics that tell you if your AI is actually working.</p>
+          <div class="flex items-center gap-1 text-xs" style="color:rgba(255,255,255,.3);">Read more <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="group-hover:translate-x-1 transition-transform"><path d="M1.5 5h7M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CTA BANNER
+  ══════════════════════════════════════════ -->
+  <section id="contact" class="py-36 px-6 lg:px-12 border-t hr-line cta-glow relative overflow-hidden">
+    <!-- Subtle radial -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div style="width:600px;height:400px;background:radial-gradient(ellipse,rgba(255,255,255,.04) 0%,transparent 65%);"></div>
+    </div>
+    <div class="max-w-4xl mx-auto text-center relative">
+      <div class="reveal">
+        <span class="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 text-xs tracking-widest uppercase mb-8" style="color:rgba(255,255,255,.4);">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse"></span>
+          Currently Accepting Projects
+        </span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-display mb-6" style="font-size:clamp(2.2rem,7vw,5.5rem);font-weight:800;letter-spacing:-.04em;line-height:.95;">
+        Let's Build Something<br/>
+        <span style="color:rgba(255,255,255,.28);">Exceptional.</span>
+      </h2>
+      <p class="reveal reveal-delay-2 text-base lg:text-lg mb-12 max-w-xl mx-auto" style="color:rgba(255,255,255,.4);">
+        Whether you're a startup finding product-market fit or an enterprise accelerating AI adoption — we'd love to hear what you're building.
+      </p>
+      <div class="reveal reveal-delay-3 flex flex-wrap gap-4 justify-center">
+        <a href="mailto:hello@krapton.com" class="mag-btn inline-flex items-center gap-2 bg-white text-ink font-medium px-8 py-4 rounded-full hover:bg-paper text-sm" style="font-weight:500;">
+          Start a Conversation
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2 7.5h11M9 3l4.5 4.5L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="tel:+1234567890" class="mag-btn inline-flex items-center gap-2 border border-white/15 text-white font-medium px-8 py-4 rounded-full text-sm hover:border-white/40 hover:bg-white/5">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M13.5 10.833l-2.5.834a11.5 11.5 0 01-8-8l.833-2.5L5.5 1l1.667 3.333-1.334 1A7 7 0 009.667 9l1-1.333L14 9.333l-.5 1.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Book a Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CAREERS TEASER
+  ══════════════════════════════════════════ -->
+  <section id="careers" class="py-20 px-6 lg:px-12 border-t hr-line">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div class="reveal">
+        <span class="text-xs tracking-widest uppercase" style="color:rgba(255,255,255,.3);">We're Hiring</span>
+        <h2 class="font-display font-700 mt-2 text-2xl lg:text-3xl" style="letter-spacing:-.03em;">Join the Team at Krapton</h2>
+        <p class="mt-2 text-sm" style="color:rgba(255,255,255,.35);">We're looking for exceptional engineers, designers, and AI researchers who love hard problems.</p>
+      </div>
+      <a href="#" class="reveal reveal-delay-1 mag-btn flex-shrink-0 inline-flex items-center gap-2 border border-white/15 text-white font-medium px-6 py-3.5 rounded-full text-sm hover:border-white/40 hover:bg-white/5">
+        View Open Roles
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="border-t hr-line px-6 lg:px-12 pt-16 pb-10">
+    <div class="max-w-7xl mx-auto">
+      <!-- Top: Brand + columns -->
+      <div class="grid lg:grid-cols-5 gap-12 mb-16">
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <a href="/" class="font-display font-800 text-2xl tracking-tight" style="font-weight:800;letter-spacing:-.03em;">
+            Krapton<span style="color:rgba(255,255,255,.25);">.</span>
+          </a>
+          <p class="mt-4 text-sm leading-relaxed max-w-xs" style="color:rgba(255,255,255,.35);">
+            Gen AI-powered engineering studio. We turn complex challenges into intelligent, scalable products.
+          </p>
+          <div class="flex gap-3 mt-6">
+            <!-- Twitter/X -->
+            <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="Twitter">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,.5)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/></svg>
+            </a>
+            <!-- GitHub -->
+            <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 hover:border-white/30 transition-colors" aria-label="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,.5)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <div class="text-xs tracking-widest uppercase mb-5" style="color:rgba(255,255,255,.25);">Services</div>
+          <ul class="space-y-3 text-sm" style="color:rgba(255,255,255,.4);">
+            <li><a href="#services" class="foot-link hover:text-white transition-colors">AI Development</a></li>
+            <li><a href="#services" class="foot-link hover:text-white transition-colors">Machine Learning</a></li>
+            <li><a href="#services" class="foot-link hover:text-white transition-colors">Web Development</a></li>
+            <li><a href="#services" class="foot-link hover:text-white transition-colors">App Development</a></li>
+            <li><a href="#services" class="foot-link hover:text-white transition-colors">DevOps & Cloud</a></li>
+            <li><a href="#services" class="foot-link hover:text-white transition-colors">UI/UX Design</a></li>
+          </ul>
+        </div>
+
+        <!-- Technologies -->
+        <div>
+          <div class="text-xs tracking-widest uppercase mb-5" style="color:rgba(255,255,255,.25);">Technologies</div>
+          <ul class="space-y-3 text-sm" style="color:rgba(255,255,255,.4);">
+            <li><a href="#technologies" class="foot-link hover:text-white transition-colors">Next.js / React</a></li>
+            <li><a href="#technologies" class="foot-link hover:text-white transition-colors">Python / TensorFlow</a></li>
+            <li><a href="#technologies" class="foot-link hover:text-white transition-colors">Node.js</a></li>
+            <li><a href="#technologies" class="foot-link hover:text-white transition-colors">AWS / GCP / Azure</a></li>
+            <li><a href="#technologies" class="foot-link hover:text-white transition-colors">Flutter</a></li>
+            <li><a href="#technologies" class="foot-link hover:text-white transition-colors">Solidity</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <div class="text-xs tracking-widest uppercase mb-5" style="color:rgba(255,255,255,.25);">Company</div>
+          <ul class="space-y-3 text-sm" style="color:rgba(255,255,255,.4);">
+            <li><a href="#about" class="foot-link hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#case-studies" class="foot-link hover:text-white transition-colors">Case Studies</a></li>
+            <li><a href="#blog" class="foot-link hover:text-white transition-colors">Blog</a></li>
+            <li><a href="#careers" class="foot-link hover:text-white transition-colors">Careers</a></li>
+            <li><a href="mailto:hello@krapton.com" class="foot-link hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="pt-8 border-t hr-line flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs" style="color:rgba(255,255,255,.25);">
+        <span>© 2025 Krapton Technologies. All rights reserved.</span>
+        <div class="flex gap-6">
+          <a href="#" class="foot-link hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="foot-link hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="foot-link hover:text-white transition-colors">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════ -->
+  <script>
+    // ── Custom cursor
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function animCursor() {
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
+      rx += (mx - rx) * .12;
+      ry += (my - ry) * .12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animCursor);
+    })();
+
+    // Expand ring on interactive elements
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width = '52px'; ring.style.height = '52px';
+        ring.style.borderColor = 'rgba(255,255,255,.6)';
+        dot.style.opacity = '0';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width = '36px'; ring.style.height = '36px';
+        ring.style.borderColor = 'rgba(255,255,255,.4)';
+        dot.style.opacity = '1';
+      });
+    });
+
+    // ── Navbar scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+    let menuOpen = false;
+    function closeMenu() {
+      menuOpen = false;
+      mobileMenu.classList.add('hidden-menu');
+      mobileMenu.classList.remove('visible-menu');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+    toggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden-menu', !menuOpen);
+      mobileMenu.classList.toggle('visible-menu', menuOpen);
+      iconOpen.classList.toggle('hidden', menuOpen);
+      iconClose.classList.toggle('hidden', !menuOpen);
+    });
+
+    // ── Scroll reveal (Intersection Observer)
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── Magnetic button effect
+    document.querySelectorAll('.mag-btn').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${x * .18}px, ${y * .18}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  </script>
+</body>
+</html>
