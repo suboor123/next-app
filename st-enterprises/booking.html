@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Service – CoolBreeze AC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'DM Sans', sans-serif; background: #f0faff; color: #0c2340; }
+    h1,h2,h3,h4,nav,label { font-family: 'Syne', sans-serif; }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#0ea5e9; transition:width 0.3s; }
+    .nav-link:hover::after { width:100%; }
+    input, select, textarea {
+      width: 100%;
+      border: 2px solid #e0f2fe;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      background: white;
+      color: #0c2340;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 4px rgba(14,165,233,0.1);
+    }
+    label { display: block; font-size: 13px; font-weight: 700; color: #475569; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .success-msg { display: none; }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <svg class="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1M4.22 4.22l.7.7m13.16 13.16.7.7M1 12h1m20 0h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7"/>
+          <circle cx="12" cy="12" r="4" stroke-width="2"/>
+        </svg>
+        <span class="text-xl font-bold text-slate-800" style="font-family:'Syne',sans-serif">CoolBreeze<span class="text-sky-500">AC</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="booking.html" class="nav-link text-sky-500">Booking</a>
+        <a href="portal.html" class="nav-link">Employee Portal</a>
+      </div>
+      <a href="booking.html" class="bg-sky-500 text-white px-5 py-2.5 rounded-full text-sm font-bold hidden md:inline-block hover:bg-sky-600 transition" style="font-family:'Syne',sans-serif">Book Service</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="pt-32 pb-16 px-6 bg-gradient-to-br from-slate-900 to-sky-900 text-white text-center">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-sky-400 text-sm font-bold uppercase tracking-widest mb-3">Get Started</div>
+      <h1 class="text-5xl font-extrabold mb-4">Book a Service</h1>
+      <p class="text-slate-300 text-lg">Fill out the form below and we'll confirm your booking within the hour.</p>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Success message -->
+      <div id="successMsg" class="success-msg bg-green-50 border border-green-200 rounded-2xl p-6 mb-8 text-center">
+        <div class="text-3xl mb-3">✅</div>
+        <h3 class="text-xl font-bold text-green-800 mb-1">Booking Received!</h3>
+        <p class="text-green-600 text-sm" id="jobIdMsg">Your Job ID: <strong>AC-1001</strong></p>
+        <p class="text-green-600 text-sm mt-1">We'll contact you shortly to confirm your appointment.</p>
+      </div>
+
+      <div class="bg-white rounded-3xl shadow-xl shadow-sky-100 p-10 border border-sky-100">
+        <h2 class="text-2xl font-extrabold text-slate-800 mb-8">Service Booking Form</h2>
+
+        <div class="space-y-6">
+          <!-- Name & Phone -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="e.g. Ahmed Khan" required />
+            </div>
+            <div>
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="e.g. +92 300 1234567" required />
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <label for="address">Service Address</label>
+            <input type="text" id="address" placeholder="House/Flat No, Street, Area, City" required />
+          </div>
+
+          <!-- Service Type -->
+          <div>
+            <label for="serviceType">Service Type</label>
+            <select id="serviceType" required>
+              <option value="" disabled selected>Select a service...</option>
+              <option value="repair">AC Repair</option>
+              <option value="installation">AC Installation</option>
+              <option value="maintenance">AC Maintenance</option>
+            </select>
+          </div>
+
+          <!-- Date & Time -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" required />
+            </div>
+            <div>
+              <label for="time">Preferred Time</label>
+              <select id="time" required>
+                <option value="" disabled selected>Select time slot...</option>
+                <option>9:00 AM – 11:00 AM</option>
+                <option>11:00 AM – 1:00 PM</option>
+                <option>1:00 PM – 3:00 PM</option>
+                <option>3:00 PM – 5:00 PM</option>
+                <option>5:00 PM – 7:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Issue Description -->
+          <div>
+            <label for="issue">Issue Description</label>
+            <textarea id="issue" rows="4" placeholder="Describe the problem or what service you need in detail..."></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button onclick="submitBooking()" class="w-full bg-sky-500 text-white py-4 rounded-2xl font-extrabold text-base hover:bg-sky-600 transition flex items-center justify-center gap-2" style="font-family:'Syne',sans-serif">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+            </svg>
+            Submit Booking
+          </button>
+        </div>
+      </div>
+
+      <!-- Info cards -->
+      <div class="grid md:grid-cols-3 gap-4 mt-8">
+        <div class="bg-white rounded-2xl p-5 border border-sky-100 text-center">
+          <div class="text-2xl mb-2">⚡</div>
+          <div class="text-sm font-semibold text-slate-700">Same-day service</div>
+          <div class="text-xs text-slate-400 mt-1">For urgent bookings</div>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-sky-100 text-center">
+          <div class="text-2xl mb-2">📋</div>
+          <div class="text-sm font-semibold text-slate-700">Job ID assigned</div>
+          <div class="text-xs text-slate-400 mt-1">Track your service</div>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-sky-100 text-center">
+          <div class="text-2xl mb-2">📞</div>
+          <div class="text-sm font-semibold text-slate-700">We call to confirm</div>
+          <div class="text-xs text-slate-400 mt-1">Within 1 hour</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-12 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+      <div>
+        <div class="text-white font-extrabold text-xl mb-3" style="font-family:'Syne',sans-serif">CoolBreeze<span class="text-sky-400">AC</span></div>
+        <p class="text-sm leading-relaxed">Professional AC services you can trust. Serving homes and businesses since 2014.</p>
+      </div>
+      <div>
+        <div class="text-white font-semibold mb-3">Quick Links</div>
+        <div class="flex flex-col gap-2 text-sm">
+          <a href="index.html" class="hover:text-sky-400 transition">Home</a>
+          <a href="about.html" class="hover:text-sky-400 transition">About</a>
+          <a href="services.html" class="hover:text-sky-400 transition">Services</a>
+          <a href="booking.html" class="hover:text-sky-400 transition">Book a Service</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-white font-semibold mb-3">Contact</div>
+        <div class="text-sm flex flex-col gap-2">
+          <span>📞 +92 300 000 0000</span>
+          <span>✉️ info@coolbreezeac.com</span>
+          <span>📍 Karachi, Pakistan</span>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-slate-800 text-center text-xs text-slate-600">
+      © 2024 CoolBreeze AC Services. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').min = today;
+
+    function generateJobId() {
+      const num = Math.floor(1000 + Math.random() * 9000);
+      return 'AC-' + num;
+    }
+
+    function submitBooking() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const serviceType = document.getElementById('serviceType').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+
+      if (!name || !phone || !address || !serviceType || !date || !time) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      const jobId = generateJobId();
+      document.getElementById('jobIdMsg').innerHTML = `Your Job ID: <strong>${jobId}</strong> — please save this for reference.`;
+      document.getElementById('successMsg').style.display = 'block';
+      document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // In production: POST to backend API here
+      // fetch('/api/bookings', { method:'POST', body: JSON.stringify({jobId, name, phone, ...}) })
+    }
+  </script>
+</body>
+</html>

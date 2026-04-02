@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee Portal – CoolBreeze AC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'DM Sans', sans-serif; background: #0c1a2e; color: #e2e8f0; }
+    h1,h2,h3,h4,nav,label { font-family: 'Syne', sans-serif; }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#0ea5e9; transition:width 0.3s; }
+    .nav-link:hover::after { width:100%; }
+    input, select, textarea {
+      width: 100%;
+      border: 2px solid rgba(14,165,233,0.2);
+      border-radius: 10px;
+      padding: 11px 15px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      background: rgba(255,255,255,0.05);
+      color: #e2e8f0;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 4px rgba(14,165,233,0.15);
+    }
+    input::placeholder, textarea::placeholder { color: #64748b; }
+    select option { background: #1e293b; color: #e2e8f0; }
+    label { display: block; font-size: 11px; font-weight: 700; color: #94a3b8; margin-bottom: 5px; letter-spacing: 0.08em; text-transform: uppercase; }
+    #loginPanel { display: flex; }
+    #uploadPanel { display: none; }
+    .file-drop {
+      border: 2px dashed rgba(14,165,233,0.4);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .file-drop:hover { border-color: #0ea5e9; background: rgba(14,165,233,0.05); }
+    .file-item { display: flex; align-items: center; gap-10px; padding: 8px 12px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-top: 8px; font-size: 13px; }
+    #successUpload { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <svg class="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1M4.22 4.22l.7.7m13.16 13.16.7.7M1 12h1m20 0h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7"/>
+          <circle cx="12" cy="12" r="4" stroke-width="2"/>
+        </svg>
+        <span class="text-xl font-bold text-white" style="font-family:'Syne',sans-serif">CoolBreeze<span class="text-sky-500">AC</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-400">
+        <a href="index.html" class="nav-link hover:text-white transition">Home</a>
+        <a href="about.html" class="nav-link hover:text-white transition">About</a>
+        <a href="services.html" class="nav-link hover:text-white transition">Services</a>
+        <a href="booking.html" class="nav-link hover:text-white transition">Booking</a>
+        <a href="portal.html" class="nav-link text-sky-400">Employee Portal</a>
+      </div>
+      <div id="logoutBtn" style="display:none">
+        <button onclick="logout()" class="border border-slate-600 text-slate-300 px-4 py-2 rounded-full text-sm hover:border-red-400 hover:text-red-400 transition" style="font-family:'Syne',sans-serif">Log Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========== LOGIN PANEL =========== -->
+  <div id="loginPanel" class="min-h-screen items-center justify-center px-6 pt-20">
+    <div class="w-full max-w-md mx-auto">
+      <!-- Badge -->
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-sky-500/20 border border-sky-500/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-extrabold text-white mb-1">Employee Portal</h1>
+        <p class="text-slate-400 text-sm">Restricted access — authorised employees only</p>
+      </div>
+
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-8">
+        <div class="space-y-5">
+          <div>
+            <label for="empId">Employee ID</label>
+            <input type="text" id="empId" placeholder="e.g. EMP-001" />
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" />
+          </div>
+          <div id="loginError" class="text-red-400 text-sm hidden bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+            ❌ Invalid credentials. Please try again.
+          </div>
+          <button onclick="doLogin()" class="w-full bg-sky-500 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-sky-600 transition mt-2" style="font-family:'Syne',sans-serif">
+            Sign In →
+          </button>
+        </div>
+        <p class="text-slate-500 text-xs text-center mt-6">Demo credentials: EMP-001 / password123</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========== UPLOAD PANEL =========== -->
+  <div id="uploadPanel" class="min-h-screen px-6 pt-28 pb-16">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Header -->
+      <div class="mb-8 flex items-center justify-between">
+        <div>
+          <div class="text-sky-400 text-xs font-bold uppercase tracking-widest mb-1">Employee Portal</div>
+          <h1 class="text-3xl font-extrabold text-white">Job Upload</h1>
+          <p class="text-slate-400 text-sm mt-1">Submit service details and files for a completed job</p>
+        </div>
+        <div id="empBadge" class="bg-sky-500/20 border border-sky-500/30 rounded-2xl px-4 py-2 text-center">
+          <div class="text-sky-400 font-bold text-sm">EMP-001</div>
+          <div class="text-slate-400 text-xs">Logged In</div>
+        </div>
+      </div>
+
+      <!-- Success message -->
+      <div id="successUpload" class="bg-green-500/10 border border-green-500/30 rounded-2xl p-6 mb-8 text-center">
+        <div class="text-3xl mb-3">✅</div>
+        <h3 class="text-xl font-bold text-green-400 mb-1">Upload Successful!</h3>
+        <p class="text-green-300 text-sm" id="uploadJobIdMsg">Job <strong>AC-1001</strong> data has been saved.</p>
+      </div>
+
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-8 space-y-6">
+
+        <!-- Job ID & Employee Name -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="jobId">Job ID</label>
+            <input type="text" id="jobId" placeholder="e.g. AC-1001" required />
+          </div>
+          <div>
+            <label for="empName">Employee Name</label>
+            <input type="text" id="empName" placeholder="Your full name" required />
+          </div>
+        </div>
+
+        <!-- Service Details -->
+        <div>
+          <label for="serviceDetails">Service Details</label>
+          <textarea id="serviceDetails" rows="4" placeholder="Describe the work performed, parts replaced, findings..."></textarea>
+        </div>
+
+        <!-- File Upload -->
+        <div>
+          <label>Upload Files (Images &amp; PDFs)</label>
+          <div class="file-drop" onclick="document.getElementById('fileInput').click()" id="dropZone">
+            <div class="text-3xl mb-3">📎</div>
+            <p class="text-slate-300 font-semibold text-sm">Click to upload or drag &amp; drop</p>
+            <p class="text-slate-500 text-xs mt-1">JPG, PNG, PDF — multiple files allowed</p>
+            <input type="file" id="fileInput" multiple accept="image/*,.pdf" class="hidden" onchange="handleFiles(this.files)"/>
+          </div>
+          <!-- File list -->
+          <div id="fileList" class="mt-3 space-y-2"></div>
+        </div>
+
+        <!-- Submit -->
+        <button onclick="submitUpload()" class="w-full bg-sky-500 text-white py-4 rounded-2xl font-extrabold text-base hover:bg-sky-600 transition flex items-center justify-center gap-2" style="font-family:'Syne',sans-serif">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+          </svg>
+          Submit Job Data
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-slate-600 py-8 px-6 text-center text-xs border-t border-slate-800">
+    © 2024 CoolBreeze AC Services — Employee Portal (Restricted)
+  </footer>
+
+  <script>
+    function doLogin() {
+      const id = document.getElementById('empId').value.trim();
+      const pw = document.getElementById('password').value.trim();
+      const err = document.getElementById('loginError');
+
+      // Demo credentials — replace with real auth in production
+      if (id === 'EMP-001' && pw === 'password123') {
+        document.getElementById('loginPanel').style.display = 'none';
+        document.getElementById('uploadPanel').style.display = 'block';
+        document.getElementById('logoutBtn').style.display = 'block';
+        document.getElementById('empBadge').querySelector('.text-sky-400').textContent = id;
+        err.classList.add('hidden');
+      } else {
+        err.classList.remove('hidden');
+      }
+    }
+
+    function logout() {
+      document.getElementById('loginPanel').style.display = 'flex';
+      document.getElementById('uploadPanel').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = 'none';
+      document.getElementById('empId').value = '';
+      document.getElementById('password').value = '';
+    }
+
+    // Allow Enter key to login
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && document.getElementById('loginPanel').style.display !== 'none') doLogin();
+    });
+
+    let uploadedFiles = [];
+
+    function handleFiles(files) {
+      const list = document.getElementById('fileList');
+      for (const file of files) {
+        uploadedFiles.push(file);
+        const icons = { 'application/pdf': '📄', 'image/jpeg': '🖼️', 'image/png': '🖼️', 'image/jpg': '🖼️' };
+        const icon = icons[file.type] || '📎';
+        const size = (file.size / 1024).toFixed(1) + ' KB';
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm';
+        div.innerHTML = `<span class="flex items-center gap-2 text-slate-300">${icon} <span>${file.name}</span></span><span class="text-slate-500 text-xs">${size}</span>`;
+        list.appendChild(div);
+      }
+    }
+
+    // Drag and drop
+    const dropZone = document.getElementById('dropZone');
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = '#0ea5e9'; });
+    dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = ''; });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.style.borderColor = '';
+      handleFiles(e.dataTransfer.files);
+    });
+
+    function submitUpload() {
+      const jobId = document.getElementById('jobId').value.trim();
+      const empName = document.getElementById('empName').value.trim();
+      const details = document.getElementById('serviceDetails').value.trim();
+
+      if (!jobId || !empName) {
+        alert('Please fill in Job ID and Employee Name.');
+        return;
+      }
+
+      document.getElementById('uploadJobIdMsg').innerHTML = `Job <strong>${jobId}</strong> data has been saved successfully.`;
+      document.getElementById('successUpload').style.display = 'block';
+      document.getElementById('successUpload').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // In production: POST to backend API here
+      // const formData = new FormData();
+      // formData.append('jobId', jobId);
+      // uploadedFiles.forEach(f => formData.append('files', f));
+      // fetch('/api/jobs/upload', { method: 'POST', body: formData });
+    }
+  </script>
+</body>
+</html>
