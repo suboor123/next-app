@@ -1679,6 +1679,42 @@ document.querySelectorAll('.stat-tile').forEach(function(tile){
       
     </div>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cookiePopup = document.getElementById('cookie-popup');
+      const btnAccept = document.getElementById('btn-accept');
+      const btnDecline = document.getElementById('btn-decline');
+      const btnClose = document.getElementById('btn-close');
   
+      // 1. Check if the user has already made a choice in a previous session
+      if (localStorage.getItem('cookieConsent')) {
+        cookiePopup.classList.add('hidden'); // Hide immediately if consent exists
+      }
+  
+      // 2. Function to close the popup and save the user's choice
+      const closePopup = (choice) => {
+        // Add Tailwind's hidden class to remove it from the screen
+        cookiePopup.classList.add('hidden'); 
+        
+        // Save the preference to the browser's local storage
+        localStorage.setItem('cookieConsent', choice);
+        
+        // Optional: You can trigger your analytics scripts here if 'choice' === 'accepted'
+      };
+  
+      // 3. Attach click events to the buttons
+      if (btnAccept) {
+        btnAccept.addEventListener('click', () => closePopup('accepted'));
+      }
+      
+      if (btnDecline) {
+        btnDecline.addEventListener('click', () => closePopup('declined'));
+      }
+      
+      if (btnClose) {
+        btnClose.addEventListener('click', () => closePopup('dismissed'));
+      }
+    });
+  </script>
 </body>
 </html>
