@@ -1645,5 +1645,39 @@ document.querySelectorAll('.stat-tile').forEach(function(tile){
   }
 })();
 </script>
+
+<div class="fixed bottom-4 right-4 z-50 max-w-sm w-full rounded-2xl bg-white p-6 shadow-2xl border border-gray-100 font-sans dark:bg-gray-900 dark:border-gray-800 transition-transform duration-300 transform translate-y-0">
+    <div class="flex items-start gap-4">
+      
+      <div class="flex-shrink-0 text-3xl" aria-hidden="true">
+        🍪
+      </div>
+      
+      <div class="flex-1">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+          We value your privacy
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+          We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-400">Read our Policy</a>.
+        </p>
+        
+        <div class="mt-5 flex flex-col sm:flex-row gap-3">
+          <button class="w-full sm:flex-1 rounded-xl bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-gray-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 dark:focus:ring-white dark:focus:ring-offset-gray-900">
+            Accept All
+          </button>
+          <button class="w-full sm:flex-1 rounded-xl bg-gray-100 px-4 py-2.5 text-sm font-semibold text-gray-700 transition-all hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-900">
+            Decline
+          </button>
+        </div>
+      </div>
+      
+      <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+    </div>
+  </div>
 </body>
 </html>
