@@ -1687,8 +1687,8 @@ document.querySelectorAll('.stat-tile').forEach(function(tile){
       const btnClose = document.getElementById('btn-close');
   
       // 1. Check if the user has already made a choice in a previous session
-      if (localStorage.getItem('cookieConsent')) {
-        cookiePopup.classList.add('hidden'); // Hide immediately if consent exists
+      if (!localStorage.getItem('cookieConsent')) {
+        cookiePopup.classList.remove('hidden'); // Hide immediately if consent exists
       }
   
       // 2. Function to close the popup and save the user's choice
