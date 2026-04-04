@@ -222,9 +222,9 @@ document.addEventListener('DOMContentLoaded', function(){
   // document.body.insertBefore(menuDiv.firstElementChild, document.body.childNodes[2]);
 
   // // Inject footer
-  // const footerEl = document.createElement('div');
-  // footerEl.innerHTML = buildFooter();
-  // document.body.appendChild(footerEl.firstElementChild);
+  const footerEl = document.createElement('div');
+  footerEl.innerHTML = buildFooter();
+  document.body.appendChild(footerEl.firstElementChild);
 
   initNav();
 });
