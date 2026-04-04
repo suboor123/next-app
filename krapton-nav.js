@@ -211,20 +211,20 @@ function buildFooter(){
    INJECT INTO PAGE
 ══════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function(){
-  // Inject nav before first element in body
-  const navEl = document.createElement('div');
-  navEl.innerHTML = buildNav() + buildMenu();
-  document.body.insertBefore(navEl.firstElementChild, document.body.firstChild);
-  // menu backdrop + fullmenu after nav
-  const menuDiv = document.createElement('div');
-  menuDiv.innerHTML = buildMenu();
-  document.body.insertBefore(menuDiv.firstElementChild, document.body.childNodes[1]);
-  document.body.insertBefore(menuDiv.firstElementChild, document.body.childNodes[2]);
+  // // Inject nav before first element in body
+  // const navEl = document.createElement('div');
+  // navEl.innerHTML = buildNav() + buildMenu();
+  // document.body.insertBefore(navEl.firstElementChild, document.body.firstChild);
+  // // menu backdrop + fullmenu after nav
+  // const menuDiv = document.createElement('div');
+  // menuDiv.innerHTML = buildMenu();
+  // document.body.insertBefore(menuDiv.firstElementChild, document.body.childNodes[1]);
+  // document.body.insertBefore(menuDiv.firstElementChild, document.body.childNodes[2]);
 
-  // Inject footer
-  const footerEl = document.createElement('div');
-  footerEl.innerHTML = buildFooter();
-  document.body.appendChild(footerEl.firstElementChild);
+  // // Inject footer
+  // const footerEl = document.createElement('div');
+  // footerEl.innerHTML = buildFooter();
+  // document.body.appendChild(footerEl.firstElementChild);
 
   initNav();
 });
