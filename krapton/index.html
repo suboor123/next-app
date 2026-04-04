@@ -1308,7 +1308,7 @@ window.addEventListener('scroll',()=>window.scrollY>50?nav.classList.add('sc'):n
 /* ── Mobile Menu ── */
 const mbtn=document.getElementById('mbtn'),mmenu=document.getElementById('mob-menu');
 let mo=false;
-mbtn.addEventListener('click',()=>{mo=!mo;mmenu.style.maxHeight=mo?'400px':'0';mmenu.style.opacity=mo?'1':'0'});
+mbtn?.addEventListener('click',()=>{mo=!mo;mmenu.style.maxHeight=mo?'400px':'0';mmenu.style.opacity=mo?'1':'0'});
 
 /* ── Scroll Reveal ── */
 const rvEls=document.querySelectorAll('.rv');
