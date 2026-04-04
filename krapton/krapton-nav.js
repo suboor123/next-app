@@ -52,7 +52,7 @@ function buildNav(){
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <img src="https://www.krapton.com/assets/custom_icons/krapton-logo.webp" alt="Krapton" width="34" height="34" style="height:34px;width:auto"/>
-      <span class="nav-logo-text">Krapton</span>
+    
     </a>
     <ul class="nav-links" style="display:flex;list-style:none;gap:28px">
       ${linkHtml}
