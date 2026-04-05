@@ -28,30 +28,119 @@
 <body>
 <div class="cdot" id="cdot"></div><div class="cring" id="cring"></div>
 <main>
-  <section class="hire-hero">
-  <div class="hire-hero-grid"></div>
-  <div class="container" style="position:relative;z-index:2">
-    <div class="breadcrumb rv"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><a href="hire-us.html">Hire Us</a><span class="breadcrumb-sep">/</span><span>Hire Web Developer</span></div>
-    <div class="hbadge mb-6 rv d1"><span class="pdot"></span> Dedicated Web Engineers · Vetted · In-House · India</div>
-    <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.06;letter-spacing:-.035em;font-size:clamp(2.2rem,5vw,4rem);color:#0a0a0a;max-width:760px">Hire Expert Web Developers<br/>from India</h1>
-    <p class="rv d3" style="color:#6b7280;font-size:1.05rem;margin-top:18px;max-width:520px;line-height:1.7;font-weight:300">Full-stack web engineers who build fast, beautiful, scalable websites and web apps. Fixed-price or dedicated hiring models — both with 98% on-time delivery.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:28px" class="rv d4">
-      <a href="hire-us.html" class="btn btn-primary" style="padding:14px 28px">Hire Web Developer <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5h10M6 1.5l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="case-studies.html" class="btn btn-outline" style="padding:13px 24px">View Our Work</a>
+  <section class="hire-hero relative min-h-[90vh] flex items-center overflow-hidden bg-[#fafafa]">
+    <style>
+      @keyframes code-drift { 0% { transform: translateY(0) translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-40px) translateX(-10px); opacity: 0; } }
+      @keyframes score-pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 193, 106, 0.4); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(0, 193, 106, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 193, 106, 0); } }
+      @keyframes browser-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
+      
+      .code-tag { position: absolute; font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 4px 10px; border-radius: 6px; background: white; shadow: 0 4px 12px rgba(0,0,0,0.05); z-index: 30; animation: code-drift 4s infinite; opacity: 0; }
+      .speed-gauge { width: 80px; height: 80px; border-radius: 50%; border: 6px solid #00c16a; display: flex; items-center; justify-center; animation: score-pulse 2s infinite; background: white; }
+      .web-mockup { animation: browser-float 6s ease-in-out infinite; transform-style: preserve-3d; }
+    </style>
+  
+    <div class="absolute inset-0 opacity-[0.05] pointer-events-none" style="background-image: radial-gradient(#00c16a 1px, transparent 1px); background-size: 30px 30px;"></div>
+  
+    <div class="container mx-auto px-6 lg:px-10 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7">
+          <div class="breadcrumb rv mb-6 flex items-center gap-2 text-sm font-medium text-gray-400">
+            <a href="index.html" class="hover:text-[#00c16a]">Home</a><span class="breadcrumb-sep">/</span>
+            <a href="hire-us.html" class="hover:text-[#00c16a]">Hire Us</a><span class="breadcrumb-sep">/</span>
+            <span class="text-gray-900">Hire Web Developer</span>
+          </div>
+  
+          <div class="hbadge mb-6 rv d1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-100 shadow-sm">
+            <span class="pdot w-2 h-2 rounded-full bg-[#00c16a]"></span>
+            <span class="text-[11px] font-bold tracking-wider text-gray-600 uppercase">Dedicated Web Engineers · Vetted · India</span>
+          </div>
+  
+          <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.06;letter-spacing:-.035em;font-size:clamp(2.2rem,5vw,4rem);color:#0a0a0a;max-width:760px">
+            Hire Expert Web Developers<br/>from India
+          </h1>
+          
+          <p class="rv d3 text-gray-500 text-lg mt-6 max-w-lg leading-relaxed font-light">
+            Full-stack web engineers who build fast, beautiful, scalable websites and web apps. Fixed-price or dedicated hiring models — both with 98% on-time delivery.
+          </p>
+  
+          <div class="flex flex-wrap gap-4 mt-8 rv d4">
+            <a href="hire-us.html" class="bg-[#0a0a0a] text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-[#00c16a] transition-all transform hover:-translate-y-1">
+              Hire Web Developer 
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="case-studies.html" class="border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all">View Our Work</a>
+          </div>
+  
+          <div class="flex flex-wrap gap-2 mt-8 rv d5">
+            <span class="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-bold uppercase tracking-tight">Next.js</span>
+            <span class="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-bold uppercase tracking-tight">React</span>
+            <span class="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-bold uppercase tracking-tight">Node.js</span>
+            <span class="px-3 py-1.5 bg-[#00c16a]/10 text-[#00c16a] rounded-lg text-xs font-bold uppercase tracking-tight">AWS</span>
+            <span class="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-bold uppercase tracking-tight">PostgreSQL</span>
+          </div>
+  
+          <div class="flex flex-wrap gap-10 mt-12 pt-8 border-t border-gray-200/60 rv d5">
+            <div><span class="block text-3xl font-extrabold text-[#0a0a0a] tracking-tighter">60+</span><div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Engineers</div></div>
+            <div><span class="block text-3xl font-extrabold text-[#0a0a0a] tracking-tighter">4.8★</span><div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Avg Rating</div></div>
+            <div><span class="block text-3xl font-extrabold text-[#00c16a] tracking-tighter">60%</span><div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Cost Savings</div></div>
+          </div>
+        </div>
+  
+        <div class="lg:col-span-5 relative hidden lg:flex items-center justify-center">
+          
+          <div class="code-tag top-0 left-10 text-blue-500" style="animation-delay: 0s">&lt;Navbar /&gt;</div>
+          <div class="code-tag top-20 right-0 text-[#00c16a]" style="animation-delay: 1.5s">useEffect(() =></div>
+          <div class="code-tag bottom-10 left-0 text-purple-500" style="animation-delay: 3s">const api = await</div>
+  
+          <div class="web-mockup relative w-full">
+            <div class="bg-white rounded-2xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden">
+              <div class="bg-gray-50 px-4 py-3 border-b border-gray-100 flex items-center gap-2">
+                <div class="flex gap-1.5">
+                  <div class="w-2.5 h-2.5 rounded-full bg-red-300"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-yellow-300"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-green-300"></div>
+                </div>
+                <div class="mx-auto w-32 h-2 bg-gray-200 rounded-full"></div>
+              </div>
+              
+              <div class="p-6 space-y-4">
+                <div class="h-4 w-1/3 bg-gray-100 rounded-full mb-6"></div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="h-32 bg-gray-50 rounded-xl"></div>
+                  <div class="h-32 bg-gray-50 rounded-xl"></div>
+                </div>
+                <div class="h-20 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl"></div>
+              </div>
+            </div>
+  
+            <div class="absolute -right-6 -bottom-6 flex flex-col items-center gap-2 z-40">
+               <div class="speed-gauge">
+                  <span class="text-2xl font-black text-[#00c16a]">99</span>
+               </div>
+               <div class="bg-gray-900 text-white text-[9px] font-bold px-3 py-1 rounded-full tracking-widest uppercase">Performance</div>
+            </div>
+  
+            <div class="absolute -left-10 top-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-xl border border-gray-100 z-40 hidden xl:block">
+               <div class="text-[10px] font-bold text-gray-400 uppercase mb-3">Core Web Vitals</div>
+               <div class="space-y-2">
+                  <div class="flex items-center gap-4">
+                    <div class="w-16 h-1.5 bg-gray-100 rounded-full"><div class="w-full h-full bg-[#00c16a] rounded-full"></div></div>
+                    <span class="text-[9px] font-bold">LCP</span>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="w-16 h-1.5 bg-gray-100 rounded-full"><div class="w-full h-full bg-[#00c16a] rounded-full"></div></div>
+                    <span class="text-[9px] font-bold">FID</span>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
     </div>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px" class="rv d5"><span class="skill-pill">Next.js</span><span class="skill-pill">React</span><span class="skill-pill">Node.js</span><span class="skill-pill">PHP/Laravel</span><span class="skill-pill">WordPress</span><span class="skill-pill">WooCommerce</span><span class="skill-pill">REST APIs</span><span class="skill-pill">PostgreSQL</span><span class="skill-pill">MySQL</span><span class="skill-pill">AWS</span><span class="skill-pill">Docker</span><span class="skill-pill">SEO/Core Web Vitals</span></div>
-    <!-- Stats row -->
-    <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(0,0,0,.07)" class="rv d5">
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-.04em;color:#0a0a0a">60+</span><div style="font-size:.75rem;color:#9ca3af;font-weight:500">Engineers</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-.04em;color:#0a0a0a">150+</span><div style="font-size:.75rem;color:#9ca3af;font-weight:500">Projects</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-.04em;color:#0a0a0a">4.8★</span><div style="font-size:.75rem;color:#9ca3af;font-weight:500">Avg Rating</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-.04em;color:#0a0a0a">60%</span><div style="font-size:.75rem;color:#9ca3af;font-weight:500">Cost Savings</div></div>
-    </div>
-  </div>
-</section><section class="section" style="background:#fafafa"><div class="container"><div class="text-center mb-12"><div class="section-label rv inline-flex mb-4">Available Now</div><h2 class="rv d1" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.03em;color:#0a0a0a">Meet Our Web Engineers</h2><p class="rv d2" style="color:#6b7280;margin-top:8px;font-weight:300;font-size:.9rem">All developers are senior-level, in-house — no freelancers, no subcontracting.</p></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px"><div class="profile-card rv d0">
+  </section>
+<section class="section" style="background:#fafafa"><div class="container"><div class="text-center mb-12"><div class="section-label rv inline-flex mb-4">Available Now</div><h2 class="rv d1" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.03em;color:#0a0a0a">Meet Our Web Engineers</h2><p class="rv d2" style="color:#6b7280;margin-top:8px;font-weight:300;font-size:.9rem">All developers are senior-level, in-house — no freelancers, no subcontracting.</p></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px"><div class="profile-card rv d0">
   <div class="avatar" style="background:rgba(0,193,106,.15);color:#00c16a">VP</div>
   <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.95rem;color:#0a0a0a;margin-bottom:3px">Vikram Patel</div>
   <div style="font-size:.77rem;color:#6b7280;margin-bottom:6px;font-weight:300;font-family:'Plus Jakarta Sans',sans-serif">Full Stack Web Dev</div>
