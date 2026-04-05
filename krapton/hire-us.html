@@ -39,13 +39,131 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg vie
 <main>
 
 <!-- HERO -->
-<section class="page-hero">
-  <div class="page-hero-grid"></div>
-  <div class="page-hero-content">
-    <div class="breadcrumb rv"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Hire Us</span></div>
-    <div class="hbadge mb-6 rv d1"><span class="pdot"></span> Free Consultation · Response in 24h · NDA Available</div>
-    <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.06;letter-spacing:-.035em;font-size:clamp(2.4rem,6vw,4.5rem);color:#0a0a0a;max-width:700px">Let's Build Something<br/><span style="background:linear-gradient(135deg,#00c16a,#009952);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Exceptional Together</span></h1>
-    <p class="rv d3" style="color:#6b7280;font-size:1.05rem;margin-top:18px;max-width:520px;line-height:1.7;font-weight:300">Tell us about your project. We'll get back to you within 24 hours with a free technical assessment — no sales pitch, no commitment.</p>
+<section class="page-hero relative min-h-[85vh] flex items-center overflow-hidden bg-white">
+  <style>
+    @keyframes draw-path { 0% { stroke-dashoffset: 200; opacity: 0; } 50% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+    @keyframes pulse-success { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } }
+    @keyframes card-slide { 0% { transform: translateX(30px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+    @keyframes float-roadmap { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
+    
+    .roadmap-path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw-path 4s ease-out infinite; }
+    .status-dot { animation: pulse-success 2s ease-in-out infinite; }
+    .floating-roadmap { animation: float-roadmap 6s ease-in-out infinite; }
+    .reveal-step { opacity: 0; animation: card-slide 0.8s forwards; }
+  </style>
+
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 -right-20 w-96 h-96 bg-[#00c16a]/5 blur-[100px] rounded-full"></div>
+    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-500/5 blur-[80px] rounded-full"></div>
+  </div>
+
+  <div class="container mx-auto px-6 lg:px-10 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      
+      <div class="lg:col-span-6 page-hero-content">
+        <div class="breadcrumb rv mb-6 flex items-center gap-2 text-sm font-medium text-gray-400">
+          <a href="index.html" class="hover:text-[#00c16a] transition-colors">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="text-gray-900">Hire Us</span>
+        </div>
+
+        <div class="hbadge mb-6 rv d1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c16a]/10 border border-[#00c16a]/20">
+          <span class="pdot w-2 h-2 rounded-full bg-[#00c16a]"></span>
+          <span class="text-[11px] font-bold tracking-wider text-[#00c16a] uppercase">24h Response · NDA Guaranteed</span>
+        </div>
+
+        <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.06;letter-spacing:-.035em;font-size:clamp(2.4rem,6vw,4.5rem);color:#0a0a0a;max-width:700px">
+          Let's Build Something<br/>
+          <span style="background:linear-gradient(135deg,#00c16a,#009952);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Exceptional Together</span>
+        </h1>
+        
+        <p class="rv d3 text-gray-500 text-lg mt-6 max-w-lg leading-relaxed font-light">
+          Tell us about your project. We'll get back to you within 24 hours with a free technical assessment — no sales pitch, no commitment.
+        </p>
+
+        <div class="mt-10 pt-10 border-t border-gray-100 flex items-center gap-8 rv d4">
+           <div>
+              <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Onboarding Time</div>
+              <div class="text-xl font-bold text-gray-900">3-5 Days</div>
+           </div>
+           <div class="w-px h-8 bg-gray-200"></div>
+           <div>
+              <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Technical Audit</div>
+              <div class="text-xl font-bold text-gray-900 text-[#00c16a]">Free</div>
+           </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 relative flex items-center justify-center hidden lg:flex">
+        <div class="floating-roadmap relative w-full max-w-[450px]">
+          
+          <div class="bg-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] border border-gray-100 p-8 z-20 relative">
+            <div class="flex items-center justify-between mb-8">
+               <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center">
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M2 12h20" stroke-linecap="round"/></svg>
+                  </div>
+                  <div>
+                     <div class="text-sm font-bold text-gray-900">Project Scoping</div>
+                     <div class="text-[10px] text-gray-400 uppercase font-bold tracking-tighter">Technical Assessment</div>
+                  </div>
+               </div>
+               <div class="px-3 py-1 bg-[#00c16a]/10 text-[#00c16a] text-[10px] font-bold rounded-full">LIVE PHASE</div>
+            </div>
+
+            <div class="space-y-6 relative">
+               <div class="absolute left-[11px] top-2 bottom-2 w-[1px] bg-gray-100"></div>
+               
+               <div class="flex items-start gap-4 reveal-step" style="animation-delay: 0.5s">
+                  <div class="w-6 h-6 rounded-full bg-[#00c16a] flex items-center justify-center z-10 border-4 border-white shadow-sm">
+                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div class="flex-1">
+                     <div class="h-2 w-24 bg-gray-100 rounded-full mb-2"></div>
+                     <div class="h-1.5 w-full bg-gray-50 rounded-full"></div>
+                  </div>
+               </div>
+
+               <div class="flex items-start gap-4 reveal-step" style="animation-delay: 1.5s">
+                  <div class="w-6 h-6 rounded-full bg-[#00c16a] flex items-center justify-center z-10 border-4 border-white shadow-sm status-dot"></div>
+                  <div class="flex-1">
+                     <div class="h-2 w-32 bg-gray-900 rounded-full mb-2"></div>
+                     <div class="flex gap-1">
+                        <div class="h-1.5 w-1/2 bg-gray-100 rounded-full"></div>
+                        <div class="h-1.5 w-1/4 bg-[#00c16a]/30 rounded-full"></div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="flex items-start gap-4 reveal-step" style="animation-delay: 2.5s">
+                  <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center z-10 border-4 border-white shadow-sm"></div>
+                  <div class="flex-1">
+                     <div class="h-2 w-20 bg-gray-100 rounded-full"></div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="absolute -right-12 -top-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 reveal-step" style="animation-delay: 3s">
+               <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 font-bold text-xs">+98%</div>
+               <div class="text-[9px] font-bold text-gray-400 uppercase leading-tight">Delivery<br/>Accuracy</div>
+            </div>
+
+            <div class="absolute -left-10 -bottom-6 bg-gray-900 p-4 rounded-2xl shadow-xl flex items-center gap-3 reveal-step" style="animation-delay: 3.5s">
+               <div class="w-8 h-8 rounded-lg bg-[#00c16a] flex items-center justify-center shadow-lg shadow-[#00c16a]/40">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M12 20V10M18 20V4M6 20v-4" stroke-linecap="round"/></svg>
+               </div>
+               <div>
+                  <div class="text-[10px] font-bold text-gray-400 uppercase">ROI Projection</div>
+                  <div class="text-xs font-bold text-white">High Impact</div>
+               </div>
+            </div>
+          </div>
+          
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#00c16a]/20 to-transparent blur-3xl opacity-30 -z-10"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
