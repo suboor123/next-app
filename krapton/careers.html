@@ -81,126 +81,153 @@
         <div class="cdot" id="cdot"></div>
         <div class="cring" id="cring"></div>
         <main>
-          <section class="page-hero relative min-h-[90vh] flex items-center overflow-hidden bg-white">
+          <section class="page-hero relative min-h-[95vh] flex items-center overflow-hidden bg-white">
   
             <style>
-              /* 1. Perspective Float for the Team Hub */
-              @keyframes hub-float {
-                0%, 100% { transform: translateY(0) rotateX(10deg) rotateY(-10deg); }
-                50% { transform: translateY(-20px) rotateX(15deg) rotateY(5deg); }
+              /* 1. The Vertical "Ascension" Float */
+              @keyframes floating-stack {
+                0%, 100% { transform: translateY(0) rotateY(-5deg); }
+                50% { transform: translateY(-30px) rotateY(5deg); }
               }
           
-              /* 2. Success Pulse */
-              @keyframes pulse-success {
-                0% { transform: scale(0.95); opacity: 0.5; }
-                100% { transform: scale(1.5); opacity: 0; }
+              /* 2. Success Indicator Glow */
+              @keyframes glow-line {
+                0% { top: -100%; }
+                100% { top: 200%; }
               }
           
-              /* 3. Sliding Contribution Cards */
-              @keyframes card-entrance {
-                0% { opacity: 0; transform: translateZ(-100px) translateY(20px); }
-                100% { opacity: 1; transform: translateZ(0) translateY(0); }
+              /* 3. Staggered Entrance */
+              @keyframes slide-in-right {
+                from { opacity: 0; transform: translateX(50px) translateZ(-50px); }
+                to { opacity: 1; transform: translateX(0) translateZ(0); }
               }
           
-              .career-hub-container {
-                perspective: 1500px;
-                width: 100%;
-                max-width: 500px;
+              .trajectory-container {
+                perspective: 2000px;
               }
           
-              .hub-core {
+              .floating-engine {
                 transform-style: preserve-3d;
-                animation: hub-float 8s ease-in-out infinite;
+                animation: floating-stack 7s ease-in-out infinite;
               }
           
-              .impact-card {
+              .milestone-card {
                 background: white;
-                border: 1px solid rgba(0,0,0,0.05);
-                box-shadow: 0 15px 35px -5px rgba(0,0,0,0.08);
-                backdrop-filter: blur(10px);
-                animation: card-entrance 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+                border-radius: 24px;
+                padding: 24px;
+                width: 320px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+                border: 1px solid rgba(0,0,0,0.03);
+                position: absolute;
+                transition: all 0.4s ease;
+              }
+          
+              .milestone-card:hover {
+                border-color: #00c16a;
+                transform: scale(1.05) translateZ(50px) !important;
+              }
+          
+              .connection-beam {
+                position: absolute;
+                left: 50%;
+                top: -100px;
+                bottom: -100px;
+                width: 2px;
+                background: linear-gradient(to bottom, transparent, #f3f4f6, transparent);
+                overflow: hidden;
+              }
+          
+              .beam-pulse {
+                position: absolute;
+                width: 100%;
+                height: 100px;
+                background: linear-gradient(to bottom, transparent, #00c16a, transparent);
+                animation: glow-line 3s linear infinite;
               }
             </style>
           
             <div class="absolute inset-0 z-0 pointer-events-none">
-               <div class="absolute top-0 right-0 w-full h-full opacity-[0.03]" style="background-image: radial-gradient(circle, #00c16a 1px, transparent 1px); background-size: 40px 40px;"></div>
-               <div class="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full"></div>
+               <div class="absolute top-0 right-0 w-1/3 h-full bg-[#00c16a]/[0.02]"></div>
+               <div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-blue-50/50 blur-[120px] rounded-full"></div>
             </div>
           
-            <div class="container mx-auto px-6 lg:px-10 relative z-10">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div class="container mx-auto px-6 lg:px-12 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 
-                <div class="lg:col-span-6 page-hero-content">
-                  <div class="breadcrumb rv mb-6 flex items-center gap-2 text-sm font-medium text-gray-400">
+                <div class="page-hero-content">
+                  <div class="breadcrumb rv mb-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400">
                     <a href="index.html" class="hover:text-[#00c16a]">Home</a>
-                    <span class="breadcrumb-sep">/</span>
+                    <span class="opacity-30">/</span>
                     <span class="text-gray-900">Careers</span>
                   </div>
           
-                  <div class="hbadge mb-6 rv d1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c16a]/5 border border-[#00c16a]/10">
-                    <span class="pdot w-2 h-2 rounded-full bg-[#00c16a]"></span>
-                    <span class="text-[11px] font-bold tracking-widest text-[#00c16a] uppercase">60+ Engineers · Remote Friendly</span>
-                  </div>
-          
-                  <h1 class="rv d2" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; line-height: 1.06; letter-spacing: -0.035em; font-size: clamp(2.4rem, 6vw, 4.5rem); color: #0a0a0a;">
-                    Build the Future.<br />
-                    <span style="background: linear-gradient(135deg, #00c16a, #009952); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Join Krapton.</span>
+                  <h1 class="rv d1" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; line-height: 0.95; letter-spacing: -0.05em; font-size: clamp(3rem, 7vw, 5.5rem); color: #0a0a0a;">
+                    More Than <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00c16a] to-[#009952]">Just A Job.</span>
                   </h1>
           
-                  <p class="rv d3 text-gray-500 text-lg mt-6 max-w-lg leading-relaxed font-light">
-                    We are a team of senior engineers, designers, and product thinkers building software for 40+ companies globally. We move fast, ship quality, and genuinely care about the work.
+                  <p class="rv d2 text-gray-500 text-xl mt-8 max-w-lg leading-relaxed font-light">
+                    Krapton is where the world’s best engineers come to do their career-defining work. No red tape. No fluff. Just pure engineering excellence.
                   </p>
           
-                  <div class="flex gap-4 mt-10 rv d4">
-                     <a href="#open-positions" class="bg-[#0a0a0a] text-white px-8 py-4 rounded-full font-bold hover:bg-[#00c16a] transition-all transform hover:-translate-y-1">View Openings</a>
-                     <a href="#culture" class="px-8 py-4 rounded-full font-bold border border-gray-100 hover:bg-gray-50 transition-all">Our Culture</a>
+                  <div class="flex flex-wrap items-center gap-6 mt-12 rv d3">
+                     <a href="#jobs" class="bg-[#0a0a0a] text-white px-10 py-5 rounded-2xl font-bold hover:bg-[#00c16a] transition-all shadow-xl shadow-black/5 hover:shadow-[#00c16a]/20">Explore Roles</a>
+                     <div class="flex items-center gap-3">
+                        <div class="flex -space-x-3">
+                           <div class="w-10 h-10 rounded-full border-4 border-white bg-gray-100"></div>
+                           <div class="w-10 h-10 rounded-full border-4 border-white bg-gray-200"></div>
+                           <div class="w-10 h-10 rounded-full border-4 border-white bg-gray-300"></div>
+                        </div>
+                        <span class="text-sm font-bold text-gray-900">Join 60+ Peers</span>
+                     </div>
                   </div>
                 </div>
           
-                <div class="lg:col-span-6 flex justify-center items-center">
-                  <div class="career-hub-container hidden lg:block">
-                    <div class="hub-core relative w-full h-[450px]">
-                      
-                      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white rounded-full shadow-2xl flex items-center justify-center border border-gray-100 z-20">
-                         <div class="w-16 h-16 bg-[#00c16a] rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-[#00c16a]/30">K</div>
-                         <div class="absolute inset-0 rounded-full border-2 border-[#00c16a] animate-ping opacity-20"></div>
-                      </div>
+                <div class="relative h-[600px] hidden lg:flex items-center justify-center trajectory-container">
+                  
+                  <div class="connection-beam">
+                     <div class="beam-pulse"></div>
+                  </div>
           
-                      <div class="impact-card absolute top-10 left-0 p-4 rounded-2xl w-48 z-30" style="animation-delay: 0.2s">
-                         <div class="flex items-center gap-3 mb-2">
-                            <div class="w-2 h-2 rounded-full bg-[#00c16a]"></div>
-                            <span class="text-[9px] font-black uppercase tracking-widest text-gray-400">Engineering</span>
-                         </div>
-                         <div class="text-[11px] font-bold text-gray-900 font-mono">feature/ai-integration</div>
-                         <div class="mt-2 text-[10px] text-gray-500">Merged by <span class="text-gray-900 font-bold">@SeniorDev</span></div>
-                      </div>
+                  <div class="floating-engine relative w-full h-full flex items-center justify-center">
+                     
+                     <div class="milestone-card opacity-40" style="transform: translateY(-180px) translateX(-60px) rotate(-5deg); animation: slide-in-right 0.8s ease forwards;">
+                        <div class="flex items-center gap-4">
+                           <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-lg">🚀</div>
+                           <div>
+                              <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Phase 01</div>
+                              <div class="text-sm font-bold text-gray-900">Onboarding & Culture</div>
+                           </div>
+                        </div>
+                     </div>
           
-                      <div class="impact-card absolute bottom-20 right-0 p-4 rounded-2xl w-52 z-30" style="animation-delay: 0.6s">
-                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-[9px] font-black uppercase tracking-widest text-blue-500">Design System</span>
-                            <div class="flex -space-x-2">
-                               <div class="w-5 h-5 rounded-full bg-gray-200 border border-white"></div>
-                               <div class="w-5 h-5 rounded-full bg-gray-300 border border-white"></div>
-                            </div>
-                         </div>
-                         <div class="text-[11px] font-bold text-gray-900 leading-tight">Dark Mode Theme V2.4 Approved</div>
-                      </div>
+                     <div class="milestone-card z-20" style="transform: translateY(0) translateX(40px) rotate(2deg); border-left: 4px solid #00c16a; animation: slide-in-right 1s ease forwards;">
+                        <div class="flex items-center gap-4 mb-4">
+                           <div class="w-10 h-10 rounded-xl bg-[#00c16a]/10 flex items-center justify-center text-lg">💻</div>
+                           <div>
+                              <div class="text-[10px] font-black text-[#00c16a] uppercase tracking-widest">Current Phase</div>
+                              <div class="text-sm font-bold text-gray-900">Deep Engineering</div>
+                           </div>
+                        </div>
+                        <div class="space-y-2">
+                           <div class="h-1.5 w-full bg-gray-100 rounded-full"><div class="h-full bg-[#00c16a] w-[75%] rounded-full"></div></div>
+                           <div class="flex justify-between text-[9px] font-bold text-gray-400 uppercase">
+                              <span>Shipping Quality</span>
+                              <span>75%</span>
+                           </div>
+                        </div>
+                     </div>
           
-                      <div class="impact-card absolute top-20 right-4 p-4 rounded-2xl w-44 z-10 opacity-60" style="animation-delay: 1s">
-                         <div class="text-[9px] font-black text-gray-400 uppercase mb-2">Deploying to...</div>
-                         <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div>
-                            <span class="text-[11px] font-bold text-gray-900">US-East-1</span>
-                         </div>
-                      </div>
+                     <div class="milestone-card opacity-60" style="transform: translateY(180px) translateX(-40px) rotate(-3deg); animation: slide-in-right 1.2s ease forwards;">
+                        <div class="flex items-center gap-4">
+                           <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-lg">🌍</div>
+                           <div>
+                              <div class="text-[10px] font-black text-blue-500 uppercase tracking-widest">Phase 03</div>
+                              <div class="text-sm font-bold text-gray-900">Global Scale Impact</div>
+                           </div>
+                        </div>
+                     </div>
           
-                      <svg class="absolute inset-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 400 400">
-                         <line x1="200" y1="200" x2="80" y2="80" stroke="#00c16a" stroke-width="1" />
-                         <line x1="200" y1="200" x2="320" y2="300" stroke="#00c16a" stroke-width="1" />
-                         <line x1="200" y1="200" x2="300" y2="100" stroke="#00c16a" stroke-width="1" />
-                      </svg>
-          
-                    </div>
                   </div>
                 </div>
           
