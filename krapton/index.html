@@ -364,7 +364,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- ══════════════════════════════════════════
      HERO
 ══════════════════════════════════════════ -->
-<section class="hero-bg relative min-h-screen flex flex-col justify-center pt-[66px] overflow-hidden">
+<!-- <section class="hero-bg relative min-h-screen flex flex-col justify-center pt-[66px] overflow-hidden">
   
     <style>
       @keyframes typing {
@@ -508,9 +508,185 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#999">Scroll</span>
       <div class="w-px h-8 bg-gradient-to-b from-gray-300 to-transparent"></div>
     </div>
+  </section> -->
+
+  <section class="hero-bg relative min-h-screen flex flex-col justify-center pt-[66px] overflow-hidden">
+  
+    <style>
+      @keyframes slideUpFade {
+        0% { opacity: 0; transform: translateY(20px); }
+        10% { opacity: 1; transform: translateY(0); }
+        90% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-10px); }
+      }
+      @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.9); }
+        10% { opacity: 1; transform: scale(1); }
+        90% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.9); }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+      }
+      
+      /* Animation Delays for looping build sequence */
+      .build-seq { animation-duration: 8s; animation-iteration-count: infinite; opacity: 0; }
+      .step-1 { animation-name: slideUpFade; animation-delay: 0.5s; }
+      .step-2 { animation-name: popIn; animation-delay: 1.5s; }
+      .step-3 { animation-name: popIn; animation-delay: 2.5s; }
+      .step-4 { animation-name: slideUpFade; animation-delay: 3.5s; }
+      .step-5 { animation-name: popIn; animation-delay: 4s; }
+    </style>
+  
+    <div class="hgrid" aria-hidden="true"></div>
+    <div class="flt1 absolute top-28 right-14 w-80 h-80 rounded-full pointer-events-none hidden xl:block" style="background:radial-gradient(circle at 40% 40%,rgba(0,193,106,.15) 0%,transparent 68%);opacity:.35" aria-hidden="true"></div>
+    <div class="flt2 absolute bottom-24 left-8 w-52 h-52 rounded-full pointer-events-none hidden xl:block" style="background:radial-gradient(circle,rgba(0,193,106,.12) 0%,transparent 68%);opacity:.25" aria-hidden="true"></div>
+    
+    <div class="absolute top-28 right-16 hidden xl:block" aria-hidden="true">
+      <svg width="340" height="340" viewBox="0 0 340 340" fill="none" class="opacity-35">
+        <circle cx="170" cy="170" r="166" stroke="rgba(0,193,106,.14)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="116" stroke="rgba(0,193,106,.09)" stroke-width="1" stroke-dasharray="6 9"/>
+        <circle cx="170" cy="170" r="66" stroke="rgba(0,193,106,.11)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="9" fill="rgba(0,193,106,.45)"/>
+        <line x1="170" y1="4" x2="170" y2="336" stroke="rgba(0,193,106,.06)" stroke-width="1"/>
+        <line x1="4" y1="170" x2="336" y2="170" stroke="rgba(0,193,106,.06)" stroke-width="1"/>
+        <circle cx="170" cy="4" r="3" fill="rgba(0,193,106,.3)"/>
+        <circle cx="336" cy="170" r="3" fill="rgba(0,193,106,.3)"/>
+      </svg>
+    </div>
+  
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28 w-full z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 max-w-4xl">
+          <div class="hbadge mb-8 rv" style="animation-delay:0s">
+            <span class="pdot"></span>
+            Trusted IT Partner · New Delhi, India · Serving US, UK, UAE &amp; IN
+          </div>
+          <h1 class="rv d1" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.05;letter-spacing:-.035em;font-size:clamp(2.8rem,8vw,5.5rem);color:#0a0a0a">
+            Your Trusted IT Partner<br/>
+            for <span class="tg">Software Development</span><br/>&amp; Digital Growth
+          </h1>
+          <p class="text-[#5a5a5a] text-lg lg:text-xl mt-6 mb-10 max-w-2xl leading-relaxed rv d2" style="font-weight:300;">
+            Krapton delivers end-to-end IT services — custom web apps, mobile apps, AI solutions &amp; DevOps — helping startups and enterprises across the US, UK, UAE &amp; India launch faster, scale smarter, and stay ahead of the competition.
+          </p>
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 rv d3">
+            <button class="bg text-base px-8 py-4" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              Get Free Consultation
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2 7.5h11M8 2l5 5.5L8 13" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="bgo text-base px-8 py-4" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+              View Our Services
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 2v11M2 7.5l5.5 5 5.5-5" stroke="#0a0a0a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="flex flex-wrap items-center gap-6 mt-14 rv d4">
+            <div class="flex items-center gap-2">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="#00c16a"><path d="M7.5 1l1.7 3.3 3.8.6-2.75 2.7.65 3.8L7.5 9.6l-3.4 1.8.65-3.8L2 4.9l3.8-.6z"/></svg>
+              <span class="text-sm text-gray-500 font-medium">4.8/5 · 50+ Verified Reviews</span>
+            </div>
+            <div class="w-px h-4 bg-gray-200"></div>
+            <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#00c16a" stroke-width="1.4"/><path d="M7.5 4.5v3.3l2.2 1.4" stroke="#00c16a" stroke-width="1.4" stroke-linecap="round"/></svg>
+              98% On-Time Delivery Rate
+            </div>
+            <div class="w-px h-4 bg-gray-200"></div>
+            <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 8L6 11.5l6.5-7" stroke="#00c16a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              100% NDA Protected · Since 2019
+            </div>
+          </div>
+        </div>
+  
+        <div class="lg:col-span-5 hidden lg:block rv d3 relative">
+          <div class="bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden transform rotate-1 hover:rotate-0 transition duration-500 hover:shadow-[0_0_40px_rgba(0,193,106,0.15)] flex flex-col h-[400px]">
+            
+            <div class="bg-gray-50 px-4 py-3 flex items-center justify-between border-b border-gray-200">
+              <div class="flex gap-2">
+                <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+              </div>
+              <div class="flex gap-3 items-center">
+                <span class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest">Krapton Studio</span>
+                <div class="bg-[#00c16a] h-2 w-2 rounded-full animate-pulse"></div>
+              </div>
+            </div>
+  
+            <div class="flex flex-1 overflow-hidden bg-gray-50/50">
+              
+              <div class="w-20 lg:w-24 bg-white border-r border-gray-100 p-3 flex flex-col gap-3 z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)]">
+                <div class="text-[9px] font-bold text-gray-400 uppercase mb-1">Components</div>
+                <div class="h-8 rounded border border-dashed border-gray-300 bg-gray-50 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors"><div class="w-4 h-1 bg-gray-300 rounded"></div></div>
+                <div class="h-12 rounded border border-dashed border-gray-300 bg-gray-50 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors"><div class="w-4 h-4 bg-gray-300 rounded-sm"></div></div>
+                <div class="h-8 rounded border border-dashed border-gray-300 bg-gray-50 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors"><div class="w-6 h-2 bg-gray-300 rounded-full"></div></div>
+                
+                <div class="mt-auto h-7 rounded bg-[#00c16a]/10 border border-[#00c16a]/20 flex items-center justify-center">
+                  <div class="text-[9px] font-bold text-[#00c16a]">DEPLOY</div>
+                </div>
+              </div>
+  
+              <div class="flex-1 p-6 flex justify-center items-center relative overflow-hidden">
+                
+                <div class="w-52 h-[300px] bg-white rounded-[2rem] shadow-xl border-[6px] border-gray-900 overflow-hidden flex flex-col relative z-10">
+                  
+                  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-gray-900 rounded-b-xl z-20"></div>
+  
+                  <div class="flex-1 flex flex-col pt-6 px-3 pb-3 bg-gray-50">
+                    
+                    <div class="flex items-center justify-between mb-4 build-seq step-1">
+                      <div class="w-8 h-8 rounded-full bg-gray-200"></div>
+                      <div class="w-16 h-2 bg-gray-200 rounded"></div>
+                      <div class="w-5 h-5 rounded bg-gray-200"></div>
+                    </div>
+  
+                    <div class="h-24 bg-[#00c16a]/10 rounded-xl border border-[#00c16a]/20 p-3 flex flex-col justify-end mb-4 build-seq step-2">
+                       <div class="w-2/3 h-2 bg-[#00c16a] rounded mb-1.5"></div>
+                       <div class="w-1/2 h-2 bg-[#00c16a]/50 rounded"></div>
+                    </div>
+  
+                    <div class="flex gap-2 mb-4 build-seq step-3">
+                      <div class="flex-1 h-16 bg-white rounded-lg shadow-sm border border-gray-100 p-2 flex flex-col items-center justify-center">
+                         <div class="w-6 h-6 rounded-full bg-blue-50 mb-2"></div>
+                         <div class="w-10 h-1 bg-gray-200 rounded"></div>
+                      </div>
+                      <div class="flex-1 h-16 bg-white rounded-lg shadow-sm border border-gray-100 p-2 flex flex-col items-center justify-center">
+                         <div class="w-6 h-6 rounded-full bg-purple-50 mb-2"></div>
+                         <div class="w-10 h-1 bg-gray-200 rounded"></div>
+                      </div>
+                    </div>
+  
+                    <div class="mt-auto w-full h-10 bg-gray-900 rounded-lg shadow-md flex items-center justify-center build-seq step-4">
+                       <div class="w-1/3 h-1.5 bg-white rounded opacity-90"></div>
+                    </div>
+  
+                  </div>
+                </div>
+                
+                <div class="absolute right-4 top-12 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 rounded-lg p-3 text-[10px] font-mono text-gray-500 build-seq step-5 transform translate-x-2" style="animation-name: popIn, float; animation-duration: 8s, 3s; animation-iteration-count: infinite, infinite;">
+                  <div class="flex items-center gap-1 mb-1.5 border-b border-gray-100 pb-1">
+                    <svg width="10" height="10" viewBox="0 0 15 15" fill="none"><path d="M14 3.5l-4-2-4 2-4-2v8l4 2 4-2 4 2v-8z" stroke="#00c16a" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    <span class="text-gray-800 font-semibold">HeroSection</span>
+                  </div>
+                  <div class="pl-1">display: <span class="text-blue-500">flex</span>;</div>
+                  <div class="pl-1">gap: <span class="text-[#00c16a]">16px</span>;</div>
+                  <div class="pl-1">radius: <span class="text-[#00c16a]">0.75rem</span>;</div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+    
+    <div class="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-35">
+      <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#999">Scroll</span>
+      <div class="w-px h-8 bg-gradient-to-b from-gray-300 to-transparent"></div>
+    </div>
   </section>
-
-
 <!-- ══════════════════════════════════════════
      STATS
 ══════════════════════════════════════════ -->
