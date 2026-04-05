@@ -28,30 +28,153 @@
 <body>
 <div class="cdot" id="cdot"></div><div class="cring" id="cring"></div>
 <main>
-  <section class="hire-hero">
-  <div class="hire-hero-grid"></div>
-  <div class="container" style="position:relative;z-index:2">
-    <div class="breadcrumb rv"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><a href="hire-us.html">Hire Us</a><span class="breadcrumb-sep">/</span><span>Hire Web Developer</span></div>
-    <div class="hbadge mb-6 rv d1"><span class="pdot"></span> Dedicated Web Engineers · Vetted · In-House · India</div>
-    <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.06;letter-spacing:-.035em;font-size:clamp(2.2rem,5vw,4rem);color:#0a0a0a;max-width:760px">Hire Expert Web Developers<br/>from India</h1>
-    <p class="rv d3" style="color:#6b7280;font-size:1.05rem;margin-top:18px;max-width:520px;line-height:1.7;font-weight:300">Full-stack web engineers who build fast, beautiful, scalable websites and web apps. Fixed-price or dedicated hiring models — both with 98% on-time delivery.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:28px" class="rv d4">
-      <a href="hire-us.html" class="btn btn-primary" style="padding:14px 28px">Hire Web Developer <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5h10M6 1.5l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="case-studies.html" class="btn btn-outline" style="padding:13px 24px">View Our Work</a>
+  <section class="hire-hero relative min-h-[90vh] flex items-center overflow-hidden bg-white">
+  
+    <style>
+      /* High-End 3D Floating Effect */
+      @keyframes stack-float {
+        0%, 100% { transform: translateY(0) rotateX(5deg) rotateY(-5deg); }
+        50% { transform: translateY(-20px) rotateX(10deg) rotateY(5deg); }
+      }
+      
+      /* Code Stream Animation */
+      @keyframes code-flow {
+        0% { height: 0; opacity: 0; }
+        50% { opacity: 1; }
+        100% { height: 100%; opacity: 0; }
+      }
+  
+      .talent-stack {
+        perspective: 1500px;
+        transform-style: preserve-3d;
+        animation: stack-float 8s ease-in-out infinite;
+      }
+  
+      .dev-profile-card {
+        background: white;
+        border: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+        transform: translateZ(40px); /* Lifted higher in 3D space */
+      }
+  
+      .project-preview-card {
+        background: #fafafa;
+        border: 1px solid rgba(0,0,0,0.03);
+        transform: translateZ(-20px) rotate(-2deg);
+        opacity: 0.8;
+      }
+  
+      .skill-tag {
+        background: #f3f4f6;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #4b5563;
+        text-transform: uppercase;
+      }
+    </style>
+  
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#0a0a0a 1px, transparent 1px), linear-gradient(90deg, #0a0a0a 1px, transparent 1px); background-size: 50px 50px;"></div>
+  
+    <div class="container mx-auto px-6 lg:px-10 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        
+        <div class="lg:col-span-6">
+          <div class="breadcrumb rv mb-6 flex items-center gap-2 text-sm font-medium text-gray-400">
+            <a href="index.html" class="hover:text-[#00c16a]">Home</a><span class="text-gray-300">/</span>
+            <a href="hire-us.html" class="hover:text-[#00c16a]">Hire Us</a><span class="text-gray-300">/</span>
+            <span class="text-gray-900">Hire Web Developer</span>
+          </div>
+  
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c16a]/5 border border-[#00c16a]/10 mb-6">
+            <span class="w-2 h-2 rounded-full bg-[#00c16a]"></span>
+            <span class="text-[11px] font-bold tracking-widest text-[#00c16a] uppercase">Top 3% Vetted Talent · India</span>
+          </div>
+  
+          <h1 class="rv d1" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:0.95;letter-spacing:-.045em;font-size:clamp(2.8rem,6vw,4.8rem);color:#0a0a0a">
+            Scale Faster with<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00c16a] to-blue-600">Expert Web Talent.</span>
+          </h1>
+          
+          <p class="text-[#5a5a5a] text-lg lg:text-xl mt-8 mb-10 max-w-lg leading-relaxed font-light">
+            Hire dedicated Full-Stack Engineers who specialize in high-traffic architectures. From MVP to Enterprise, we provide the developers you need in <strong>under 5 days</strong>.
+          </p>
+  
+          <div class="flex flex-wrap gap-4 rv d4 mb-12">
+            <a href="hire-us.html" class="bg-[#0a0a0a] text-white px-10 py-4 rounded-full font-bold transition-all hover:bg-[#00c16a] hover:shadow-xl hover:shadow-[#00c16a]/20">Hire a Developer</a>
+            <div class="flex items-center gap-3 px-6 py-4 rounded-full border border-gray-100">
+               <div class="flex -space-x-2">
+                  <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-200"></div>
+                  <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-300"></div>
+                  <div class="w-8 h-8 rounded-full border-2 border-white bg-[#00c16a] flex items-center justify-center text-[10px] text-white font-bold">+150</div>
+               </div>
+               <span class="text-xs font-bold text-gray-500 uppercase">Trusted Experts</span>
+            </div>
+          </div>
+  
+          <div class="flex flex-wrap gap-2 max-w-md opacity-60">
+             <span class="skill-tag">Next.js</span> <span class="skill-tag">React</span> <span class="skill-tag">Node.js</span> <span class="skill-tag">PostgreSQL</span> <span class="skill-tag">AWS Cloud</span> <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+  
+        <div class="lg:col-span-6 relative flex justify-center items-center">
+          <div class="talent-stack relative w-full max-w-[500px]">
+            
+            <div class="project-preview-card absolute top-10 right-0 w-full h-[400px] rounded-[2rem] p-6 hidden sm:block">
+               <div class="w-20 h-2 bg-gray-200 rounded-full mb-6"></div>
+               <div class="space-y-4">
+                  <div class="h-32 bg-white rounded-xl"></div>
+                  <div class="grid grid-cols-3 gap-3">
+                     <div class="h-12 bg-white rounded-lg"></div>
+                     <div class="h-12 bg-white rounded-lg"></div>
+                     <div class="h-12 bg-[#00c16a]/10 rounded-lg"></div>
+                  </div>
+               </div>
+            </div>
+  
+            <div class="dev-profile-card relative w-[90%] mx-auto rounded-[2rem] p-8">
+               <div class="flex items-center gap-4 mb-8">
+                  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-2xl font-bold text-gray-400">
+                     JS
+                  </div>
+                  <div>
+                     <div class="text-sm font-black text-gray-900 uppercase tracking-widest">Senior Full-Stack</div>
+                     <div class="text-xs font-bold text-[#00c16a]">Verified · Available Now</div>
+                  </div>
+               </div>
+  
+               <div class="bg-gray-50 rounded-2xl p-6 mb-6">
+                  <div class="flex justify-between items-end mb-4">
+                     <span class="text-[10px] font-bold text-gray-400 uppercase">Average Project Speed</span>
+                     <span class="text-xl font-black text-gray-900">99<span class="text-[#00c16a]">.9</span></span>
+                  </div>
+                  <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                     <div class="h-full bg-[#00c16a] w-[95%]"></div>
+                  </div>
+               </div>
+  
+               <div class="bg-gray-900 rounded-2xl p-5 font-mono text-[10px] text-gray-400 relative overflow-hidden">
+                  <div class="absolute right-4 top-0 bottom-0 w-px bg-[#00c16a]/20">
+                     <div class="w-full bg-[#00c16a]" style="animation: code-flow 2s infinite;"></div>
+                  </div>
+                  <div class="text-[#00c16a]">// Deploying Optimized Build</div>
+                  <div>const dev = <span class="text-blue-400">hire("FullStack")</span>;</div>
+                  <div>dev.<span class="text-purple-400">optimizeVitals()</span>;</div>
+                  <div><span class="text-white">console.log("ROI: 60% Success")</span>;</div>
+               </div>
+  
+               <div class="absolute -right-4 -bottom-4 bg-[#00c16a] text-white px-6 py-3 rounded-2xl font-black text-xs shadow-xl shadow-[#00c16a]/30">
+                  ACTIVE EXPERT
+               </div>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
     </div>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px" class="rv d5"><span class="skill-pill">Next.js</span><span class="skill-pill">React</span><span class="skill-pill">Node.js</span><span class="skill-pill">PHP/Laravel</span><span class="skill-pill">WordPress</span><span class="skill-pill">WooCommerce</span><span class="skill-pill">REST APIs</span><span class="skill-pill">PostgreSQL</span><span class="skill-pill">MySQL</span><span class="skill-pill">AWS</span><span class="skill-pill">Docker</span><span class="skill-pill">SEO/Core Web Vitals</span></div>
-    <!-- Stats row -->
-    <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(0,0,0,.07)" class="rv d5">
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-.04em;color:#0a0a0a">60+</span><div style="font-size:.75rem;color:#9ca3af;font-weight:500">Engineers</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-.04em;color:#0a0a0a">150+</span><div style="font-size:.75rem;color:#9ca3af;font-weight:500">Projects</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-.04em;color:#0a0a0a">4.8★</span><div style="font-size:.75rem;color:#9ca3af;font-weight:500">Avg Rating</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-.04em;color:#0a0a0a">60%</span><div style="font-size:.75rem;color:#9ca3af;font-weight:500">Cost Savings</div></div>
-    </div>
-  </div>
-</section>
+  </section>
 <section class="section" style="background:#fafafa"><div class="container"><div class="text-center mb-12"><div class="section-label rv inline-flex mb-4">Available Now</div><h2 class="rv d1" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.03em;color:#0a0a0a">Meet Our Web Engineers</h2><p class="rv d2" style="color:#6b7280;margin-top:8px;font-weight:300;font-size:.9rem">All developers are senior-level, in-house — no freelancers, no subcontracting.</p></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px"><div class="profile-card rv d0">
   <div class="avatar" style="background:rgba(0,193,106,.15);color:#00c16a">VP</div>
   <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.95rem;color:#0a0a0a;margin-bottom:3px">Vikram Patel</div>
