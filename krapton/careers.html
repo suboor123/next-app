@@ -81,156 +81,102 @@
         <div class="cdot" id="cdot"></div>
         <div class="cring" id="cring"></div>
         <main>
-          <section class="page-hero relative min-h-[95vh] flex items-center overflow-hidden bg-white">
+          <section class="page-hero relative min-h-[80vh] flex items-center overflow-hidden bg-white">
   
             <style>
-              /* 1. The Vertical "Ascension" Float */
-              @keyframes floating-stack {
-                0%, 100% { transform: translateY(0) rotateY(-5deg); }
-                50% { transform: translateY(-30px) rotateY(5deg); }
+              /* 1. Subtle Background Ripple */
+              @keyframes ripple {
+                0% { transform: scale(0.8); opacity: 0; }
+                50% { opacity: 0.1; }
+                100% { transform: scale(1.5); opacity: 0; }
               }
           
-              /* 2. Success Indicator Glow */
-              @keyframes glow-line {
-                0% { top: -100%; }
-                100% { top: 200%; }
+              /* 2. Floating Growth Icons */
+              @keyframes float-icon {
+                0%, 100% { transform: translateY(0) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(5deg); }
               }
           
-              /* 3. Staggered Entrance */
-              @keyframes slide-in-right {
-                from { opacity: 0; transform: translateX(50px) translateZ(-50px); }
-                to { opacity: 1; transform: translateX(0) translateZ(0); }
+              /* 3. Gradient Shine for the Text */
+              @keyframes text-shine {
+                0% { background-position: 0% 50%; }
+                100% { background-position: 100% 50%; }
               }
           
-              .trajectory-container {
-                perspective: 2000px;
+              .ripple-circle {
+                position: absolute;
+                border: 2px solid #00c16a;
+                border-radius: 50%;
+                animation: ripple 4s linear infinite;
               }
           
-              .floating-engine {
-                transform-style: preserve-3d;
-                animation: floating-stack 7s ease-in-out infinite;
-              }
-          
-              .milestone-card {
+              .floating-badge {
                 background: white;
-                border-radius: 24px;
-                padding: 24px;
-                width: 320px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+                padding: 12px 20px;
+                border-radius: 100px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.05);
                 border: 1px solid rgba(0,0,0,0.03);
+                display: flex;
+                align-items: center;
+                gap: 10px;
                 position: absolute;
-                transition: all 0.4s ease;
-              }
-          
-              .milestone-card:hover {
-                border-color: #00c16a;
-                transform: scale(1.05) translateZ(50px) !important;
-              }
-          
-              .connection-beam {
-                position: absolute;
-                left: 50%;
-                top: -100px;
-                bottom: -100px;
-                width: 2px;
-                background: linear-gradient(to bottom, transparent, #f3f4f6, transparent);
-                overflow: hidden;
-              }
-          
-              .beam-pulse {
-                position: absolute;
-                width: 100%;
-                height: 100px;
-                background: linear-gradient(to bottom, transparent, #00c16a, transparent);
-                animation: glow-line 3s linear infinite;
+                animation: float-icon 5s ease-in-out infinite;
               }
             </style>
           
-            <div class="absolute inset-0 z-0 pointer-events-none">
-               <div class="absolute top-0 right-0 w-1/3 h-full bg-[#00c16a]/[0.02]"></div>
-               <div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-blue-50/50 blur-[120px] rounded-full"></div>
+            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full hidden lg:flex items-center justify-center">
+              <div class="ripple-circle w-[200px] h-[200px]" style="animation-delay: 0s"></div>
+              <div class="ripple-circle w-[400px] h-[400px]" style="animation-delay: 1s"></div>
+              <div class="ripple-circle w-[600px] h-[600px]" style="animation-delay: 2s"></div>
+          
+              <div class="relative z-10 w-24 h-24 bg-[#00c16a] rounded-[2rem] flex items-center justify-center text-white text-3xl font-black shadow-2xl shadow-[#00c16a]/40">
+                K
+              </div>
+          
+              <div class="floating-badge top-[20%] right-[15%]" style="animation-delay: 0.5s">
+                 <span class="text-lg">📈</span>
+                 <span class="text-xs font-bold text-gray-900 uppercase tracking-tighter">Fast-Track Growth</span>
+              </div>
+              <div class="floating-badge bottom-[25%] left-[10%]" style="animation-delay: 1.5s">
+                 <span class="text-lg">🌍</span>
+                 <span class="text-xs font-bold text-gray-900 uppercase tracking-tighter">Remote Culture</span>
+              </div>
+              <div class="floating-badge top-[40%] left-[5%]" style="animation-delay: 2.5s">
+                 <span class="text-lg">🚀</span>
+                 <span class="text-xs font-bold text-gray-900 uppercase tracking-tighter">Ship Quality</span>
+              </div>
             </div>
           
-            <div class="container mx-auto px-6 lg:px-12 relative z-10">
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                
-                <div class="page-hero-content">
-                  <div class="breadcrumb rv mb-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400">
-                    <a href="index.html" class="hover:text-[#00c16a]">Home</a>
-                    <span class="opacity-30">/</span>
-                    <span class="text-gray-900">Careers</span>
-                  </div>
-          
-                  <h1 class="rv d1" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; line-height: 0.95; letter-spacing: -0.05em; font-size: clamp(3rem, 7vw, 5.5rem); color: #0a0a0a;">
-                    More Than <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00c16a] to-[#009952]">Just A Job.</span>
-                  </h1>
-          
-                  <p class="rv d2 text-gray-500 text-xl mt-8 max-w-lg leading-relaxed font-light">
-                    Krapton is where the world’s best engineers come to do their career-defining work. No red tape. No fluff. Just pure engineering excellence.
-                  </p>
-          
-                  <div class="flex flex-wrap items-center gap-6 mt-12 rv d3">
-                     <a href="#jobs" class="bg-[#0a0a0a] text-white px-10 py-5 rounded-2xl font-bold hover:bg-[#00c16a] transition-all shadow-xl shadow-black/5 hover:shadow-[#00c16a]/20">Explore Roles</a>
-                     <div class="flex items-center gap-3">
-                        <div class="flex -space-x-3">
-                           <div class="w-10 h-10 rounded-full border-4 border-white bg-gray-100"></div>
-                           <div class="w-10 h-10 rounded-full border-4 border-white bg-gray-200"></div>
-                           <div class="w-10 h-10 rounded-full border-4 border-white bg-gray-300"></div>
-                        </div>
-                        <span class="text-sm font-bold text-gray-900">Join 60+ Peers</span>
-                     </div>
-                  </div>
+            <div class="container mx-auto px-6 lg:px-10 relative z-10">
+              <div class="max-w-3xl">
+                <div class="breadcrumb rv mb-8 text-gray-400 font-medium">
+                  <a href="index.html" class="hover:text-[#00c16a]">Home</a> / Careers
                 </div>
           
-                <div class="relative h-[600px] hidden lg:flex items-center justify-center trajectory-container">
-                  
-                  <div class="connection-beam">
-                     <div class="beam-pulse"></div>
-                  </div>
-          
-                  <div class="floating-engine relative w-full h-full flex items-center justify-center">
-                     
-                     <div class="milestone-card opacity-40" style="transform: translateY(-180px) translateX(-60px) rotate(-5deg); animation: slide-in-right 0.8s ease forwards;">
-                        <div class="flex items-center gap-4">
-                           <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-lg">🚀</div>
-                           <div>
-                              <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Phase 01</div>
-                              <div class="text-sm font-bold text-gray-900">Onboarding & Culture</div>
-                           </div>
-                        </div>
-                     </div>
-          
-                     <div class="milestone-card z-20" style="transform: translateY(0) translateX(40px) rotate(2deg); border-left: 4px solid #00c16a; animation: slide-in-right 1s ease forwards;">
-                        <div class="flex items-center gap-4 mb-4">
-                           <div class="w-10 h-10 rounded-xl bg-[#00c16a]/10 flex items-center justify-center text-lg">💻</div>
-                           <div>
-                              <div class="text-[10px] font-black text-[#00c16a] uppercase tracking-widest">Current Phase</div>
-                              <div class="text-sm font-bold text-gray-900">Deep Engineering</div>
-                           </div>
-                        </div>
-                        <div class="space-y-2">
-                           <div class="h-1.5 w-full bg-gray-100 rounded-full"><div class="h-full bg-[#00c16a] w-[75%] rounded-full"></div></div>
-                           <div class="flex justify-between text-[9px] font-bold text-gray-400 uppercase">
-                              <span>Shipping Quality</span>
-                              <span>75%</span>
-                           </div>
-                        </div>
-                     </div>
-          
-                     <div class="milestone-card opacity-60" style="transform: translateY(180px) translateX(-40px) rotate(-3deg); animation: slide-in-right 1.2s ease forwards;">
-                        <div class="flex items-center gap-4">
-                           <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-lg">🌍</div>
-                           <div>
-                              <div class="text-[10px] font-black text-blue-500 uppercase tracking-widest">Phase 03</div>
-                              <div class="text-sm font-bold text-gray-900">Global Scale Impact</div>
-                           </div>
-                        </div>
-                     </div>
-          
-                  </div>
+                <div class="hbadge mb-6 rv d1 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-50 border border-gray-100">
+                  <span class="w-2 h-2 rounded-full bg-[#00c16a]"></span>
+                  <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Hiring Senior Engineers</span>
                 </div>
           
+                <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.0;letter-spacing:-.04em;font-size:clamp(3rem,8vw,5.5rem);color:#0a0a0a">
+                  Build the Future.<br/>
+                  <span style="background: linear-gradient(90deg, #00c16a, #009952, #00c16a); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: text-shine 4s linear infinite;">Join Krapton.</span>
+                </h1>
+          
+                <p class="rv d3 text-gray-500 text-xl mt-8 max-w-xl leading-relaxed font-light">
+                  We move fast, ship quality, and genuinely care about the work. Join a team of senior builders shaping global products.
+                </p>
+          
+                <div class="mt-10 flex flex-wrap gap-4 rv d4">
+                  <a href="#jobs" class="bg-[#0a0a0a] text-white px-10 py-5 rounded-full font-bold hover:bg-[#00c16a] transition-all transform hover:scale-105">See Openings</a>
+                  <div class="flex items-center gap-2 px-4">
+                     <div class="flex -space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-gray-100 border-2 border-white"></div>
+                        <div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white"></div>
+                     </div>
+                     <span class="text-sm font-bold text-gray-900">Meet the Team</span>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
