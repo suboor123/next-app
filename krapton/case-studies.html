@@ -1,162 +1,955 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Case Studies - 150+ IT Projects Delivered | Krapton</title>
-<meta name="description" content="Explore Krapton's project case studies. 150+ web, mobile, AI and DevOps projects delivered for startups and enterprises across the US, UK, UAE and India."/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Case Studies — 150+ IT Projects Delivered | Krapton</title>
+<meta name="description" content="Explore Krapton's portfolio of 150+ web, mobile, AI and DevOps projects. Real results for startups and enterprises across the US, UK, UAE and India."/>
+<meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://www.krapton.com/case-studies"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Case Studies — 150+ IT Projects Delivered | Krapton"/>
+<meta property="og:description" content="Real projects. Real results. See how Krapton has helped 40+ businesses build scalable digital products."/>
+<meta property="og:url" content="https://www.krapton.com/case-studies"/>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"CollectionPage",
+  "name":"Case Studies","url":"https://www.krapton.com/case-studies",
+  "publisher":{"@type":"Organization","name":"Krapton","url":"https://www.krapton.com"},
+  "hasPart":[
+    {"@type":"CreativeWork","name":"FinTrack AI","description":"AI-powered personal finance dashboard for 50k+ users.","keywords":"Fintech,React,TensorFlow,AWS"},
+    {"@type":"CreativeWork","name":"MediAssist Platform","description":"HIPAA-compliant patient management for 200+ clinics.","keywords":"Healthcare,Next.js,FastAPI"},
+    {"@type":"CreativeWork","name":"ShopCore Engine","description":"Headless e-commerce with $2M+ daily transactions.","keywords":"Ecommerce,React,Kubernetes"},
+    {"@type":"CreativeWork","name":"DevOps Transformation","description":"CI/CD overhaul achieving 99.99% uptime SLA.","keywords":"DevOps,Kubernetes,Terraform"},
+    {"@type":"CreativeWork","name":"LegalBot AI","description":"AI legal document analysis, 10k+ docs/day.","keywords":"LegalTech,LangChain,GPT-4"},
+    {"@type":"CreativeWork","name":"RealEstate360","description":"PropTech platform with AI price prediction, 15k+ listings.","keywords":"PropTech,Next.js,TensorFlow"}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={theme:{extend:{colors:{brand:"#00c16a"}}}}</script>
 <link rel="stylesheet" href="krapton.css"/>
+
 <style>
-.proj-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:18px;overflow:hidden;transition:transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s,border-color .35s;position:relative}
-.proj-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 32px 72px rgba(0,0,0,.1),0 8px 24px rgba(0,193,106,.08);border-color:rgba(0,193,106,.2)}
-.proj-card-img{height:200px;background:linear-gradient(135deg,#060d09 0%,#0d2218 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.proj-card-img .proj-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:4rem;color:rgba(0,193,106,.12);letter-spacing:-.06em}
-.proj-card-body{padding:28px 26px}
-.proj-tag{display:inline-block;background:rgba(0,193,106,.08);color:#007a43;padding:4px 12px;border-radius:100px;font-size:.7rem;font-weight:600;border:1px solid rgba(0,193,106,.15);margin-bottom:12px;font-family:'Plus Jakarta Sans',sans-serif}
-.tech-chip{display:inline-block;background:#f3f4f6;color:#555;padding:3px 9px;border-radius:5px;font-size:.7rem;font-weight:500;margin:2px;font-family:'Plus Jakarta Sans',sans-serif}
-.stat-highlight{background:rgba(0,193,106,.06);border:1px solid rgba(0,193,106,.14);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:8px}
+:root{
+  --g:#00c16a;
+  --g8:rgba(0,193,106,.08);
+  --g15:rgba(0,193,106,.15);
+  --g22:rgba(0,193,106,.22);
+  --ink:#080f0b;
+  --ink-dark:#071410;
+  --muted:#6b7280;
+  --border:rgba(0,0,0,.07);
+  --bg:#f6f7f5;
+  --white:#fff;
+  --fh:'Bricolage Grotesque',sans-serif;
+  --fb:'Plus Jakarta Sans',sans-serif;
+  --expo:cubic-bezier(0.16,1,0.3,1);
+  --smooth:cubic-bezier(0.4,0,0.2,1);
+}
+body{background:var(--bg)}
+
+/* ── HERO ── */
+.hero{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:148px 0 88px;
+  position:relative;overflow:hidden;
+}
+.hero-bg-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(0,0,0,.042) 1px,transparent 1px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(ellipse 90% 100% at 50% 0%,black 30%,transparent 100%);
+}
+.hero-bg-glow{
+  position:absolute;top:-80px;right:-80px;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(0,193,106,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-wrap{
+  max-width:1240px;margin:0 auto;padding:0 52px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:32px;flex-wrap:wrap;position:relative;z-index:2;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--g8);border:1px solid var(--g22);
+  color:#006e3c;padding:5px 15px;border-radius:100px;
+  font-size:.69rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  font-family:var(--fb);margin-bottom:20px;
+}
+.hero-badge-dot{
+  width:5px;height:5px;background:var(--g);border-radius:50%;
+  animation:bdot 2s ease-in-out infinite;
+}
+@keyframes bdot{0%,100%{opacity:1}50%{opacity:.35}}
+.hero-h1{
+  font-family:var(--fh);font-weight:800;
+  font-size:clamp(2.8rem,5.5vw,5rem);
+  letter-spacing:-.045em;line-height:.93;color:var(--ink);
+}
+.hero-h1 .ow{-webkit-text-stroke:2.5px var(--ink);color:transparent}
+.hero-h1 .gw{color:var(--g)}
+.hero-p{
+  font-size:.97rem;color:var(--muted);font-weight:300;
+  line-height:1.75;margin-top:18px;max-width:460px;
+}
+.hero-stats{display:flex;gap:36px;flex-shrink:0;padding-bottom:6px}
+.hs{text-align:center}
+.hs-n{
+  font-family:var(--fh);font-weight:800;
+  font-size:2.5rem;letter-spacing:-.05em;color:var(--ink);line-height:1;
+}
+.hs-n em{color:var(--g);font-style:normal}
+.hs-l{
+  font-size:.67rem;color:var(--muted);letter-spacing:.08em;
+  text-transform:uppercase;margin-top:6px;font-family:var(--fb);
+}
+
+/* ── MARQUEE ── */
+.mq-wrap{background:var(--ink-dark);padding:13px 0;overflow:hidden}
+.mq-track{
+  display:flex;white-space:nowrap;
+  animation:mq 26s linear infinite;
+}
+.mq-track:hover{animation-play-state:paused}
+.mq-item{
+  display:inline-flex;align-items:center;gap:10px;padding:0 22px;
+  font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);font-family:var(--fb);
+}
+.mq-item strong{color:var(--g);font-weight:700}
+.mq-dot{width:3px;height:3px;background:rgba(255,255,255,.12);border-radius:50%;display:inline-block}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ── METRICS ── */
+.mets{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:60px 0;
+}
+.mets-inner{
+  max-width:1240px;margin:0 auto;padding:0 52px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.met{
+  padding:0 36px;
+  border-right:1px solid var(--border);
+  text-align:center;
+}
+.met:first-child{padding-left:0;text-align:left}
+.met:last-child{border-right:none;padding-right:0;text-align:right}
+.met-n{
+  font-family:var(--fh);font-weight:800;
+  font-size:2.8rem;letter-spacing:-.05em;color:var(--ink);line-height:1;
+}
+.met-n em{color:var(--g);font-style:normal}
+.met-l{
+  font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--muted);margin-top:7px;font-family:var(--fb);
+}
+
+/* ── TOOLBAR ── */
+.toolbar{
+  max-width:1240px;margin:0 auto;padding:44px 52px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.filters{display:flex;flex-wrap:wrap;gap:7px}
+.pill{
+  background:var(--white);border:1.5px solid var(--border);
+  color:var(--muted);padding:7px 18px;border-radius:100px;
+  font-size:.75rem;font-weight:500;cursor:pointer;
+  transition:all .22s var(--smooth);font-family:var(--fb);
+}
+.pill:hover{border-color:var(--g22);color:#006e3c}
+.pill.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.proj-count{font-size:.77rem;color:var(--muted);font-family:var(--fb)}
+.proj-count b{color:var(--ink)}
+
+/* ── GRID ── */
+.grid{
+  max-width:1240px;margin:0 auto;
+  padding:0 52px 100px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+}
+
+/* ── CARD ── */
+.card{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:22px;
+  overflow:hidden;position:relative;
+  cursor:pointer;
+  transition:
+    transform .6s var(--expo),
+    box-shadow .6s var(--expo),
+    border-color .3s;
+}
+.card:hover{
+  transform:translateY(-12px) scale(1.008);
+  box-shadow:0 48px 96px rgba(0,0,0,.1),0 12px 30px rgba(0,0,0,.05),0 0 0 1px rgba(0,193,106,.15);
+  border-color:rgba(0,193,106,.2);
+}
+
+/* Card top visual */
+.c-top{
+  height:228px;
+  background:linear-gradient(135deg,#060d09 0%,#091a0f 60%,#071512 100%);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+/* animated grid inside card */
+.c-top-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+/* hover glow */
+.c-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 65% 75% at 25% 55%,rgba(0,193,106,.13) 0%,transparent 60%);
+  opacity:0;transition:opacity .55s;
+}
+.card:hover .c-glow{opacity:1}
+/* giant number */
+.c-num{
+  font-family:var(--fh);font-weight:800;
+  font-size:7.5rem;letter-spacing:-.08em;
+  color:rgba(255,255,255,.042);
+  line-height:1;position:relative;z-index:1;
+  transition:color .5s,transform .65s var(--expo);
+  user-select:none;
+}
+.card:hover .c-num{
+  color:rgba(0,193,106,.08);
+  transform:scale(1.12) translateY(-5px);
+}
+/* duration badge */
+.c-dur{
+  position:absolute;top:15px;right:16px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.45);
+  padding:4px 12px;border-radius:100px;
+  font-size:.67rem;font-weight:500;letter-spacing:.04em;
+  font-family:var(--fb);
+  transition:background .35s,border-color .35s,color .35s;
+}
+.card:hover .c-dur{
+  background:rgba(0,193,106,.12);
+  border-color:rgba(0,193,106,.28);
+  color:var(--g);
+}
+/* tech dots in corner */
+.c-dots{
+  position:absolute;bottom:15px;left:16px;
+  display:flex;gap:5px;z-index:2;
+}
+.c-dot{
+  height:28px;padding:0 9px;
+  border-radius:6px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.62rem;font-weight:700;
+  color:rgba(255,255,255,.28);
+  font-family:var(--fb);letter-spacing:.02em;
+  transition:background .35s,border-color .35s,color .35s;
+}
+.card:hover .c-dot{
+  background:rgba(0,193,106,.1);
+  border-color:rgba(0,193,106,.22);
+  color:var(--g);
+}
+/* shine sweep on hover */
+.c-top::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.04) 50%,transparent 70%);
+  transform:translateX(-100%);
+  transition:transform .75s var(--expo);
+}
+.card:hover .c-top::after{transform:translateX(100%)}
+
+/* Card body */
+.c-body{padding:28px 28px 26px}
+.c-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--g8);border:1px solid var(--g22);
+  color:#006e3c;padding:4px 12px;border-radius:100px;
+  font-size:.67rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:13px;font-family:var(--fb);
+}
+.c-tag-dot{width:5px;height:5px;background:var(--g);border-radius:50%;display:inline-block}
+.c-title{
+  font-family:var(--fh);font-weight:800;
+  font-size:1.65rem;letter-spacing:-.03em;color:var(--ink);
+  margin-bottom:9px;line-height:1.1;
+  transition:color .25s;
+}
+.card:hover .c-title{color:#003d24}
+.c-desc{
+  font-size:.83rem;color:var(--muted);line-height:1.72;font-weight:300;
+  margin-bottom:20px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+/* green divider that grows on hover */
+.c-hr{
+  height:1px;
+  background:linear-gradient(to right,var(--g22),transparent);
+  margin-bottom:18px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--expo);
+}
+.card:hover .c-hr{transform:scaleX(1)}
+.c-hr-static{
+  height:1px;background:var(--border);
+  margin-bottom:18px;
+  transition:opacity .3s;
+}
+.card:hover .c-hr-static{opacity:0}
+
+/* Stat pills */
+.c-stats{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.c-stat{
+  flex:1;min-width:0;
+  background:var(--g8);border:1px solid var(--g15);
+  border-radius:11px;padding:10px 13px;
+  transition:background .3s,border-color .3s;
+}
+.card:hover .c-stat{
+  background:rgba(0,193,106,.13);
+  border-color:var(--g22);
+}
+.c-stat-l{
+  font-size:.61rem;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:#007a43;
+  font-family:var(--fb);margin-bottom:3px;opacity:.7;
+}
+.c-stat-v{
+  font-size:.86rem;font-weight:700;color:#004d28;
+  font-family:var(--fb);
+}
+
+/* Tech chips */
+.c-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.c-chip{
+  background:#f1f2f0;color:#6b7280;
+  padding:4px 10px;border-radius:5px;
+  font-size:.67rem;font-weight:500;
+  border:1px solid rgba(0,0,0,.05);
+  font-family:var(--fb);
+  transition:background .25s,color .25s,border-color .25s;
+}
+.card:hover .c-chip{
+  background:#e6f5ec;color:#006e3c;
+  border-color:rgba(0,193,106,.18);
+}
+
+/* Footer row */
+.c-foot{display:flex;align-items:center;justify-content:space-between}
+.c-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.79rem;font-weight:600;color:var(--ink);
+  text-decoration:none;font-family:var(--fb);
+  transition:color .2s,gap .35s var(--expo);
+}
+.card:hover .c-cta{color:var(--g);gap:14px}
+.c-arrow{
+  width:32px;height:32px;
+  border:1.5px solid var(--border);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .38s var(--expo);flex-shrink:0;
+}
+.card:hover .c-arrow{
+  background:var(--g);border-color:var(--g);
+  transform:rotate(-45deg);
+}
+.card:hover .c-arrow svg path{stroke:#fff}
+.c-idx{
+  font-family:var(--fh);font-weight:800;
+  font-size:.9rem;color:rgba(0,0,0,.07);
+  transition:color .3s;
+}
+.card:hover .c-idx{color:rgba(0,193,106,.2)}
+.c-link{position:absolute;inset:0;z-index:20}
+
+/* ── REVEAL ── */
+.rv{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .75s var(--expo),transform .75s var(--expo);
+}
+.rv.in{opacity:1;transform:none}
+.card{
+  opacity:0;transform:translateY(28px);
+  transition:
+    opacity .7s var(--expo),
+    transform .7s var(--expo),
+    box-shadow .6s var(--expo),
+    border-color .3s;
+}
+.card.in{opacity:1;transform:none}
+.card.in:hover{transform:translateY(-12px) scale(1.008)}
+
+/* ── CTA ── */
+.cs-cta{
+  background:var(--ink-dark);
+  padding:96px 0;position:relative;overflow:hidden;
+}
+.cs-cta::before{
+  content:'';position:absolute;top:-35%;right:-8%;
+  width:580px;height:580px;
+  background:radial-gradient(circle,rgba(0,193,106,.08) 0%,transparent 65%);
+}
+.cs-cta-inner{
+  max-width:1240px;margin:0 auto;padding:0 52px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:48px;flex-wrap:wrap;position:relative;z-index:2;
+}
+.cta-title{
+  font-family:var(--fh);font-weight:800;
+  font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em;
+  color:#fff;line-height:1.05;
+}
+.cta-title em{color:var(--g);font-style:normal}
+.cta-sub{
+  color:rgba(255,255,255,.38);font-size:.9rem;
+  margin-top:12px;font-weight:300;max-width:430px;line-height:1.7;
+}
+.cta-actions{display:flex;flex-direction:column;gap:13px;align-items:flex-end;flex-shrink:0}
+.btn-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--g);color:var(--ink);
+  padding:15px 30px;border-radius:100px;
+  font-size:.84rem;font-weight:700;text-decoration:none;
+  font-family:var(--fb);
+  transition:transform .3s var(--expo),box-shadow .3s;
+  white-space:nowrap;
+}
+.btn-cta:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,193,106,.28)}
+.btn-cta svg{transition:transform .3s var(--expo)}
+.btn-cta:hover svg{transform:translateX(4px)}
+.cta-note{font-size:.7rem;color:rgba(255,255,255,.2);letter-spacing:.04em}
+.cta-note span{color:rgba(255,255,255,.38)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:880px){
+  .hero-wrap,.mets-inner,.toolbar,.grid,.cs-cta-inner{padding-left:24px;padding-right:24px}
+  .hero-stats{gap:22px}
+  .grid{grid-template-columns:1fr;gap:16px}
+  .mets-inner{grid-template-columns:1fr 1fr;gap:28px}
+  .met{border-right:none;padding:0;text-align:center!important}
+  .cs-cta-inner{flex-direction:column}
+  .cta-actions{align-items:flex-start}
+  .hero{padding:120px 0 64px}
+}
 </style>
 </head>
 <body>
-<div class="cdot" id="cdot"></div><div class="cring" id="cring"></div>
-<main><section class="page-hero">
-  <div class="page-hero-grid"></div>
-  <div class="page-hero-content">
-    <div class="breadcrumb rv"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Case Studies</span></div>
-    <div class="hbadge mb-6 rv d1"><span class="pdot"></span> 150+ Projects Delivered - Real Results</div>
-    <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.06;letter-spacing:-.035em;font-size:clamp(2.4rem,6vw,4.5rem);color:#0a0a0a;max-width:800px">Case Studies</h1>
-    <p class="rv d3" style="color:#6b7280;font-size:1.05rem;margin-top:18px;max-width:560px;line-height:1.7;font-weight:300">Real projects. Real results. Explore how we have helped 40+ businesses across 12+ industries build scalable digital products that drive growth.</p>
-  </div>
-</section><section class="section" style="background:#fafafa"><div class="container"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px"><div class="proj-card rv d0">
-  <div class="proj-card-img">
-    <span class="proj-num">01</span>
-    <div style="position:absolute;bottom:16px;left:20px;display:flex;align-items:center;gap:8px">
-      <span style="background:rgba(0,193,106,.15);border:1px solid rgba(0,193,106,.25);color:#00c16a;padding:4px 12px;border-radius:6px;font-size:.7rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">Fintech SaaS</span>
+
+<div class="cdot" id="cdot"></div>
+<div class="cring" id="cring"></div>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero" role="banner">
+  <div class="hero-bg-dots" aria-hidden="true"></div>
+  <div class="hero-bg-glow" aria-hidden="true"></div>
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge rv">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        150+ Projects Delivered — Real Results
+      </div>
+      <h1 class="hero-h1 rv" style="transition-delay:.07s">
+        <span class="ow">Work</span> That<br>
+        Actually <span class="gw">Ships.</span>
+      </h1>
+      <p class="hero-p rv" style="transition-delay:.14s">
+        Explore how we've helped 40+ businesses across 12 industries build scalable digital products that drive growth, reduce costs, and delight users.
+      </p>
     </div>
-    <div style="position:absolute;top:16px;right:16px;color:rgba(255,255,255,.08);font-family:'Bricolage Grotesque',sans-serif;font-size:.7rem;font-weight:600">12 weeks</div>
-  </div>
-  <div class="proj-card-body">
-    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:#0a0a0a;margin-bottom:8px">FinTrack AI</h3>
-    <p style="font-size:.83rem;color:#6b7280;line-height:1.65;font-weight:300;margin-bottom:16px">AI-powered personal finance dashboard with predictive spending analytics, anomaly detection, and smart budget recommendations. Built for 50k+ users.</p>
-    <div class="stat-highlight mb-4">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#00c16a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span style="font-size:.8rem;font-weight:600;color:#007a43;font-family:'Plus Jakarta Sans',sans-serif">38% reduction in user churn</span>
+    <div class="hero-stats rv" style="transition-delay:.21s" aria-label="Statistics">
+      <div class="hs">
+        <div class="hs-n"><span class="hc" data-v="150">0</span><em>+</em></div>
+        <div class="hs-l">Projects</div>
+      </div>
+      <div class="hs">
+        <div class="hs-n"><span class="hc" data-v="40">0</span><em>+</em></div>
+        <div class="hs-l">Clients</div>
+      </div>
+      <div class="hs">
+        <div class="hs-n"><span class="hc" data-v="12">0</span><em>+</em></div>
+        <div class="hs-l">Industries</div>
+      </div>
     </div>
-    <div style="margin-bottom:18px"><span class="tech-chip">React</span><span class="tech-chip">Node.js</span><span class="tech-chip">TensorFlow</span><span class="tech-chip">AWS</span><span class="tech-chip">PostgreSQL</span></div>
-    <a href="project-detail.html" class="btn btn-primary btn-sm" style="font-size:.78rem">Read Case Study &rarr;</a>
   </div>
-</div>
-<div class="proj-card rv d1">
-  <div class="proj-card-img">
-    <span class="proj-num">02</span>
-    <div style="position:absolute;bottom:16px;left:20px;display:flex;align-items:center;gap:8px">
-      <span style="background:rgba(0,193,106,.15);border:1px solid rgba(0,193,106,.25);color:#00c16a;padding:4px 12px;border-radius:6px;font-size:.7rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">Healthcare</span>
-    </div>
-    <div style="position:absolute;top:16px;right:16px;color:rgba(255,255,255,.08);font-family:'Bricolage Grotesque',sans-serif;font-size:.7rem;font-weight:600">16 weeks</div>
-  </div>
-  <div class="proj-card-body">
-    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:#0a0a0a;margin-bottom:8px">MediAssist Platform</h3>
-    <p style="font-size:.83rem;color:#6b7280;line-height:1.65;font-weight:300;margin-bottom:16px">HIPAA-compliant patient management system with AI-powered diagnosis assistance, appointment scheduling, and EHR integration for 200+ clinics.</p>
-    <div class="stat-highlight mb-4">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#00c16a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span style="font-size:.8rem;font-weight:600;color:#007a43;font-family:'Plus Jakarta Sans',sans-serif">52% reduction in admin overhead</span>
-    </div>
-    <div style="margin-bottom:18px"><span class="tech-chip">Next.js</span><span class="tech-chip">Python</span><span class="tech-chip">FastAPI</span><span class="tech-chip">MongoDB</span><span class="tech-chip">Docker</span></div>
-    <a href="project-detail.html" class="btn btn-primary btn-sm" style="font-size:.78rem">Read Case Study &rarr;</a>
-  </div>
-</div>
-<div class="proj-card rv d2">
-  <div class="proj-card-img">
-    <span class="proj-num">03</span>
-    <div style="position:absolute;bottom:16px;left:20px;display:flex;align-items:center;gap:8px">
-      <span style="background:rgba(0,193,106,.15);border:1px solid rgba(0,193,106,.25);color:#00c16a;padding:4px 12px;border-radius:6px;font-size:.7rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">E-commerce</span>
-    </div>
-    <div style="position:absolute;top:16px;right:16px;color:rgba(255,255,255,.08);font-family:'Bricolage Grotesque',sans-serif;font-size:.7rem;font-weight:600">20 weeks</div>
-  </div>
-  <div class="proj-card-body">
-    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:#0a0a0a;margin-bottom:8px">ShopCore Engine</h3>
-    <p style="font-size:.83rem;color:#6b7280;line-height:1.65;font-weight:300;margin-bottom:16px">Headless e-commerce platform with real-time inventory, AI product recommendations, and multi-currency checkout. Processing $2M+ daily transactions.</p>
-    <div class="stat-highlight mb-4">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#00c16a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span style="font-size:.8rem;font-weight:600;color:#007a43;font-family:'Plus Jakarta Sans',sans-serif">3x increase in conversion rate</span>
-    </div>
-    <div style="margin-bottom:18px"><span class="tech-chip">React</span><span class="tech-chip">Magento</span><span class="tech-chip">Node.js</span><span class="tech-chip">Redis</span><span class="tech-chip">Kubernetes</span></div>
-    <a href="project-detail.html" class="btn btn-primary btn-sm" style="font-size:.78rem">Read Case Study &rarr;</a>
-  </div>
-</div>
-<div class="proj-card rv d0">
-  <div class="proj-card-img">
-    <span class="proj-num">04</span>
-    <div style="position:absolute;bottom:16px;left:20px;display:flex;align-items:center;gap:8px">
-      <span style="background:rgba(0,193,106,.15);border:1px solid rgba(0,193,106,.25);color:#00c16a;padding:4px 12px;border-radius:6px;font-size:.7rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">SaaS Product</span>
-    </div>
-    <div style="position:absolute;top:16px;right:16px;color:rgba(255,255,255,.08);font-family:'Bricolage Grotesque',sans-serif;font-size:.7rem;font-weight:600">8 weeks</div>
-  </div>
-  <div class="proj-card-body">
-    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:#0a0a0a;margin-bottom:8px">DevOps Transformation</h3>
-    <p style="font-size:.83rem;color:#6b7280;line-height:1.65;font-weight:300;margin-bottom:16px">Complete CI/CD overhaul across 14 microservices. Zero-downtime deployments, auto-scaling, and 99.99% uptime SLA on AWS EKS.</p>
-    <div class="stat-highlight mb-4">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#00c16a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span style="font-size:.8rem;font-weight:600;color:#007a43;font-family:'Plus Jakarta Sans',sans-serif">99.99% uptime achieved</span>
-    </div>
-    <div style="margin-bottom:18px"><span class="tech-chip">Kubernetes</span><span class="tech-chip">Terraform</span><span class="tech-chip">GitHub Actions</span><span class="tech-chip">AWS</span><span class="tech-chip">Prometheus</span></div>
-    <a href="project-detail.html" class="btn btn-primary btn-sm" style="font-size:.78rem">Read Case Study &rarr;</a>
+</header>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="mq-wrap" aria-hidden="true">
+  <div class="mq-track">
+    <span class="mq-item"><strong>React</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Node.js</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Next.js</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Python</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>TensorFlow</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>AWS</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Kubernetes</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>LangChain</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>FastAPI</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>PostgreSQL</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Docker</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Terraform</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>GPT-4</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Redis</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>React</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Node.js</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Next.js</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Python</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>TensorFlow</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>AWS</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Kubernetes</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>LangChain</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>FastAPI</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>PostgreSQL</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Docker</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Terraform</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>GPT-4</strong><span class="mq-dot"></span></span>
+    <span class="mq-item"><strong>Redis</strong><span class="mq-dot"></span></span>
   </div>
 </div>
-<div class="proj-card rv d1">
-  <div class="proj-card-img">
-    <span class="proj-num">05</span>
-    <div style="position:absolute;bottom:16px;left:20px;display:flex;align-items:center;gap:8px">
-      <span style="background:rgba(0,193,106,.15);border:1px solid rgba(0,193,106,.25);color:#00c16a;padding:4px 12px;border-radius:6px;font-size:.7rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">Legal Tech</span>
+
+<!-- ══════════ METRICS ══════════ -->
+<section class="mets" aria-label="Key metrics">
+  <div class="mets-inner">
+    <div class="met rv">
+      <div class="met-n"><span class="mc" data-t="38">0</span><em>%</em></div>
+      <div class="met-l">Avg. Churn Reduction</div>
     </div>
-    <div style="position:absolute;top:16px;right:16px;color:rgba(255,255,255,.08);font-family:'Bricolage Grotesque',sans-serif;font-size:.7rem;font-weight:600">10 weeks</div>
-  </div>
-  <div class="proj-card-body">
-    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:#0a0a0a;margin-bottom:8px">LegalBot AI</h3>
-    <p style="font-size:.83rem;color:#6b7280;line-height:1.65;font-weight:300;margin-bottom:16px">Conversational AI assistant for legal document analysis, contract review, and clause extraction. Processes 10,000+ documents per day.</p>
-    <div class="stat-highlight mb-4">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#00c16a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span style="font-size:.8rem;font-weight:600;color:#007a43;font-family:'Plus Jakarta Sans',sans-serif">70% faster document review</span>
+    <div class="met rv" style="transition-delay:.08s">
+      <div class="met-n"><span class="mc" data-t="3">0</span><em>×</em></div>
+      <div class="met-l">Avg. Conversion Lift</div>
     </div>
-    <div style="margin-bottom:18px"><span class="tech-chip">LangChain</span><span class="tech-chip">GPT-4</span><span class="tech-chip">FastAPI</span><span class="tech-chip">React</span><span class="tech-chip">Pinecone</span></div>
-    <a href="project-detail.html" class="btn btn-primary btn-sm" style="font-size:.78rem">Read Case Study &rarr;</a>
-  </div>
-</div>
-<div class="proj-card rv d2">
-  <div class="proj-card-img">
-    <span class="proj-num">06</span>
-    <div style="position:absolute;bottom:16px;left:20px;display:flex;align-items:center;gap:8px">
-      <span style="background:rgba(0,193,106,.15);border:1px solid rgba(0,193,106,.25);color:#00c16a;padding:4px 12px;border-radius:6px;font-size:.7rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">PropTech</span>
+    <div class="met rv" style="transition-delay:.16s">
+      <div class="met-n"><span class="mc" data-t="99">0</span><em>.9%</em></div>
+      <div class="met-l">Uptime SLA Delivered</div>
     </div>
-    <div style="position:absolute;top:16px;right:16px;color:rgba(255,255,255,.08);font-family:'Bricolage Grotesque',sans-serif;font-size:.7rem;font-weight:600">14 weeks</div>
-  </div>
-  <div class="proj-card-body">
-    <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:#0a0a0a;margin-bottom:8px">RealEstate360</h3>
-    <p style="font-size:.83rem;color:#6b7280;line-height:1.65;font-weight:300;margin-bottom:16px">Property listing platform with virtual tours, AI-powered price prediction, and intelligent lead scoring. 15,000+ active listings.</p>
-    <div class="stat-highlight mb-4">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#00c16a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span style="font-size:.8rem;font-weight:600;color:#007a43;font-family:'Plus Jakarta Sans',sans-serif">4.2x increase in qualified leads</span>
+    <div class="met rv" style="transition-delay:.24s">
+      <div class="met-n"><span class="mc" data-t="70">0</span><em>%</em></div>
+      <div class="met-l">Avg. Ops Cost Saved</div>
     </div>
-    <div style="margin-bottom:18px"><span class="tech-chip">Next.js</span><span class="tech-chip">Python</span><span class="tech-chip">AWS</span><span class="tech-chip">PostgreSQL</span><span class="tech-chip">TensorFlow</span></div>
-    <a href="project-detail.html" class="btn btn-primary btn-sm" style="font-size:.78rem">Read Case Study &rarr;</a>
-  </div>
-</div>
-</div></div></section><section style="background:#060d09;padding:88px 0;position:relative;overflow:hidden">
-  <div style="position:absolute;top:-40%;right:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(0,193,106,.1) 0%,transparent 65%);pointer-events:none"></div>
-  <div class="container" style="position:relative;z-index:2;text-align:center">
-    <h2 class="rv" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-.03em;color:#fff">Ready to Be Our Next Success Story?</h2>
-    <p class="rv d1" style="color:#6b7280;font-size:1rem;margin-top:14px;max-width:460px;margin-left:auto;margin-right:auto;font-weight:300">Free consultation in 24 hours. Tell us about your project and we'll share our honest assessment.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:32px" class="rv d2">
-      <a href="hire-us.html" class="btn btn-primary" style="padding:14px 32px">Get Free Consultation <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-    <p class="rv d3" style="color:#4b5563;font-size:.78rem;margin-top:20px">Free NDA | Response in 24h | No Commitment</p>
   </div>
 </section>
+
+<!-- ══════════ TOOLBAR ══════════ -->
+<div class="toolbar">
+  <div class="filters rv" role="group" aria-label="Filter by industry">
+    <button class="pill on" data-f="all">All Projects</button>
+    <button class="pill" data-f="fintech">Fintech</button>
+    <button class="pill" data-f="healthcare">Healthcare</button>
+    <button class="pill" data-f="ecommerce">E-commerce</button>
+    <button class="pill" data-f="saas">SaaS / DevOps</button>
+    <button class="pill" data-f="legaltech">Legal Tech</button>
+    <button class="pill" data-f="proptech">PropTech</button>
+  </div>
+  <p class="proj-count rv" style="transition-delay:.1s"><b id="vc">6</b> projects</p>
+</div>
+
+<!-- ══════════ PROJECTS GRID ══════════ -->
+<main class="grid" id="pg" aria-label="Case studies">
+
+  <!-- 01 FinTrack AI -->
+  <article class="card" data-cat="fintech" aria-label="FinTrack AI case study">
+    <div class="c-top">
+      <div class="c-top-grid"></div>
+      <div class="c-glow"></div>
+      <span class="c-num" aria-hidden="true">01</span>
+      <span class="c-dur">12 weeks</span>
+      <div class="c-dots">
+        <span class="c-dot">React</span>
+        <span class="c-dot">TF</span>
+        <span class="c-dot">AWS</span>
+        <span class="c-dot">PG</span>
+      </div>
+    </div>
+    <div class="c-body">
+      <span class="c-tag"><span class="c-tag-dot"></span>Fintech SaaS</span>
+      <h3 class="c-title">FinTrack AI</h3>
+      <p class="c-desc">AI-powered personal finance dashboard with predictive spending analytics, anomaly detection, and smart budget recommendations — built for 50,000+ active users.</p>
+      <div class="c-hr-static"></div>
+      <div class="c-hr"></div>
+      <div class="c-stats">
+        <div class="c-stat">
+          <div class="c-stat-l">Key Outcome</div>
+          <div class="c-stat-v">38% reduction in churn</div>
+        </div>
+        <div class="c-stat">
+          <div class="c-stat-l">Scale</div>
+          <div class="c-stat-v">50,000+ active users</div>
+        </div>
+      </div>
+      <div class="c-chips">
+        <span class="c-chip">React</span>
+        <span class="c-chip">Node.js</span>
+        <span class="c-chip">TensorFlow</span>
+        <span class="c-chip">AWS</span>
+        <span class="c-chip">PostgreSQL</span>
+      </div>
+      <div class="c-foot">
+        <a href="project-detail.html" class="c-cta" tabindex="-1">
+          Read Case Study
+          <span class="c-arrow">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 1.5h8v8M1.5 9.5l8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        <span class="c-idx" aria-hidden="true">01/06</span>
+      </div>
+    </div>
+    <a href="project-detail.html" class="c-link" aria-label="Read FinTrack AI full case study"></a>
+  </article>
+
+  <!-- 02 MediAssist -->
+  <article class="card" data-cat="healthcare" aria-label="MediAssist Platform case study" style="transition-delay:.08s">
+    <div class="c-top">
+      <div class="c-top-grid"></div>
+      <div class="c-glow"></div>
+      <span class="c-num" aria-hidden="true">02</span>
+      <span class="c-dur">16 weeks</span>
+      <div class="c-dots">
+        <span class="c-dot">Next.js</span>
+        <span class="c-dot">FastAPI</span>
+        <span class="c-dot">Mongo</span>
+        <span class="c-dot">Docker</span>
+      </div>
+    </div>
+    <div class="c-body">
+      <span class="c-tag"><span class="c-tag-dot"></span>Healthcare</span>
+      <h3 class="c-title">MediAssist Platform</h3>
+      <p class="c-desc">HIPAA-compliant patient management system with AI-powered diagnosis assistance, appointment scheduling, and full EHR integration across 200+ clinics.</p>
+      <div class="c-hr-static"></div>
+      <div class="c-hr"></div>
+      <div class="c-stats">
+        <div class="c-stat">
+          <div class="c-stat-l">Key Outcome</div>
+          <div class="c-stat-v">52% less admin overhead</div>
+        </div>
+        <div class="c-stat">
+          <div class="c-stat-l">Scale</div>
+          <div class="c-stat-v">200+ clinics integrated</div>
+        </div>
+      </div>
+      <div class="c-chips">
+        <span class="c-chip">Next.js</span>
+        <span class="c-chip">Python</span>
+        <span class="c-chip">FastAPI</span>
+        <span class="c-chip">MongoDB</span>
+        <span class="c-chip">Docker</span>
+      </div>
+      <div class="c-foot">
+        <a href="project-detail.html" class="c-cta" tabindex="-1">
+          Read Case Study
+          <span class="c-arrow">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 1.5h8v8M1.5 9.5l8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        <span class="c-idx" aria-hidden="true">02/06</span>
+      </div>
+    </div>
+    <a href="project-detail.html" class="c-link" aria-label="Read MediAssist full case study"></a>
+  </article>
+
+  <!-- 03 ShopCore -->
+  <article class="card" data-cat="ecommerce" aria-label="ShopCore Engine case study" style="transition-delay:.04s">
+    <div class="c-top">
+      <div class="c-top-grid"></div>
+      <div class="c-glow"></div>
+      <span class="c-num" aria-hidden="true">03</span>
+      <span class="c-dur">20 weeks</span>
+      <div class="c-dots">
+        <span class="c-dot">React</span>
+        <span class="c-dot">K8s</span>
+        <span class="c-dot">Redis</span>
+        <span class="c-dot">Node</span>
+      </div>
+    </div>
+    <div class="c-body">
+      <span class="c-tag"><span class="c-tag-dot"></span>E-commerce</span>
+      <h3 class="c-title">ShopCore Engine</h3>
+      <p class="c-desc">Headless e-commerce platform with real-time inventory, AI product recommendations, and multi-currency checkout. Processing $2M+ in daily transactions globally.</p>
+      <div class="c-hr-static"></div>
+      <div class="c-hr"></div>
+      <div class="c-stats">
+        <div class="c-stat">
+          <div class="c-stat-l">Key Outcome</div>
+          <div class="c-stat-v">3× increase in conversion</div>
+        </div>
+        <div class="c-stat">
+          <div class="c-stat-l">Volume</div>
+          <div class="c-stat-v">$2M+ daily transactions</div>
+        </div>
+      </div>
+      <div class="c-chips">
+        <span class="c-chip">React</span>
+        <span class="c-chip">Magento</span>
+        <span class="c-chip">Node.js</span>
+        <span class="c-chip">Redis</span>
+        <span class="c-chip">Kubernetes</span>
+      </div>
+      <div class="c-foot">
+        <a href="project-detail.html" class="c-cta" tabindex="-1">
+          Read Case Study
+          <span class="c-arrow">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 1.5h8v8M1.5 9.5l8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        <span class="c-idx" aria-hidden="true">03/06</span>
+      </div>
+    </div>
+    <a href="project-detail.html" class="c-link" aria-label="Read ShopCore Engine full case study"></a>
+  </article>
+
+  <!-- 04 DevOps -->
+  <article class="card" data-cat="saas" aria-label="DevOps Transformation case study" style="transition-delay:.12s">
+    <div class="c-top">
+      <div class="c-top-grid"></div>
+      <div class="c-glow"></div>
+      <span class="c-num" aria-hidden="true">04</span>
+      <span class="c-dur">8 weeks</span>
+      <div class="c-dots">
+        <span class="c-dot">K8s</span>
+        <span class="c-dot">Terraform</span>
+        <span class="c-dot">GHA</span>
+        <span class="c-dot">AWS</span>
+      </div>
+    </div>
+    <div class="c-body">
+      <span class="c-tag"><span class="c-tag-dot"></span>SaaS / DevOps</span>
+      <h3 class="c-title">DevOps Transformation</h3>
+      <p class="c-desc">Complete CI/CD overhaul across 14 microservices with zero-downtime deployments, intelligent auto-scaling, and a 99.99% uptime SLA delivered on AWS EKS.</p>
+      <div class="c-hr-static"></div>
+      <div class="c-hr"></div>
+      <div class="c-stats">
+        <div class="c-stat">
+          <div class="c-stat-l">Key Outcome</div>
+          <div class="c-stat-v">99.99% uptime achieved</div>
+        </div>
+        <div class="c-stat">
+          <div class="c-stat-l">Scope</div>
+          <div class="c-stat-v">14 microservices</div>
+        </div>
+      </div>
+      <div class="c-chips">
+        <span class="c-chip">Kubernetes</span>
+        <span class="c-chip">Terraform</span>
+        <span class="c-chip">GitHub Actions</span>
+        <span class="c-chip">AWS EKS</span>
+        <span class="c-chip">Prometheus</span>
+      </div>
+      <div class="c-foot">
+        <a href="project-detail.html" class="c-cta" tabindex="-1">
+          Read Case Study
+          <span class="c-arrow">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 1.5h8v8M1.5 9.5l8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        <span class="c-idx" aria-hidden="true">04/06</span>
+      </div>
+    </div>
+    <a href="project-detail.html" class="c-link" aria-label="Read DevOps Transformation full case study"></a>
+  </article>
+
+  <!-- 05 LegalBot -->
+  <article class="card" data-cat="legaltech" aria-label="LegalBot AI case study" style="transition-delay:.08s">
+    <div class="c-top">
+      <div class="c-top-grid"></div>
+      <div class="c-glow"></div>
+      <span class="c-num" aria-hidden="true">05</span>
+      <span class="c-dur">10 weeks</span>
+      <div class="c-dots">
+        <span class="c-dot">LangChain</span>
+        <span class="c-dot">GPT-4</span>
+        <span class="c-dot">FastAPI</span>
+        <span class="c-dot">Pinecone</span>
+      </div>
+    </div>
+    <div class="c-body">
+      <span class="c-tag"><span class="c-tag-dot"></span>Legal Tech</span>
+      <h3 class="c-title">LegalBot AI</h3>
+      <p class="c-desc">Conversational AI assistant for legal document analysis, contract review, and clause extraction — processing 10,000+ documents per day at 94% accuracy.</p>
+      <div class="c-hr-static"></div>
+      <div class="c-hr"></div>
+      <div class="c-stats">
+        <div class="c-stat">
+          <div class="c-stat-l">Key Outcome</div>
+          <div class="c-stat-v">70% faster doc review</div>
+        </div>
+        <div class="c-stat">
+          <div class="c-stat-l">Throughput</div>
+          <div class="c-stat-v">10,000+ docs/day</div>
+        </div>
+      </div>
+      <div class="c-chips">
+        <span class="c-chip">LangChain</span>
+        <span class="c-chip">GPT-4</span>
+        <span class="c-chip">FastAPI</span>
+        <span class="c-chip">React</span>
+        <span class="c-chip">Pinecone</span>
+      </div>
+      <div class="c-foot">
+        <a href="project-detail.html" class="c-cta" tabindex="-1">
+          Read Case Study
+          <span class="c-arrow">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 1.5h8v8M1.5 9.5l8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        <span class="c-idx" aria-hidden="true">05/06</span>
+      </div>
+    </div>
+    <a href="project-detail.html" class="c-link" aria-label="Read LegalBot AI full case study"></a>
+  </article>
+
+  <!-- 06 RealEstate360 -->
+  <article class="card" data-cat="proptech" aria-label="RealEstate360 case study" style="transition-delay:.16s">
+    <div class="c-top">
+      <div class="c-top-grid"></div>
+      <div class="c-glow"></div>
+      <span class="c-num" aria-hidden="true">06</span>
+      <span class="c-dur">14 weeks</span>
+      <div class="c-dots">
+        <span class="c-dot">Next.js</span>
+        <span class="c-dot">TF</span>
+        <span class="c-dot">AWS</span>
+        <span class="c-dot">PG</span>
+      </div>
+    </div>
+    <div class="c-body">
+      <span class="c-tag"><span class="c-tag-dot"></span>PropTech</span>
+      <h3 class="c-title">RealEstate360</h3>
+      <p class="c-desc">Property listing platform with virtual tours, AI-powered price prediction, and intelligent lead scoring — powering 15,000+ active listings across two markets.</p>
+      <div class="c-hr-static"></div>
+      <div class="c-hr"></div>
+      <div class="c-stats">
+        <div class="c-stat">
+          <div class="c-stat-l">Key Outcome</div>
+          <div class="c-stat-v">4.2× more qualified leads</div>
+        </div>
+        <div class="c-stat">
+          <div class="c-stat-l">Listings</div>
+          <div class="c-stat-v">15,000+ active</div>
+        </div>
+      </div>
+      <div class="c-chips">
+        <span class="c-chip">Next.js</span>
+        <span class="c-chip">Python</span>
+        <span class="c-chip">AWS</span>
+        <span class="c-chip">PostgreSQL</span>
+        <span class="c-chip">TensorFlow</span>
+      </div>
+      <div class="c-foot">
+        <a href="project-detail.html" class="c-cta" tabindex="-1">
+          Read Case Study
+          <span class="c-arrow">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 1.5h8v8M1.5 9.5l8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        <span class="c-idx" aria-hidden="true">06/06</span>
+      </div>
+    </div>
+    <a href="project-detail.html" class="c-link" aria-label="Read RealEstate360 full case study"></a>
+  </article>
+
 </main>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cs-cta" aria-labelledby="cta-h">
+  <div class="cs-cta-inner">
+    <div class="rv">
+      <h2 id="cta-h" class="cta-title">Ready to be our<br>next <em>success story?</em></h2>
+      <p class="cta-sub">Free consultation in 24 hours. Tell us about your project and we'll share our honest technical assessment — no sales pitch, no commitment.</p>
+    </div>
+    <div class="cta-actions rv" style="transition-delay:.1s">
+      <a href="hire-us.html" class="btn-cta">
+        Get Free Consultation
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="cta-note"><span>Free NDA</span> · <span>Response in 24h</span> · <span>No Commitment</span></p>
+    </div>
+  </div>
+</section>
+
 <script src="krapton-nav.js"></script>
+<script>
+/* Scroll reveal */
+const allRv = document.querySelectorAll('.rv, .card');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+allRv.forEach(el => ro.observe(el));
+
+/* Count-up */
+function cu(el, target, ms = 1500) {
+  const s = performance.now();
+  const run = t => {
+    const p = Math.min((t - s) / ms, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(e * target);
+    if (p < 1) requestAnimationFrame(run);
+    else el.textContent = target;
+  };
+  requestAnimationFrame(run);
+}
+
+/* Hero counters */
+let hf = false;
+const hro = new IntersectionObserver(en => {
+  if (en[0].isIntersecting && !hf) {
+    hf = true;
+    document.querySelectorAll('.hc').forEach(el => cu(el, +el.dataset.v));
+  }
+}, { threshold: 0.5 });
+const hs = document.querySelector('.hero-stats');
+if (hs) hro.observe(hs);
+
+/* Metric counters */
+document.querySelectorAll('.mc').forEach(el => {
+  let f = false;
+  const o = new IntersectionObserver(en => {
+    if (en[0].isIntersecting && !f) { f = true; cu(el, +el.dataset.t); o.disconnect(); }
+  }, { threshold: 0.5 });
+  o.observe(el);
+});
+
+/* Filter */
+const pills = document.querySelectorAll('.pill');
+const cards = document.querySelectorAll('.card');
+const vcEl  = document.getElementById('vc');
+pills.forEach(p => {
+  p.addEventListener('click', () => {
+    pills.forEach(x => x.classList.remove('on'));
+    p.classList.add('on');
+    const f = p.dataset.f;
+    let n = 0;
+    cards.forEach(c => {
+      const show = f === 'all' || c.dataset.cat === f;
+      c.style.display = show ? '' : 'none';
+      if (show) n++;
+    });
+    if (vcEl) vcEl.textContent = n;
+  });
+});
+</script>
 </body>
 </html>

@@ -29,28 +29,131 @@
 <div class="cdot" id="cdot"></div><div class="cring" id="cring"></div>
 <main>
 <!-- HERO -->
-<section class="service-hero">
+<section class="service-hero relative min-h-[90vh] flex items-center overflow-hidden bg-[#fff]">
+  <style>
+    .service-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+      opacity: 0.4;
+    }
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+      to   { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+    }
+    @keyframes float-subtle {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+    }
+    @keyframes pulse-line {
+      0%, 100% { opacity: 0.1; stroke-dashoffset: 100; }
+      50% { opacity: 0.5; stroke-dashoffset: 0; }
+    }
+    .tech-icon {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      items-center;
+      justify-content: center;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      border: 1px solid #f3f4f6;
+      z-index: 10;
+    }
+  </style>
+
   <div class="service-hero-grid"></div>
-  <div class="container" style="position:relative;z-index:2">
-    <div class="breadcrumb rv"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Services</span></div>
-    <div class="hbadge mb-6 rv d1"><span class="pdot"></span> End-to-End IT Services · New Delhi, India</div>
-    <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.06;letter-spacing:-.035em;font-size:clamp(2.6rem,7vw,5rem);color:#0a0a0a;max-width:800px">
-      Complete IT Services.<br/><span style="background:linear-gradient(135deg,#00c16a,#009952);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">One Trusted Partner.</span>
-    </h1>
-    <p class="rv d3" style="color:#555;font-size:1.15rem;margin-top:20px;max-width:580px;line-height:1.7;font-weight:300">From MVP to enterprise scale — hire dedicated developers or full teams across every technology stack. 150+ projects delivered. 4.8★ rated.</p>
-    <div class="flex flex-wrap gap-4 mt-8 rv d4">
-      <a href="hire-us.html" class="btn btn-primary">Get Free Consultation <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="case-studies.html" class="btn btn-outline">View Case Studies</a>
-    </div>
-    <!-- quick stats -->
-    <div class="flex flex-wrap gap-8 mt-14 rv d5">
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:-.04em;color:#0a0a0a">150+</span><div style="font-size:.78rem;color:#6b7280;font-weight:500;margin-top:2px">Projects Delivered</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:-.04em;color:#0a0a0a">40+</span><div style="font-size:.78rem;color:#6b7280;font-weight:500;margin-top:2px">Global Clients</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:-.04em;color:#0a0a0a">4.8★</span><div style="font-size:.78rem;color:#6b7280;font-weight:500;margin-top:2px">Client Rating</div></div>
-      <div style="width:1px;background:#e5e7eb"></div>
-      <div><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:-.04em;color:#0a0a0a">98%</span><div style="font-size:.78rem;color:#6b7280;font-weight:500;margin-top:2px">On-Time Delivery</div></div>
+
+  <div class="container mx-auto px-6 lg:px-10 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <div class="max-w-2xl">
+        <div class="breadcrumb rv mb-6 flex items-center gap-2 text-sm font-medium text-gray-400">
+          <a href="index.html" class="hover:text-[#00c16a] transition-colors">Home</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="text-gray-900">Services</span>
+        </div>
+        
+        <div class="hbadge mb-6 rv d1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 border border-gray-100">
+          <span class="pdot w-2 h-2 rounded-full bg-[#00c16a] animate-pulse"></span>
+          <span class="text-[11px] font-bold tracking-wider text-gray-600 uppercase">End-to-End IT Services · New Delhi, India</span>
+        </div>
+
+        <h1 class="rv d2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.06;letter-spacing:-.035em;font-size:clamp(2.6rem,7vw,5rem);color:#0a0a0a">
+          Complete IT Services.<br/>
+          <span style="background:linear-gradient(135deg,#00c16a,#009952);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">One Trusted Partner.</span>
+        </h1>
+        
+        <p class="rv d3 text-gray-500 text-lg mt-6 max-w-lg leading-relaxed font-light">
+          From MVP to enterprise scale — hire dedicated developers or full teams across every technology stack. 150+ projects delivered. 4.8★ rated.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mt-10 rv d4">
+          <a href="hire-us.html" class="bg-[#0a0a0a] text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 hover:bg-[#00c16a] transition-all transform hover:-translate-y-1">
+            Get Free Consultation 
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="case-studies.html" class="border border-gray-200 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-50 transition-all">View Case Studies</a>
+        </div>
+
+        <div class="flex flex-wrap gap-8 mt-16 rv d5">
+          <div>
+            <span class="block text-4xl font-extrabold tracking-tighter text-[#0a0a0a]">150+</span>
+            <div class="text-[11px] uppercase tracking-wider text-gray-400 font-bold mt-1">Projects Delivered</div>
+          </div>
+          <div class="w-px h-12 bg-gray-100 hidden sm:block"></div>
+          <div>
+            <span class="block text-4xl font-extrabold tracking-tighter text-[#0a0a0a]">4.8★</span>
+            <div class="text-[11px] uppercase tracking-wider text-gray-400 font-bold mt-1">Client Rating</div>
+          </div>
+          <div class="w-px h-12 bg-gray-100 hidden sm:block"></div>
+          <div>
+            <span class="block text-4xl font-extrabold tracking-tighter text-[#0a0a0a]">98%</span>
+            <div class="text-[11px] uppercase tracking-wider text-gray-400 font-bold mt-1">On-Time Success</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative h-[500px] flex items-center justify-center lg:block hidden">
+        <div class="absolute inset-0 flex items-center justify-center">
+          
+          <div class="relative z-20 w-32 h-32 bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,193,106,0.15)] border border-[#00c16a]/20 flex items-center justify-center animate-[float-subtle_4s_ease-in-out_infinite]">
+            <div class="w-16 h-16 bg-[#00c16a] rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-[#00c16a]/40">K</div>
+            <div class="absolute inset-0 border-2 border-[#00c16a]/30 rounded-3xl animate-ping opacity-20"></div>
+          </div>
+
+          <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 400">
+             <circle cx="200" cy="200" r="120" fill="none" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="5 5" />
+             <path d="M200,80 Q250,140 200,200" class="stream-line" stroke="#00c16a" fill="none" style="animation: pulse-line 3s infinite" />
+             <path d="M200,320 Q150,260 200,200" class="stream-line" stroke="#00c16a" fill="none" style="animation: pulse-line 3s infinite 1.5s" />
+          </svg>
+
+          <div class="tech-icon" style="animation: orbit 12s linear infinite; animation-delay: -1s;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="24" alt="React">
+          </div>
+          <div class="tech-icon" style="animation: orbit 12s linear infinite; animation-delay: -3s;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="24" alt="Node">
+          </div>
+          <div class="tech-icon" style="animation: orbit 12s linear infinite; animation-delay: -5s;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="24" alt="Python">
+          </div>
+          <div class="tech-icon" style="animation: orbit 12s linear infinite; animation-delay: -7s;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="24" alt="AWS">
+          </div>
+          <div class="tech-icon" style="animation: orbit 12s linear infinite; animation-delay: -9s;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="24" alt="Flutter">
+          </div>
+          <div class="tech-icon" style="animation: orbit 12s linear infinite; animation-delay: -11s;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="24" alt="TS">
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
