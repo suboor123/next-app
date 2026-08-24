@@ -3,118 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>502 - Bad Gateway</title>
+
+    <title>502 - Bad Gateway | Nginx</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .float {
-            animation: float 4s ease-in-out infinite;
-        }
-    </style>
 </head>
 
-<body class="min-h-screen bg-slate-950 text-white flex items-center justify-center px-6">
+<body class="min-h-screen bg-white flex items-center justify-center px-6">
 
-    <main class="w-full max-w-3xl text-center">
+    <main class="text-center max-w-xl">
 
-        <!-- Icon -->
-        <div class="float flex justify-center mb-8">
-            <div class="w-24 h-24 rounded-3xl bg-red-500/10 border border-red-500/20
-                        flex items-center justify-center">
+        <!-- Nginx -->
+        <div class="flex items-center justify-center gap-2 mb-8">
+            <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
 
-                <svg
-                    class="w-12 h-12 text-red-400"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M12 9v3.75m0 3.75h.007M10.34 3.94 2.93 17.25A2 2 0 0 0 4.67 20.25h14.66a2 2 0 0 0 1.74-3L13.66 3.94a2 2 0 0 0-3.32 0Z"
-                    />
-                </svg>
-            </div>
+            <span class="text-sm font-medium text-gray-500">
+                Nginx
+            </span>
         </div>
 
         <!-- Error Code -->
-        <div class="text-8xl sm:text-9xl font-black tracking-tight
-                    bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400
-                    bg-clip-text text-transparent">
+        <h1 class="text-8xl sm:text-9xl font-bold tracking-tight text-gray-900">
             502
-        </div>
-
-        <!-- Heading -->
-        <h1 class="mt-6 text-3xl sm:text-4xl font-bold tracking-tight">
-            Bad Gateway
         </h1>
 
+        <!-- Heading -->
+        <h2 class="mt-4 text-2xl sm:text-3xl font-semibold text-gray-900">
+            Bad Gateway
+        </h2>
+
         <!-- Description -->
-        <p class="mt-4 text-slate-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            The server received an invalid response from the upstream server.
-            We're working to get things back to normal.
+        <p class="mt-4 text-gray-500 leading-relaxed">
+            Nginx received an invalid response from the upstream server.
+            The server may be temporarily unavailable.
         </p>
 
         <!-- Status -->
-        <div class="mt-8 inline-flex items-center gap-3 px-4 py-2
-                    rounded-full bg-slate-900 border border-slate-800
-                    text-sm text-slate-400">
+        <div class="mt-6 inline-flex items-center gap-2
+                    px-3 py-1.5 rounded-full
+                    bg-gray-50 border border-gray-200">
 
-            <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full
-                             rounded-full bg-yellow-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5
-                             bg-yellow-500"></span>
+            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+
+            <span class="text-sm text-gray-500">
+                Server error
             </span>
-
-            Server connection issue
         </div>
 
-        <!-- Buttons -->
-        <div class="mt-10 flex flex-col sm:flex-row justify-center gap-3">
-
+        <!-- Button -->
+        <div class="mt-8">
             <button
                 onclick="window.location.reload()"
-                class="px-6 py-3 rounded-xl bg-white text-slate-950
-                       font-semibold hover:bg-slate-200
-                       transition duration-200"
+                class="px-5 py-2.5 rounded-lg
+                       bg-gray-900 text-white
+                       text-sm font-medium
+                       hover:bg-gray-800
+                       transition"
             >
                 Try Again
             </button>
-
-            <button
-                onclick="window.location.href='/'"
-                class="px-6 py-3 rounded-xl border border-slate-700
-                       text-slate-300 font-semibold
-                       hover:bg-slate-900 hover:border-slate-600
-                       transition duration-200"
-            >
-                Go to Homepage
-            </button>
-
         </div>
 
         <!-- Footer -->
-        <div class="mt-16 text-sm text-slate-600">
-            <span id="year"></span> • Server Error
-        </div>
+        <p class="mt-12 text-xs text-gray-400">
+            Nginx · HTTP 502
+        </p>
 
     </main>
-
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
 
 </body>
 </html>
