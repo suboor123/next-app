@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 ```
-<title>We’re Redesigning — Coming Soon</title>
+<title>Something New Is Coming — Suboor Khan</title>
+
 <meta
     name="description"
-    content="Our website is currently being redesigned and rebuilt. We're creating something better than before. Get in touch at suboork100@gmail.com."
+    content="Suboor Khan's website is currently being redesigned and rebuilt. A new and improved experience is coming soon."
 >
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -20,25 +21,12 @@
             transform: translateY(0);
         }
         50% {
-            transform: translateY(-8px);
-        }
-    }
-
-    @keyframes pulse-soft {
-        0%, 100% {
-            opacity: .4;
-        }
-        50% {
-            opacity: .8;
+            transform: translateY(-10px);
         }
     }
 
     .float {
         animation: float 5s ease-in-out infinite;
-    }
-
-    .pulse-soft {
-        animation: pulse-soft 3s ease-in-out infinite;
     }
 </style>
 ```
@@ -48,153 +36,142 @@
 <body class="min-h-screen bg-white text-gray-900 overflow-hidden">
 
 ```
-<!-- Background -->
+<!-- Subtle background -->
 <div class="fixed inset-0 pointer-events-none">
 
-    <!-- Soft gradient -->
-    <div class="absolute top-[-300px] left-1/2 -translate-x-1/2
-                w-[700px] h-[700px]
-                bg-emerald-100/50
-                rounded-full blur-3xl">
-    </div>
-
-    <!-- Grid -->
     <div
-        class="absolute inset-0 opacity-[0.035]"
+        class="absolute -top-72 left-1/2 -translate-x-1/2
+               w-[650px] h-[650px]
+               rounded-full
+               bg-emerald-100/40
+               blur-3xl"
+    ></div>
+
+    <div
+        class="absolute inset-0 opacity-[0.025]"
         style="
             background-image:
                 linear-gradient(#111 1px, transparent 1px),
                 linear-gradient(90deg, #111 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-size: 60px 60px;
         "
     ></div>
+
 </div>
 
 
-<!-- Navigation -->
-<header class="relative z-10 w-full">
-    <div class="max-w-7xl mx-auto px-6 sm:px-10 py-7">
+<!-- Header -->
+<header class="relative z-10">
+
+    <div class="max-w-6xl mx-auto px-6 py-8">
 
         <div class="flex items-center justify-between">
 
-            <!-- Logo -->
-            <div class="flex items-center gap-2.5">
-                <div
-                    class="w-9 h-9 rounded-xl bg-gray-900
-                           flex items-center justify-center"
-                >
-                    <span class="text-white font-bold text-sm">
-                        K
-                    </span>
-                </div>
+            <!-- Name -->
+            <a
+                href="/"
+                class="text-lg font-semibold tracking-tight"
+            >
+                Suboor<span class="text-emerald-500">.</span>
+            </a>
 
-                <span class="font-semibold tracking-tight text-lg">
-                    Krapton
-                </span>
-            </div>
 
-            <!-- Status -->
-            <div class="hidden sm:flex items-center gap-2
-                        text-sm text-gray-500">
-
-                <span class="relative flex w-2 h-2">
-                    <span
-                        class="absolute inline-flex w-full h-full
-                               rounded-full bg-emerald-400
-                               opacity-60 pulse-soft">
-                    </span>
-
-                    <span
-                        class="relative inline-flex w-2 h-2
-                               rounded-full bg-emerald-500">
-                    </span>
-                </span>
+            <!-- Availability -->
+            <div
+                class="hidden sm:flex items-center gap-2
+                       text-sm text-gray-500"
+            >
+                <span
+                    class="w-2 h-2 rounded-full
+                           bg-emerald-500"
+                ></span>
 
                 Currently rebuilding
             </div>
 
         </div>
+
     </div>
+
 </header>
 
 
 <!-- Main -->
-<main class="relative z-10 min-h-[calc(100vh-90px)]
-             flex items-center justify-center
-             px-6 pb-16">
+<main
+    class="relative z-10
+           min-h-[calc(100vh-100px)]
+           flex items-center
+           justify-center
+           px-6 pb-16"
+>
 
     <div class="max-w-4xl mx-auto text-center">
 
-        <!-- Badge -->
-        <div
-            class="inline-flex items-center gap-2
-                   px-4 py-2 mb-8
-                   rounded-full
-                   border border-gray-200
-                   bg-white/80 backdrop-blur-sm
-                   shadow-sm"
-        >
-            <span class="text-base">✦</span>
 
-            <span class="text-sm font-medium text-gray-600">
-                Something better is coming
-            </span>
-        </div>
+        <!-- Small intro -->
+        <p
+            class="text-sm sm:text-base
+                   font-medium
+                   text-emerald-600
+                   mb-7"
+        >
+            A new version is on the way
+        </p>
 
 
         <!-- Heading -->
         <h1
-            class="text-5xl sm:text-6xl md:text-7xl
-                   lg:text-8xl
-                   font-bold tracking-[-0.045em]
+            class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl
+                   font-bold
+                   tracking-[-0.05em]
                    leading-[0.95]"
         >
-            We're making
+            I'm redesigning
             <span
                 class="block mt-2
-                       bg-gradient-to-r
-                       from-gray-900
-                       via-gray-700
-                       to-emerald-600
-                       bg-clip-text text-transparent"
+                       text-gray-400"
             >
-                things better.
+                my corner of the web.
             </span>
         </h1>
 
 
         <!-- Description -->
         <p
-            class="mt-8 max-w-2xl mx-auto
+            class="mt-8
+                   max-w-2xl mx-auto
                    text-lg sm:text-xl
                    leading-relaxed
                    text-gray-500"
         >
-            Our website is currently undergoing a complete
-            redesign and rebuild. We're taking some time to
-            rethink, refine, and create something much better
-            than before.
+            I'm currently rebuilding and redesigning this website
+            from the ground up — making it cleaner, faster,
+            and better than before.
         </p>
 
 
-        <!-- Contact -->
-        <div class="mt-10 flex flex-col sm:flex-row
-                    items-center justify-center gap-4">
+        <!-- Contact CTA -->
+        <div class="mt-10">
 
             <a
                 href="mailto:suboork100@gmail.com"
-                class="group inline-flex items-center gap-3
+                class="group
+                       inline-flex
+                       items-center
+                       gap-3
                        px-6 py-3.5
                        rounded-xl
                        bg-gray-900
                        text-white
                        font-medium
-                       shadow-lg shadow-gray-900/10
+                       shadow-xl
+                       shadow-gray-900/10
                        hover:bg-gray-800
                        hover:-translate-y-0.5
                        transition-all duration-200"
             >
 
+                <!-- Mail icon -->
                 <svg
                     class="w-5 h-5"
                     fill="none"
@@ -205,11 +182,19 @@
                     <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        d="M3 7.5A2.5 2.5 0 015.5 5h13A2.5 2.5 0 0121 7.5v9a2.5 2.5 0 01-2.5 2.5h-13A2.5 2.5 0 013 16.5v-9z"
+                    />
+
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M4 7l8 6 8-6"
                     />
                 </svg>
 
-                Get in touch
+
+                Let's connect
+
 
                 <svg
                     class="w-4 h-4
@@ -234,50 +219,53 @@
 
         <!-- Email -->
         <p class="mt-4 text-sm text-gray-400">
-            Or email us directly at
+
+            Or reach me at
+
             <a
                 href="mailto:suboork100@gmail.com"
-                class="text-gray-600 hover:text-emerald-600
+                class="text-gray-600
+                       hover:text-emerald-600
                        transition-colors"
             >
                 suboork100@gmail.com
             </a>
+
         </p>
 
 
-        <!-- Visual -->
+        <!-- Decorative element -->
         <div class="mt-16 flex justify-center">
 
             <div class="relative float">
 
-                <!-- Glow -->
                 <div
                     class="absolute inset-0
-                           bg-emerald-200/40
-                           blur-3xl rounded-full"
+                           rounded-full
+                           bg-emerald-200/50
+                           blur-2xl"
                 ></div>
 
-                <!-- Main shape -->
                 <div
-                    class="relative w-20 h-20
-                           rounded-3xl
-                           bg-gray-900
+                    class="relative
+                           w-16 h-16
+                           rounded-2xl
+                           bg-gray-950
                            rotate-12
+                           flex items-center justify-center
                            shadow-2xl
-                           shadow-gray-900/20
-                           flex items-center justify-center"
+                           shadow-gray-900/20"
                 >
-                    <div
-                        class="w-10 h-10
-                               rounded-xl
-                               border border-white/20
-                               flex items-center justify-center
+
+                    <span
+                        class="text-2xl
+                               font-bold
+                               text-white
                                -rotate-12"
                     >
-                        <span class="text-white text-xl font-bold">
-                            K
-                        </span>
-                    </div>
+                        S
+                    </span>
+
                 </div>
 
             </div>
@@ -287,7 +275,7 @@
 
         <!-- Footer -->
         <p class="mt-14 text-xs text-gray-400">
-            © <span id="year"></span> Krapton. We'll be back soon.
+            © <span id="year"></span> Suboor Khan
         </p>
 
     </div>
